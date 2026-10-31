@@ -1,0 +1,27 @@
+# Copyright (C) 2026 ErnstTechnik and the CoreLR contributors
+# SPDX-License-Identifier: GPL-3.0-or-later
+# A given CMake (Kitware's release binary, checked against its SHA-256) first on the PATH. ci.yml uses it with 3.20.6, the minimum the project announces
+# (cmake_minimum_required in CMakeLists.txt): the runner's CMake is a 3.x or 4.x of its own and hid a CMake 3.x defect once (cmake/ExportIno.cmake, 2026-10-31).
+name: CMake
+description: Installs a CMake release binary and puts it first on the PATH
+inputs:
+  version:
+    description: the CMake version, for instance 3.20.6
+    required: true
+  sha256:
+    description: the SHA-256 of cmake-<version>-linux-x86_64.tar.gz (Kitware's cmake-<version>-SHA-256.txt)
+    required: true
+runs:
+  using: composite
+  steps:
+    - shell: bash
+      env:
+        CMAKE_VERSION: ${{ inputs.version }}
+        CMAKE_SHA256: ${{ inputs.sha256 }}
+      run: |
+        set -e
+        curl -fsSL -o "$RUNNER_TEMP/cmake.tar.gz" "https://github.com/Kitware/CMake/releases/download/v${CMAKE_VERSION}/cmake-${CMAKE_VERSION}-linux-x86_64.tar.gz"
+        echo "${CMAKE_SHA256}  $RUNNER_TEMP/cmake.tar.gz" | sha256sum -c -
+        mkdir -p "$HOME/cmake" && tar -xzf "$RUNNER_TEMP/cmake.tar.gz" -C "$HOME/cmake" --strip-components=1
+        echo "$HOME/cmake/bin" >> "$GITHUB_PATH"
+        "$HOME/cmake/bin/cmake" --version | head -n 1

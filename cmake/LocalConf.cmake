@@ -1,0 +1,26 @@
+# Copyright (C) 2026 ErnstTechnik and the CoreLR contributors
+# SPDX-License-Identifier: GPL-3.0-or-later
+# LocalConf.cmake -- read local.conf (the machine's tool paths, see local.conf.example) into CMake variables.
+# A variable that is already set (-D on the command line, or the cache) wins, then the environment, then the file.
+set(_lc "${CMAKE_CURRENT_LIST_DIR}/../local.conf")
+if(EXISTS "${_lc}")
+    set_property(DIRECTORY APPEND PROPERTY CMAKE_CONFIGURE_DEPENDS "${_lc}")
+    file(STRINGS "${_lc}" _lines)
+    foreach(_l IN LISTS _lines)
+        if(_l MATCHES "^[ \t]*([A-Za-z_][A-Za-z0-9_]*)[ \t]*=[ \t]*(.*[^ \t])?[ \t]*$")
+            set(_k "${CMAKE_MATCH_1}")
+            set(_v "${CMAKE_MATCH_2}")
+            if(_v MATCHES "^~(/.*)?$")
+                set(_v "$ENV{HOME}${CMAKE_MATCH_1}")
+            endif()
+            if(NOT DEFINED ${_k} AND NOT DEFINED ENV{${_k}})
+                set(${_k} "${_v}")
+            endif()
+        endif()
+    endforeach()
+endif()
+foreach(_k AVR_BIN AVRDUDE_CONF CORELR_PORT CORELR_BAUD)
+    if(NOT DEFINED ${_k} AND DEFINED ENV{${_k}})
+        set(${_k} "$ENV{${_k}}")
+    endif()
+endforeach()

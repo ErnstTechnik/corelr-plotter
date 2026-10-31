@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img">
+  <title>CoreLR machine icon</title>
+  <desc>Stylised wall plotter: two motor discs at the top corners, two cables meeting at a pen head with an orange pen point.</desc>
+  <rect width="64" height="64" rx="12" fill="#2F7FDB"/>
+  <g fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M13 14L32 36L51 14" stroke-width="3"/>
+    <rect x="26" y="35" width="12" height="9" rx="2.5" fill="#FFFFFF" stroke="none"/>
+  </g>
+  <circle cx="13" cy="14" r="7" fill="#FFFFFF"/>
+  <circle cx="51" cy="14" r="7" fill="#FFFFFF"/>
+  <circle cx="13" cy="14" r="2.6" fill="#2F7FDB"/>
+  <circle cx="51" cy="14" r="2.6" fill="#2F7FDB"/>
+  <path d="M32 44V49" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="32" cy="53" r="4" fill="#F2711C"/>
+</svg>

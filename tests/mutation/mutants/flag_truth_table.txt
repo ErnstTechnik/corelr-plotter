@@ -1,0 +1,29 @@
+# Mutants of tools/analysis/flag_truth_table.py. Run:
+#   tools/mutate.py --test tools/flag_truth_table --script tests/tools/test_flag_truth_table.py --batch tests/mutation/mutants/flag_truth_table.txt
+# Every one must be caught by tests/tools/test_flag_truth_table.py.
+the combinations are in the wrong bit order @@ flag_truth_table.py @@ return [tuple((m >> (n - 1 - i)) & 1 for i in range(n)) for m in range(1 << n)] @@ return [tuple((m >> i) & 1 for i in range(n)) for m in range(1 << n)]
+one combination too few @@ flag_truth_table.py @@ for m in range(1 << n)] @@ for m in range((1 << n) - 1)]
+the factor file needs only three fields @@ flag_truth_table.py @@ if len(parts) != 4: @@ if len(parts) != 3:
+comments in the factor file are factors @@ flag_truth_table.py @@ if not line.strip() or line.lstrip().startswith("#"): @@ if not line.strip():
+the compile flags are not split @@ flag_truth_table.py @@ out.append((parts[0].strip(), parts[1].split(), parts[2].split(), parts[3].strip())) @@ out.append((parts[0].strip(), [parts[1]], parts[2].split(), parts[3].strip()))
+the status is dropped @@ flag_truth_table.py @@ out.append((parts[0].strip(), parts[1].split(), parts[2].split(), parts[3].strip())) @@ out.append((parts[0].strip(), parts[1].split(), parts[2].split(), "on"))
+the best is the biggest @@ flag_truth_table.py @@ best = min(ok, key=lambda c: (ok[c], sum(c))) if ok else None @@ best = max(ok, key=lambda c: (ok[c], sum(c))) if ok else None
+a tie goes to MORE flags @@ flag_truth_table.py @@ best = min(ok, key=lambda c: (ok[c], sum(c))) if ok else None @@ best = min(ok, key=lambda c: (ok[c], -sum(c))) if ok else None
+the failed builds are in the best @@ flag_truth_table.py @@ ok = {c: v for c, v in results.items() if v is not None} @@ ok = dict(results)
+alone has the wrong sign @@ flag_truth_table.py @@ f = {"alone": (results[alone] - base) @@ f = {"alone": (base - results[alone])
+with-all has the wrong sign @@ flag_truth_table.py @@ "with_all": (allon - results[without]) @@ "with_all": (results[without] - allon)
+the mean pairs the wrong way @@ flag_truth_table.py @@ diffs.append(ok[c1] - v) @@ diffs.append(v - ok[c1])
+the mean takes the pairs on the wrong side @@ flag_truth_table.py @@ if c[i] == 0: @@ if c[i] == 1:
+the mean counts pairs with a failed build @@ flag_truth_table.py @@ if c1 in ok: @@ if True:
+hurts is true for a flag that does nothing @@ flag_truth_table.py @@ f["hurts"] = bool(f["with_all"] is not None and f["with_all"] > 0) @@ f["hurts"] = bool(f["with_all"] is not None and f["with_all"] >= 0)
+hurts is never true @@ flag_truth_table.py @@ f["hurts"] = bool(f["with_all"] is not None and f["with_all"] > 0) @@ f["hurts"] = False
+the project's size flags are not switched off for the baseline @@ flag_truth_table.py @@ args = [BUILD_TOOL, "-v", variant, "-S", "-s", ROOT @@ args = [BUILD_TOOL, "-v", variant, "-s", ROOT
+the link flags go to the compiler @@ flag_truth_table.py @@ for f in lf: args += ["-L", f] @@ for f in lf: args += ["-F", f]
+the inactive factors are applied @@ flag_truth_table.py @@ if on: @@ if not on:
+the variant is not passed @@ flag_truth_table.py @@ args = [BUILD_TOOL, "-v", variant, "-S" @@ args = [BUILD_TOOL, "-S"
+all combinations share a build directory @@ flag_truth_table.py @@ "-b", os.path.join(workdir, tag)] @@ "-b", os.path.join(workdir, "x")]
+the RAM is not read @@ flag_truth_table.py @@ rm = re.search(r"^RAM     : (\d+) ", r.stdout, re.M) @@ rm = re.search(r"^NOPE     : (\d+) ", r.stdout, re.M)
+the report never says HURTS @@ flag_truth_table.py @@ "HURTS: dropping it saves %d bytes" % f["with_all"] if f["hurts"] else "" @@ "" if f["hurts"] else ""
+the report shows the wrong change @@ flag_truth_table.py @@ (v, v - base, rams[c]) @@ (v, base - v, rams[c])
+an unknown factor is accepted @@ flag_truth_table.py @@ if missing: @@ if False:
+--only does not restrict @@ flag_truth_table.py @@ factors = [f for f in factors if f[0] in want] @@ factors = [f for f in factors]

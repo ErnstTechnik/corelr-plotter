@@ -1,0 +1,55 @@
+# Mutants of the travel zone (REQ-CoreLR-D-Motion-0028, -Calibration-0011, -GCodeParser-0016, -LcdJoystickUI-0029).
+# Each mutant must be caught by at least one of: test_travel (zone, clamp, arcs, parser, $J=, jog slices), test_calzone (the geometry check), test_ui (the wizard).
+# Run the batch once per test:  tools/mutate.py --test test_travel --batch tests/mutation/mutants/travel_zone.txt   (also --test test_calzone, --test test_ui)
+# and for the Y-down branch: -D CORELR_Y_UP=0 on test_travel. A mutant caught by none of them is a gap.
+side margin from the wrong side @@ Motion.c @@ int32_t xMin = MOTION_MARGIN_SIDE_UM - k.WorkOriginOffsetX; @@ int32_t xMin = MOTION_MARGIN_SIDE_UM + k.WorkOriginOffsetX;
+right limit past the motor @@ Motion.c @@ int32_t xMax = k.MotorDistanceUm - MOTION_MARGIN_SIDE_UM - k.WorkOriginOffsetX; @@ int32_t xMax = k.MotorDistanceUm + MOTION_MARGIN_SIDE_UM - k.WorkOriginOffsetX;
+right limit ignores the origin @@ Motion.c @@ int32_t xMax = k.MotorDistanceUm - MOTION_MARGIN_SIDE_UM - k.WorkOriginOffsetX; @@ int32_t xMax = k.MotorDistanceUm - MOTION_MARGIN_SIDE_UM;
+top limit wrong sign (Y up) @@ Motion.c @@ int32_t yLimit = k.WorkOriginOffsetY - MOTION_MARGIN_TOP_UM; @@ int32_t yLimit = k.WorkOriginOffsetY + MOTION_MARGIN_TOP_UM;
+top limit wrong sign (Y down) @@ Motion.c @@ int32_t yLimit = MOTION_MARGIN_TOP_UM - k.WorkOriginOffsetY; @@ int32_t yLimit = MOTION_MARGIN_TOP_UM + k.WorkOriginOffsetY;
+no zone is applied to an uncalibrated machine, mutant: it is @@ Motion.c @@ if (k.MotorDistanceUm <= 0)\n   {\n      return 1;\n   } @@ if (k.MotorDistanceUm < 0)\n   {\n      return 1;\n   }
+a zero-width zone cannot be clamped to @@ Motion.c @@ if (xMin > xMax)\n      {\n         return 0;\n      } @@ if (xMin >= xMax)\n      {\n         return 0;\n      }
+an empty zone is clamped as if it existed @@ Motion.c @@ if (xMin > xMax)\n      {\n         return 0;\n      } @@ if (0)\n      {\n         return 0;\n      }
+clamp to the wrong X edge @@ Motion.c @@ if (p->X < xMin) { p->X = xMin; } @@ if (p->X < xMin) { p->X = xMax; }
+clamp ignores the right edge @@ Motion.c @@ if (p->X > xMax) { p->X = xMax; } @@ if (0) { p->X = xMax; }
+clamp ignores the top @@ Motion.c @@ if (MOTION_Y_BEYOND(p->Y, yLimit)) { p->Y = yLimit; } @@ if (0) { p->Y = yLimit; }
+the left edge is exclusive @@ Motion.c @@ (p->X >= xMin) @@ (p->X > xMin)
+the right edge is exclusive @@ Motion.c @@ (p->X <= xMax) @@ (p->X < xMax)
+the top is not tested @@ Motion.c @@ !MOTION_Y_BEYOND(p->Y, yLimit)); @@ 1);
+the top edge is exclusive (Y up) @@ Motion.c @@ #define MOTION_Y_BEYOND(y, limit) ((y) > (limit)) @@ #define MOTION_Y_BEYOND(y, limit) ((y) >= (limit))
+the top edge is exclusive (Y down) @@ Motion.c @@ #define MOTION_Y_BEYOND(y, limit) ((y) < (limit)) @@ #define MOTION_Y_BEYOND(y, limit) ((y) <= (limit))
+the jog slice at the edge queues a block @@ Motion.c @@ if (!Motion_TravelClamp(&target) || ((target.X == end.X) && (target.Y == end.Y))) @@ if (!Motion_TravelClamp(&target))
+a slice stops when only one coordinate is at the edge @@ Motion.c @@ ((target.X == end.X) && (target.Y == end.Y))) @@ ((target.X == end.X) || (target.Y == end.Y)))
+an empty zone queues the unclamped slice @@ Motion.c @@ if (!Motion_TravelClamp(&target) || ((target.X == end.X) @@ if (Motion_TravelClamp(&target) && ((target.X == end.X)
+a slice with nothing to queue says the planner is full @@ Motion.c @@ return 1;               /* nowhere to go, or nowhere further to go @@ return 0;               /* nowhere to go, or nowhere further to go
+arc direction reversed in the bulge test @@ Motion.c @@ uint32_t offset = clockwise ? (g->ThetaS - e) : (e - g->ThetaS); @@ uint32_t offset = clockwise ? (e - g->ThetaS) : (g->ThetaS - e);
+arc extreme X/Y confused @@ Motion.c @@ if (k & 1u)\n         {\n            p.Y += d; @@ if (!(k & 1u))\n         {\n            p.Y += d;
+arc extreme on the wrong side @@ Motion.c @@ int32_t d = (k & 2u) ? -(int32_t)r : (int32_t)r; @@ int32_t d = (k & 2u) ? (int32_t)r : -(int32_t)r;
+arc extremes at the wrong angles @@ Motion.c @@ k++, e += 0x40000000UL) @@ k++, e += 0x20000000UL)
+an extreme outside the zone is not reported @@ Motion.c @@ if (!Motion_TravelAllows(&p))\n         {\n            return 1; @@ if (!Motion_TravelAllows(&p))\n         {\n            return 0;
+arc start is not tested @@ Motion.c @@ if (!Motion_TravelAllows(&start) || !Motion_TravelAllows(target)) @@ if (!Motion_TravelAllows(target))
+arc end is not tested @@ Motion.c @@ if (!Motion_TravelAllows(&start) || !Motion_TravelAllows(target)) @@ if (!Motion_TravelAllows(&start))
+arc bulge ignores the direction @@ Motion.c @@ blk.Flags = clockwise ? PLAN_CW : 0u; @@ blk.Flags = 0u;
+arc bulge has the direction backwards @@ Motion.c @@ blk.Flags = clockwise ? PLAN_CW : 0u; @@ blk.Flags = clockwise ? 0u : PLAN_CW;
+arc bulge uses the start radius only @@ Motion.c @@ (g.Rs > g.Re) ? g.Rs : g.Re, &g, clockwise) @@ g.Rs, &g, clockwise)
+arc bulge uses the end radius only @@ Motion.c @@ (g.Rs > g.Re) ? g.Rs : g.Re, &g, clockwise) @@ g.Re, &g, clockwise)
+arc bulge uses the smaller radius @@ Motion.c @@ (g.Rs > g.Re) ? g.Rs : g.Re, &g, clockwise) @@ (g.Rs > g.Re) ? g.Re : g.Rs, &g, clockwise)
+parser: a line out of the zone is accepted @@ GCodeParser.c @@ if (OutOfReach(&target) || !Motion_TravelAllows(&target))   /* the zone @@ if (OutOfReach(&target))   /* the zone
+parser: the arc direction passed to the check is wrong @@ GCodeParser.c @@ (uint8_t)(EffectiveMode(&parsed) == 2))) @@ (uint8_t)(EffectiveMode(&parsed) == 3)))
+parser: a jog out of the zone is accepted @@ GCodeParser.c @@ ComputeTarget(&parsed, &target);\n   if (OutOfReach(&target) || !Motion_TravelAllows(&target))\n   {\n      return GCODEPARSER_ERR_TARGET_INVALID;\n   }\n   if (!Motion_PlannerHasRoom()) @@ ComputeTarget(&parsed, &target);\n   if (OutOfReach(&target))\n   {\n      return GCODEPARSER_ERR_TARGET_INVALID;\n   }\n   if (!Motion_PlannerHasRoom())
+calibration: the left margin is exclusive @@ Calibration.c @@ return (uint8_t)((x >= MOTION_MARGIN_SIDE_UM) @@ return (uint8_t)((x > MOTION_MARGIN_SIDE_UM)
+calibration: the right margin is exclusive @@ Calibration.c @@ && (x <= (s_params.MotorDistanceUm - MOTION_MARGIN_SIDE_UM)) @@ && (x < (s_params.MotorDistanceUm - MOTION_MARGIN_SIDE_UM))
+calibration: the top margin is exclusive @@ Calibration.c @@ && (y >= MOTION_MARGIN_TOP_UM)); @@ && (y > MOTION_MARGIN_TOP_UM));
+calibration: the top margin is not checked @@ Calibration.c @@ && (y >= MOTION_MARGIN_TOP_UM)); @@ && 1);
+calibration: the side margins are not checked @@ Calibration.c @@ return (uint8_t)((x >= MOTION_MARGIN_SIDE_UM) && (x <= (s_params.MotorDistanceUm - MOTION_MARGIN_SIDE_UM)) @@ return (uint8_t)((1) && (1)
+calibration: nothing is ever refused @@ Calibration.c @@ if (geometryChanged && !PointInsideZone(s_params.ReferencePositionX, s_params.ReferencePositionY)) @@ if (0 && !PointInsideZone(s_params.ReferencePositionX, s_params.ReferencePositionY))
+calibration: an unchanged geometry is judged too @@ Calibration.c @@ if (geometryChanged && !PointInsideZone(s_params.ReferencePositionX, s_params.ReferencePositionY)) @@ if (1 && !PointInsideZone(s_params.ReferencePositionX, s_params.ReferencePositionY))
+calibration: a refusal keeps the rejected values @@ Calibration.c @@ s_params = previous;\n      return 0; @@ return 0;
+calibration: a refusal still says 1 @@ Calibration.c @@ s_params = previous;\n      return 0; @@ s_params = previous;\n      return 1;
+calibration: an accepted geometry does not invalidate the position @@ Calibration.c @@ if (geometryChanged)\n   {\n      Calibration_InvalidatePosition(); @@ if (0)\n   {\n      Calibration_InvalidatePosition();
+ui: the jog slice bypasses the zone @@ LcdJoystickUI.cpp @@ (void)Motion_QueueJog(pos); @@ (void)Motion_QueueMove(pos);
+ui: a refused geometry still goes on @@ LcdJoystickUI.cpp @@ if (Calibration_SetParams(&params))\n         {\n            EnterJogAdjustment(); /* step 3 */ @@ if (Calibration_SetParams(&params) || 1)\n         {\n            EnterJogAdjustment(); /* step 3 */
+ui: a refusal is not remembered @@ LcdJoystickUI.cpp @@ s_calMachineRefused = 1; @@ s_calMachineRefused = 0;
+ui: the refusal is not cleared by changing the value @@ LcdJoystickUI.cpp @@ s_calMachineRefused = 0;\n      s_calMachineValue @@ s_calMachineValue
+ui: the refusal is not cleared on entry @@ LcdJoystickUI.cpp @@ s_calMachineStep = 0;\n         s_calMachineRefused = 0; @@ s_calMachineStep = 0;
+ui: the refusal message is the normal prompt @@ LcdJoystickUI.cpp @@ PSTR("Ref out of zone!") @@ PSTR("Ref length (mm)")

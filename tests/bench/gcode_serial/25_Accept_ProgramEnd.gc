@@ -1,0 +1,24 @@
+; ACCEPTED: M2 ends the job, lifts the pen and
+; resets the modal state
+; (G90, no motion word, pen up); in the serial
+; variant the next line
+; starts a new job. Part 2 begins with a motion
+; word, as it must:
+; bare coordinates there would be error:26 (see
+; 33_Refuse_26).
+M5
+G90 G0 X0 Y0
+G21 G17 G54 G94
+; part 1: a short line with the pen down
+G91
+M3
+G1 X20
+M2
+; part 2: a new job. $G must now read G0 G90 M5
+G1 X10 Y10
+G1 X0 Y0
+M30
+; part 3: M30 does the same
+G0 X5 Y5
+M30
+G0 X0 Y0

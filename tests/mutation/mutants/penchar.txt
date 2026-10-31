@@ -1,0 +1,19 @@
+# Mutants of the pen's state on the status screen (REQ-CoreLR-D-LcdJoystickUI-0030). Run: tools/mutate.py --test test_ui --batch tests/mutation/mutants/penchar.txt
+the pen glyphs are swapped @@ LcdJoystickUI.cpp @@ PenControl_IsDown() ? LCDJOYSTICKUI_PEN_DOWN_CHAR : LCDJOYSTICKUI_PEN_UP_CHAR; @@ PenControl_IsDown() ? LCDJOYSTICKUI_PEN_UP_CHAR : LCDJOYSTICKUI_PEN_DOWN_CHAR;
+the pen is always shown up @@ LcdJoystickUI.cpp @@ PenControl_IsDown() ? LCDJOYSTICKUI_PEN_DOWN_CHAR : LCDJOYSTICKUI_PEN_UP_CHAR; @@ LCDJOYSTICKUI_PEN_UP_CHAR;
+the pen is always shown down @@ LcdJoystickUI.cpp @@ PenControl_IsDown() ? LCDJOYSTICKUI_PEN_DOWN_CHAR : LCDJOYSTICKUI_PEN_UP_CHAR; @@ LCDJOYSTICKUI_PEN_DOWN_CHAR;
+the pen character lands on the L label @@ LcdJoystickUI.cpp @@ s_composeLine[0] = PenControl_IsDown() @@ s_composeLine[LCDJOYSTICKUI_L_LABEL_COLUMN] = PenControl_IsDown()
+the pen character lands one column too far right @@ LcdJoystickUI.cpp @@ s_composeLine[0] = PenControl_IsDown() @@ s_composeLine[2] = PenControl_IsDown()
+the pen is not shown @@ LcdJoystickUI.cpp @@ s_composeLine[0] = PenControl_IsDown() ? LCDJOYSTICKUI_PEN_DOWN_CHAR : LCDJOYSTICKUI_PEN_UP_CHAR;   /* the pen @@ /* the pen
+# (INVALID is the expected verdict for the three that change a code in SwConfig.h or LcdGlyphs.h: the build refuses them, LcdGlyphs.c checks the two codes agree)
+REFUSED BY THE BUILD: the down glyph is the up glyph @@ SwConfig.h @@ #define LCDJOYSTICKUI_PEN_DOWN_CHAR  '\x01' @@ #define LCDJOYSTICKUI_PEN_DOWN_CHAR  '\x02'
+REFUSED BY THE BUILD: the up glyph is a blank @@ SwConfig.h @@ #define LCDJOYSTICKUI_PEN_UP_CHAR    '\x02' @@ #define LCDJOYSTICKUI_PEN_UP_CHAR    ' '
+# the pictograms (REQ-CoreLR-D-LcdJoystickUI-0032)
+the down glyph is not loaded @@ LcdGlyphs.c @@ (void)LcdI2c_DefineCharP(LCDGLYPHS_PEN_DOWN, kPenDownGlyph); @@ 
+the up glyph is not loaded @@ LcdGlyphs.c @@ (void)LcdI2c_DefineCharP(LCDGLYPHS_PEN_UP, kPenUpGlyph); @@ 
+the glyphs are loaded swapped @@ LcdGlyphs.c @@ (void)LcdI2c_DefineCharP(LCDGLYPHS_PEN_DOWN, kPenDownGlyph); @@ (void)LcdI2c_DefineCharP(LCDGLYPHS_PEN_DOWN, kPenUpGlyph);
+a row of the down glyph is wrong @@ LcdGlyphs.c @@ { 0x04, 0x04, 0x04, 0x04, 0x1F, 0x0E, 0x04, 0x1F } @@ { 0x04, 0x04, 0x04, 0x04, 0x1F, 0x0E, 0x04, 0x0F }
+a row of the up glyph is wrong @@ LcdGlyphs.c @@ { 0x04, 0x04, 0x1F, 0x0E, 0x04, 0x00, 0x00, 0x1F } @@ { 0x04, 0x04, 0x1F, 0x0E, 0x04, 0x00, 0x01, 0x1F }
+
+the glyph code in the loader is wrong @@ LcdGlyphs.c @@ LcdI2c_DefineCharP(LCDGLYPHS_PEN_UP, kPenUpGlyph) @@ LcdI2c_DefineCharP(3u, kPenUpGlyph)
+REFUSED BY THE BUILD: the header's code for the pen down is wrong (the build must refuse) @@ LcdGlyphs.h @@ #define LCDGLYPHS_PEN_DOWN 1u @@ #define LCDGLYPHS_PEN_DOWN 3u

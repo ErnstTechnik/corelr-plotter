@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (C) 2026 ErnstTechnik and the CoreLR contributors. See docs/branding/README.md for the logo licence. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 64" role="img" aria-labelledby="t d">
+<title id="t">CoreLR</title>
+<desc id="d">The CoreLR symbol followed by the word CoreLR drawn as pen strokes; Core in blue, LR in orange.</desc>
+<style>.s{fill:none;stroke-linecap:round;stroke-linejoin:round}.bf{fill:#2F7FDB}.bs{stroke:#2F7FDB}.wf{fill:#FFFFFF}.ws{stroke:#FFFFFF}.of{fill:#F2711C}.os{stroke:#F2711C}</style>
+<path class="bf" d="M14 2L50 2C58 2 62 6 62 14L62 50C62 58 58 62 50 62L14 62C6 62 2 58 2 50L2 14C2 6 6 2 14 2Z"/>
+<path class="s ws" stroke-width="3" d="M17 16L32 36L47 16"/>
+<path class="of" d="M37 36C37 38.76 34.76 41 32 41C29.24 41 27 38.76 27 36C27 33.24 29.24 31 32 31C34.76 31 37 33.24 37 36Z"/>
+<path class="s ws" stroke-width="3" d="M24 53L40 53"/>
+<path class="s ws" stroke-width="2.6" d="M8 8L8 20L15 20"/>
+<path class="s ws" stroke-width="2.6" d="M50 20L50 8L54 8L54 8C55.93 8 57.5 9.57 57.5 11.5C57.5 13.43 55.93 15 54 15L50 15M54 15L57 20"/>
+<path class="s bs" stroke-width="6" d="M117.73 19.27C110.7 12.24 99.3 12.24 92.27 19.27C85.24 26.3 85.24 37.7 92.27 44.73C99.3 51.76 110.7 51.76 117.73 44.73"/>
+<path class="s bs" stroke-width="6" d="M155 38C155 44.63 149.63 50 143 50C136.37 50 131 44.63 131 38C131 31.37 136.37 26 143 26C149.63 26 155 31.37 155 38Z"/>
+<path class="s bs" stroke-width="6" d="M167 26L167 50M167 38C167 31.37 172.37 26 179 26"/>
+<path class="s bs" stroke-width="6" d="M193 38L217 38L217 38C217 32.28 212.96 27.35 207.34 26.23C201.73 25.11 196.1 28.12 193.91 33.41C191.72 38.7 193.57 44.8 198.33 47.98C203.09 51.16 209.44 50.53 213.49 46.49"/>
+<path class="s os" stroke-width="6" d="M232 14L232 50L252 50"/>
+<path class="s os" stroke-width="6" d="M268 50L268 14L276 14L276 14C281.25 14 285.5 18.25 285.5 23.5C285.5 28.75 281.25 33 276 33L268 33M277 33L288 50"/>
+</svg>

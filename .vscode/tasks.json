@@ -1,0 +1,28 @@
+{
+  "version": "2.0.0",
+  "inputs": [
+    {
+      "id": "confirmFlash",
+      "type": "pickString",
+      "description": "Flash the board? It RESETS it: a reset before the position is stored (2 s of stillness) loses the calibration. Only on the maintainer's say-so.",
+      "options": ["no", "yes"],
+      "default": "no"
+    }
+  ],
+  "tasks": [
+    { "label": "configure (AVR)",           "type": "shell", "command": "cmake --preset avr-default", "problemMatcher": [] },
+    { "label": "build both variants",       "type": "shell", "command": "cmake --preset avr-default && cmake --build --preset avr-default",
+      "group": { "kind": "build", "isDefault": true }, "problemMatcher": ["$gcc"] },
+    { "label": "build serial only",         "type": "shell", "command": "cmake --preset avr-default && cmake --build --preset avr-default --target corelr_serial", "group": "build", "problemMatcher": ["$gcc"] },
+    { "label": "build sd only",             "type": "shell", "command": "cmake --preset avr-default && cmake --build --preset avr-default --target corelr_sd", "group": "build", "problemMatcher": ["$gcc"] },
+    { "label": "host tests (both arithmetics, ctest)", "type": "shell", "command": "cmake --preset host && ctest --preset host",
+      "group": { "kind": "test", "isDefault": true }, "problemMatcher": [] },
+    { "label": "size report (serial + sd)", "type": "shell", "command": "tools/analysis/build_size.sh -v serial && tools/analysis/build_size.sh -v sd", "problemMatcher": [] },
+    { "label": "same image as the Arduino IDE?", "type": "shell", "command": "tools/analysis/compare_with_ide.sh", "problemMatcher": [] },
+    { "label": "tools answer -h / links are good", "type": "shell", "command": "tools/check_help.sh && tools/check_links.py", "problemMatcher": [] },
+    { "label": "FLASH serial variant (asks first)", "type": "shell",
+      "command": "[ \"${input:confirmFlash}\" = yes ] && cmake --build --preset avr-default --target upload_serial || echo 'not flashed'", "problemMatcher": [] },
+    { "label": "FLASH sd variant (asks first)", "type": "shell",
+      "command": "[ \"${input:confirmFlash}\" = yes ] && cmake --build --preset avr-default --target upload_sd || echo 'not flashed'", "problemMatcher": [] }
+  ]
+}

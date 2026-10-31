@@ -1,0 +1,6 @@
+# Mutants of the Adjustment jog's calibration rule and of the shared jog shape (REQ-CoreLR-D-Calibration-0009, REQ-CoreLR-D-LcdJoystickUI-0027). Run: tools/mutate.py --test test_ui --batch tests/mutation/mutants/adjustment.txt --timeout 120
+# name @@ file @@ old @@ new
+raw step does not invalidate @@ LcdJoystickUI.cpp @@ if (Calibration_IsCalibrated())\n            {\n               /* The motors have moved @@ if (0)\n            {\n               /* The motors have moved
+rate ignores the shape @@ LcdJoystickUI.cpp @@ * (uint32_t)JogCurve_Fraction(magnitude)) >> 16)); @@ * (uint32_t)65535u) >> 16));
+rate without its minimum @@ LcdJoystickUI.cpp @@ return (uint16_t)((uint32_t)LCDJOYSTICKUI_ADJUST_MIN_STEPS_PER_S\n @@ return (uint16_t)((uint32_t)0\n
+rate shape shifted @@ LcdJoystickUI.cpp @@ * (uint32_t)JogCurve_Fraction(magnitude)) >> 16)); @@ * (uint32_t)JogCurve_Fraction(magnitude + 20u)) >> 16));

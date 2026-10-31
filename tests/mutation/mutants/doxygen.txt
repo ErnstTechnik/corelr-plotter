@@ -1,0 +1,249 @@
+# Mutants of tools/analysis/doc_warnings.py (the classifier of the Doxygen log) and of the output checker in tests/tools/test_doxygen.py (REQ-CoreLR-D-Build-0013).
+# Run:  tools/mutate.py --test doxygen --script tests/tools/test_doxygen.py --batch tests/mutation/mutants/doxygen.txt
+# Every mutant must be caught by tests/tools/test_doxygen.py (its self-test, no Doxygen needed).
+# (The checker is run per variant, serial and sd: REQ-CoreLR-D-Build-0013.)
+a missing description is no gap @@ doc_warnings.py @@ UNDOCUMENTED = re.compile(r"^warning: .* is not documented\.$") @@ UNDOCUMENTED = re.compile(r"^warning: .* is not documentedX\.$")
+the gap is taken for a markup error @@ doc_warnings.py @@     if UNDOCUMENTED.match(text):\n        return "undocumented" @@     if False:\n        return "undocumented"
+the incomplete @param list is taken for a markup error @@ doc_warnings.py @@     if INCOMPLETE.match(text):\n        return "incomplete" @@     if False:\n        return "incomplete"
+everything unknown is a gap, not an error @@ doc_warnings.py @@     return "markup"\n\n\ndef module_of @@     return "undocumented"\n\n\ndef module_of
+a singular @param list is not recognised @@ doc_warnings.py @@ INCOMPLETE = re.compile(r"^warning: The following parameters? of .* (is|are) not documented:$") @@ INCOMPLETE = re.compile(r"^warning: The following parameters of .* (is|are) not documented:$")
+the module keeps its extension @@ doc_warnings.py @@ return os.path.splitext(os.path.basename(path))[0] if path else "(doxygen)" @@ return os.path.basename(path) if path else "(doxygen)"
+the message with no file belongs to a module of its own @@ doc_warnings.py @@ return os.path.splitext(os.path.basename(path))[0] if path else "(doxygen)" @@ return os.path.splitext(os.path.basename(path))[0] if path else "(unknown)"
+a blank line is a warning @@ doc_warnings.py @@         if not line.strip():\n            continue @@         if False:\n            continue
+a warning without file and line is dropped @@ doc_warnings.py @@             found.append((module_of(None), classify(line), "", line)) @@             pass
+the line number is lost @@ doc_warnings.py @@                           "%s:%s" % (file, m.group("line")), text)) @@                           "%s:" % (file,), text))
+the table counts the wrong class @@ doc_warnings.py @@         counts[module][cls] += 1 @@         counts[module]["markup"] += 1
+the total forgets the incomplete lists @@ doc_warnings.py @@         for k in CLASSES:\n            total[k] += c[k] @@         for k in ("undocumented", "markup"):\n            total[k] += c[k]
+the columns are swapped @@ doc_warnings.py @@         rows.append("%-16s %12d %10d %8d %7d %8d" % (module, c["undocumented"], c["incomplete"], c["markup"], c["nodot"], c["external"])) @@         rows.append("%-16s %12d %10d %8d %7d %8d" % (module, c["incomplete"], c["undocumented"], c["markup"], c["nodot"], c["external"]))
+--check never fails @@ doc_warnings.py @@     return total["markup"] if args.check else 0 @@     return 0
+--check counts the gaps too @@ doc_warnings.py @@     return total["markup"] if args.check else 0 @@     return sum(total.values()) if args.check else 0
+without --check it fails on markup @@ doc_warnings.py @@     return total["markup"] if args.check else 0 @@     return total["markup"]
+an unreadable log is a success @@ doc_warnings.py @@         print("doc_warnings.py: cannot read %s: %s" % (args.log, e), file=sys.stderr)\n        return 2 @@         print("doc_warnings.py: cannot read %s: %s" % (args.log, e), file=sys.stderr)\n        return 0
+--list shows every class @@ doc_warnings.py @@             if args.list in ("all", cls): @@             if True:
+the output checker accepts a missing index @@ test_doxygen.py @@     if not os.path.isfile(index):\n        problems.append("no html/index.html") @@     if False:\n        problems.append("no html/index.html")
+the output checker accepts any index @@ test_doxygen.py @@     elif MAIN_PAGE_TEXT not in read(index): @@     elif False:
+the output checker accepts a missing log @@ test_doxygen.py @@     if not os.path.isfile(log):\n        problems.append("no doxygen-warnings.log") @@     if False:\n        problems.append("no doxygen-warnings.log")
+the output checker ignores markup warnings @@ test_doxygen.py @@                 if cls == "markup":\n                    problems.append("markup warning (%s) @@                 if False:\n                    problems.append("markup warning (%s)
+the output checker fails on gaps @@ test_doxygen.py @@                 if cls == "markup":\n                    problems.append("markup warning (%s) @@                 if cls != "incomplete":\n                    problems.append("markup warning (%s)
+a hidden variant is accepted @@ test_doxygen.py @@         elif not documented(read(p), symbol): @@         elif False:
+a missing page of a variant is accepted @@ test_doxygen.py @@         if not os.path.isfile(p):\n            problems.append("%s is missing (%s)" % (page, symbol)) @@         if False:\n            problems.append("%s is missing (%s)" % (page, symbol))
+the 64-bit code shown is accepted @@ test_doxygen.py @@         if os.path.isfile(p) and documented(read(p), symbol): @@         if False:
+a name in somebody's description counts as documented @@ test_doxygen.py @@     return re.search(r'<h2 class="memtitle">(?:(?!</h2>).)*\b%s\b[^<]*</h2>' % re.escape(symbol), text, re.S) is not None @@     return symbol in text
+a prefix of the name counts as documented @@ test_doxygen.py @@ (?:(?!</h2>).)*\b%s\b[^<]*</h2>' @@ (?:(?!</h2>).)*%s[^<]*</h2>'
+the repository's path in the pages is accepted @@ test_doxygen.py @@                 if repo in text or "/home/" in text: @@                 if "/home/" in text:
+a home directory in the pages is accepted @@ test_doxygen.py @@                 if repo in text or "/home/" in text: @@                 if repo in text:
+a leak in a script is accepted @@ test_doxygen.py @@             if name.endswith((".html", ".js", ".css", ".svg", ".xml")): @@             if name.endswith((".html", ".css", ".svg", ".xml")):
+a missing dot is taken for a markup error @@ doc_warnings.py @@     if NODOT.match(text):\n        return "nodot" @@     if False:\n        return "nodot"
+a missing dot is taken for a gap @@ doc_warnings.py @@     if NODOT.match(text):\n        return "nodot" @@     if NODOT.match(text):\n        return "undocumented"
+only \\dot is recognised as a skipped diagram @@ doc_warnings.py @@ (dot|dotfile|msc|mscfile|diafile|plantuml) @@ (dot)
+the skipped diagrams are not explained @@ doc_warnings.py @@     if total["nodot"]:\n        rows.append @@     if False:\n        rows.append
+the skipped diagrams are not counted in the total @@ doc_warnings.py @@ total["markup"], total["nodot"], total["external"])) @@ total["markup"], 0, total["external"]))
+the serial image is checked for the SD code @@ test_doxygen.py @@     "serial": {"present": (SERIAL_ONLY,), "absent": (SD_ONLY,), "pages" @@     "serial": {"present": (SERIAL_ONLY, SD_ONLY), "absent": (), "pages"
+the SD image may hold the serial code @@ test_doxygen.py @@     "sd": {"present": (SD_ONLY,), "absent": (SERIAL_ONLY,), @@     "sd": {"present": (SD_ONLY,), "absent": (),
+the serial image may hold the SD code @@ test_doxygen.py @@     "serial": {"present": (SERIAL_ONLY,), "absent": (SD_ONLY,), "pages" @@     "serial": {"present": (SERIAL_ONLY,), "absent": (), "pages"
+the output checker does not look for the variant's name @@ test_doxygen.py @@     elif "%s variant" % variant not in read(index): @@     elif False:
+the output checker does not look for diagrams @@ test_doxygen.py @@     if skipped == 0: @@     if False:
+the output checker expects diagrams even without dot @@ test_doxygen.py @@     if skipped == 0: @@     if True:
+a skipped diagram is not counted @@ test_doxygen.py @@                 if cls == "nodot":\n                    skipped += 1 @@                 if cls == "nodot":\n                    skipped += 0
+a page without a diagram is accepted @@ test_doxygen.py @@             if os.path.isfile(p) and GRAPH_MARK not in read(p): @@             if False:
+the landing page may forget a variant @@ test_doxygen.py @@         problems += ["index.html does not link to %s/html/index.html" % v for v in VARIANTS if "%s/html/index.html" % v not in text] @@         problems += []
+no landing page is accepted @@ test_doxygen.py @@         problems.append("no index.html linking the two variants") @@         pass
+only the first variant is checked @@ test_doxygen.py @@     for variant in VARIANTS:\n        problems += @@     for variant in list(VARIANTS)[:1]:\n        problems += 
+the SD module may appear in the serial documentation @@ test_doxygen.py @@     for page in VARIANTS[variant]["no_pages"]:\n        if os.path.exists(os.path.join(html, page)): @@     for page in VARIANTS[variant]["no_pages"]:\n        if False:
+the pages of the other image are not looked for @@ test_doxygen.py @@     for page in VARIANTS[variant]["no_pages"]: @@     for page in ():
+the SD image may hold the serial link's header @@ test_doxygen.py @@ ("Uart_8h.html", "Uart_8c.html", "SerialLink_8h.html", "SerialLink_8c.html") @@ ("Uart_8h.html", "Uart_8c.html", "SerialLink_8c.html")
+the serial image may hold the SD reader's header @@ test_doxygen.py @@ "no_pages": ("SDReader_8h.html", "SDReader_8cpp.html", @@ "no_pages": ("SDReader_8cpp.html",
+a third-party warning is an ordinary one @@ doc_warnings.py @@ "external" if external else classify(text), @@ classify(text),
+a third-party warning is counted under its file's name @@ doc_warnings.py @@ found.append(("(third_party)" if external else module_of(file), @@ found.append((module_of(file),
+only a directory named third_party is external @@ doc_warnings.py @@ EXTERNAL = re.compile(r"(^|/)third_party/") @@ EXTERNAL = re.compile(r"third_party")
+a path ending in third_party/ anywhere is not external @@ doc_warnings.py @@ EXTERNAL = re.compile(r"(^|/)third_party/") @@ EXTERNAL = re.compile(r"^third_party/")
+the lines that follow a warning are warnings of their own @@ doc_warnings.py @@         elif found and not line.startswith("warning:"): @@         elif False:
+a continuation line may start like a warning @@ doc_warnings.py @@         elif found and not line.startswith("warning:"): @@         elif found and not line.startswith("warn"):
+third-party warnings count as errors @@ doc_warnings.py @@     return total["markup"] if args.check else 0 @@     return (total["markup"] + total["external"]) if args.check else 0
+an ungrouped vendored file is accepted @@ test_doxygen.py @@             if name.endswith((".h", ".c", ".cpp")) and "@file %s/%s\\n" % (d, name) not in text: @@             if False:
+only headers are grouped @@ test_doxygen.py @@             if name.endswith((".h", ".c", ".cpp")) and "@file %s/%s\\n" % (d, name) not in text: @@             if name.endswith(".h") and "@file %s/%s\\n" % (d, name) not in text:
+a name that starts like the file counts as grouped @@ test_doxygen.py @@ "@file %s/%s\\n" % (d, name) not in text: @@ "@file %s/%s" % (d, name) not in text:
+the SD group file is not read @@ test_doxygen.py @@ THIRD_PARTY_DOX = {"serial": ("third_party.dox",), "sd": ("third_party.dox", "third_party_sd.dox")} @@ THIRD_PARTY_DOX = {"serial": ("third_party.dox",), "sd": ("third_party.dox",)}
+the SD image reads no vendored library @@ test_doxygen.py @@ "sd": THIRD_PARTY_CORE + ("third_party/arduino-core/libraries/SPI/src", "third_party/sdfat")} @@ "sd": THIRD_PARTY_CORE}
+the groups are not looked for in the output check @@ test_doxygen.py @@         problems += ["%s: %s is read by Doxygen but not grouped in docs/doxygen/third_party*.dox" % (variant, x) for x in ungrouped(repo, variant)] @@         problems += []
+a missing third-party page is accepted @@ test_doxygen.py @@         if not os.path.isfile(os.path.join(html, page)):\n            problems.append("%s is missing (third-party code of this image)" % page) @@         if False:\n            problems.append("%s is missing (third-party code of this image)" % page)
+a path that only starts like the root is stripped @@ doc_warnings.py @@ path.startswith(root.rstrip("/") + "/") @@ path.startswith(root.rstrip("/"))
+a path is stripped without a root @@ doc_warnings.py @@ return os.path.relpath(path, root) if root and path.startswith( @@ return os.path.relpath(path, root) if path.startswith(
+the inventory forgets the incomplete lists @@ doc_warnings.py @@ if cls in ("undocumented", "incomplete"):\n            lines.append @@ if cls in ("undocumented",):\n            lines.append
+the inventory keeps the markup warnings @@ doc_warnings.py @@ if cls in ("undocumented", "incomplete"):\n            lines.append @@ if cls != "external":\n            lines.append
+the inventory keeps the 'warning:' prefix @@ doc_warnings.py @@ .replace("warning: ", "", 1))) @@ )
+the inventory keeps the line number @@ doc_warnings.py @@ relative(where.rsplit(":", 1)[0], root) @@ relative(where, root)
+the inventory keeps the wrapped lines of a warning @@ doc_warnings.py @@ " ".join(text.split()).replace @@ text.replace
+the inventory is not sorted @@ doc_warnings.py @@     return sorted(lines)\n\n\ndef read_baseline @@     return lines\n\n\ndef read_baseline
+a comment of the baseline is a gap @@ doc_warnings.py @@ elif line.strip() and not line.startswith("#"): @@ elif line.strip():
+the version line is not read @@ doc_warnings.py @@ if line.startswith("# doxygen "): @@ if line.startswith("# doxygenX "):
+a blank line of the baseline is a gap @@ doc_warnings.py @@ elif line.strip() and not @@ elif not
+the new gaps are the ones that vanished @@ doc_warnings.py @@ for k in sorted((have - want).elements())] @@ for k in sorted((want - have).elements())]
+the vanished gaps are the ones that are new @@ doc_warnings.py @@ for k in sorted((want - have).elements())]\n    if base_version @@ for k in sorted((have - want).elements())]\n    if base_version
+a gap listed twice counts once @@ doc_warnings.py @@ have = collections.Counter(gaps(found, root)) @@ have = collections.Counter(set(gaps(found, root)))
+the versions are never compared @@ doc_warnings.py @@ if base_version != version: @@ if False:
+another version fails as the same one does @@ doc_warnings.py @@ return [], notes + diffs\n    return diffs, [] @@ return diffs, notes\n    return diffs, []
+a note is printed when nothing differs @@ doc_warnings.py @@ this log is Doxygen %s: not compared" % (base_version or "?", version or "?")] if diffs else [] @@ this log is Doxygen %s: not compared" % (base_version or "?", version or "?")]
+the baseline's version is not named in the note @@ doc_warnings.py @@ % (base_version or "?", version or "?")] if diffs @@ % ("?", version or "?")] if diffs
+the status of --baseline is always 0 @@ doc_warnings.py @@         return len(diffs) @@         return 0
+--gaps fails @@ doc_warnings.py @@         print("\\n".join(gaps(found, REPO)))\n        return 0 @@         print("\\n".join(gaps(found, REPO)))\n        return 1
+--gaps forgets the version @@ doc_warnings.py @@ print("# doxygen %s" % version) @@ print("# doxygen")
+an unreadable baseline is not a usage error @@ doc_warnings.py @@ print("doc_warnings.py: cannot read %s: %s" % (args.baseline, e), file=sys.stderr)\n            return 2 @@ print("doc_warnings.py: cannot read %s: %s" % (args.baseline, e), file=sys.stderr)\n            return 0
+the version is asked to nobody @@ doc_warnings.py @@     if not exe:\n        return "" @@     if False:\n        return ""
+the whole version line is the version @@ doc_warnings.py @@ check=True).stdout.split()[0] @@ check=True).stdout.strip()
+a failing doxygen has a version @@ doc_warnings.py @@ capture_output=True, text=True, check=True) @@ capture_output=True, text=True, check=False)
+the baseline is that of one image for both @@ test_doxygen.py @@ "gaps_%s.txt" % variant) @@ "gaps_sd.txt")
+a missing baseline is no problem @@ test_doxygen.py @@ if not os.path.isfile(baseline):\n        return ["no docs/doxygen/gaps_%s.txt @@ if False:\n        return ["no docs/doxygen/gaps_%s.txt
+a missing log is a problem of the gaps too @@ test_doxygen.py @@     if not os.path.isfile(log):\n        return []                                             # check_doc_dir says so @@     if not os.path.isfile(log):\n        return ["no log"]
+the gaps are compared with the wrong repository's root @@ test_doxygen.py @@ tool.compare(found, read(baseline), version, repo) @@ tool.compare(found, read(baseline), version, None)
+another version's differences are lost @@ test_doxygen.py @@ notes += ["%s: %s" % (variant, x) for x in more] @@ notes += []
+the note does not name the variant @@ test_doxygen.py @@ notes += ["%s: %s" % (variant, x) for x in more] @@ notes += more
+the gaps are never checked @@ test_doxygen.py @@         if version is not None:\n            problems @@         if False:\n            problems
+the gaps are checked without a version @@ test_doxygen.py @@         if version is not None:\n            problems @@         if True:\n            problems
+a problem of the gaps is not named by its variant @@ test_doxygen.py @@ problems += ["%s: %s" % (variant, x) for x in check_gaps( @@ problems += ["%s%s" % ("", x) for x in check_gaps(
+a line that is no checksum passes @@ test_doxygen.py @@ if len(parts) != 2: @@ if len(parts) < 1:
+a zip listed twice passes @@ test_doxygen.py @@             elif parts[1] in sums: @@             elif False:
+a package of another version passes @@ test_doxygen.py @@         if name not in expected: @@         if False:
+only the first image's package is expected @@ test_doxygen.py @@ package_name(version, v) + ".zip" for v in VARIANTS] @@ package_name(version, v) + ".zip" for v in list(VARIANTS)[:1]]
+a missing zip is no problem @@ test_doxygen.py @@ problems.append("%s.zip is missing" % top)\n            continue @@ continue
+a zip that SHA256SUMS forgets passes @@ test_doxygen.py @@         if top + ".zip" not in sums: @@         if False:
+any checksum passes @@ test_doxygen.py @@         elif sums[top + ".zip"] != digest: @@         elif False:
+an entry outside the top directory passes @@ test_doxygen.py @@ if any(not n.startswith(top + "/") for n in names): @@ if False:
+the directories of the zip count as files @@ test_doxygen.py @@ names = sorted(n for n in z.namelist() if not n.endswith("/")) @@ names = sorted(z.namelist())
+the files of the zip are not compared with the documentation @@ test_doxygen.py @@             if inside != want: @@             if False:
+the zip may hold more than the documentation @@ test_doxygen.py @@             if inside != want: @@             if not set(want) <= set(inside):
+the zip may lack files of the documentation @@ test_doxygen.py @@             if inside != want: @@             if not set(inside) <= set(want):
+the content of index.html is not compared @@ test_doxygen.py @@ elif "index.html" in inside and z.read(top + "/index.html") != open @@ elif "index.html" in inside and z.read(top + "/index.html") == open
+the html files are listed from the wrong place @@ test_doxygen.py @@ want = html_files(os.path.join(base, v, "html")) @@ want = html_files(os.path.join(base, v))
+the package check ignores --package-version @@ test_doxygen.py @@ args.package_version or "")] @@ "")]
+a structure made of a compiler keyword passes @@ test_doxygen.py @@         if os.path.exists(os.path.join(html, page)):\n            problems.append("%s exists: a compiler keyword @@         if False:\n            problems.append("%s exists: a compiler keyword
+the structure that follows an attribute may be lost @@ test_doxygen.py @@         if not os.path.isfile(os.path.join(html, page)):\n            problems.append("%s is missing (%s)" % (page, why)) @@         if False:\n            problems.append("%s is missing (%s)" % (page, why))
+the keyword page of another name is not looked for @@ test_doxygen.py @@ KEYWORD_PAGES = ("struct____attribute____.html",) @@ KEYWORD_PAGES = ("struct____attribute___.html",)
+a missing hardware chapter passes @@ test_doxygen.py @@ if not os.path.isfile(hw):\n        problems.append("%s is missing (the hardware chapter)" @@ if False:\n        problems.append("%s is missing (the hardware chapter)"
+the credits are not looked for @@ test_doxygen.py @@             if credit not in text: @@             if False:
+the first credit is not looked for @@ test_doxygen.py @@         for credit in HARDWARE_CREDITS:\n            if credit not in text: @@         for credit in HARDWARE_CREDITS[1:]:\n            if credit not in text:
+the last credit is not looked for @@ test_doxygen.py @@         for credit in HARDWARE_CREDITS:\n            if credit not in text: @@         for credit in HARDWARE_CREDITS[:-1]:\n            if credit not in text:
+the chapter may not show its pictures @@ test_doxygen.py @@             if 'data="%s"' % picture not in text: @@             if False:
+the chapter may show the other image's picture @@ test_doxygen.py @@             if 'data="%s"' % picture in text: @@             if False:
+the generators' pictures are not required by the chapter @@ test_doxygen.py @@ for picture in VARIANTS[variant]["wiring"] + OTHER_PICTURES:\n            if 'data= @@ for picture in VARIANTS[variant]["wiring"]:\n            if 'data=
+a picture that was not copied passes @@ test_doxygen.py @@         if not os.path.isfile(path):\n            problems.append("%s is not in html/ @@         if False:\n            problems.append("%s is not in html/
+a wiring picture may lose its credit @@ test_doxygen.py @@ elif picture in VARIANTS[variant]["wiring"] and "Fritzing" not in read(path): @@ elif False:
+a picture of the generators needs the Fritzing credit @@ test_doxygen.py @@ elif picture in VARIANTS[variant]["wiring"] and "Fritzing" not in read(path): @@ elif "Fritzing" not in read(path):
+the other image's picture may be in html/ @@ test_doxygen.py @@         if os.path.exists(os.path.join(html, picture)):\n            problems.append("%s is in html/ but belongs @@         if False:\n            problems.append("%s is in html/ but belongs
+the SD image has no SD module picture @@ test_doxygen.py @@ "wiring": WIRING_COMMON + ("sd_card.svg",), "no_wiring": (), "gcode" @@ "wiring": WIRING_COMMON, "no_wiring": (), "gcode"
+the serial image may show the SD module picture @@ test_doxygen.py @@ "wiring": WIRING_COMMON, "no_wiring": ("sd_card.svg",), "gcode" @@ "wiring": WIRING_COMMON, "no_wiring": (), "gcode"
+one wiring picture is forgotten @@ test_doxygen.py @@ WIRING_COMMON = ("overview.svg", "motors.svg", "pen_servo.svg", "joystick.svg", "lcd_i2c.svg") @@ WIRING_COMMON = ("overview.svg", "motors.svg", "pen_servo.svg", "joystick.svg")
+an author is forgotten @@ test_doxygen.py @@ HARDWARE_CREDITS = ("Fritzing", "CC BY-SA", "Althaus", "Brendan Howell", "Stefan Hermann", "SparkFun", "Richard Bruneau", "Knorig") @@ HARDWARE_CREDITS = ("Fritzing", "CC BY-SA", "Althaus", "Brendan Howell", "Stefan Hermann", "SparkFun", "Richard Bruneau")
+the GCode page may be missing @@ test_doxygen.py @@     if not os.path.isfile(gc):\n        problems.append("%s is missing (the GCode page)" % GCODE_PAGE) @@     if False:\n        problems.append("%s is missing (the GCode page)" % GCODE_PAGE)
+the GCode page may lack its image's section @@ test_doxygen.py @@         if VARIANTS[variant]["gcode"] not in text: @@         if False:
+the GCode page may hold the other image's section @@ test_doxygen.py @@         if VARIANTS[variant]["no_gcode"] in text: @@         if False:
+the sections of the GCode page are swapped @@ test_doxygen.py @@ "gcode": "Only in this image", "no_gcode": "Not in this image"}, @@ "gcode": "Not in this image", "no_gcode": "Only in this image"},
+the requirements chapter may be missing @@ test_doxygen.py @@     if not os.path.isfile(os.path.join(html, REQUIREMENTS_PAGE)):\n        problems.append("%s is missing (the requirements chapter)" % REQUIREMENTS_PAGE) @@     if False:\n        problems.append("%s is missing (the requirements chapter)" % REQUIREMENTS_PAGE)
+a code page may cite no requirement @@ test_doxygen.py @@         if not links:\n            problems.append("%s has no link to a requirement @@         if False:\n            problems.append("%s has no link to a requirement
+a link may point to a missing page @@ test_doxygen.py @@             if not os.path.isfile(tp):\n                problems.append("%s links to %s, which is missing" % (CITING_PAGE, target)) @@             if False:\n                problems.append("%s links to %s, which is missing" % (CITING_PAGE, target))
+a link may point to a missing anchor @@ test_doxygen.py @@             elif 'id="%s"' % ident not in read(tp):\n                problems.append("%s links to %s#%s, and that page has no such anchor" % (CITING_PAGE, @@             elif False:\n                problems.append("%s links to %s#%s, and that page has no such anchor" % (CITING_PAGE,
+only the first link is looked at @@ test_doxygen.py @@         for target, ident in links[:5]: @@         for target, ident in links[:1]:
+a design requirement is not a link @@ test_doxygen.py @@ REQ_LINK = re.compile(r'href="([^"#]+)#(REQ-CoreLR-[FD]-[A-Za-z0-9]+-\d{4})"') @@ REQ_LINK = re.compile(r'href="([^"#]+)#(REQ-CoreLR-[F]-[A-Za-z0-9]+-\d{4})"')
+the hierarchy is not checked @@ test_doxygen.py @@     if os.path.isfile(os.path.join(html, REQUIREMENTS_PAGE)):\n        top = read @@     if False:\n        top = read
+the top page may not link to a level @@ test_doxygen.py @@             if 'href="%s"' % page not in top: @@             if False:
+a level may be missing @@ test_doxygen.py @@             if not os.path.isfile(os.path.join(html, page)):\n                problems.append("%s is missing (the requirements hierarchy)" % page)\n                continue @@             if False:\n                problems.append("%s is missing (the requirements hierarchy)" % page)\n                continue
+a level may not link to a file's page @@ test_doxygen.py @@                 if 'href="%s.html"' % stem not in level: @@                 if False:
+the page of a file may be missing @@ test_doxygen.py @@                 elif not os.path.isfile(os.path.join(html, stem + ".html")): @@                 elif False:
+only the functional level is checked @@ test_doxygen.py @@ REQ_PAGES = (("requirements_functional.html", "functional"), ("requirements_design.html", "design")) @@ REQ_PAGES = (("requirements_functional.html", "functional"),)
+the design files are looked for in the functional directory @@ test_doxygen.py @@ ("requirements_design.html", "design"))\nCITING @@ ("requirements_design.html", "functional"))\nCITING
+a link that leaves the documentation passes @@ test_doxygen.py @@ if re.match(r"[A-Za-z][A-Za-z0-9+.-]*:", path) or not (target == root or target.startswith(root + os.sep)): @@ if False:
+a file: URL is inside @@ test_doxygen.py @@ if re.match(r"[A-Za-z][A-Za-z0-9+.-]*:", path) or not (target @@ if not (target
+a link that goes up out of the directory is inside @@ test_doxygen.py @@  or not (target == root or target.startswith(root + os.sep)): @@ :
+a dead link passes @@ test_doxygen.py @@                 elif not os.path.exists(target): @@                 elif False:
+an http link is not information @@ test_doxygen.py @@ EXTERNAL_LINK = re.compile(r"(?:https?:|mailto:|javascript:|data:)", re.I) @@ EXTERNAL_LINK = re.compile(r"(?:mailto:|javascript:|data:)", re.I)
+a resource from the network passes @@ test_doxygen.py @@             if REMOTE_RESOURCE.search(text): @@             if False:
+a style sheet from the network passes @@ test_doxygen.py @@ |<link\b[^>]*\bhref="https?:// @@ |<linkx\b[^>]*\bhref="https?://
+a script from the network passes @@ test_doxygen.py @@ <(?:script|img|iframe|object|embed|source) @@ <(?:img|iframe|object|embed|source)
+the pages of a subdirectory are not read @@ test_doxygen.py @@     for here, _, files in os.walk(html):\n        for name in sorted(files):\n            if not name.endswith(".html"): @@     for here, _, files in list(os.walk(html))[:1]:\n        for name in sorted(files):\n            if not name.endswith(".html"):
+a link is resolved from the root, not from its page @@ test_doxygen.py @@ target = os.path.realpath(os.path.join(here, path)) @@ target = os.path.realpath(os.path.join(html, path))
+the links are not checked @@ test_doxygen.py @@     found = link_problems(html)\n @@     found = []\n
+nine problems are told @@ test_doxygen.py @@     problems += found[:8] @@     problems += found[:9]
+the count is not told @@ test_doxygen.py @@     if len(found) > 8: @@     if False:
+a script file is read as a page @@ test_doxygen.py @@             if not name.endswith(".html"):\n                continue\n            page = os.path.relpath @@             if False:\n                continue\n            page = os.path.relpath
+the marking of the pages is not checked @@ test_doxygen.py @@     if os.path.isdir(os.path.join(repo, "requirements")):\n        images = dict(load_req_tool() @@     if False:\n        images = dict(load_req_tool()
+the protocol is not the serial image's @@ test_doxygen.py @@             images["SerialProtocol"] = "serial" @@             images["SerialProtocol"] = None
+a page of the other image may not say so @@ test_doxygen.py @@             if want and not marked: @@             if False:
+a page of its own image may say it is not part of it @@ test_doxygen.py @@             elif marked and not want: @@             elif False:
+a page of its own image is wanted marked @@ test_doxygen.py @@             want = image is not None and image != variant @@             want = image is not None
+a page with no image is wanted marked @@ test_doxygen.py @@             want = image is not None and image != variant @@             want = image != variant
+a title is read anywhere in the page @@ test_doxygen.py @@             m = TITLE_DIV.search(read(pp))\n            marked = m is not None and NOT_HERE in m.group(1) @@             m = TITLE_DIV.search(read(pp))\n            marked = NOT_HERE in read(pp)
+the words of the mark change @@ test_doxygen.py @@ NOT_HERE = "not in this image" @@ NOT_HERE = "not here"
+the protocol links are not checked @@ test_doxygen.py @@     pc = os.path.join(html, PROTO_CITING_PAGE)\n    if os.path.isfile(pc): @@     pc = os.path.join(html, PROTO_CITING_PAGE)\n    if False:
+a code page may cite no item of the protocol @@ test_doxygen.py @@         if not plinks:\n            problems.append("%s has no link to the protocol @@         if False:\n            problems.append("%s has no link to the protocol
+a protocol link may go to a missing page @@ test_doxygen.py @@             if not os.path.isfile(tp):\n                problems.append("%s links to %s, which is missing" % (PROTO_CITING_PAGE, target)) @@             if False:\n                problems.append("%s links to %s, which is missing" % (PROTO_CITING_PAGE, target))
+a protocol link may go to a missing anchor @@ test_doxygen.py @@             elif 'id="%s"' % ident not in read(tp):\n                problems.append("%s links to %s#%s, and that page has no such anchor" % (PROTO_CITING_PAGE @@             elif False:\n                problems.append("%s links to %s#%s, and that page has no such anchor" % (PROTO_CITING_PAGE
+only the first protocol link is looked at @@ test_doxygen.py @@         for target, ident in plinks[:5]: @@         for target, ident in plinks[:1]:
+a link inside the page is a link to a missing page @@ test_doxygen.py @@             tp = os.path.join(html, target or PROTO_CITING_PAGE) @@             tp = os.path.join(html, target)
+a protocol label of the design requirements is not a link @@ test_doxygen.py @@ PROTO_LINK = re.compile(r'href="([^"#]*)#(proto-[A-Za-z0-9-]+)"') @@ PROTO_LINK = re.compile(r'href="([^"#]*)#(proto-[A-Z]+-[0-9]+)"')
+the module page may be missing @@ test_doxygen.py @@     if not os.path.isfile(xp):\n        problems.append("%s is missing (a module's source page)" % XREF_PAGE) @@     if False:\n        problems.append("%s is missing (a module's source page)" % XREF_PAGE)
+the call graph and the lists are not checked @@ test_doxygen.py @@         for needle, needs_dot, what in XREF_TEXTS:\n            if needle not in text and not (needs_dot and skipped): @@         for needle, needs_dot, what in XREF_TEXTS:\n            if False:
+a missing call graph passes @@ test_doxygen.py @@ XREF_TEXTS = (("call graph for this function", True, @@ XREF_TEXTS = (("call graph for this function ", True,
+the call graph is asked for without dot @@ test_doxygen.py @@             if needle not in text and not (needs_dot and skipped): @@             if needle not in text:
+the lists are not asked for with dot missing @@ test_doxygen.py @@             if needle not in text and not (needs_dot and skipped): @@             if needle not in text and not skipped:
+the list of what a function references is dropped @@ test_doxygen.py @@ ("References", False, "the list of what a function references"), @@ 
+the list of what references a variable is dropped @@ test_doxygen.py @@ , ("Referenced by", False, "the list of what references a variable")) @@ )
+the references list is not needed @@ test_doxygen.py @@ ("References", False, @@ ("References", True,
+the module page is another @@ test_doxygen.py @@ XREF_PAGE = "Motion_8c.html" @@ XREF_PAGE = "Stepper_8c.html"
+the caller graph is not asked for @@ test_doxygen.py @@ ("caller graph for this function", True, "the caller graph of a function"), ("References", False, @@ ("References", False,
+the caller graph is asked for the wrong text @@ test_doxygen.py @@ ("caller graph for this function", True, @@ ("callers graph for this function", True,
+the caller graph is not needing dot @@ test_doxygen.py @@ ("caller graph for this function", True, @@ ("caller graph for this function", False,
+the EEPROM layout page may be missing @@ test_doxygen.py @@     if not os.path.isfile(os.path.join(html, EEPROM_PAGE)):\n        problems.append("%s is missing (the layout of the EEPROM)" % EEPROM_PAGE) @@     if False:\n        problems.append("%s is missing (the layout of the EEPROM)" % EEPROM_PAGE)
+a code page may not link to the EEPROM layout @@ test_doxygen.py @@     if os.path.isfile(ec) and 'href="%s"' % EEPROM_PAGE not in read(ec): @@     if False:
+the EEPROM layout is marked as the serial image's @@ test_doxygen.py @@             images["EepromLayout"] = None @@             images["EepromLayout"] = "serial"
+the EEPROM layout is not part of the marking check @@ test_doxygen.py @@         if os.path.isfile(os.path.join(repo, "docs", "protocol", "EepromLayout.md")):\n            images["EepromLayout"] = None @@         if False:\n            images["EepromLayout"] = None
+the layout is looked for in another page @@ test_doxygen.py @@ EEPROM_CITING_PAGE = "Calibration_8c.html" @@ EEPROM_CITING_PAGE = "Calibration_8h.html"
+a missing target file passes @@ test_doxygen.py @@     if None in (defs, fw, dx, dfile):\n        return @@     if False:\n        return
+the list may lack F_CPU @@ test_doxygen.py @@ if not target or "F_CPU=" not in target.group(1) or "ARDUINO_ARCH_AVR" not in target.group(1): @@ if not target or "ARDUINO_ARCH_AVR" not in target.group(1):
+the list may lack the architecture @@ test_doxygen.py @@ if not target or "F_CPU=" not in target.group(1) or "ARDUINO_ARCH_AVR" not in target.group(1): @@ if not target or "F_CPU=" not in target.group(1):
+the compiler's list may lack __AVR__ @@ test_doxygen.py @@ if not compiler or "__AVR__" not in compiler.group(1): @@ if not compiler:
+the macro of the MCU is not looked for @@ test_doxygen.py @@     elif mcu and "__AVR_%s__" % mcu.group(1).upper() not in compiler.group(1).upper(): @@     elif False:
+the macro of the MCU is looked for in the case of the name @@ test_doxygen.py @@     elif mcu and "__AVR_%s__" % mcu.group(1).upper() not in compiler.group(1).upper(): @@     elif mcu and "__AVR_%s__" % mcu.group(1).upper() not in compiler.group(1):
+the build may not read the list @@ test_doxygen.py @@     if "${CORELR_TARGET_DEFS}" not in fw: @@     if False:
+the build may spell a definition out @@ test_doxygen.py @@     if "F_CPU=" in fw: @@     if False:
+the build may not include the list @@ test_doxygen.py @@     if "TargetDefs.cmake" not in fw or "TargetDefs.cmake" not in dx: @@     if "TargetDefs.cmake" not in dx:
+the documentation may not include the list @@ test_doxygen.py @@     if "TargetDefs.cmake" not in fw or "TargetDefs.cmake" not in dx: @@     if "TargetDefs.cmake" not in fw:
+the documentation may use one list only @@ test_doxygen.py @@  \$\{CORELR_TARGET_COMPILER_DEFS\}\)", dx): @@ )", dx):
+the documentation's list is not checked @@ test_doxygen.py @@     if not re.search(r"string\\(JOIN @@     if False and not re.search(r"string\\(JOIN
+the Doxyfile may not take the definitions @@ test_doxygen.py @@     if not predefined or "@CORELR_DOC_TARGET_DEFS@" not in predefined.group(1): @@     if False:
+the Doxyfile may spell a definition out @@ test_doxygen.py @@     elif "F_CPU" in predefined.group(1): @@     elif False:
+a comment counts as the setting @@ test_doxygen.py @@     predefined = re.search(r"^PREDEFINED\\s*=(.*)$", dfile, re.M) @@     predefined = re.search(r"PREDEFINED\\s*=(.*)$", dfile, re.M)
+the target definitions are not checked on the repository @@ test_doxygen.py @@     if version is not None and os.path.isfile(os.path.join(repo, "docs", "doxygen", "Doxyfile.in")): @@     if False:
+the log of the HTML run may be missing @@ test_doxygen.py @@     if not os.path.isfile(hlog):\n        problems.append("no doxygen-html.log (the warnings of the HTML run, which documents every member)") @@     if False:\n        problems.append("no doxygen-html.log (the warnings of the HTML run, which documents every member)")
+a markup warning of the HTML run passes @@ test_doxygen.py @@                 if cls == "markup":\n                    problems.append("markup warning of the HTML run @@                 if False:\n                    problems.append("markup warning of the HTML run
+a gap of the HTML run is an error @@ test_doxygen.py @@                 if cls == "markup":\n                    problems.append("markup warning of the HTML run @@                 if cls != "nodot":\n                    problems.append("markup warning of the HTML run
+the log of the HTML run is another file @@ test_doxygen.py @@     hlog = os.path.join(doc_dir, "doxygen-html.log") @@     hlog = os.path.join(doc_dir, "doxygen-warnings.log")
+a bare attribute line is not recognised @@ test_doxygen.py @@ if re.match(r"\s*__attribute__\(\(.*\)\)\s*$", line): @@ if re.match(r"\s*__attribute_\(\(.*\)\)\s*$", line):
+an attribute on the line of a declaration is told too @@ test_doxygen.py @@ if re.match(r"\s*__attribute__\(\(.*\)\)\s*$", line): @@ if re.search(r"\s*__attribute__\(\(.*\)\)\s*$", line):
+trailing blanks after a bare attribute hide it @@ test_doxygen.py @@ if re.match(r"\s*__attribute__\(\(.*\)\)\s*$", line): @@ if re.match(r"\s*__attribute__\(\(.*\)\)$", line):
+the sketch is not scanned for bare attributes @@ test_doxygen.py @@ for sub_dir in ("firmware/src", "firmware/app"): @@ for sub_dir in ("firmware/src",):
+the headers are not scanned for bare attributes @@ test_doxygen.py @@ if not name.endswith((".c", ".cpp", ".h", ".ino")): @@ if not name.endswith((".c", ".cpp", ".ino")):
+any file is scanned for bare attributes @@ test_doxygen.py @@ if not name.endswith((".c", ".cpp", ".h", ".ino")): @@ if False:
+the line of a bare attribute is counted from zero @@ test_doxygen.py @@ for number, line in enumerate(read(os.path.join(folder, name)).splitlines(), 1): @@ for number, line in enumerate(read(os.path.join(folder, name)).splitlines(), 0):
+the bare attributes are not checked on the repository @@ test_doxygen.py @@         problems += check_attribute_lines(repo)\n @@         pass\n
+the red frame of a cut graph is not looked for @@ test_doxygen.py @@ elif name.endswith("graph.svg") and 'stroke="red"' in read( @@ elif name.endswith("graph.svg") and 'stroke="blue"' in read(
+a cut caller graph is not looked for @@ test_doxygen.py @@ elif name.endswith("graph.svg") and 'stroke @@ elif name.endswith("_cgraph.svg") and 'stroke
+a graph in PNG is accepted @@ test_doxygen.py @@         if name.endswith((".png", ".gif", ".jpg")): @@         if name.endswith((".gif", ".jpg")):
+the cut graphs of vendored code are ours @@ test_doxygen.py @@ and not any(name.startswith(x) for x in third): @@ and True:
+a name that merely contains a vendored one is taken for it @@ test_doxygen.py @@ not any(name.startswith(x) for x in third): @@ not any(x in name for x in third):
+Doxygen's spelling of an underscore is wrong @@ test_doxygen.py @@     return filename.replace("_", "__").replace(".", "_8") @@     return filename.replace("_", "_").replace(".", "_8")
+Doxygen's spelling of a dot is wrong @@ test_doxygen.py @@     return filename.replace("_", "__").replace(".", "_8") @@     return filename.replace("_", "__").replace(".", "_")
+the graphs are not checked in the output @@ test_doxygen.py @@         problems += graph_problems(html, repo)\n @@         pass\n
+the graph settings are not checked on the repository @@ test_doxygen.py @@         problems += check_graph_settings(repo)\n @@         pass\n
+the template may draw PNG @@ test_doxygen.py @@     if value("DOT_IMAGE_FORMAT") != "svg": @@     if value("DOT_IMAGE_FORMAT") != "png":
+the template may leave the graphs static @@ test_doxygen.py @@     if value("INTERACTIVE_SVG") != "YES": @@     if value("INTERACTIVE_SVG") != "NO":
+the template may keep a small node limit @@ test_doxygen.py @@ int(nodes) < 250: @@ int(nodes) < 100:
+the template may leave the node limit to the default @@ test_doxygen.py @@     if nodes is None or not nodes.isdigit() or int(nodes) < 250: @@     if nodes is not None and (not nodes.isdigit() or int(nodes) < 250):
+the template may limit the depth @@ test_doxygen.py @@     if value("MAX_DOT_GRAPH_DEPTH") != "0": @@     if value("MAX_DOT_GRAPH_DEPTH") != "3":
+the page of the protocol is not looked at @@ test_doxygen.py @@         problems += protocol_page_problems(html)\n @@         pass\n
+a link is read as plain text on the page of the protocol @@ test_doxygen.py @@     text = re.sub(r"<a\b[^>]*>.*?</a>", " ", read(path), flags=re.S) @@     text = read(path)
+a short citation is not told on the page of the protocol @@ test_doxygen.py @@     for found in sorted(set(re.findall(r"(?<![\w-])[FD]-[A-Za-z0-9]+-\d{4}(?![\w-])", text))): @@     for found in []:
+a short citation inside a full one is told @@ test_doxygen.py @@     for found in sorted(set(re.findall(r"(?<![\w-])[FD]-[A-Za-z0-9]+-\d{4}(?![\w-])", text))): @@     for found in sorted(set(re.findall(r"[FD]-[A-Za-z0-9]+-\d{4}", text))):
+a file-level citation is not told on the page of the protocol @@ test_doxygen.py @@     for found in sorted(set(re.findall(r"REQ-CoreLR-[FD]-[A-Za-z0-9]+(?![A-Za-z0-9]|-\d)", text))): @@     for found in []:
+a full citation is a file-level one on the page of the protocol @@ test_doxygen.py @@ REQ-CoreLR-[FD]-[A-Za-z0-9]+(?![A-Za-z0-9]|-\d)", text))): @@ REQ-CoreLR-[FD]-[A-Za-z0-9]+(?![A-Za-z0-9])", text))):
+a citation told twice on the page of the protocol @@ test_doxygen.py @@     for found in sorted(set(re.findall(r"(?<![\w-])[FD]-[A-Za-z0-9]+-\d{4}(?![\w-])", text))): @@     for found in sorted(re.findall(r"(?<![\w-])[FD]-[A-Za-z0-9]+-\d{4}(?![\w-])", text)):
+the page of the protocol is checked even when it is not there @@ test_doxygen.py @@     if not os.path.isfile(path):\n        return []\n    text = re.sub(r"<a @@     if False:\n        return []\n    text = re.sub(r"<a

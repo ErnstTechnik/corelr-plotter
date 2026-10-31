@@ -1,0 +1,24 @@
+# build output (CMake presets build under build/)
+/build/
+# host tests, simulators and prototypes write here
+tests/host/out/
+tools/analysis/cyclesim/out/
+tools/prototypes/evproto/out/
+tools/generators/img2gcode/out/
+__pycache__/
+*.pyc
+*.o
+*.elf
+*.map
+*.hex
+*.bin
+# editor
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/tasks.json
+.idea/
+*~
+/local.conf
+# the outputs of tools/mutation_ci.sh
+/mutation-out/

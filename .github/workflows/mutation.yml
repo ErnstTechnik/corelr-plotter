@@ -1,0 +1,25 @@
+# Copyright (C) 2026 ErnstTechnik and the CoreLR contributors
+# SPDX-License-Identifier: GPL-3.0-or-later
+name: mutation
+# The mutant batches of tests/mutation/mutants/, each judged by the UNION of its runs. About an hour on a 2-core runner, so it is not run on every push: by hand ("Run workflow"
+# on any branch; the file must be on the default branch), and by the `release` workflow on a tag, which waits for it.
+on:
+  workflow_dispatch:
+  workflow_call:
+permissions:
+  contents: read
+jobs:
+  mutation:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v5
+      - run: sudo apt-get update && sudo apt-get install -y gcc-multilib g++-multilib python3 cmake graphviz
+      - uses: ./.github/actions/doxygen
+      # The runs and their judgement are in tools/mutation_ci.sh (the same command locally: tools/mutation_ci.sh -h). A batch is run once per test and judged by the UNION of its
+      # runs (tools/check_mutants_union.py): the step FAILS on a mutant that no run kills, on an empty or unfinished output, and on runs of different batches.
+      - name: Mutant batches, each judged by the union of its runs
+        run: tools/mutation_ci.sh -j "$(nproc)" -o mutation-out
+      - uses: actions/upload-artifact@v6
+        if: always()
+        with: { name: mutation, path: "mutation-out/*.txt" }
+      # Wired: all the batches of tests/mutation/mutants/ (tools/mutation_ci.sh -l). tests/tools/test_mutant_batches.py, in the host tests of every PR, checks that each of them can load and run.

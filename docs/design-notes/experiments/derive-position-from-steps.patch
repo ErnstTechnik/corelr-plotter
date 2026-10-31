@@ -1,0 +1,227 @@
+diff --git a/grbl_corelr/Calibration.c b/grbl_corelr/Calibration.c
+index f82829f..0308136 100644
+--- a/grbl_corelr/Calibration.c
++++ b/grbl_corelr/Calibration.c
+@@ -69,9 +69,7 @@ typedef struct
+    uint8_t Marker;
+    int32_t StepsL;
+    int32_t StepsR;
+-   int32_t InternalX; /**< position, internal frame -- stored rather than derived, see Calibration_StorePosition() */
+-   int32_t InternalY;
+-   uint8_t Checksum;  /**< additive, over everything above */
++   uint8_t Checksum; /**< additive, over Marker+StepsL+StepsR */
+ } PositionRecord_t;
+ 
+ #define POSITION_ADDR(field) ((void *)(CALIBRATION_POSITION_EEPROM_ADDRESS + offsetof(PositionRecord_t, field)))
+@@ -296,7 +294,7 @@ void Calibration_StoreCurrentPosition(void)
+ {
+    PositionRecord_t record;
+ 
+-   Motion_GetPersistedState(&record.StepsL, &record.StepsR, &record.InternalX, &record.InternalY);
++   Motion_GetCommandedSteps(&record.StepsL, &record.StepsR);
+ 
+    /* The marker must be invalid while the payload is written, whatever
+     * state we were called in: a store over a still-valid record would
+@@ -322,12 +320,6 @@ void Calibration_RestoreStoredPosition(void)
+    if (s_positionValid)
+    {
+       eeprom_read_block(&record, (const void *)CALIBRATION_POSITION_EEPROM_ADDRESS, sizeof(record));
+-      Motion_Restore(record.StepsL, record.StepsR, record.InternalX, record.InternalY);
++      Motion_SeedFromSteps(record.StepsL, record.StepsR);
+    }
+ }
+-
+-void Calibration_GetWorkOrigin(int32_t *outX, int32_t *outY)
+-{
+-   *outX = s_params.WorkOriginOffsetX;
+-   *outY = s_params.WorkOriginOffsetY;
+-}
+diff --git a/grbl_corelr/Calibration.h b/grbl_corelr/Calibration.h
+index d1816d3..b031075 100644
+--- a/grbl_corelr/Calibration.h
++++ b/grbl_corelr/Calibration.h
+@@ -155,32 +155,19 @@ uint8_t Calibration_IsPositionStored(void);
+ void Calibration_InvalidatePosition(void);
+ 
+ /**
+- * @brief Store Motion's current state -- the absolute step counts and the
+- * position -- and mark it valid. Blocks ~60 ms writing eighteen bytes: call
+- * it only while the machine stands still. The marker is written last, so a
+- * power cut anywhere in the sequence leaves the position invalid.
+- *
+- * The position is stored in the **internal** kinematics frame (drawing
+- * position plus the drawing-origin offset), so that a later change of the
+- * offset cannot leave it describing a different point.
+- *
+- * @todo The position is stored beside the steps only to avoid computing it
+- * at start-up: the forward kinematics (counts -> X,Y) cost 718 bytes of
+- * flash, measured 2026-10-06, and flash is the binding budget. Once the
+- * arithmetic has been optimised, try deriving it from the counts again and
+- * drop the 8 bytes (REQ-CoreLR-D-Calibration-0007, open items).
++ * @brief Store Motion's absolute step counts and mark them valid. Blocks
++ * ~35 ms writing ten bytes: call it only while the machine stands still.
++ * The marker is written last, so a power cut anywhere in the sequence
++ * leaves the position invalid. Only the counts are stored: the position is
++ * derived from them at start-up (REQ-CoreLR-D-Calibration-0007).
+  */
+ void Calibration_StoreCurrentPosition(void);
+ 
+ /**
+  * @brief If the persisted position is valid, restore Motion from it
+- * (Motion_Restore()). Called once, from Motion_Init().
++ * (Motion_SeedFromSteps()). Called once, from Motion_Init().
+  */
+ void Calibration_RestoreStoredPosition(void);
+-
+-/** @brief The drawing-origin offset, internal frame. Narrow getter: two
+- *  fields, no struct copy (REQ-CoreLR-D-Calibration-0004). */
+-void Calibration_GetWorkOrigin(int32_t *outX, int32_t *outY);
+ /** @} */
+ 
+ #ifdef __cplusplus
+diff --git a/grbl_corelr/Motion.c b/grbl_corelr/Motion.c
+index 50d4f92..135ba64 100644
+--- a/grbl_corelr/Motion.c
++++ b/grbl_corelr/Motion.c
+@@ -672,41 +672,76 @@ void Motion_SetCurrentPosition(Motion_Position_t position)
+    s_move.AnyEvent = 0;
+ }
+ 
+-void Motion_GetPersistedState(int32_t *outStepsL, int32_t *outStepsR,
+-                              int32_t *outInternalX, int32_t *outInternalY)
++void Motion_GetCommandedSteps(int32_t *outStepsL, int32_t *outStepsR)
+ {
+-   int32_t offsetX;
+-   int32_t offsetY;
+-
+-   Calibration_GetWorkOrigin(&offsetX, &offsetY);
+    *outStepsL = s_move.CmdL;
+    *outStepsR = s_move.CmdR;
+-   *outInternalX = s_currentPosition.X + offsetX;
+-   *outInternalY = s_currentPosition.Y + offsetY;
+ }
+ 
+-void Motion_Restore(int32_t stepsL, int32_t stepsR, int32_t internalX, int32_t internalY)
++/** @brief 32 x 32 -> 64, spelled so the compiler uses the widening multiply and not the 64 x 64 one (158 bytes of library). */
++static uint64_t WideMul(uint32_t a, uint32_t b)
++{
++   return (uint64_t)a * (uint64_t)b;
++}
++
++/** @brief A cable length in um from an absolute step count: the inverse of IdealSubSteps()'s scale.
++ *  steps * circumference / steps_per_rev, in 32 bits: the circumference is 53 * 2048 + 1411, so
++ *  steps * 53 + (steps * 1411 + 1024) / 2048 -- and the largest intermediate is ~5.6e7. */
++static uint32_t StepsToUm(int32_t steps)
++{
++   uint32_t n = (uint32_t)steps;
++
++   return n * (uint32_t)(SPOOL_CIRCUMFERENCE_UM / MOTION_STEPS_PER_REV)
++          + ((n * (uint32_t)(SPOOL_CIRCUMFERENCE_UM % MOTION_STEPS_PER_REV) + MOTION_STEPS_PER_REV / 2u) / MOTION_STEPS_PER_REV);
++}
++
++/* CORELR_NOINLINE: called once, from Motion_Init() -- see SwConfig.h */
++CORELR_NOINLINE
++void Motion_SeedFromSteps(int32_t stepsL, int32_t stepsR)
+ {
+    /**
+-    * @todo The internal position is persisted beside the step counts only
+-    * because deriving it costs flash. The forward kinematics (counts ->
+-    * X,Y) was written, verified on the host to 41 um and then removed:
+-    * 718 bytes (Motion_SeedFromSteps 530 + a 64-bit helper 188), of a
+-    * flash budget at 96 %. Once the 64-bit arithmetic has been optimised
+-    * -- a seeded-Newton root and 32-bit forms, see docs/bringup/Bringup-Status.md --
+-    * try deriving the position from the counts again and drop the 8 bytes
+-    * from the record (REQ-CoreLR-D-Calibration-0007, open items). The
+-    * algorithm is in the git history of this file (2026-10-06).
++    * The inverse of Motion_XYToLR(), run once at start-up from the persisted step counts
++    * (REQ-CoreLR-D-Calibration-0007). The position is *derived*, not stored: the counts are the
++    * motors' own truth.
++    *
++    *   L = c_L * circumference / steps_per_rev          cable lengths, um
++    *   x = D/2 + (L - R)(L + R) / (2D)                  internal frame, origin at motor L
++    *   y = sqrt((L - x)(L + x))                         = sqrt(L^2 - x^2)
++    *   drawing position = (x, y) - drawing-origin offset
++    *
++    * x is the textbook (L^2 - R^2 + D^2) / (2D) factored so that no intermediate exceeds 2^44 and
++    * every product is 32 x 32 -> 64. The commanded counts are taken as stored, exactly -- not
++    * re-quantised from the recomputed position, which would be off by up to half a step. The
++    * recomputed position is good to a few um, inside the machine's own 54 um step.
++    *
++    * History: written and verified on 2026-10-06, removed the same day for its flash cost
++    * (718 bytes, with the old 64-bit arithmetic), the position stored beside the counts instead;
++    * brought back once the arithmetic was smaller (REQ-CoreLR-D-Calibration-0007).
+     */
+-   int32_t offsetX;
+-   int32_t offsetY;
+-
+-   Calibration_GetWorkOrigin(&offsetX, &offsetY);
+-   s_move.CmdL = stepsL;
+-   s_move.CmdR = stepsR;
+-   s_currentPosition.X = internalX - offsetX;
+-   s_currentPosition.Y = internalY - offsetY;
+-   s_move.SubValid = 0;
++   MOTION_MOVE_PTR(m);
++   Calibration_KinematicsParams_t params = Calibration_GetKinematicsParams();
++   uint32_t lengthL = StepsToUm(stepsL);
++   uint32_t lengthR = StepsToUm(stepsR);
++   int32_t difference = (int32_t)(lengthL - lengthR);
++   uint32_t twoD = 2u * (uint32_t)params.MotorDistanceUm;
++   int32_t x;
++   int32_t y = 0;
++
++   m->CmdL = stepsL;
++   m->CmdR = stepsR;
++   m->SubValid = 0;
++   if (params.MotorDistanceUm <= 0)
++   {
++      return; /* no geometry to invert: the counts are seeded, the position is left as it was */
++   }
++   x = (int32_t)((WideMul((uint32_t)((difference < 0) ? -difference : difference), lengthL + lengthR) + (twoD >> 1)) / twoD);
++   x = params.MotorDistanceUm / 2 + ((difference < 0) ? -x : x);
++   if (((int32_t)lengthL > x) && ((int32_t)lengthL > -x))
++   {
++      y = (int32_t)Motion_ISqrt(WideMul(lengthL - (uint32_t)x, lengthL + (uint32_t)x));
++   }
++   s_currentPosition.X = x - params.WorkOriginOffsetX;
++   s_currentPosition.Y = y - params.WorkOriginOffsetY;
+ }
+ 
+ /** @brief Length of one planned move and its deltas.
+diff --git a/grbl_corelr/Motion.h b/grbl_corelr/Motion.h
+index 6454866..a3ccb05 100644
+--- a/grbl_corelr/Motion.h
++++ b/grbl_corelr/Motion.h
+@@ -212,23 +212,20 @@ void Motion_Abort(void);
+ void Motion_SetCurrentPosition(Motion_Position_t position);
+ 
+ /**
+- * @brief What the position store persists (REQ-CoreLR-D-Calibration-0006):
+- * the absolute step count last commanded to each motor, and the position in
+- * the **internal** frame (drawing position plus the drawing-origin offset).
+- * Meaningful once the machine is calibrated; the adjustment jog moves the
+- * motors behind Motion's back, which is why calibration re-seeds them.
++ * @brief The absolute step count last commanded to each motor: all the position
++ * store persists (REQ-CoreLR-D-Calibration-0006). Meaningful once the machine is
++ * calibrated; the adjustment jog moves the motors behind Motion's back, which is
++ * why calibration re-seeds them.
+  */
+-void Motion_GetPersistedState(int32_t *outStepsL, int32_t *outStepsR,
+-                              int32_t *outInternalX, int32_t *outInternalY);
++void Motion_GetCommandedSteps(int32_t *outStepsL, int32_t *outStepsR);
+ 
+ /**
+- * @brief Restore the commanded step counts and the position from what
+- * Motion_GetPersistedState() produced at the last standstill
+- * (REQ-CoreLR-D-Calibration-0007). Called by Motion_Init() when the
+- * persisted position is valid. The counts are taken exactly, not
+- * re-quantised from the position.
++ * @brief Seed the commanded step counts, and from them the position, from the
++ * counts persisted at the last standstill (REQ-CoreLR-D-Calibration-0007).
++ * Forward kinematics, integer only. Called by Calibration at start-up, from
++ * Motion_Init(), when the persisted position is valid.
+  */
+-void Motion_Restore(int32_t stepsL, int32_t stepsR, int32_t internalX, int32_t internalY);
++void Motion_SeedFromSteps(int32_t stepsL, int32_t stepsR);
+ 
+ /**
+  * @brief Inverse kinematics: absolute drawing-frame X,Y -> absolute L,R.

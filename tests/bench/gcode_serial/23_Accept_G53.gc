@@ -1,0 +1,37 @@
+; ACCEPTED (serial variant): G53, a move in the
+; MACHINE frame
+; (REQ-CoreLR-F-GCodeInterpreter-0018): its X Y
+; Z are read from the
+; calibration reference point, +Y up, absolute
+; whatever G90/G91
+; says, for that one line. It needs G0 or G1. Z
+; >= 0 lifts the pen,
+; Z < 0 lowers it. START with the origin where
+; it was calibrated
+; (menu: Origin = calib.), the pen over
+; nothing.
+M5
+G90 G0 X0 Y0
+G21 G17 G54 G94
+; shift the origin: the pen, at the reference
+; point, reads (30,-30)
+G92 X30 Y-30
+G0 X50 Y-30
+; Candle's Restore origin: G53 to the machine
+; origin, then G92
+G53 G90 G0 X0 Y0 Z0
+G92 X0 Y0 Z0
+; G53 is absolute even under G91, and does not
+; change it
+G91
+G53 G0 X10 Y10
+G1 X5
+G53 G1 X0 Y0
+G90
+; Safe position: Z0 alone lifts the pen,
+; nothing moves
+M3
+G53 G0 Z0
+M5
+G90 G0 X0 Y0
+M30

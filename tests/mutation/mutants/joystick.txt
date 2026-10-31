@@ -1,0 +1,9 @@
+# Mutants of the joystick polarity (REQ-CoreLR-D-LcdJoystickUI-0020): run for each combination of the flags, e.g.
+#   for xy in "0 0" "0 1" "1 0" "1 1"; do set -- $xy; tools/mutate.py --test test_ui -D LCDJOYSTICKUI_X_INVERT=$1 -D LCDJOYSTICKUI_Y_INVERT=$2 --batch tests/mutation/mutants/joystick.txt; done
+# A mutant that only matters when a flag is 1 is expected to survive the runs where that flag is 0.
+# name @@ file @@ old @@ new
+polarity never applied @@ LcdJoystickUI.cpp @@ deflection = (int16_t)-deflection; @@ deflection = deflection;
+polarity applied the wrong way (always) @@ LcdJoystickUI.cpp @@ if (analogPin == LCDJOYSTICKUI_X_PIN ? LCDJOYSTICKUI_X_INVERT : LCDJOYSTICKUI_Y_INVERT) @@ if (1)
+X flag read for Y @@ LcdJoystickUI.cpp @@ if (analogPin == LCDJOYSTICKUI_X_PIN ? LCDJOYSTICKUI_X_INVERT : LCDJOYSTICKUI_Y_INVERT) @@ if (LCDJOYSTICKUI_X_INVERT)
+Y flag read for X @@ LcdJoystickUI.cpp @@ if (analogPin == LCDJOYSTICKUI_X_PIN ? LCDJOYSTICKUI_X_INVERT : LCDJOYSTICKUI_Y_INVERT) @@ if (LCDJOYSTICKUI_Y_INVERT)
+flags swapped @@ LcdJoystickUI.cpp @@ if (analogPin == LCDJOYSTICKUI_X_PIN ? LCDJOYSTICKUI_X_INVERT : LCDJOYSTICKUI_Y_INVERT) @@ if (analogPin == LCDJOYSTICKUI_X_PIN ? LCDJOYSTICKUI_Y_INVERT : LCDJOYSTICKUI_X_INVERT)

@@ -1,0 +1,14 @@
+{
+  "cmake.useCMakePresets": "always",
+  "cmake.configureOnOpen": false,
+  "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
+  "files.associations": {
+    "*.ino": "cpp",
+    "SwConfig.h": "c",
+    "HwConfig.h": "c"
+  },
+  "[c]":   { "editor.tabSize": 3, "editor.insertSpaces": true },
+  "[cpp]": { "editor.tabSize": 3, "editor.insertSpaces": true },
+  "files.watcherExclude": { "**/build/**": true, "**/tests/host/out/**": true },
+  "search.exclude": { "**/build": true, "**/third_party/arduino-core": true }
+}

@@ -1,0 +1,12 @@
+# Mutants of the reach limit and the saturating number parse (REQ-CoreLR-F-GCodeInterpreter-0011).
+#   tools/mutate.py --test test_parser --batch tests/mutation/mutants/parser_reach.txt
+# name @@ file @@ old @@ new
+reach check removed @@ GCodeParser.c @@ if (OutOfReach(&target) || !Motion_TravelAllows(&target))   /* the zone: REQ-CoreLR-F-GCodeInterpreter-0016 */ @@ if (!Motion_TravelAllows(&target))   /* the zone: REQ-CoreLR-F-GCodeInterpreter-0016 */
+reach shift 22 @@ GCodeParser.c @@ return (uint8_t)(((ax | ay) >> MOTION_REACH_SHIFT) != 0u); @@ return (uint8_t)(((ax | ay) >> 22) != 0u);
+reach shift 20 @@ GCodeParser.c @@ return (uint8_t)(((ax | ay) >> MOTION_REACH_SHIFT) != 0u); @@ return (uint8_t)(((ax | ay) >> 20) != 0u);
+only X checked @@ GCodeParser.c @@ uint32_t ay = (uint32_t)((p->Y < 0) ? -p->Y : p->Y); @@ uint32_t ay = 0;
+only Y checked @@ GCodeParser.c @@ uint32_t ax = (uint32_t)((p->X < 0) ? -p->X : p->X); @@ uint32_t ax = 0;
+negatives not folded (X) @@ GCodeParser.c @@ uint32_t ax = (uint32_t)((p->X < 0) ? -p->X : p->X); @@ uint32_t ax = (uint32_t)p->X;
+digit string wraps (no saturation) @@ GCodeParser.c @@ if (outNumber->IntegerPart > 1000000L)\n      {\n         outNumber->IntegerPart = 1000000L;\n      } @@ (empty)
+saturation at 1e7 (times 1000 overflows) @@ GCodeParser.c @@ if (outNumber->IntegerPart > 1000000L) @@ if (outNumber->IntegerPart > 10000000L)
+saturation to a legal value @@ GCodeParser.c @@ outNumber->IntegerPart = 1000000L; @@ outNumber->IntegerPart = 100L;

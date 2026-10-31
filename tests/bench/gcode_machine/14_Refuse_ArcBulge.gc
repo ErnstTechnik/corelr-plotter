@@ -1,0 +1,17 @@
+; REFUSAL TEST: top margin, by an arc's bulge
+; Pen up throughout. The marked line must be
+; REFUSED: the job halts (E), nothing moves.
+; Then SW to acknowledge, jog or Return home.
+M5
+G90 G0 X0 Y0
+G21 G17 G54 G94
+; the half circle UNDER its chord: accepted
+G0 X-40 Y517.029
+G3 X40 Y517.029 I40 J0
+; half circle OVER it: ends inside, top Y=557.0
+; 10 mm beyond the margin: REFUSED
+G0 X-40 Y517.029
+G2 X40 Y517.029 I40 J0
+M5
+G0 X0 Y0
+M30

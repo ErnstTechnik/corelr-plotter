@@ -1,0 +1,50 @@
+; ACCEPTED: arcs and their direction, Y UP the
+; wall (D1).
+; Pen DOWN, so the paper shows it: from (0,0)
+; to (40,0) with
+; I20, G2 (clockwise) must pass ABOVE the
+; start, G3 BELOW.
+; Expected ink: an S-like figure, upper half
+; then lower half.
+M5
+G90 G0 X0 Y0
+G21 G17 G54 G94
+M3
+; G2: clockwise, passes above (+Y)
+G2 X40 Y0 I20 J0
+; G3 back to the start: counter-clockwise from
+; the right,
+; it goes above again; a full lens
+G3 X0 Y0 I-20 J0
+; G3 away to the right: below
+G3 X40 Y0 I20 J0
+; G2 back: below again
+G2 X0 Y0 I-20 J0
+M5
+G0 X0 Y-60
+M3
+; full circle R20: end point = start point,
+; centre at (0,-80)
+G2 X0 Y-60 I0 J-20
+M5
+G0 X60 Y-60
+M3
+; G3 full circle, centre (60,-80)
+G3 X60 Y-60 I0 J-20
+M5
+G0 X-60 Y-60
+M3
+; I/J are relative to the start whatever the
+; distance mode:
+G91
+G2 X30 Y0 I15 J0
+G3 X30 Y0 I15 J0
+G90
+M5
+; an arc by bare coordinates after G2: modal
+G0 X0 Y40
+G2
+G2 X20 Y40 I10
+M5
+G90 G0 X0 Y0
+M30

@@ -1,0 +1,29 @@
+# Mutants of tests/tools/test_variant_modules.py (the check of cmake/variant_modules.txt against the #if guards, REQ-CoreLR-D-Build-0014): its checker and its parser.
+# Run:  tools/mutate.py --test variant_modules --script tests/tools/test_variant_modules.py --batch tests/mutation/mutants/variant_modules.txt
+# Every mutant must be caught by tests/tools/test_variant_modules.py (its self-test).
+code outside any condition is accepted @@ test_variant_modules.py @@             if depth == 0:\n                return None                                      # code outside any condition @@             if False:\n                return None                                      # code outside any condition
+the image condition may be anything @@ test_variant_modules.py @@                 if g is None or (image is not None and g.group(1).lower() != image): @@                 if False:
+two images in one file are accepted @@ test_variant_modules.py @@                 if g is None or (image is not None and g.group(1).lower() != image): @@                 if g is None:
+EQUIVALENT (the argument of an #ifdef is one name and never matches the condition) an #ifdef may be the image condition @@ test_variant_modules.py @@                 g = GUARD.match(rest) if word == "if" else None @@                 g = GUARD.match(rest)
+the image is lost @@ test_variant_modules.py @@                 image = g.group(1).lower() @@                 image = "sd"
+an #else of the image condition is accepted @@ test_variant_modules.py @@             if depth == 1:\n                return None                                      # the other branch @@             if False:\n                return None                                      # the other branch
+any #else is refused @@ test_variant_modules.py @@             if depth == 1:\n                return None                                      # the other branch @@             if depth >= 1:\n                return None                                      # the other branch
+an unbalanced #endif is accepted @@ test_variant_modules.py @@             if depth < 0:\n                return None @@             if False:\n                return None
+a missing #endif is accepted @@ test_variant_modules.py @@     return image if depth == 0 else None @@     return image
+another include outside the condition is accepted @@ test_variant_modules.py @@             if not (word == "include" and rest.replace(" ", "") == '"SwConfig.h"'): @@             if False:
+any include outside the condition is accepted @@ test_variant_modules.py @@             if not (word == "include" and rest.replace(" ", "") == '"SwConfig.h"'): @@             if word != "include":
+comments are not stripped @@ test_variant_modules.py @@     text = re.sub(r"/\*.*?\*/", "", text, flags=re.S) @@     text = text
+line comments are not stripped @@ test_variant_modules.py @@     return re.sub(r"//[^\\n]*", "", text) @@     return text
+a file with no condition is guarded @@ test_variant_modules.py @@     return image if depth == 0 else None @@     return image or "sd"
+an unknown image is accepted in the list @@ test_variant_modules.py @@         if image not in ("sd", "serial"): @@         if False:
+a line with no bar is accepted @@ test_variant_modules.py @@         if "|" not in line: @@         if False:
+the image of a listed file is not compared @@ test_variant_modules.py @@             if got != image: @@             if False:
+a listed file that does not exist is accepted @@ test_variant_modules.py @@         if not os.path.exists(full): @@         if False:
+a path listed twice is accepted @@ test_variant_modules.py @@         if path in listed: @@         if False:
+an unlisted guarded file is accepted @@ test_variant_modules.py @@             if got is not None: @@             if False:
+a listed file of the library directory is examined as a source @@ test_variant_modules.py @@         if path.startswith("firmware/src/") and os.path.isfile(full): @@         if os.path.isfile(full):
+the files of firmware/src are not looked at @@ test_variant_modules.py @@         if name.endswith(SOURCES) and path not in listed: @@         if False:
+a text file of firmware/src is examined @@ test_variant_modules.py @@         if name.endswith(SOURCES) and path not in listed: @@         if path not in listed:
+only headers are looked at @@ test_variant_modules.py @@ SOURCES = (".h", ".c", ".cpp") @@ SOURCES = (".h",)
+comment lines of the list are entries @@ test_variant_modules.py @@         if not line.strip() or line.lstrip().startswith("#"): @@         if not line.strip():
+the bad lines of the list are not reported @@ test_variant_modules.py @@     problems += bad @@     problems += []

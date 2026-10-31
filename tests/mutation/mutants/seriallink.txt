@@ -1,0 +1,94 @@
+# Mutants of the serial link (REQ-CoreLR-D-SerialLink): tools/mutate.py --test test_seriallink --batch tests/mutation/mutants/seriallink.txt
+# name @@ file @@ old @@ new
+CRLF: the LF after a CR is not skipped @@ SerialLink.c @@ if ((c == (uint8_t)'\\n') && (s_skipLf != 0u)) @@ if (0)
+CRLF: a CR does not arm the skip @@ SerialLink.c @@ s_skipLf = (uint8_t)(c == (uint8_t)'\\r'); @@ s_skipLf = 0;
+CRLF: dropping a line forgets the skip @@ SerialLink.c @@ s_overflow = 0;\n   s_comment = COMMENT_NONE;\n} @@ s_overflow = 0;\n   s_comment = COMMENT_NONE;\n   s_skipLf = 0;\n}
+CR is not an end of line @@ SerialLink.c @@ if ((c == (uint8_t)'\\n') || (c == (uint8_t)'\\r')) @@ if (c == (uint8_t)'\\n')
+LF is not an end of line @@ SerialLink.c @@ if ((c == (uint8_t)'\\n') || (c == (uint8_t)'\\r')) @@ if (c == (uint8_t)'\\r')
+paren comment never closes @@ SerialLink.c @@ if (c == (uint8_t)')') @@ if (0)
+semicolon comment not recognised @@ SerialLink.c @@ if (c == (uint8_t)';')\n            {\n               s_comment = COMMENT_LINE; @@ if (0)\n            {\n               s_comment = COMMENT_LINE;
+parenthesis comment not recognised @@ SerialLink.c @@ else if (c == (uint8_t)'(')\n            {\n               s_comment = COMMENT_PAREN; @@ else if (0)\n            {\n               s_comment = COMMENT_PAREN;
+spaces kept @@ SerialLink.c @@ else if ((c > (uint8_t)' ') && (c < 0x7Fu)) @@ else if ((c >= (uint8_t)' ') && (c < 0x7Fu))
+control characters kept @@ SerialLink.c @@ else if ((c > (uint8_t)' ') && (c < 0x7Fu)) @@ else if (c < 0x7Fu)
+limit 79 @@ SerialLink.c @@ if (s_len >= SERIALLINK_LINE_MAX) @@ if (s_len >= SERIALLINK_LINE_MAX - 1u)
+limit 81 (writes past the buffer) @@ SerialLink.c @@ if (s_len >= SERIALLINK_LINE_MAX) @@ if (s_len > SERIALLINK_LINE_MAX)
+a long line is truncated, not refused @@ SerialLink.c @@ if (s_len >= SERIALLINK_LINE_MAX)\n               {\n                  s_overflow = 1u;\n               } @@ if (s_len >= SERIALLINK_LINE_MAX)\n               {\n               }
+no upper case @@ SerialLink.c @@ s_line[s_len] = (char)(((c >= (uint8_t)'a') && (c <= (uint8_t)'z')) ? (c - 32u) : c); @@ s_line[s_len] = (char)c;
+a line after lost bytes is not refused @@ SerialLink.c @@ if (afterLoss != 0u)\n      {\n         s_overflow = 1u;\n      } @@ 
+error text wrong @@ SerialLink.c @@ PSTR("error:") @@ PSTR("error ")
+error number not sent @@ SerialLink.c @@ at = TextFmt_Uint(text, at, sizeof(text), number); @@ 
+state Run wrong @@ SerialLink.c @@ return PSTR("Run"); @@ return PSTR("Idle");
+state Hold:1 wrong @@ SerialLink.c @@ return PSTR("Hold:1"); @@ return PSTR("Hold:0");
+state Hold:0 wrong @@ SerialLink.c @@ return PSTR("Hold:0"); @@ return PSTR("Hold");
+state CANCELLING is not a hold @@ SerialLink.c @@ case JOB_HALTING:\n      case JOB_CANCELLING:\n         return PSTR("Hold:1"); @@ case JOB_HALTING:\n         return PSTR("Hold:1");
+alarm states wrong @@ SerialLink.c @@ case JOB_ERROR:\n         return PSTR("Alarm"); @@ case JOB_ERROR:\n         return PSTR("Idle");
+jog not reported @@ SerialLink.c @@ if ((lcdBusy != 0u) || !(Motion_IsIdle() && Motion_PlannerIsEmpty()))\n         {\n            return PSTR("Jog"); @@ if (0)\n         {\n            return PSTR("Jog");
+uncalibrated is not an alarm @@ SerialLink.c @@ return (calibrated != 0u) ? PSTR("Idle") : PSTR("Alarm"); @@ return PSTR("Idle");
+report shows X twice @@ SerialLink.c @@ at = TextFmt_Micrometres(text, at, sizeof(text), position.Y); @@ at = TextFmt_Micrometres(text, at, sizeof(text), position.X);
+report has two axes @@ SerialLink.c @@ PSTR(",0.000|Bf:") @@ PSTR("|Bf:")
+report Bf planner wrong @@ SerialLink.c @@ TextFmt_Uint(text, at, sizeof(text), Motion_PlannerFree()); @@ TextFmt_Uint(text, at, sizeof(text), 0);
+report Bf ring wrong @@ SerialLink.c @@ TextFmt_Uint(text, at, sizeof(text), Uart_RxFree()); @@ TextFmt_Uint(text, at, sizeof(text), Uart_RxCount());
+report without FS @@ SerialLink.c @@ PSTR("|FS:0,0") @@ PSTR("")
+$G pen wrong @@ SerialLink.c @@ penDown ? '3' : '5' @@ penDown ? '5' : '3'
+$G distance wrong @@ SerialLink.c @@ incremental ? '1' : '0' @@ incremental ? '0' : '1'
+$G motion mode wrong @@ SerialLink.c @@ (uint16_t)((motion < 0) ? 0 : motion) @@ (uint16_t)1
+$G motion mode -1 printed @@ SerialLink.c @@ (uint16_t)((motion < 0) ? 0 : motion) @@ (uint16_t)motion
+$I planner depth wrong @@ SerialLink.c @@ at = TextFmt_Uint(text, at, sizeof(text), MOTION_PLANNER_DEPTH); @@ at = TextFmt_Uint(text, at, sizeof(text), 7);
+$I ring size wrong @@ SerialLink.c @@ at = TextFmt_Uint(text, at, sizeof(text), UART_RX_SIZE); @@ at = TextFmt_Uint(text, at, sizeof(text), 127);
+$$ without $13 @@ SerialLink.c @@ $13=0\\r\\n @@ 
+$ help dropped @@ SerialLink.c @@ else if (second == '\\0')\n   {\n      Uart_TxWriteP(PSTR("[HLP:$$ $# $G $H $I $X ~ ! ? ctrl-x]\\r\\nok\\r\\n"));\n   } @@ else if (second == '\\0')\n   {\n      SendError(SERIALLINK_ERR_INVALID_STATEMENT);\n   }
+a long $ word accepted @@ SerialLink.c @@ if ((s_line[1] != '\0') && (s_line[2] != '\0')) @@ if (0)
+$X when uncalibrated unlocks @@ SerialLink.c @@ if (calibrated == 0u)\n      {\n         /* unlocking @@ if (0)\n      {\n         /* unlocking
+$X while running accepted @@ SerialLink.c @@ else if ((state == JOB_RUNNING) || (state == JOB_HALTING) || (state == JOB_PAUSED) || (state == JOB_CANCELLING)\n            || (state == JOB_ERRORSTOP)) @@ else if (0)
+$X does not acknowledge @@ SerialLink.c @@ if (state == JOB_ERROR)\n         {\n            request = SERIALLINK_REQ_ACK_ERROR; @@ if (0)\n         {\n            request = SERIALLINK_REQ_ACK_ERROR;
+$X always acknowledges @@ SerialLink.c @@ if (state == JOB_ERROR)\n         {\n            request = SERIALLINK_REQ_ACK_ERROR; @@ if (1)\n         {\n            request = SERIALLINK_REQ_ACK_ERROR;
+unknown $ word accepted @@ SerialLink.c @@ else\n   {\n      SendError(SERIALLINK_ERR_INVALID_STATEMENT);\n   }\n   return request; @@ else\n   {\n      Uart_TxWriteP(PSTR("ok\\r\\n"));\n   }\n   return request;
+reply written without room @@ SerialLink.c @@ if (Uart_TxFree() < (dollar ? SERIALLINK_NEED_DOLLAR : SERIALLINK_NEED_REPLY)) @@ if (0)
+a $ reply needs only a reply's room @@ SerialLink.c @@ (dollar ? SERIALLINK_NEED_DOLLAR : SERIALLINK_NEED_REPLY) @@ SERIALLINK_NEED_REPLY
+a reply needs a whole ring @@ SerialLink.c @@ (dollar ? SERIALLINK_NEED_DOLLAR : SERIALLINK_NEED_REPLY) @@ SERIALLINK_NEED_DOLLAR
+an over-long $ line is executed @@ SerialLink.c @@ if (s_overflow != 0u)\n      {\n         SendError(SERIALLINK_ERR_LINE_OVERFLOW);\n      }\n      else if ((s_len == 2u) && (s_line[1] == 'H')) @@ if (0)\n      {\n         SendError(SERIALLINK_ERR_LINE_OVERFLOW);\n      }\n      else if ((s_len == 2u) && (s_line[1] == 'H'))
+an empty line is not answered ok @@ SerialLink.c @@ else if ((s_len == 0u) && (s_overflow == 0u))\n   {\n      Uart_TxWriteP(PSTR("ok\\r\\n"));\n   } @@ else if ((s_len == 0u) && (s_overflow == 0u))\n   {\n   }
+an over-long empty line is answered ok @@ SerialLink.c @@ else if ((s_len == 0u) && (s_overflow == 0u)) @@ else if (s_len == 0u)
+LCD jog does not lock G-code @@ SerialLink.c @@ else if ((lcdBusy != 0u) || (state == JOB_ERRORSTOP) @@ else if ((state == JOB_ERRORSTOP)
+alarm does not lock G-code @@ SerialLink.c @@ (state == JOB_ERRORSTOP) || (state == JOB_ERROR) || ((state == JOB_IDLE) && (calibrated == 0u)) @@ (state == JOB_ERRORSTOP) || ((state == JOB_IDLE) && (calibrated == 0u))
+ERRORSTOP does not lock G-code @@ SerialLink.c @@ (state == JOB_ERRORSTOP) || (state == JOB_ERROR) || ((state == JOB_IDLE) @@ (state == JOB_ERROR) || ((state == JOB_IDLE)
+uncalibrated does not lock G-code @@ SerialLink.c @@ || ((state == JOB_IDLE) && (calibrated == 0u))) @@ )
+hold does not hold the line @@ SerialLink.c @@ else if ((state == JOB_HALTING) || (state == JOB_PAUSED) || (state == JOB_CANCELLING))\n   {\n      return SERIALLINK_REQ_NONE; @@ else if (0)\n   {\n      return SERIALLINK_REQ_NONE;
+paused does not hold the line @@ SerialLink.c @@ else if ((state == JOB_HALTING) || (state == JOB_PAUSED) || (state == JOB_CANCELLING)) @@ else if ((state == JOB_HALTING) || (state == JOB_CANCELLING))
+the length error is the parser's @@ SerialLink.c @@ result = (s_overflow != 0u) ? SERIALLINK_ERR_LINE_OVERFLOW : GCodeParser_ExecuteLine(s_line); @@ result = GCodeParser_ExecuteLine(s_line);
+an over-long line is run @@ SerialLink.c @@ result = (s_overflow != 0u) ? SERIALLINK_ERR_LINE_OVERFLOW : GCodeParser_ExecuteLine(s_line); @@ result = (s_overflow != 0u) ? GCodeParser_ExecuteLine(s_line) : GCodeParser_ExecuteLine(s_line);
+BUSY is answered @@ SerialLink.c @@ if (result == GCODEPARSER_BUSY)\n      {\n         return SERIALLINK_REQ_NONE; @@ if (0)\n      {\n         return SERIALLINK_REQ_NONE;
+a program end is answered like any line @@ SerialLink.c @@ Uart_TxWriteP(PSTR("[MSG:Pgm End]\\r\\nok\\r\\n")); @@ Uart_TxWriteP(PSTR("ok\\r\\n"));
+the error number is lost @@ SerialLink.c @@ \n      else\n      {\n         SendError(result); @@ \n      else\n      {\n         SendError(20u);
+an error does not stop the job @@ SerialLink.c @@ request = (state == JOB_RUNNING) ? SERIALLINK_REQ_FAIL : SERIALLINK_REQ_NONE; @@ request = SERIALLINK_REQ_NONE;
+an error outside a job stops it @@ SerialLink.c @@ request = (state == JOB_RUNNING) ? SERIALLINK_REQ_FAIL : SERIALLINK_REQ_NONE; @@ request = SERIALLINK_REQ_FAIL;
+a line does not start the job @@ SerialLink.c @@ request = (state == JOB_IDLE) ? SERIALLINK_REQ_START : SERIALLINK_REQ_NONE; @@ request = SERIALLINK_REQ_NONE;
+a line always starts a job @@ SerialLink.c @@ request = (state == JOB_IDLE) ? SERIALLINK_REQ_START : SERIALLINK_REQ_NONE; @@ request = SERIALLINK_REQ_START;
+the line is kept after its reply @@ SerialLink.c @@ }\n   DropLine();\n   return request;\n} @@ }\n   return request;\n}
+Ctrl-X while running does not cancel @@ SerialLink.c @@ case JOB_RUNNING:\n      case JOB_HALTING:\n      case JOB_PAUSED:\n         return SERIALLINK_REQ_CANCEL; @@ case JOB_HALTING:\n      case JOB_PAUSED:\n         return SERIALLINK_REQ_CANCEL;
+Ctrl-X while paused does not cancel @@ SerialLink.c @@ case JOB_RUNNING:\n      case JOB_HALTING:\n      case JOB_PAUSED:\n         return SERIALLINK_REQ_CANCEL; @@ case JOB_RUNNING:\n      case JOB_HALTING:\n         return SERIALLINK_REQ_CANCEL;
+Ctrl-X does not acknowledge the error @@ SerialLink.c @@ return SERIALLINK_REQ_ACK_ERROR;               /* Ctrl-X also acknowledges the error (P8) */ @@ return SERIALLINK_REQ_NONE;
+no welcome after Ctrl-X @@ SerialLink.c @@ s_cancelPending = 0;\n         s_welcome = WELCOME_LINE; @@ s_cancelPending = 0;
+the welcome comes before the ramp has ended @@ SerialLink.c @@ case JOB_CANCELLING:\n      case JOB_ERRORSTOP:\n      default:\n         return SERIALLINK_REQ_NONE;                    /* the ramp is still running: wait for its end */ @@ case JOB_CANCELLING:\n      case JOB_ERRORSTOP:\n      default:\n         s_cancelPending = 0; s_welcome = WELCOME_LINE; return SERIALLINK_REQ_NONE;
+bytes after Ctrl-X are not dropped @@ SerialLink.c @@ Uart_RxFlush();                                   /* the ring, now and on every pass until the welcome line */ @@ 
+Ctrl-X keeps the line held @@ SerialLink.c @@ s_realtime = 0;\n      DropLine();\n      s_skipLf = 0; @@ s_realtime = 0;\n      s_skipLf = 0;
+Ctrl-X keeps the modal state @@ SerialLink.c @@ s_skipLf = 0;\n      GCodeParser_ResetByLink(); @@ s_skipLf = 0;
+'!' pauses whatever the state @@ SerialLink.c @@ if (state == JOB_RUNNING)\n      {\n         return SERIALLINK_REQ_HALT; @@ if (1)\n      {\n         return SERIALLINK_REQ_HALT;
+'!' does nothing @@ SerialLink.c @@ if (state == JOB_RUNNING)\n      {\n         return SERIALLINK_REQ_HALT; @@ if (0)\n      {\n         return SERIALLINK_REQ_HALT;
+'~' resumes whatever the state @@ SerialLink.c @@ if (state == JOB_PAUSED)\n      {\n         return SERIALLINK_REQ_RESUME; @@ if (1)\n      {\n         return SERIALLINK_REQ_RESUME;
+'~' does nothing @@ SerialLink.c @@ if (state == JOB_PAUSED)\n      {\n         return SERIALLINK_REQ_RESUME; @@ if (0)\n      {\n         return SERIALLINK_REQ_RESUME;
+'!' answered by a resume @@ SerialLink.c @@ return SERIALLINK_REQ_HALT; @@ return SERIALLINK_REQ_RESUME;
+the report is started without room @@ SerialLink.c @@ if (((s_realtime & UART_RT_STATUS) != 0u) && (Uart_TxFree() >= SERIALLINK_NEED_STATUS)) @@ if ((s_realtime & UART_RT_STATUS) != 0u)
+the report is lost when there is no room @@ SerialLink.c @@ if (((s_realtime & UART_RT_STATUS) != 0u) && (Uart_TxFree() >= SERIALLINK_NEED_STATUS))\n   {\n      s_realtime = (uint8_t)(s_realtime & (uint8_t)~UART_RT_STATUS); @@ if ((s_realtime & UART_RT_STATUS) != 0u)\n   {\n      s_realtime = (uint8_t)(s_realtime & (uint8_t)~UART_RT_STATUS);\n      if (Uart_TxFree() < SERIALLINK_NEED_STATUS) { return SERIALLINK_REQ_NONE; }
+the flag of a report is not cleared @@ SerialLink.c @@ s_realtime = (uint8_t)(s_realtime & (uint8_t)~UART_RT_STATUS); @@ 
+real-time flags are forgotten between calls @@ SerialLink.c @@ s_realtime = (uint8_t)(s_realtime | Uart_TakeRealtime()); @@ s_realtime = Uart_TakeRealtime();
+no welcome at start @@ SerialLink.c @@ s_welcome = WELCOME_LINE;\n} @@ s_welcome = WELCOME_NONE;\n}
+the uncalibrated message is not sent @@ SerialLink.c @@ s_welcome = (calibrated != 0u) ? WELCOME_NONE : WELCOME_UNCAL; @@ s_welcome = WELCOME_NONE;
+the uncalibrated message is always sent @@ SerialLink.c @@ s_welcome = (calibrated != 0u) ? WELCOME_NONE : WELCOME_UNCAL; @@ s_welcome = WELCOME_UNCAL;
+the welcome does not wait for room @@ SerialLink.c @@ (Uart_TxFree() >= (uint8_t)(sizeof(kWelcome) - 1u)) @@ 1
+HasWork forgets a complete line @@ SerialLink.c @@ return (uint8_t)((s_ready != 0u) || (s_len != 0u) @@ return (uint8_t)((s_len != 0u)
+HasWork forgets a partial line @@ SerialLink.c @@ || (s_len != 0u) || (s_welcome != WELCOME_NONE) @@ || (s_welcome != WELCOME_NONE)
+HasWork forgets the ring @@ SerialLink.c @@ || (Uart_RxCount() != 0u)); @@ );
+HasWork forgets the welcome @@ SerialLink.c @@ || (s_welcome != WELCOME_NONE) || (Uart_RxCount() != 0u)); @@ || (Uart_RxCount() != 0u));
+
+the welcome window is not dropped @@ SerialLink.c @@ Uart_RxFlush();                                   /* what arrives before the welcome line is dropped (docs/protocol/SerialProtocol.md 4.1, 4.8) */ @@ 

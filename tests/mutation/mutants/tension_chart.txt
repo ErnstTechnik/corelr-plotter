@@ -1,0 +1,27 @@
+# Mutants of tools/generators/gen_tension_chart.py. Run:  tools/mutate.py --test tools/tension_chart --script tests/tools/test_tension_chart.py --batch tests/mutation/mutants/tension_chart.txt
+# Every one must be caught by tests/tools/test_tension_chart.py.
+T_L uses the wrong lever @@ gen_tension_chart.py @@ return left * (d - x) / (d * y), right * x / (d * y) @@ return left * x / (d * y), right * (d - x) / (d * y)
+T_L forgets the length @@ gen_tension_chart.py @@ return left * (d - x) / (d * y), right * x / (d * y) @@ return (d - x) / y, right * x / (d * y)
+T_R forgets the length @@ gen_tension_chart.py @@ return left * (d - x) / (d * y), right * x / (d * y) @@ return left * (d - x) / (d * y), x / y
+tension divides by the span, not the depth @@ gen_tension_chart.py @@ return left * (d - x) / (d * y), right * x / (d * y) @@ return left * (d - x) / (d * d), right * x / (d * d)
+left length uses the wrong leg @@ gen_tension_chart.py @@ left = math.hypot(x, y) @@ left = math.hypot(d - x, y)
+right length uses the wrong leg @@ gen_tension_chart.py @@ right = math.hypot(d - x, y) @@ right = math.hypot(x, y)
+worst-case search starts at the motor @@ gen_tension_chart.py @@ x = side + (d - 2 * side) * i / steps @@ x = (d - 2 * side) * i / steps
+EQUIVALENT (the zone is symmetric: the worst is the same at either end, by the mirror test) worst-case search stops short of the right margin @@ gen_tension_chart.py @@ x = side + (d - 2 * side) * i / steps @@ x = side + (d - 2 * side) * i / (steps + 20)
+worst-case keeps the smaller @@ gen_tension_chart.py @@ if t > best[0]: @@ if t < best[0]:
+EQUIVALENT (same reason: max T_L over the span equals max T_R over its mirror) worst-case ignores the right cable @@ gen_tension_chart.py @@ for t, name in ((tl, "L"), (tr, "R")): @@ for t, name in ((tl, "L"),):
+worst-case reports the wrong cable @@ gen_tension_chart.py @@ for t, name in ((tl, "L"), (tr, "R")): @@ for t, name in ((tl, "R"), (tr, "L")):
+grid x range ignores the side margin @@ gen_tension_chart.py @@ xs.append(side + (d - 2 * side) * i / n) @@ xs.append((d - 2 * side) * i / n)
+grid y range ignores the top margin @@ gen_tension_chart.py @@ ys.append(top + (height - top) * j / m) @@ ys.append((height - top) * j / m)
+grid has one cell too few @@ gen_tension_chart.py @@ for i in range(n + 1): @@ for i in range(n):
+grid rows are not x-major @@ gen_tension_chart.py @@ return xs, ys, [[(x, y) + tensions(d, x, y) for x in xs] for y in ys] @@ return xs, ys, [[(x, y) + tensions(d, y, x) for x in xs] for y in ys]
+EQUIVALENT (the later clamp of f to 0..1 does the same) colour scale not clamped low @@ gen_tension_chart.py @@ f = (math.log(max(t, lo)) - math.log(lo)) / (math.log(hi) - math.log(lo)) @@ f = (math.log(t) - math.log(lo)) / (math.log(hi) - math.log(lo))
+EQUIVALENT (f > 1 falls through to the last stop) colour scale not clamped high @@ gen_tension_chart.py @@ f = min(max(f, 0.0), 1.0) @@ f = max(f, 0.0)
+colour scale is linear @@ gen_tension_chart.py @@ f = (math.log(max(t, lo)) - math.log(lo)) / (math.log(hi) - math.log(lo)) @@ f = (max(t, lo) - lo) / (hi - lo)
+no zone is accepted @@ gen_tension_chart.py @@ or a.distance <= 2 * a.side or a.height <= a.top: @@ or a.height <= a.top:
+a zero top margin is accepted @@ gen_tension_chart.py @@ or a.top <= 0 or @@ or
+the quiet flag is ignored @@ gen_tension_chart.py @@ if not a.quiet: @@ if True:
+the CSV loses its header @@ gen_tension_chart.py @@ f.write("x_mm,y_mm,T_L_xW,T_R_xW\\n") @@ pass
+the SVG has one curve too few @@ gen_tension_chart.py @@ for name, xpos, col in (("x = D/2", d / 2, "#1a9850"), ("x = D/4", d / 4, "#4575b4"), ("x = %.0f (edge)" % a.side, a.side, "#d73027")): @@ for name, xpos, col in (("x = D/2", d / 2, "#1a9850"), ("x = D/4", d / 4, "#4575b4")):
+the newtons use the wrong g @@ gen_tension_chart.py @@ tl * a.mass_g * 9.80665 / 1000, worst_on_top_edge @@ tl * a.mass_g * 9.81 * 10 / 1000, worst_on_top_edge
+the firmware's margin row is not marked @@ gen_tension_chart.py @@ if abs(m - a.top) < 1e-9 else "")) @@ if abs(m - a.top) < -1 else ""))

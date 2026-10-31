@@ -1,0 +1,3 @@
+# doxygen 1.15.0
+# The undocumented items and incomplete @param lists of one image's documentation (tools/analysis/doc_warnings.py -h): a ratchet, the list can only shrink.
+

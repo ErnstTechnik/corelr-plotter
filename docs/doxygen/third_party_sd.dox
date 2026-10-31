@@ -1,0 +1,40 @@
+/*
+ * third_party_sd.dox: The third-party groups of the SD image only: the SPI library and sdfat (see third_party.dox).
+ *
+ * Copyright (C) 2026 ErnstTechnik and the CoreLR contributors -- GPL-3.0-or-later. Read by the Doxygen run of the SD image only (cmake/Doxygen.cmake).
+ */
+
+/**
+ * @defgroup ThirdParty_Spi SPI library
+ * @ingroup CoreLR_ThirdParty
+ * The Arduino SPI library (`third_party/arduino-core/libraries/SPI`), used by sdfat. SD image only.
+ */
+
+/**
+ * @defgroup ThirdParty_SdFat sdfat
+ * @ingroup CoreLR_ThirdParty
+ * The lower layer of the SD library (`Sd2Card`, `SdVolume`, `SdFile`), without the `SD.h` wrapper that costs too much RAM (`third_party/sdfat/PROVENANCE.md`).
+ * SD image only.
+ */
+
+/** @file third_party/arduino-core/libraries/SPI/src/SPI.cpp
+ *  @ingroup ThirdParty_Spi */
+/** @file third_party/arduino-core/libraries/SPI/src/SPI.h
+ *  @ingroup ThirdParty_Spi */
+
+/** @file third_party/sdfat/FatStructs.h
+ *  @ingroup ThirdParty_SdFat */
+/** @file third_party/sdfat/Sd2Card.cpp
+ *  @ingroup ThirdParty_SdFat */
+/** @file third_party/sdfat/Sd2Card.h
+ *  @ingroup ThirdParty_SdFat */
+/** @file third_party/sdfat/Sd2PinMap.h
+ *  @ingroup ThirdParty_SdFat */
+/** @file third_party/sdfat/SdFat.h
+ *  @ingroup ThirdParty_SdFat */
+/** @file third_party/sdfat/SdFile.cpp
+ *  @ingroup ThirdParty_SdFat */
+/** @file third_party/sdfat/SdInfo.h
+ *  @ingroup ThirdParty_SdFat */
+/** @file third_party/sdfat/SdVolume.cpp
+ *  @ingroup ThirdParty_SdFat */

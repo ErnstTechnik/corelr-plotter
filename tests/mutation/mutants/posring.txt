@@ -1,0 +1,20 @@
+# Mutants of the position ring (REQ-CoreLR-D-Calibration-0010). Run: tools/mutate.py --test test_position --batch tests/mutation/mutants/posring.txt --timeout 200
+# Not listed, equivalent or not deterministically testable: the invalidation also writing the slot's stale payload (it changes no behaviour, and the cells it rewrites hold the same stale bytes every lap), the write order CRC-then-header (it matters one time in 256 per cut:
+# a mixed slot that passes its CRC carries the OLD sequence number only if the header is last), the CRC polynomial (both sides change together).
+# name @@ file @@ old @@ new
+the CRC is not checked @@ Calibration.c @@ return (uint8_t)(Crc8(seq, flags, payload, length) == eeprom_read_byte(base + POS_OFF_CRC)); @@ return 1;
+"newer" accepts the whole range @@ Calibration.c @@ if (!have || ((ahead >= 1u) && (ahead <= 127u))) @@ if (!have || (ahead >= 1u))
+the newest is never chosen over the first found @@ Calibration.c @@ if (!have || ((ahead >= 1u) && (ahead <= 127u))) @@ if (!have)
+the sequence number does not advance @@ Calibration.c @@ uint8_t seq = (uint8_t)(s_posSeq + 1u); @@ uint8_t seq = s_posSeq;
+the head does not advance @@ Calibration.c @@ uint8_t slot = (uint8_t)((s_posHead + 1u) & (POS_SLOTS - 1u)); @@ uint8_t slot = s_posHead;
+an invalidation is not written @@ Calibration.c @@ if (!s_positionValid)\n   {\n      return; /* the common case, and the one on the motion hot path: a flag test */\n   }\n   PositionAppend(0, NULL); @@ return;
+a store does not invalidate first @@ Calibration.c @@ Calibration_InvalidatePosition();\n\n   if (PositionFits(fields[0]) @@ if (PositionFits(fields[0])
+no range check for a field @@ Calibration.c @@ return (uint8_t)((value >= -(1L << 23)) && (value < (1L << 23))); @@ return 1;
+no sign extension @@ Calibration.c @@ *out++ = (uint8_t)((last & 0x80u) ? 0xFFu : 0x00u);        /* sign extension */ @@ *out++ = 0x00u;
+an invalid record is read as valid @@ Calibration.c @@ s_positionValid = (uint8_t)((flags & POS_FLAG_VALID) != 0u); @@ s_positionValid = 1;
+the ring is not found at its address @@ Calibration.c @@ const uint8_t *base = (const uint8_t *)(CALIBRATION_POSITION_EEPROM_ADDRESS + (uint16_t)slot * POS_SLOT_BYTES);\n   uint8_t seq = eeprom_read_byte(base + POS_OFF_SEQ); @@ const uint8_t *base = (const uint8_t *)(CALIBRATION_POSITION_EEPROM_ADDRESS + (uint16_t)slot * (POS_SLOT_BYTES - 1u));\n   uint8_t seq = eeprom_read_byte(base + POS_OFF_SEQ);
+
+the magic is not checked @@ Calibration.c @@ if ((flags & POS_MAGIC_MASK) != POS_MAGIC)\n   {\n      return 0;\n   } @@ if (0)\n   {\n      return 0;\n   }
+only one bit of the magic is checked @@ Calibration.c @@ if ((flags & POS_MAGIC_MASK) != POS_MAGIC) @@ if ((flags & 0x01u) != (POS_MAGIC & 0x01u))
+the magic is not written @@ Calibration.c @@ #define POS_FLAGS(valid)  ((uint8_t)(((valid) ? POS_FLAG_VALID : 0u) | POS_MAGIC)) @@ #define POS_FLAGS(valid)  ((uint8_t)(((valid) ? POS_FLAG_VALID : 0u)))
+the CRC does not cover Flags @@ Calibration.c @@ crc ^= (at == 0u) ? seq : (at == 1u) ? flags : data[at - 2u]; @@ crc ^= (at == 0u) ? seq : (at == 1u) ? 0u : data[at - 2u];

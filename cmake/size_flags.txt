@@ -1,0 +1,21 @@
+# The size flags: ONE list, read by CMake (cmake/Firmware.cmake), by tools/analysis/ide_build.sh (so that the IDE's reference build gets the same flags),
+# by cmake/ExportIno.cmake (platform.local.txt) and by the truth-table tool (tools/analysis/flag_truth_table.py).
+# Measured 2026-10-11 (REQ-CoreLR-D-Build-0012) on top of -Os -mcall-prologues -flto; adopted by the maintainer the same day, after the truth table
+# (docs/design-notes/SizeFlags-TruthTable-*.md) had shown one of the six flags measured alone to hurt in combination. Re-evaluated 2026-10-26 before the first release, no change (SizeFlags-TruthTable-V1-*.md); to be REDONE before any later release
+# (tools/analysis/flag_truth_table.py: every combination, so as to see what the combination brings, not only each flag alone) -- CONTRIBUTING.md, "Releases".
+#
+# name | compile flags (every C and C++ file, core and libraries included) | link flags | status
+#   on     = applied by default to both variants (CORELR_SIZE_FLAGS=ON)
+#   sd     = applied by default to the SD variant only;  serial = to the serial variant only (the truth tables of 2026-10-12 showed a flag that pays in one and hurts in the other)
+#   off    = a measured candidate, NOT applied unless asked for (short_enums: CORELR_SHORT_ENUMS=ON / build_size.sh -E)
+# Lines starting with '#' and blank lines are ignored. -mrelax must reach the link as well (the linker does the relaxing).
+relax|-mrelax|-mrelax|on
+# no_gcse: SD -538 B with everything else on, serial +104 B (truth tables of 2026-10-12): SD only.
+no_gcse|-fno-gcse||sd
+ira_priority|-fira-algorithm=priority||on
+strict_x|-mstrict-X||on
+no_inline_small|-fno-inline-small-functions||on
+# no_guess_branch: alone -54 B, but in combination with the others it COSTS +102 B (SD) / +80 B (serial): the truth table dropped it.
+no_guess_branch|-fno-guess-branch-probability||off
+# short_enums: -374 B (SD) / -240 B (serial), 5 / 3 B of RAM; changes the size of every enum (checked: stack, cycles, bench -- bring-up 2026-10-12).
+short_enums|-fshort-enums||on

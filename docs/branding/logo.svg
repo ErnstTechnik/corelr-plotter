@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (C) 2026 ErnstTechnik and the CoreLR contributors. See docs/branding/README.md for the logo licence. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="t d">
+<title id="t">CoreLR logo</title>
+<desc id="d">Two cables run from the letters L and R at the top corners of a rounded blue square and meet at an orange pen point, with a short ink line below.</desc>
+<style>.s{fill:none;stroke-linecap:round;stroke-linejoin:round}.bf{fill:#2F7FDB}.bs{stroke:#2F7FDB}.wf{fill:#FFFFFF}.ws{stroke:#FFFFFF}.of{fill:#F2711C}.os{stroke:#F2711C}</style>
+<path class="bf" d="M14 2L50 2C58 2 62 6 62 14L62 50C62 58 58 62 50 62L14 62C6 62 2 58 2 50L2 14C2 6 6 2 14 2Z"/>
+<path class="s ws" stroke-width="3" d="M17 16L32 36L47 16"/>
+<path class="of" d="M37 36C37 38.76 34.76 41 32 41C29.24 41 27 38.76 27 36C27 33.24 29.24 31 32 31C34.76 31 37 33.24 37 36Z"/>
+<path class="s ws" stroke-width="3" d="M24 53L40 53"/>
+<path class="s ws" stroke-width="2.6" d="M8 8L8 20L15 20"/>
+<path class="s ws" stroke-width="2.6" d="M50 20L50 8L54 8L54 8C55.93 8 57.5 9.57 57.5 11.5C57.5 13.43 55.93 15 54 15L50 15M54 15L57 20"/>
+</svg>

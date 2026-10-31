@@ -1,0 +1,24 @@
+/*
+ * groups.dox: The two top-level topics that gather the configuration groups of HwConfig.h and SwConfig.h.
+ *
+ * Copyright (C) 2026 ErnstTechnik and the CoreLR contributors -- GPL-3.0-or-later.
+ *
+ * This file is read by Doxygen only (docs/doxygen/Doxyfile.in); it is not compiled. It defines the parents; each `@defgroup` of the two headers names its parent
+ * with an `@ingroup` line (CoreLR_HwConfig, CoreLR_SwConfig). CoreLR_Version is the group of Version.h, which belongs to neither.
+ */
+
+/**
+ * @defgroup CoreLR_HwConfig Hardware configuration (HwConfig.h)
+ * Pins and fixed mechanical facts of the machine: what is soldered or measured, never a tunable. Wiring guide: `docs/hardware/PinMapping.md`.
+ */
+
+/**
+ * @defgroup CoreLR_SwConfig Software configuration (SwConfig.h)
+ * Tunables, queue sizes, the variant selector (`CORELR_JOB_SOURCE`) and the arithmetic (`CORELR_MATH`). Every selector is `#ifndef`-guarded, so a build can
+ * override it with `-D` (cmake option `CORELR_EXTRA_DEFS`).
+ */
+
+/**
+ * @defgroup CoreLR_Version Software version (Version.h)
+ * The version of the firmware, written once; the release tag is made from it (CONTRIBUTING.md).
+ */

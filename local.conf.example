@@ -1,0 +1,23 @@
+# local.conf -- where THIS machine keeps its tools. Copy to `local.conf` (git-ignored) and edit; nothing in the repository depends on your paths.
+#
+# One file for everything that reads it: CMake (cmake/LocalConf.cmake), the shell tools (tools/lib/corelr_env.sh) and the Python tools
+# (tools/lib/corelr_env.py). Format: KEY=VALUE, one per line, '#' starts a comment, no quotes, a leading ~ is your home directory.
+# Precedence, highest first: the environment variable of the same name (or -D on the cmake command line) > this file > auto-detection.
+# Every key is optional: with none, avr-gcc is looked for on the PATH and in an Arduino IDE 1.8.x installation.
+
+# The directory that holds avr-gcc, avr-g++, avr-nm, avr-objdump, avr-objcopy, avr-size, avrdude. The measured sizes are those of avr-gcc 7.3.0.
+#AVR_BIN=/snap/arduino/current/hardware/tools/avr/bin
+#AVR_BIN=~/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/bin
+
+# avrdude's configuration file, when it is not next to the toolchain (../etc/avrdude.conf is tried).
+#AVRDUDE_CONF=/etc/avrdude.conf
+
+# The board: serial port and bootloader speed (115200 for fqbn arduino:avr:nano:cpu=atmega328; 57600 for the "old bootloader" Nanos).
+# Used by the upload_* targets and by tools/bench/serial_probe.py. Opening the port resets the board: see docs/bringup/Bringup-Status.md.
+#CORELR_PORT=/dev/ttyUSB0
+#CORELR_BAUD=115200
+
+# Only for the REFERENCE build (tools/analysis/ide_build.sh, compare_with_ide.sh): an Arduino IDE 1.8.x installation.
+#ARDUINO_ROOT=/snap/arduino/current
+#ARDUINO_PKGS=~/snap/arduino/current/.arduino15/packages
+#ARDUINO_LIBS=~/snap/arduino/current/Arduino/libraries

@@ -1,0 +1,32 @@
+# Mutants of the travel-zone GCode files (tools/generators/gen_gcode.py --limits). Run:
+#   tools/mutate.py --test tools/zone_files --script tests/host/check_zone_files.sh --batch tests/mutation/mutants/zone_files.txt
+# Every one must be caught by tests/host/check_zone_files.sh (the files against the firmware's real parser).
+left limit on the wrong side @@ gen_gcode.py @@ self.edge_l, self.edge_r, self.edge_t = side - ox, d - side - ox, oy - top @@ self.edge_l, self.edge_r, self.edge_t = side + ox, d - side - ox, oy - top
+right limit ignores the margin @@ gen_gcode.py @@ self.edge_l, self.edge_r, self.edge_t = side - ox, d - side - ox, oy - top @@ self.edge_l, self.edge_r, self.edge_t = side - ox, d - ox, oy - top
+top limit on the wrong side @@ gen_gcode.py @@ self.edge_l, self.edge_r, self.edge_t = side - ox, d - side - ox, oy - top @@ self.edge_l, self.edge_r, self.edge_t = side - ox, d - side - ox, oy + top
+the drawing is not inset @@ gen_gcode.py @@ self.xl, self.xr, self.yt = self.edge_l + inset, self.edge_r - inset, self.edge_t - inset @@ self.xl, self.xr, self.yt = self.edge_l - inset, self.edge_r + inset, self.edge_t + inset
+the drawing is inset on the left only @@ gen_gcode.py @@ self.xl, self.xr, self.yt = self.edge_l + inset, self.edge_r - inset, self.edge_t - inset @@ self.xl, self.xr, self.yt = self.edge_l + inset, self.edge_r + inset, self.edge_t - inset
+the refusal left starts outside @@ gen_gcode.py @@ f.move(z.edge_l + 1, ym) @@ f.move(z.edge_l - 1, ym)
+the refusal left is not beyond the limit @@ gen_gcode.py @@ f.line(z.edge_l - 1, ym) @@ f.line(z.edge_l + 1, ym)
+the refusal right starts outside @@ gen_gcode.py @@ f.move(z.edge_r - 1, ym) @@ f.move(z.edge_r + 1, ym)
+the refusal right is not beyond the limit @@ gen_gcode.py @@ f.line(z.edge_r + 1, ym) @@ f.line(z.edge_r - 1, ym)
+the refusal top is not beyond the margin @@ gen_gcode.py @@ f.line(0 if z.xl < 0 < z.xr else (z.xl + z.xr) / 2, z.edge_t + 1) @@ f.line(0 if z.xl < 0 < z.xr else (z.xl + z.xr) / 2, z.edge_t - 1)
+the over-arc goes under @@ gen_gcode.py @@ f.move(cx - r, yc); f.arc(False, cx + r, yc, r, 0) @@ f.move(cx - r, yc); f.arc(True, cx + r, yc, r, 0)
+the under-arc goes over (it would be refused) @@ gen_gcode.py @@ f.move(cx - r, yc); f.arc(True, cx + r, yc, r, 0) @@ f.move(cx - r, yc); f.arc(False, cx + r, yc, r, 0)
+the over-arc has its chord too low to reach the margin @@ gen_gcode.py @@ yc = z.edge_t - 30; top_of_arc = yc + r @@ yc = z.edge_t - 60; top_of_arc = yc + r
+the top arc goes the wrong way @@ gen_gcode.py @@ f.arc(True, z.xr, z.yt, z.w / 2, k)  @@ f.arc(False, z.xr, z.yt, z.w / 2, k) 
+the left arc goes the wrong way @@ gen_gcode.py @@ f.arc(False, z.xl, z.yb, -k, -z.h / 2) @@ f.arc(True, z.xl, z.yb, -k, -z.h / 2)
+the right arc goes the wrong way @@ gen_gcode.py @@ f.arc(False, z.xr, z.yt, k, z.h / 2) @@ f.arc(True, z.xr, z.yt, k, z.h / 2)
+the corner marks point outwards @@ gen_gcode.py @@ dx = 10 if x == z.xl else -10; dy = 10 if y == z.yb else -10 @@ dx = -10 if x == z.xl else 10; dy = -10 if y == z.yb else 10
+the frame goes 2 mm beyond the top margin (7 mm over the 5 mm inset) @@ gen_gcode.py @@ for x, y in ((z.xr, z.yb), (z.xr, z.yt), (z.xl, z.yt), (z.xl, z.yb)): f.line(x, y) @@ for x, y in ((z.xr, z.yb), (z.xr, z.yt + 7), (z.xl, z.yt), (z.xl, z.yb)): f.line(x, y)
+# the D,L form of a geometry (the calibration's motor distance and reference cable length)
+the D,L origin is sqrt(L^2 + h^2) @@ gen_gcode.py @@ return h / 1000.0, math.isqrt(l * l - h * h) / 1000.0 @@ return h / 1000.0, math.isqrt(l * l + h * h) / 1000.0
+the D,L origin is L - h @@ gen_gcode.py @@ return h / 1000.0, math.isqrt(l * l - h * h) / 1000.0 @@ return h / 1000.0, (l - h) / 1000.0
+the D,L origin is not in the middle @@ gen_gcode.py @@ h = int(round(d * 1000)) // 2 @@ h = int(round(d * 1000)) // 3
+D,OX,OY is read as D,OY,OX @@ gen_gcode.py @@ if len(v) == 3: return v[0], v[1], v[2] @@ if len(v) == 3: return v[0], v[2], v[1]
+a calibration refused by the machine still gets files @@ gen_gcode.py @@ if oy - a.top <= 0: @@ if oy - a.top <= -1e9:
+a cable that reaches no point is accepted @@ gen_gcode.py @@ if l <= h: raise SystemExit @@ if l < 0: raise SystemExit
+gcode_check: the D,L origin is sqrt(L^2 + h^2) @@ gcode_check.c @@ q = l * l - h * h; @@ q = l * l + h * h;
+gcode_check: the D,L origin X is L @@ gcode_check.c @@ g_OX = (int32_t)h; g_OY = (int32_t)y; continue; } @@ g_OX = (int32_t)l; g_OY = (int32_t)y; continue; }
+gcode_check: the D,L Y is not floored @@ gcode_check.c @@ while (y * y > q) y--; @@ y += 1; while (y * y > q) y--; y += 1;
+gcode_check: the D,L half distance is wrong @@ gcode_check.c @@ int64_t h = (int64_t)lround(d * 1000) / 2, l @@ int64_t h = (int64_t)lround(d * 1000) / 4, l

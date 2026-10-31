@@ -1,0 +1,19 @@
+# Copyright (C) 2026 ErnstTechnik and the CoreLR contributors
+# SPDX-License-Identifier: GPL-3.0-or-later
+# avr-gcc 7.3.0 from Arduino's package index: the documented sizes are those of this compiler (the distribution's avr-gcc differs). The download URL answers (checked 2026-10-26)
+# and the archive's top-level directory is `avr/`, not the package's name: the compiler is therefore LOOKED FOR, and the step prints its version and stops with the archive's layout
+# when it is not found. Sets AVR_BIN for the following steps (cmake/LocalConf.cmake reads it). Used by ci.yml and release.yml after the checkout.
+name: avr-gcc 7.3.0
+description: Installs Arduino's avr-gcc 7.3.0 and sets AVR_BIN
+runs:
+  using: composite
+  steps:
+    - shell: bash
+      run: |
+        set -e
+        curl -fsSL -o "$RUNNER_TEMP/avr.tar.bz2" https://downloads.arduino.cc/tools/avr-gcc-7.3.0-atmel3.6.1-arduino7-x86_64-pc-linux-gnu.tar.bz2
+        mkdir -p "$HOME/avr" && tar -xjf "$RUNNER_TEMP/avr.tar.bz2" -C "$HOME/avr"
+        AVR_GCC=$(find "$HOME/avr" -type f -name avr-gcc | head -n 1)
+        test -n "$AVR_GCC" || { echo "avr-gcc not found in the archive; its layout:"; find "$HOME/avr" -maxdepth 3; exit 1; }
+        "$AVR_GCC" --version | head -n 1
+        echo "AVR_BIN=$(dirname "$AVR_GCC")" >> "$GITHUB_ENV"

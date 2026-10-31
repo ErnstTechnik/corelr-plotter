@@ -1,0 +1,17 @@
+# The modules and libraries that belong to ONE firmware image (REQ-CoreLR-D-Build-0014): the one list, read by
+#   cmake/Firmware.cmake            the build: a file of the other image is not compiled, a library of the other image is not built
+#   cmake/ExportIno.cmake           the flat sketch for the Arduino IDE: the same files are not copied
+#   tools/analysis/ide_build.sh     the reference build (arduino-builder): the same files are not staged
+#   cmake/Doxygen.cmake             the vendored code each documentation reads
+#   tests/tools/test_variant_modules.py   checks it against the sources: every file listed here is wholly under `#if CORELR_JOB_SOURCE == ...` for its image,
+#                                   and no other file of firmware/src is
+# Format, one entry a line:  path | image          the path is from the repository root; a directory means everything under it; image is sd or serial.
+# A new module that exists in one image only is added here AND guarded in its header and its source (CONTRIBUTING.md); the test fails if one of the two is missing.
+firmware/src/SDReader.h|sd
+firmware/src/SDReader.cpp|sd
+firmware/src/Uart.h|serial
+firmware/src/Uart.c|serial
+firmware/src/SerialLink.h|serial
+firmware/src/SerialLink.c|serial
+third_party/sdfat|sd
+third_party/arduino-core/libraries/SPI|sd

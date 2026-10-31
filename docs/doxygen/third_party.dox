@@ -1,0 +1,112 @@
+/*
+ * third_party.dox: Groups the vendored code in the documentation (Doxygen reads this file only: it is not compiled).
+ *
+ * Copyright (C) 2026 ErnstTechnik and the CoreLR contributors -- GPL-3.0-or-later.
+ *
+ * Doxygen reads `third_party/` as it is, so that the documentation holds what the image is built with. The code is not ours: its comments are not maintained here
+ * and its Doxygen warnings are counted apart (`tools/analysis/doc_warnings.py`, "external"), never as errors. Each file is put in its group below with a
+ * `@file <path>` + `@ingroup` block; a new vendored file that is not listed here still appears, ungrouped (tests/tools/test_doxygen.py says so).
+ * The SPI library and sdfat are in the SD image only (as in `third_party/CMakeLists.txt`): their group is defined in `third_party_sd.dox`, which only the SD documentation reads.
+ */
+
+/**
+ * @defgroup CoreLR_ThirdParty Third-party code
+ * Vendored code under its own licence, with a `PROVENANCE.md` each (`third_party/`, `THIRD_PARTY.md`): what the image is built with, read as it is.
+ */
+
+/**
+ * @defgroup ThirdParty_ArduinoCore Arduino AVR core 1.8.8
+ * @ingroup CoreLR_ThirdParty
+ * `third_party/arduino-core/cores/arduino` and the pin map of the Nano's variant (LGPL 2.1), vendored whole: the timers, the digital and analog pins, `Print`,
+ * `Stream`, `String`, `HardwareSerial`, `Servo`'s base services. Compiled into both images; the linker keeps only what is used.
+ */
+
+
+/** @file third_party/arduino-core/cores/arduino/Arduino.h
+ *  @ingroup ThirdParty_ArduinoCore */
+/** @file third_party/arduino-core/cores/arduino/CDC.cpp
+ *  @ingroup ThirdParty_ArduinoCore */
+/** @file third_party/arduino-core/cores/arduino/Client.h
+ *  @ingroup ThirdParty_ArduinoCore */
+/** @file third_party/arduino-core/cores/arduino/HardwareSerial.cpp
+ *  @ingroup ThirdParty_ArduinoCore */
+/** @file third_party/arduino-core/cores/arduino/HardwareSerial.h
+ *  @ingroup ThirdParty_ArduinoCore */
+/** @file third_party/arduino-core/cores/arduino/HardwareSerial0.cpp
+ *  @ingroup ThirdParty_ArduinoCore */
+/** @file third_party/arduino-core/cores/arduino/HardwareSerial1.cpp
+ *  @ingroup ThirdParty_ArduinoCore */
+/** @file third_party/arduino-core/cores/arduino/HardwareSerial2.cpp
+ *  @ingroup ThirdParty_ArduinoCore */
+/** @file third_party/arduino-core/cores/arduino/HardwareSerial3.cpp
+ *  @ingroup ThirdParty_ArduinoCore */
+/** @file third_party/arduino-core/cores/arduino/HardwareSerial_private.h
+ *  @ingroup ThirdParty_ArduinoCore */
+/** @file third_party/arduino-core/cores/arduino/IPAddress.cpp
+ *  @ingroup ThirdParty_ArduinoCore */
+/** @file third_party/arduino-core/cores/arduino/IPAddress.h
+ *  @ingroup ThirdParty_ArduinoCore */
+/** @file third_party/arduino-core/cores/arduino/PluggableUSB.cpp
+ *  @ingroup ThirdParty_ArduinoCore */
+/** @file third_party/arduino-core/cores/arduino/PluggableUSB.h
+ *  @ingroup ThirdParty_ArduinoCore */
+/** @file third_party/arduino-core/cores/arduino/Print.cpp
+ *  @ingroup ThirdParty_ArduinoCore */
+/** @file third_party/arduino-core/cores/arduino/Print.h
+ *  @ingroup ThirdParty_ArduinoCore */
+/** @file third_party/arduino-core/cores/arduino/Printable.h
+ *  @ingroup ThirdParty_ArduinoCore */
+/** @file third_party/arduino-core/cores/arduino/Server.h
+ *  @ingroup ThirdParty_ArduinoCore */
+/** @file third_party/arduino-core/cores/arduino/Stream.cpp
+ *  @ingroup ThirdParty_ArduinoCore */
+/** @file third_party/arduino-core/cores/arduino/Stream.h
+ *  @ingroup ThirdParty_ArduinoCore */
+/** @file third_party/arduino-core/cores/arduino/Tone.cpp
+ *  @ingroup ThirdParty_ArduinoCore */
+/** @file third_party/arduino-core/cores/arduino/USBAPI.h
+ *  @ingroup ThirdParty_ArduinoCore */
+/** @file third_party/arduino-core/cores/arduino/USBCore.cpp
+ *  @ingroup ThirdParty_ArduinoCore */
+/** @file third_party/arduino-core/cores/arduino/USBCore.h
+ *  @ingroup ThirdParty_ArduinoCore */
+/** @file third_party/arduino-core/cores/arduino/USBDesc.h
+ *  @ingroup ThirdParty_ArduinoCore */
+/** @file third_party/arduino-core/cores/arduino/Udp.h
+ *  @ingroup ThirdParty_ArduinoCore */
+/** @file third_party/arduino-core/cores/arduino/WCharacter.h
+ *  @ingroup ThirdParty_ArduinoCore */
+/** @file third_party/arduino-core/cores/arduino/WInterrupts.c
+ *  @ingroup ThirdParty_ArduinoCore */
+/** @file third_party/arduino-core/cores/arduino/WMath.cpp
+ *  @ingroup ThirdParty_ArduinoCore */
+/** @file third_party/arduino-core/cores/arduino/WString.cpp
+ *  @ingroup ThirdParty_ArduinoCore */
+/** @file third_party/arduino-core/cores/arduino/WString.h
+ *  @ingroup ThirdParty_ArduinoCore */
+/** @file third_party/arduino-core/cores/arduino/abi.cpp
+ *  @ingroup ThirdParty_ArduinoCore */
+/** @file third_party/arduino-core/cores/arduino/binary.h
+ *  @ingroup ThirdParty_ArduinoCore */
+/** @file third_party/arduino-core/cores/arduino/hooks.c
+ *  @ingroup ThirdParty_ArduinoCore */
+/** @file third_party/arduino-core/cores/arduino/main.cpp
+ *  @ingroup ThirdParty_ArduinoCore */
+/** @file third_party/arduino-core/cores/arduino/new.cpp
+ *  @ingroup ThirdParty_ArduinoCore */
+/** @file third_party/arduino-core/cores/arduino/new.h
+ *  @ingroup ThirdParty_ArduinoCore */
+/** @file third_party/arduino-core/cores/arduino/wiring.c
+ *  @ingroup ThirdParty_ArduinoCore */
+/** @file third_party/arduino-core/cores/arduino/wiring_analog.c
+ *  @ingroup ThirdParty_ArduinoCore */
+/** @file third_party/arduino-core/cores/arduino/wiring_digital.c
+ *  @ingroup ThirdParty_ArduinoCore */
+/** @file third_party/arduino-core/cores/arduino/wiring_private.h
+ *  @ingroup ThirdParty_ArduinoCore */
+/** @file third_party/arduino-core/cores/arduino/wiring_pulse.c
+ *  @ingroup ThirdParty_ArduinoCore */
+/** @file third_party/arduino-core/cores/arduino/wiring_shift.c
+ *  @ingroup ThirdParty_ArduinoCore */
+/** @file third_party/arduino-core/variants/eightanaloginputs/pins_arduino.h
+ *  @ingroup ThirdParty_ArduinoCore */

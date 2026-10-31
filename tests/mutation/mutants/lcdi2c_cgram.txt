@@ -1,0 +1,8 @@
+# User characters (REQ-CoreLR-D-LcdI2c-0005). Run: tools/mutate.py --test test_lcdi2c --batch tests/mutation/mutants/lcdi2c_cgram.txt
+cgram address ignores the code @@ LcdI2c.c @@ Send((uint8_t)(0x40u | ((code & 7u) << 3)), 0u) @@ Send((uint8_t)(0x40u), 0u)
+cgram address not a command @@ LcdI2c.c @@ Send((uint8_t)(0x40u | ((code & 7u) << 3)), 0u) @@ Send((uint8_t)(0x80u | ((code & 7u) << 3)), 0u)
+# (equivalent: the controller keeps only six bits of the CGRAM address, so an unwrapped code 9 lands in glyph 1 all the same) code not wrapped to 0..7 @@ LcdI2c.c @@ ((code & 7u) << 3) @@ (code << 3)
+seven rows only @@ LcdI2c.c @@ for (row = 0; row < 8u; row++) @@ for (row = 0; row < 7u; row++)
+rows read in the wrong order @@ LcdI2c.c @@ pgm_read_byte(&rowsP[row]) @@ pgm_read_byte(&rowsP[7u - row])
+data sent as instructions @@ LcdI2c.c @@ ok = (uint8_t)(ok & Send(pgm_read_byte(&rowsP[row]), LCDI2C_RS)); @@ ok = (uint8_t)(ok & Send(pgm_read_byte(&rowsP[row]), 0u));
+failure not reported @@ LcdI2c.c @@ ok = (uint8_t)(ok & Send(pgm_read_byte(&rowsP[row]), LCDI2C_RS)); @@ (void)Send(pgm_read_byte(&rowsP[row]), LCDI2C_RS);

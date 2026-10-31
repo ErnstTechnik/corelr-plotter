@@ -1,0 +1,77 @@
+{
+  "version": 6,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 25,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "avr",
+      "hidden": true,
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/${presetName}",
+      "toolchainFile": "${sourceDir}/cmake/avr-gcc.cmake",
+      "cacheVariables": {
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
+      }
+    },
+    {
+      "name": "avr-default",
+      "inherits": "avr",
+      "displayName": "AVR firmware: both variants (serial, sd), 48-bit arithmetic"
+    },
+    {
+      "name": "avr-math64",
+      "inherits": "avr",
+      "displayName": "AVR firmware, 64-bit arithmetic (does not fit the Nano with arcs)",
+      "cacheVariables": {
+        "CORELR_MATH": "64"
+      }
+    },
+    {
+      "name": "avr-debug",
+      "inherits": "avr",
+      "displayName": "AVR firmware with the probe's debug fields",
+      "cacheVariables": {
+        "CORELR_DEBUG_JOBSTATE": "ON"
+      }
+    },
+    {
+      "name": "host",
+      "displayName": "Host tests only (native compiler, no AVR toolchain)",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/host",
+      "cacheVariables": {
+        "CORELR_HOST_TESTS_ONLY": "ON"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "avr-default",
+      "configurePreset": "avr-default"
+    },
+    {
+      "name": "avr-math64",
+      "configurePreset": "avr-math64"
+    },
+    {
+      "name": "avr-debug",
+      "configurePreset": "avr-debug"
+    },
+    {
+      "name": "host",
+      "configurePreset": "host"
+    }
+  ],
+  "testPresets": [
+    {
+      "name": "host",
+      "configurePreset": "host",
+      "output": {
+        "outputOnFailure": true
+      }
+    }
+  ]
+}

@@ -1,0 +1,3750 @@
+  0.016  --  port open: DTR reset the board, waiting for the welcome line
+  1.696  RX  Grbl 1.1h ['$' for help]
+  2.342  TX  ?
+  2.349  RX  <Idle|MPos:0.000,0.000,0.000|Bf:8,128|FS:0,0>
+  2.652  TX  ?
+  2.658  RX  <Idle|MPos:0.000,0.000,0.000|Bf:8,128|FS:0,0>
+  2.962  TX  ?
+  2.968  RX  <Idle|MPos:0.000,0.000,0.000|Bf:8,128|FS:0,0>
+  3.271  --  start at X=0.000 Y=0.000; 70 targets within +-100 mm of the origin, then the origin
+  3.286  TX  $J=G21G90X14.1Y0.2F1200
+  3.291  RX  ok
+  3.352  TX  ?
+  3.359  RX  <Jog|MPos:0.855,0.012,0.000|Bf:8,128|FS:0,0>
+  3.520  TX  ?
+  3.528  RX  <Jog|MPos:4.273,0.061,0.000|Bf:8,128|FS:0,0>
+  3.689  TX  ?
+  3.697  RX  <Jog|MPos:8.118,0.115,0.000|Bf:8,128|FS:0,0>
+  3.858  TX  ?
+  3.865  RX  <Jog|MPos:11.536,0.164,0.000|Bf:8,128|FS:0,0>
+  4.027  TX  ?
+  4.034  RX  <Idle|MPos:14.100,0.200,0.000|Bf:8,128|FS:0,0>
+  4.195  OK  session 0: jog to X=14.1 Y=0.2: reply ok, now X=14.100 Y=0.200
+  4.195  TX  ?
+  4.202  RX  <Idle|MPos:14.100,0.200,0.000|Bf:8,128|FS:0,0>
+  4.505  --  waiting 3 s of stillness before the port is closed (the position is stored after 2 s)
+  4.505  TX  ?
+  4.512  RX  <Idle|MPos:14.100,0.200,0.000|Bf:8,128|FS:0,0>
+  4.815  TX  ?
+  4.822  RX  <Idle|MPos:14.100,0.200,0.000|Bf:8,128|FS:0,0>
+  5.124  TX  ?
+  5.131  RX  <Idle|MPos:14.100,0.200,0.000|Bf:8,128|FS:0,0>
+  5.434  TX  ?
+  5.441  RX  <Idle|MPos:14.100,0.200,0.000|Bf:8,128|FS:0,0>
+  5.744  TX  ?
+  5.751  RX  <Idle|MPos:14.100,0.200,0.000|Bf:8,128|FS:0,0>
+  6.054  TX  ?
+  6.091  RX  <Idle|MPos:14.100,0.200,0.000|Bf:8,128|FS:0,0>
+  6.373  TX  ?
+  6.380  RX  <Idle|MPos:14.100,0.200,0.000|Bf:8,128|FS:0,0>
+  6.683  TX  ?
+  6.690  RX  <Idle|MPos:14.100,0.200,0.000|Bf:8,128|FS:0,0>
+  6.993  TX  ?
+  7.000  RX  <Idle|MPos:14.100,0.200,0.000|Bf:8,128|FS:0,0>
+  7.302  TX  ?
+  7.309  RX  <Idle|MPos:14.100,0.200,0.000|Bf:8,128|FS:0,0>
+  7.612  --  final state: Idle
+  8.121  --  port open: DTR reset the board, waiting for the welcome line
+  9.801  RX  Grbl 1.1h ['$' for help]
+ 10.446  TX  ?
+ 10.453  RX  <Idle|MPos:14.100,0.200,0.000|Bf:8,128|FS:0,0>
+ 10.756  TX  ?
+ 10.763  RX  <Idle|MPos:14.100,0.200,0.000|Bf:8,128|FS:0,0>
+ 11.066  TX  ?
+ 11.073  RX  <Idle|MPos:14.100,0.200,0.000|Bf:8,128|FS:0,0>
+ 11.376  OK  session 1: back at X=14.100 Y=0.200, left at X=14.100 Y=0.200
+ 11.376  TX  $J=G21G90X24.0Y-4.4F1200
+ 11.381  RX  ok
+ 11.442  TX  ?
+ 11.449  RX  <Jog|MPos:15.052,-0.242,0.000|Bf:8,128|FS:0,0>
+ 11.610  TX  ?
+ 11.617  RX  <Jog|MPos:18.098,-1.658,0.000|Bf:8,128|FS:0,0>
+ 11.779  TX  ?
+ 11.786  RX  <Jog|MPos:21.335,-3.162,0.000|Bf:8,128|FS:0,0>
+ 11.948  TX  ?
+ 11.955  RX  <Idle|MPos:24.000,-4.400,0.000|Bf:8,128|FS:0,0>
+ 12.116  OK  session 1: jog to X=24.0 Y=-4.4: reply ok, now X=24.000 Y=-4.400
+ 12.116  TX  ?
+ 12.123  RX  <Idle|MPos:24.000,-4.400,0.000|Bf:8,128|FS:0,0>
+ 12.426  --  waiting 3 s of stillness before the port is closed (the position is stored after 2 s)
+ 12.426  TX  ?
+ 12.433  RX  <Idle|MPos:24.000,-4.400,0.000|Bf:8,128|FS:0,0>
+ 12.736  TX  ?
+ 12.743  RX  <Idle|MPos:24.000,-4.400,0.000|Bf:8,128|FS:0,0>
+ 13.046  TX  ?
+ 13.053  RX  <Idle|MPos:24.000,-4.400,0.000|Bf:8,128|FS:0,0>
+ 13.355  TX  ?
+ 13.362  RX  <Idle|MPos:24.000,-4.400,0.000|Bf:8,128|FS:0,0>
+ 13.665  TX  ?
+ 13.672  RX  <Idle|MPos:24.000,-4.400,0.000|Bf:8,128|FS:0,0>
+ 13.975  TX  ?
+ 13.982  RX  <Idle|MPos:24.000,-4.400,0.000|Bf:8,128|FS:0,0>
+ 14.285  TX  ?
+ 14.292  RX  <Idle|MPos:24.000,-4.400,0.000|Bf:8,128|FS:0,0>
+ 14.594  TX  ?
+ 14.601  RX  <Idle|MPos:24.000,-4.400,0.000|Bf:8,128|FS:0,0>
+ 14.903  TX  ?
+ 14.910  RX  <Idle|MPos:24.000,-4.400,0.000|Bf:8,128|FS:0,0>
+ 15.213  TX  ?
+ 15.220  RX  <Idle|MPos:24.000,-4.400,0.000|Bf:8,128|FS:0,0>
+ 15.522  --  final state: Idle
+ 16.031  --  port open: DTR reset the board, waiting for the welcome line
+ 17.711  RX  Grbl 1.1h ['$' for help]
+ 18.357  TX  ?
+ 18.364  RX  <Idle|MPos:24.000,-4.400,0.000|Bf:8,128|FS:0,0>
+ 18.667  TX  ?
+ 18.674  RX  <Idle|MPos:24.000,-4.400,0.000|Bf:8,128|FS:0,0>
+ 18.976  TX  ?
+ 18.984  RX  <Idle|MPos:24.000,-4.400,0.000|Bf:8,128|FS:0,0>
+ 19.286  OK  session 2: back at X=24.000 Y=-4.400, left at X=24.000 Y=-4.400
+ 19.286  TX  $J=G21G90X36.0Y9.2F1200
+ 19.292  RX  ok
+ 19.352  TX  ?
+ 19.359  RX  <Jog|MPos:24.706,-3.600,0.000|Bf:8,128|FS:0,0>
+ 19.521  TX  ?
+ 19.528  RX  <Jog|MPos:26.965,-1.040,0.000|Bf:8,128|FS:0,0>
+ 19.690  TX  ?
+ 19.696  RX  <Jog|MPos:29.365,1.680,0.000|Bf:8,128|FS:0,0>
+ 19.858  TX  ?
+ 19.865  RX  <Jog|MPos:31.765,4.400,0.000|Bf:8,128|FS:0,0>
+ 20.026  TX  ?
+ 20.034  RX  <Jog|MPos:34.165,7.120,0.000|Bf:8,128|FS:0,0>
+ 20.196  TX  ?
+ 20.202  RX  <Idle|MPos:36.000,9.200,0.000|Bf:8,128|FS:0,0>
+ 20.364  OK  session 2: jog to X=36.0 Y=9.2: reply ok, now X=36.000 Y=9.200
+ 20.364  TX  ?
+ 20.371  RX  <Idle|MPos:36.000,9.200,0.000|Bf:8,128|FS:0,0>
+ 20.674  --  waiting 3 s of stillness before the port is closed (the position is stored after 2 s)
+ 20.674  TX  ?
+ 20.681  RX  <Idle|MPos:36.000,9.200,0.000|Bf:8,128|FS:0,0>
+ 20.984  TX  ?
+ 20.991  RX  <Idle|MPos:36.000,9.200,0.000|Bf:8,128|FS:0,0>
+ 21.293  TX  ?
+ 21.301  RX  <Idle|MPos:36.000,9.200,0.000|Bf:8,128|FS:0,0>
+ 21.603  TX  ?
+ 21.610  RX  <Idle|MPos:36.000,9.200,0.000|Bf:8,128|FS:0,0>
+ 21.913  TX  ?
+ 21.920  RX  <Idle|MPos:36.000,9.200,0.000|Bf:8,128|FS:0,0>
+ 22.223  TX  ?
+ 22.277  RX  <Idle|MPos:36.000,9.200,0.000|Bf:8,128|FS:0,0>
+ 22.539  TX  ?
+ 22.546  RX  <Idle|MPos:36.000,9.200,0.000|Bf:8,128|FS:0,0>
+ 22.849  TX  ?
+ 22.856  RX  <Idle|MPos:36.000,9.200,0.000|Bf:8,128|FS:0,0>
+ 23.158  TX  ?
+ 23.165  RX  <Idle|MPos:36.000,9.200,0.000|Bf:8,128|FS:0,0>
+ 23.468  TX  ?
+ 23.475  RX  <Idle|MPos:36.000,9.200,0.000|Bf:8,128|FS:0,0>
+ 23.778  --  final state: Idle
+ 24.286  --  port open: DTR reset the board, waiting for the welcome line
+ 25.967  RX  Grbl 1.1h ['$' for help]
+ 26.612  TX  ?
+ 26.619  RX  <Idle|MPos:36.000,9.200,0.000|Bf:8,128|FS:0,0>
+ 26.922  TX  ?
+ 26.929  RX  <Idle|MPos:36.000,9.200,0.000|Bf:8,128|FS:0,0>
+ 27.232  TX  ?
+ 27.239  RX  <Idle|MPos:36.000,9.200,0.000|Bf:8,128|FS:0,0>
+ 27.541  OK  session 3: back at X=36.000 Y=9.200, left at X=36.000 Y=9.200
+ 27.541  TX  $J=G21G90X45.2Y18.6F1200
+ 27.546  RX  ok
+ 27.607  TX  ?
+ 27.614  RX  <Jog|MPos:36.890,10.110,0.000|Bf:8,128|FS:0,0>
+ 27.776  TX  ?
+ 27.783  RX  <Jog|MPos:39.116,12.384,0.000|Bf:8,128|FS:0,0>
+ 27.944  TX  ?
+ 27.952  RX  <Jog|MPos:41.787,15.113,0.000|Bf:8,128|FS:0,0>
+ 28.114  TX  ?
+ 28.120  RX  <Jog|MPos:44.310,17.690,0.000|Bf:8,128|FS:0,0>
+ 28.282  TX  ?
+ 28.289  RX  <Idle|MPos:45.200,18.600,0.000|Bf:8,128|FS:0,0>
+ 28.451  OK  session 3: jog to X=45.2 Y=18.6: reply ok, now X=45.200 Y=18.600
+ 28.451  TX  ?
+ 28.458  RX  <Idle|MPos:45.200,18.600,0.000|Bf:8,128|FS:0,0>
+ 28.761  --  waiting 3 s of stillness before the port is closed (the position is stored after 2 s)
+ 28.761  TX  ?
+ 28.768  RX  <Idle|MPos:45.200,18.600,0.000|Bf:8,128|FS:0,0>
+ 29.071  TX  ?
+ 29.078  RX  <Idle|MPos:45.200,18.600,0.000|Bf:8,128|FS:0,0>
+ 29.381  TX  ?
+ 29.388  RX  <Idle|MPos:45.200,18.600,0.000|Bf:8,128|FS:0,0>
+ 29.690  TX  ?
+ 29.697  RX  <Idle|MPos:45.200,18.600,0.000|Bf:8,128|FS:0,0>
+ 30.000  TX  ?
+ 30.007  RX  <Idle|MPos:45.200,18.600,0.000|Bf:8,128|FS:0,0>
+ 30.309  TX  ?
+ 30.316  RX  <Idle|MPos:45.200,18.600,0.000|Bf:8,128|FS:0,0>
+ 30.619  TX  ?
+ 30.626  RX  <Idle|MPos:45.200,18.600,0.000|Bf:8,128|FS:0,0>
+ 30.929  TX  ?
+ 30.936  RX  <Idle|MPos:45.200,18.600,0.000|Bf:8,128|FS:0,0>
+ 31.239  TX  ?
+ 31.246  RX  <Idle|MPos:45.200,18.600,0.000|Bf:8,128|FS:0,0>
+ 31.548  TX  ?
+ 31.555  RX  <Idle|MPos:45.200,18.600,0.000|Bf:8,128|FS:0,0>
+ 31.858  --  final state: Idle
+ 32.366  --  port open: DTR reset the board, waiting for the welcome line
+ 34.047  RX  Grbl 1.1h ['$' for help]
+ 34.692  TX  ?
+ 34.699  RX  <Idle|MPos:45.200,18.600,0.000|Bf:8,128|FS:0,0>
+ 35.002  TX  ?
+ 35.009  RX  <Idle|MPos:45.200,18.600,0.000|Bf:8,128|FS:0,0>
+ 35.312  TX  ?
+ 35.319  RX  <Idle|MPos:45.200,18.600,0.000|Bf:8,128|FS:0,0>
+ 35.621  OK  session 4: back at X=45.200 Y=18.600, left at X=45.200 Y=18.600
+ 35.621  TX  $J=G21G90X55.6Y33.7F1200
+ 35.627  RX  ok
+ 35.688  TX  ?
+ 35.694  RX  <Jog|MPos:45.805,19.478,0.000|Bf:8,128|FS:0,0>
+ 35.856  TX  ?
+ 35.864  RX  <Jog|MPos:47.740,22.287,0.000|Bf:8,128|FS:0,0>
+ 36.026  TX  ?
+ 36.033  RX  <Jog|MPos:49.795,25.272,0.000|Bf:8,128|FS:0,0>
+ 36.194  TX  ?
+ 36.202  RX  <Jog|MPos:51.851,28.257,0.000|Bf:8,128|FS:0,0>
+ 36.363  TX  ?
+ 36.370  RX  <Jog|MPos:53.907,31.242,0.000|Bf:8,128|FS:0,0>
+ 36.532  TX  ?
+ 36.539  RX  <Idle|MPos:55.600,33.700,0.000|Bf:8,128|FS:0,0>
+ 36.700  OK  session 4: jog to X=55.6 Y=33.7: reply ok, now X=55.600 Y=33.700
+ 36.700  TX  ?
+ 36.707  RX  <Idle|MPos:55.600,33.700,0.000|Bf:8,128|FS:0,0>
+ 37.010  --  waiting 3 s of stillness before the port is closed (the position is stored after 2 s)
+ 37.010  TX  ?
+ 37.017  RX  <Idle|MPos:55.600,33.700,0.000|Bf:8,128|FS:0,0>
+ 37.320  TX  ?
+ 37.327  RX  <Idle|MPos:55.600,33.700,0.000|Bf:8,128|FS:0,0>
+ 37.629  TX  ?
+ 37.637  RX  <Idle|MPos:55.600,33.700,0.000|Bf:8,128|FS:0,0>
+ 37.939  TX  ?
+ 37.946  RX  <Idle|MPos:55.600,33.700,0.000|Bf:8,128|FS:0,0>
+ 38.249  TX  ?
+ 38.256  RX  <Idle|MPos:55.600,33.700,0.000|Bf:8,128|FS:0,0>
+ 38.559  TX  ?
+ 38.566  RX  <Idle|MPos:55.600,33.700,0.000|Bf:8,128|FS:0,0>
+ 38.869  TX  ?
+ 38.876  RX  <Idle|MPos:55.600,33.700,0.000|Bf:8,128|FS:0,0>
+ 39.178  TX  ?
+ 39.185  RX  <Idle|MPos:55.600,33.700,0.000|Bf:8,128|FS:0,0>
+ 39.488  TX  ?
+ 39.495  RX  <Idle|MPos:55.600,33.700,0.000|Bf:8,128|FS:0,0>
+ 39.798  TX  ?
+ 39.805  RX  <Idle|MPos:55.600,33.700,0.000|Bf:8,128|FS:0,0>
+ 40.108  --  final state: Idle
+ 40.616  --  port open: DTR reset the board, waiting for the welcome line
+ 42.297  RX  Grbl 1.1h ['$' for help]
+ 42.942  TX  ?
+ 42.949  RX  <Idle|MPos:55.600,33.700,0.000|Bf:8,128|FS:0,0>
+ 43.252  TX  ?
+ 43.259  RX  <Idle|MPos:55.600,33.700,0.000|Bf:8,128|FS:0,0>
+ 43.562  TX  ?
+ 43.569  RX  <Idle|MPos:55.600,33.700,0.000|Bf:8,128|FS:0,0>
+ 43.872  OK  session 5: back at X=55.600 Y=33.700, left at X=55.600 Y=33.700
+ 43.872  TX  $J=G21G90X50.3Y45.7F1200
+ 43.877  RX  ok
+ 43.938  TX  ?
+ 43.945  RX  <Jog|MPos:55.173,34.668,0.000|Bf:8,128|FS:0,0>
+ 44.107  TX  ?
+ 44.114  RX  <Jog|MPos:53.805,37.765,0.000|Bf:8,128|FS:0,0>
+ 44.276  TX  ?
+ 44.283  RX  <Jog|MPos:52.352,41.055,0.000|Bf:8,128|FS:0,0>
+ 44.444  TX  ?
+ 44.451  RX  <Jog|MPos:50.898,44.345,0.000|Bf:8,128|FS:0,0>
+ 44.613  TX  ?
+ 44.620  RX  <Idle|MPos:50.300,45.700,0.000|Bf:8,128|FS:0,0>
+ 44.781  OK  session 5: jog to X=50.3 Y=45.7: reply ok, now X=50.300 Y=45.700
+ 44.782  TX  ?
+ 44.789  RX  <Idle|MPos:50.300,45.700,0.000|Bf:8,128|FS:0,0>
+ 45.091  --  waiting 3 s of stillness before the port is closed (the position is stored after 2 s)
+ 45.091  TX  ?
+ 45.098  RX  <Idle|MPos:50.300,45.700,0.000|Bf:8,128|FS:0,0>
+ 45.400  TX  ?
+ 45.408  RX  <Idle|MPos:50.300,45.700,0.000|Bf:8,128|FS:0,0>
+ 45.710  TX  ?
+ 45.717  RX  <Idle|MPos:50.300,45.700,0.000|Bf:8,128|FS:0,0>
+ 46.020  TX  ?
+ 46.027  RX  <Idle|MPos:50.300,45.700,0.000|Bf:8,128|FS:0,0>
+ 46.330  TX  ?
+ 46.337  RX  <Idle|MPos:50.300,45.700,0.000|Bf:8,128|FS:0,0>
+ 46.639  TX  ?
+ 46.647  RX  <Idle|MPos:50.300,45.700,0.000|Bf:8,128|FS:0,0>
+ 46.949  TX  ?
+ 46.956  RX  <Idle|MPos:50.300,45.700,0.000|Bf:8,128|FS:0,0>
+ 47.259  TX  ?
+ 47.266  RX  <Idle|MPos:50.300,45.700,0.000|Bf:8,128|FS:0,0>
+ 47.569  TX  ?
+ 47.576  RX  <Idle|MPos:50.300,45.700,0.000|Bf:8,128|FS:0,0>
+ 47.879  TX  ?
+ 47.886  RX  <Idle|MPos:50.300,45.700,0.000|Bf:8,128|FS:0,0>
+ 48.188  --  final state: Idle
+ 48.696  --  port open: DTR reset the board, waiting for the welcome line
+ 50.376  RX  Grbl 1.1h ['$' for help]
+ 51.022  TX  ?
+ 51.029  RX  <Idle|MPos:50.300,45.700,0.000|Bf:8,128|FS:0,0>
+ 51.331  TX  ?
+ 51.338  RX  <Idle|MPos:50.300,45.700,0.000|Bf:8,128|FS:0,0>
+ 51.641  TX  ?
+ 51.648  RX  <Idle|MPos:50.300,45.700,0.000|Bf:8,128|FS:0,0>
+ 51.951  OK  session 6: back at X=50.300 Y=45.700, left at X=50.300 Y=45.700
+ 51.951  TX  $J=G21G90X41.1Y52.4F1200
+ 51.956  RX  ok
+ 52.017  TX  ?
+ 52.025  RX  <Jog|MPos:49.278,46.444,0.000|Bf:8,128|FS:0,0>
+ 52.186  TX  ?
+ 52.193  RX  <Jog|MPos:46.552,48.430,0.000|Bf:8,128|FS:0,0>
+ 52.355  TX  ?
+ 52.362  RX  <Jog|MPos:43.656,50.539,0.000|Bf:8,128|FS:0,0>
+ 52.523  TX  ?
+ 52.530  RX  <Idle|MPos:41.100,52.400,0.000|Bf:8,128|FS:0,0>
+ 52.692  OK  session 6: jog to X=41.1 Y=52.4: reply ok, now X=41.100 Y=52.400
+ 52.692  TX  ?
+ 52.699  RX  <Idle|MPos:41.100,52.400,0.000|Bf:8,128|FS:0,0>
+ 53.001  --  waiting 3 s of stillness before the port is closed (the position is stored after 2 s)
+ 53.001  TX  ?
+ 53.008  RX  <Idle|MPos:41.100,52.400,0.000|Bf:8,128|FS:0,0>
+ 53.310  TX  ?
+ 53.317  RX  <Idle|MPos:41.100,52.400,0.000|Bf:8,128|FS:0,0>
+ 53.619  TX  ?
+ 53.626  RX  <Idle|MPos:41.100,52.400,0.000|Bf:8,128|FS:0,0>
+ 53.929  TX  ?
+ 53.936  RX  <Idle|MPos:41.100,52.400,0.000|Bf:8,128|FS:0,0>
+ 54.239  TX  ?
+ 54.246  RX  <Idle|MPos:41.100,52.400,0.000|Bf:8,128|FS:0,0>
+ 54.549  TX  ?
+ 54.556  RX  <Idle|MPos:41.100,52.400,0.000|Bf:8,128|FS:0,0>
+ 54.858  TX  ?
+ 54.865  RX  <Idle|MPos:41.100,52.400,0.000|Bf:8,128|FS:0,0>
+ 55.167  TX  ?
+ 55.174  RX  <Idle|MPos:41.100,52.400,0.000|Bf:8,128|FS:0,0>
+ 55.478  TX  ?
+ 55.485  RX  <Idle|MPos:41.100,52.400,0.000|Bf:8,128|FS:0,0>
+ 55.787  TX  ?
+ 55.794  RX  <Idle|MPos:41.100,52.400,0.000|Bf:8,128|FS:0,0>
+ 56.097  --  final state: Idle
+ 56.604  --  port open: DTR reset the board, waiting for the welcome line
+ 58.285  RX  Grbl 1.1h ['$' for help]
+ 58.930  TX  ?
+ 58.937  RX  <Idle|MPos:41.100,52.400,0.000|Bf:8,128|FS:0,0>
+ 59.240  TX  ?
+ 59.247  RX  <Idle|MPos:41.100,52.400,0.000|Bf:8,128|FS:0,0>
+ 59.549  TX  ?
+ 59.557  RX  <Idle|MPos:41.100,52.400,0.000|Bf:8,128|FS:0,0>
+ 59.859  OK  session 7: back at X=41.100 Y=52.400, left at X=41.100 Y=52.400
+ 59.859  TX  $J=G21G90X49.4Y73.6F1200
+ 59.865  RX  ok
+ 59.925  TX  ?
+ 59.932  RX  <Jog|MPos:41.488,53.391,0.000|Bf:8,128|FS:0,0>
+ 60.094  TX  ?
+ 60.101  RX  <Jog|MPos:42.729,56.561,0.000|Bf:8,128|FS:0,0>
+ 60.262  TX  ?
+ 60.270  RX  <Jog|MPos:44.048,59.929,0.000|Bf:8,128|FS:0,0>
+ 60.431  TX  ?
+ 60.438  RX  <Jog|MPos:45.366,63.297,0.000|Bf:8,128|FS:0,0>
+ 60.600  TX  ?
+ 60.607  RX  <Jog|MPos:46.685,66.665,0.000|Bf:8,128|FS:0,0>
+ 60.768  TX  ?
+ 60.775  RX  <Jog|MPos:48.004,70.034,0.000|Bf:8,128|FS:0,0>
+ 60.936  TX  ?
+ 60.944  RX  <Jog|MPos:49.322,73.402,0.000|Bf:8,128|FS:0,0>
+ 61.105  TX  ?
+ 61.112  RX  <Idle|MPos:49.400,73.600,0.000|Bf:8,128|FS:0,0>
+ 61.273  OK  session 7: jog to X=49.4 Y=73.6: reply ok, now X=49.400 Y=73.600
+ 61.274  TX  ?
+ 61.281  RX  <Idle|MPos:49.400,73.600,0.000|Bf:8,128|FS:0,0>
+ 61.583  --  waiting 3 s of stillness before the port is closed (the position is stored after 2 s)
+ 61.583  TX  ?
+ 61.590  RX  <Idle|MPos:49.400,73.600,0.000|Bf:8,128|FS:0,0>
+ 61.893  TX  ?
+ 61.900  RX  <Idle|MPos:49.400,73.600,0.000|Bf:8,128|FS:0,0>
+ 62.203  TX  ?
+ 62.210  RX  <Idle|MPos:49.400,73.600,0.000|Bf:8,128|FS:0,0>
+ 62.512  TX  ?
+ 62.519  RX  <Idle|MPos:49.400,73.600,0.000|Bf:8,128|FS:0,0>
+ 62.822  TX  ?
+ 62.829  RX  <Idle|MPos:49.400,73.600,0.000|Bf:8,128|FS:0,0>
+ 63.132  TX  ?
+ 63.140  RX  <Idle|MPos:49.400,73.600,0.000|Bf:8,128|FS:0,0>
+ 63.442  TX  ?
+ 63.450  RX  <Idle|MPos:49.400,73.600,0.000|Bf:8,128|FS:0,0>
+ 63.752  TX  ?
+ 63.759  RX  <Idle|MPos:49.400,73.600,0.000|Bf:8,128|FS:0,0>
+ 64.062  TX  ?
+ 64.069  RX  <Idle|MPos:49.400,73.600,0.000|Bf:8,128|FS:0,0>
+ 64.372  TX  ?
+ 64.379  RX  <Idle|MPos:49.400,73.600,0.000|Bf:8,128|FS:0,0>
+ 64.681  --  final state: Idle
+ 65.190  --  port open: DTR reset the board, waiting for the welcome line
+ 66.870  RX  Grbl 1.1h ['$' for help]
+ 67.515  TX  ?
+ 67.522  RX  <Idle|MPos:49.400,73.600,0.000|Bf:8,128|FS:0,0>
+ 67.825  TX  ?
+ 67.832  RX  <Idle|MPos:49.400,73.600,0.000|Bf:8,128|FS:0,0>
+ 68.134  TX  ?
+ 68.142  RX  <Idle|MPos:49.400,73.600,0.000|Bf:8,128|FS:0,0>
+ 68.444  OK  session 8: back at X=49.400 Y=73.600, left at X=49.400 Y=73.600
+ 68.444  TX  $J=G21G90X62.2Y81.0F1200
+ 68.450  RX  ok
+ 68.510  TX  ?
+ 68.518  RX  <Jog|MPos:50.314,74.129,0.000|Bf:8,128|FS:0,0>
+ 68.679  TX  ?
+ 68.686  RX  <Jog|MPos:53.240,75.820,0.000|Bf:8,128|FS:0,0>
+ 68.848  TX  ?
+ 68.855  RX  <Jog|MPos:56.349,77.617,0.000|Bf:8,128|FS:0,0>
+ 69.016  TX  ?
+ 69.024  RX  <Jog|MPos:59.640,79.520,0.000|Bf:8,128|FS:0,0>
+ 69.185  TX  ?
+ 69.192  RX  <Idle|MPos:62.200,81.000,0.000|Bf:8,128|FS:0,0>
+ 69.353  OK  session 8: jog to X=62.2 Y=81.0: reply ok, now X=62.200 Y=81.000
+ 69.354  TX  ?
+ 69.361  RX  <Idle|MPos:62.200,81.000,0.000|Bf:8,128|FS:0,0>
+ 69.663  --  waiting 3 s of stillness before the port is closed (the position is stored after 2 s)
+ 69.663  TX  ?
+ 69.671  RX  <Idle|MPos:62.200,81.000,0.000|Bf:8,128|FS:0,0>
+ 69.973  TX  ?
+ 69.980  RX  <Idle|MPos:62.200,81.000,0.000|Bf:8,128|FS:0,0>
+ 70.283  TX  ?
+ 70.290  RX  <Idle|MPos:62.200,81.000,0.000|Bf:8,128|FS:0,0>
+ 70.593  TX  ?
+ 70.600  RX  <Idle|MPos:62.200,81.000,0.000|Bf:8,128|FS:0,0>
+ 70.902  TX  ?
+ 70.909  RX  <Idle|MPos:62.200,81.000,0.000|Bf:8,128|FS:0,0>
+ 71.212  TX  ?
+ 71.219  RX  <Idle|MPos:62.200,81.000,0.000|Bf:8,128|FS:0,0>
+ 71.522  TX  ?
+ 71.529  RX  <Idle|MPos:62.200,81.000,0.000|Bf:8,128|FS:0,0>
+ 71.832  TX  ?
+ 71.839  RX  <Idle|MPos:62.200,81.000,0.000|Bf:8,128|FS:0,0>
+ 72.141  TX  ?
+ 72.148  RX  <Idle|MPos:62.200,81.000,0.000|Bf:8,128|FS:0,0>
+ 72.451  TX  ?
+ 72.458  RX  <Idle|MPos:62.200,81.000,0.000|Bf:8,128|FS:0,0>
+ 72.760  --  final state: Idle
+ 73.268  --  port open: DTR reset the board, waiting for the welcome line
+ 74.948  RX  Grbl 1.1h ['$' for help]
+ 75.594  TX  ?
+ 75.601  RX  <Idle|MPos:62.200,81.000,0.000|Bf:8,128|FS:0,0>
+ 75.903  TX  ?
+ 75.911  RX  <Idle|MPos:62.200,81.000,0.000|Bf:8,128|FS:0,0>
+ 76.213  TX  ?
+ 76.220  RX  <Idle|MPos:62.200,81.000,0.000|Bf:8,128|FS:0,0>
+ 76.523  OK  session 9: back at X=62.200 Y=81.000, left at X=62.200 Y=81.000
+ 76.523  TX  $J=G21G90X63.6Y69.0F1200
+ 76.528  RX  ok
+ 76.589  TX  ?
+ 76.596  RX  <Jog|MPos:62.323,79.947,0.000|Bf:8,128|FS:0,0>
+ 76.757  TX  ?
+ 76.764  RX  <Jog|MPos:62.716,76.579,0.000|Bf:8,128|FS:0,0>
+ 76.926  TX  ?
+ 76.933  RX  <Jog|MPos:63.133,73.000,0.000|Bf:8,128|FS:0,0>
+ 77.094  TX  ?
+ 77.102  RX  <Jog|MPos:63.551,69.421,0.000|Bf:8,128|FS:0,0>
+ 77.264  TX  ?
+ 77.271  RX  <Idle|MPos:63.600,69.000,0.000|Bf:8,128|FS:0,0>
+ 77.433  OK  session 9: jog to X=63.6 Y=69.0: reply ok, now X=63.600 Y=69.000
+ 77.433  TX  ?
+ 77.440  RX  <Idle|MPos:63.600,69.000,0.000|Bf:8,128|FS:0,0>
+ 77.743  --  waiting 3 s of stillness before the port is closed (the position is stored after 2 s)
+ 77.743  TX  ?
+ 77.750  RX  <Idle|MPos:63.600,69.000,0.000|Bf:8,128|FS:0,0>
+ 78.052  TX  ?
+ 78.059  RX  <Idle|MPos:63.600,69.000,0.000|Bf:8,128|FS:0,0>
+ 78.362  TX  ?
+ 78.369  RX  <Idle|MPos:63.600,69.000,0.000|Bf:8,128|FS:0,0>
+ 78.672  TX  ?
+ 78.679  RX  <Idle|MPos:63.600,69.000,0.000|Bf:8,128|FS:0,0>
+ 78.982  TX  ?
+ 78.989  RX  <Idle|MPos:63.600,69.000,0.000|Bf:8,128|FS:0,0>
+ 79.291  TX  ?
+ 79.298  RX  <Idle|MPos:63.600,69.000,0.000|Bf:8,128|FS:0,0>
+ 79.601  TX  ?
+ 79.608  RX  <Idle|MPos:63.600,69.000,0.000|Bf:8,128|FS:0,0>
+ 79.911  TX  ?
+ 79.918  RX  <Idle|MPos:63.600,69.000,0.000|Bf:8,128|FS:0,0>
+ 80.220  TX  ?
+ 80.227  RX  <Idle|MPos:63.600,69.000,0.000|Bf:8,128|FS:0,0>
+ 80.530  TX  ?
+ 80.537  RX  <Idle|MPos:63.600,69.000,0.000|Bf:8,128|FS:0,0>
+ 80.839  --  final state: Idle
+ 81.348  --  port open: DTR reset the board, waiting for the welcome line
+ 83.028  RX  Grbl 1.1h ['$' for help]
+ 83.674  TX  ?
+ 83.681  RX  <Idle|MPos:63.600,69.000,0.000|Bf:8,128|FS:0,0>
+ 83.983  TX  ?
+ 83.990  RX  <Idle|MPos:63.600,69.000,0.000|Bf:8,128|FS:0,0>
+ 84.293  TX  ?
+ 84.300  RX  <Idle|MPos:63.600,69.000,0.000|Bf:8,128|FS:0,0>
+ 84.602  OK  session 10: back at X=63.600 Y=69.000, left at X=63.600 Y=69.000
+ 84.603  TX  $J=G21G90X74.9Y61.6F1200
+ 84.608  RX  ok
+ 84.668  TX  ?
+ 84.675  RX  <Jog|MPos:64.483,68.422,0.000|Bf:8,128|FS:0,0>
+ 84.837  TX  ?
+ 84.844  RX  <Jog|MPos:67.484,66.456,0.000|Bf:8,128|FS:0,0>
+ 85.005  TX  ?
+ 85.012  RX  <Jog|MPos:70.486,64.491,0.000|Bf:8,128|FS:0,0>
+ 85.174  TX  ?
+ 85.181  RX  <Jog|MPos:73.488,62.525,0.000|Bf:8,128|FS:0,0>
+ 85.343  TX  ?
+ 85.350  RX  <Idle|MPos:74.900,61.600,0.000|Bf:8,128|FS:0,0>
+ 85.511  OK  session 10: jog to X=74.9 Y=61.6: reply ok, now X=74.900 Y=61.600
+ 85.511  TX  ?
+ 85.518  RX  <Idle|MPos:74.900,61.600,0.000|Bf:8,128|FS:0,0>
+ 85.821  --  waiting 3 s of stillness before the port is closed (the position is stored after 2 s)
+ 85.821  TX  ?
+ 85.828  RX  <Idle|MPos:74.900,61.600,0.000|Bf:8,128|FS:0,0>
+ 86.131  TX  ?
+ 86.138  RX  <Idle|MPos:74.900,61.600,0.000|Bf:8,128|FS:0,0>
+ 86.440  TX  ?
+ 86.447  RX  <Idle|MPos:74.900,61.600,0.000|Bf:8,128|FS:0,0>
+ 86.750  TX  ?
+ 86.757  RX  <Idle|MPos:74.900,61.600,0.000|Bf:8,128|FS:0,0>
+ 87.060  TX  ?
+ 87.067  RX  <Idle|MPos:74.900,61.600,0.000|Bf:8,128|FS:0,0>
+ 87.369  TX  ?
+ 87.376  RX  <Idle|MPos:74.900,61.600,0.000|Bf:8,128|FS:0,0>
+ 87.679  TX  ?
+ 87.686  RX  <Idle|MPos:74.900,61.600,0.000|Bf:8,128|FS:0,0>
+ 87.989  TX  ?
+ 87.996  RX  <Idle|MPos:74.900,61.600,0.000|Bf:8,128|FS:0,0>
+ 88.298  TX  ?
+ 88.305  RX  <Idle|MPos:74.900,61.600,0.000|Bf:8,128|FS:0,0>
+ 88.608  TX  ?
+ 88.615  RX  <Idle|MPos:74.900,61.600,0.000|Bf:8,128|FS:0,0>
+ 88.918  --  final state: Idle
+ 89.426  --  port open: DTR reset the board, waiting for the welcome line
+ 91.106  RX  Grbl 1.1h ['$' for help]
+ 91.751  TX  ?
+ 91.758  RX  <Idle|MPos:74.900,61.600,0.000|Bf:8,128|FS:0,0>
+ 92.061  TX  ?
+ 92.068  RX  <Idle|MPos:74.900,61.600,0.000|Bf:8,128|FS:0,0>
+ 92.370  TX  ?
+ 92.378  RX  <Idle|MPos:74.900,61.600,0.000|Bf:8,128|FS:0,0>
+ 92.680  OK  session 11: back at X=74.900 Y=61.600, left at X=74.900 Y=61.600
+ 92.681  TX  $J=G21G90X82.3Y53.3F1200
+ 92.686  RX  ok
+ 92.747  TX  ?
+ 92.754  RX  <Jog|MPos:75.612,60.802,0.000|Bf:8,128|FS:0,0>
+ 92.915  TX  ?
+ 92.922  RX  <Jog|MPos:77.888,58.248,0.000|Bf:8,128|FS:0,0>
+ 93.084  TX  ?
+ 93.091  RX  <Jog|MPos:80.308,55.535,0.000|Bf:8,128|FS:0,0>
+ 93.252  TX  ?
+ 93.259  RX  <Idle|MPos:82.300,53.300,0.000|Bf:8,128|FS:0,0>
+ 93.421  OK  session 11: jog to X=82.3 Y=53.3: reply ok, now X=82.300 Y=53.300
+ 93.421  TX  ?
+ 93.428  RX  <Idle|MPos:82.300,53.300,0.000|Bf:8,128|FS:0,0>
+ 93.730  --  waiting 3 s of stillness before the port is closed (the position is stored after 2 s)
+ 93.730  TX  ?
+ 93.737  RX  <Idle|MPos:82.300,53.300,0.000|Bf:8,128|FS:0,0>
+ 94.040  TX  ?
+ 94.047  RX  <Idle|MPos:82.300,53.300,0.000|Bf:8,128|FS:0,0>
+ 94.349  TX  ?
+ 94.357  RX  <Idle|MPos:82.300,53.300,0.000|Bf:8,128|FS:0,0>
+ 94.659  TX  ?
+ 94.666  RX  <Idle|MPos:82.300,53.300,0.000|Bf:8,128|FS:0,0>
+ 94.969  TX  ?
+ 94.976  RX  <Idle|MPos:82.300,53.300,0.000|Bf:8,128|FS:0,0>
+ 95.278  TX  ?
+ 95.285  RX  <Idle|MPos:82.300,53.300,0.000|Bf:8,128|FS:0,0>
+ 95.588  TX  ?
+ 95.595  RX  <Idle|MPos:82.300,53.300,0.000|Bf:8,128|FS:0,0>
+ 95.898  TX  ?
+ 95.905  RX  <Idle|MPos:82.300,53.300,0.000|Bf:8,128|FS:0,0>
+ 96.207  TX  ?
+ 96.214  RX  <Idle|MPos:82.300,53.300,0.000|Bf:8,128|FS:0,0>
+ 96.517  TX  ?
+ 96.524  RX  <Idle|MPos:82.300,53.300,0.000|Bf:8,128|FS:0,0>
+ 96.826  --  final state: Idle
+ 97.335  --  port open: DTR reset the board, waiting for the welcome line
+ 99.015  RX  Grbl 1.1h ['$' for help]
+ 99.661  TX  ?
+ 99.667  RX  <Idle|MPos:82.300,53.300,0.000|Bf:8,128|FS:0,0>
+ 99.970  TX  ?
+ 99.977  RX  <Idle|MPos:82.300,53.300,0.000|Bf:8,128|FS:0,0>
+100.279  TX  ?
+100.286  RX  <Idle|MPos:82.300,53.300,0.000|Bf:8,128|FS:0,0>
+100.589  OK  session 12: back at X=82.300 Y=53.300, left at X=82.300 Y=53.300
+100.589  TX  $J=G21G90X79.3Y42.4F1200
+100.594  RX  ok
+100.655  TX  ?
+100.662  RX  <Jog|MPos:82.017,52.272,0.000|Bf:8,128|FS:0,0>
+100.824  TX  ?
+100.830  RX  <Jog|MPos:81.111,48.981,0.000|Bf:8,128|FS:0,0>
+100.992  TX  ?
+101.000  RX  <Jog|MPos:80.149,45.485,0.000|Bf:8,128|FS:0,0>
+101.161  TX  ?
+101.168  RX  <Idle|MPos:79.300,42.400,0.000|Bf:8,128|FS:0,0>
+101.329  OK  session 12: jog to X=79.3 Y=42.4: reply ok, now X=79.300 Y=42.400
+101.330  TX  ?
+101.337  RX  <Idle|MPos:79.300,42.400,0.000|Bf:8,128|FS:0,0>
+101.639  --  waiting 3 s of stillness before the port is closed (the position is stored after 2 s)
+101.639  TX  ?
+101.646  RX  <Idle|MPos:79.300,42.400,0.000|Bf:8,128|FS:0,0>
+101.949  TX  ?
+101.956  RX  <Idle|MPos:79.300,42.400,0.000|Bf:8,128|FS:0,0>
+102.259  TX  ?
+102.266  RX  <Idle|MPos:79.300,42.400,0.000|Bf:8,128|FS:0,0>
+102.568  TX  ?
+102.575  RX  <Idle|MPos:79.300,42.400,0.000|Bf:8,128|FS:0,0>
+102.878  TX  ?
+102.885  RX  <Idle|MPos:79.300,42.400,0.000|Bf:8,128|FS:0,0>
+103.188  TX  ?
+103.195  RX  <Idle|MPos:79.300,42.400,0.000|Bf:8,128|FS:0,0>
+103.497  TX  ?
+103.504  RX  <Idle|MPos:79.300,42.400,0.000|Bf:8,128|FS:0,0>
+103.807  TX  ?
+103.814  RX  <Idle|MPos:79.300,42.400,0.000|Bf:8,128|FS:0,0>
+104.116  TX  ?
+104.124  RX  <Idle|MPos:79.300,42.400,0.000|Bf:8,128|FS:0,0>
+104.426  TX  ?
+104.433  RX  <Idle|MPos:79.300,42.400,0.000|Bf:8,128|FS:0,0>
+104.736  --  final state: Idle
+105.244  --  port open: DTR reset the board, waiting for the welcome line
+106.925  RX  Grbl 1.1h ['$' for help]
+107.570  TX  ?
+107.577  RX  <Idle|MPos:79.300,42.400,0.000|Bf:8,128|FS:0,0>
+107.879  TX  ?
+107.886  RX  <Idle|MPos:79.300,42.400,0.000|Bf:8,128|FS:0,0>
+108.189  TX  ?
+108.197  RX  <Idle|MPos:79.300,42.400,0.000|Bf:8,128|FS:0,0>
+108.499  OK  session 13: back at X=79.300 Y=42.400, left at X=79.300 Y=42.400
+108.499  TX  $J=G21G90X95.1Y20.6F1200
+108.505  RX  ok
+108.565  TX  ?
+108.573  RX  <Jog|MPos:79.927,41.535,0.000|Bf:8,128|FS:0,0>
+108.735  TX  ?
+108.742  RX  <Jog|MPos:81.933,38.767,0.000|Bf:8,128|FS:0,0>
+108.903  TX  ?
+108.910  RX  <Jog|MPos:84.065,35.825,0.000|Bf:8,128|FS:0,0>
+109.072  TX  ?
+109.079  RX  <Jog|MPos:86.197,32.884,0.000|Bf:8,128|FS:0,0>
+109.240  TX  ?
+109.247  RX  <Jog|MPos:88.329,29.943,0.000|Bf:8,128|FS:0,0>
+109.409  TX  ?
+109.415  RX  <Jog|MPos:90.460,27.002,0.000|Bf:8,128|FS:0,0>
+109.577  TX  ?
+109.584  RX  <Jog|MPos:92.592,24.060,0.000|Bf:8,128|FS:0,0>
+109.746  TX  ?
+109.753  RX  <Jog|MPos:94.724,21.119,0.000|Bf:8,128|FS:0,0>
+109.914  TX  ?
+109.921  RX  <Idle|MPos:95.100,20.600,0.000|Bf:8,128|FS:0,0>
+110.082  OK  session 13: jog to X=95.1 Y=20.6: reply ok, now X=95.100 Y=20.600
+110.083  TX  ?
+110.090  RX  <Idle|MPos:95.100,20.600,0.000|Bf:8,128|FS:0,0>
+110.392  --  waiting 3 s of stillness before the port is closed (the position is stored after 2 s)
+110.392  TX  ?
+110.399  RX  <Idle|MPos:95.100,20.600,0.000|Bf:8,128|FS:0,0>
+110.702  TX  ?
+110.709  RX  <Idle|MPos:95.100,20.600,0.000|Bf:8,128|FS:0,0>
+111.012  TX  ?
+111.019  RX  <Idle|MPos:95.100,20.600,0.000|Bf:8,128|FS:0,0>
+111.321  TX  ?
+111.328  RX  <Idle|MPos:95.100,20.600,0.000|Bf:8,128|FS:0,0>
+111.631  TX  ?
+111.638  RX  <Idle|MPos:95.100,20.600,0.000|Bf:8,128|FS:0,0>
+111.940  TX  ?
+111.947  RX  <Idle|MPos:95.100,20.600,0.000|Bf:8,128|FS:0,0>
+112.250  TX  ?
+112.257  RX  <Idle|MPos:95.100,20.600,0.000|Bf:8,128|FS:0,0>
+112.559  TX  ?
+112.566  RX  <Idle|MPos:95.100,20.600,0.000|Bf:8,128|FS:0,0>
+112.869  TX  ?
+112.876  RX  <Idle|MPos:95.100,20.600,0.000|Bf:8,128|FS:0,0>
+113.179  TX  ?
+113.186  RX  <Idle|MPos:95.100,20.600,0.000|Bf:8,128|FS:0,0>
+113.488  --  final state: Idle
+113.997  --  port open: DTR reset the board, waiting for the welcome line
+115.677  RX  Grbl 1.1h ['$' for help]
+116.323  TX  ?
+116.329  RX  <Idle|MPos:95.100,20.600,0.000|Bf:8,128|FS:0,0>
+116.632  TX  ?
+116.639  RX  <Idle|MPos:95.100,20.600,0.000|Bf:8,128|FS:0,0>
+116.942  TX  ?
+116.949  RX  <Idle|MPos:95.100,20.600,0.000|Bf:8,128|FS:0,0>
+117.252  OK  session 14: back at X=95.100 Y=20.600, left at X=95.100 Y=20.600
+117.252  TX  $J=G21G90X92.5Y3.5F1200
+117.257  RX  ok
+117.318  TX  ?
+117.325  RX  <Jog|MPos:94.972,19.756,0.000|Bf:8,128|FS:0,0>
+117.486  TX  ?
+117.493  RX  <Jog|MPos:94.458,16.378,0.000|Bf:8,128|FS:0,0>
+117.655  TX  ?
+117.662  RX  <Jog|MPos:93.912,12.789,0.000|Bf:8,128|FS:0,0>
+117.823  TX  ?
+117.830  RX  <Jog|MPos:93.367,9.200,0.000|Bf:8,128|FS:0,0>
+117.992  TX  ?
+117.999  RX  <Jog|MPos:92.821,5.611,0.000|Bf:8,128|FS:0,0>
+118.160  TX  ?
+118.167  RX  <Idle|MPos:92.500,3.500,0.000|Bf:8,128|FS:0,0>
+118.329  OK  session 14: jog to X=92.5 Y=3.5: reply ok, now X=92.500 Y=3.500
+118.329  TX  ?
+118.336  RX  <Idle|MPos:92.500,3.500,0.000|Bf:8,128|FS:0,0>
+118.638  --  waiting 3 s of stillness before the port is closed (the position is stored after 2 s)
+118.639  TX  ?
+118.645  RX  <Idle|MPos:92.500,3.500,0.000|Bf:8,128|FS:0,0>
+118.948  TX  ?
+118.955  RX  <Idle|MPos:92.500,3.500,0.000|Bf:8,128|FS:0,0>
+119.257  TX  ?
+119.265  RX  <Idle|MPos:92.500,3.500,0.000|Bf:8,128|FS:0,0>
+119.567  TX  ?
+119.574  RX  <Idle|MPos:92.500,3.500,0.000|Bf:8,128|FS:0,0>
+119.877  TX  ?
+119.884  RX  <Idle|MPos:92.500,3.500,0.000|Bf:8,128|FS:0,0>
+120.186  TX  ?
+120.193  RX  <Idle|MPos:92.500,3.500,0.000|Bf:8,128|FS:0,0>
+120.496  TX  ?
+120.503  RX  <Idle|MPos:92.500,3.500,0.000|Bf:8,128|FS:0,0>
+120.805  TX  ?
+120.812  RX  <Idle|MPos:92.500,3.500,0.000|Bf:8,128|FS:0,0>
+121.115  TX  ?
+121.122  RX  <Idle|MPos:92.500,3.500,0.000|Bf:8,128|FS:0,0>
+121.425  TX  ?
+121.432  RX  <Idle|MPos:92.500,3.500,0.000|Bf:8,128|FS:0,0>
+121.734  --  final state: Idle
+122.243  --  port open: DTR reset the board, waiting for the welcome line
+123.923  RX  Grbl 1.1h ['$' for help]
+124.568  TX  ?
+124.575  RX  <Idle|MPos:92.500,3.500,0.000|Bf:8,128|FS:0,0>
+124.877  TX  ?
+124.884  RX  <Idle|MPos:92.500,3.500,0.000|Bf:8,128|FS:0,0>
+125.187  TX  ?
+125.194  RX  <Idle|MPos:92.500,3.500,0.000|Bf:8,128|FS:0,0>
+125.497  OK  session 15: back at X=92.500 Y=3.500, left at X=92.500 Y=3.500
+125.497  TX  $J=G21G90X76.6Y11.6F1200
+125.502  RX  ok
+125.563  TX  ?
+125.570  RX  <Jog|MPos:91.554,3.982,0.000|Bf:8,128|FS:0,0>
+125.731  TX  ?
+125.738  RX  <Jog|MPos:88.525,5.525,0.000|Bf:8,128|FS:0,0>
+125.900  TX  ?
+125.907  RX  <Jog|MPos:85.307,7.164,0.000|Bf:8,128|FS:0,0>
+126.068  TX  ?
+126.075  RX  <Jog|MPos:82.089,8.804,0.000|Bf:8,128|FS:0,0>
+126.237  TX  ?
+126.244  RX  <Jog|MPos:78.682,10.539,0.000|Bf:8,128|FS:0,0>
+126.406  TX  ?
+126.412  RX  <Idle|MPos:76.600,11.600,0.000|Bf:8,128|FS:0,0>
+126.574  OK  session 15: jog to X=76.6 Y=11.6: reply ok, now X=76.600 Y=11.600
+126.574  TX  ?
+126.581  RX  <Idle|MPos:76.600,11.600,0.000|Bf:8,128|FS:0,0>
+126.884  --  waiting 3 s of stillness before the port is closed (the position is stored after 2 s)
+126.884  TX  ?
+126.891  RX  <Idle|MPos:76.600,11.600,0.000|Bf:8,128|FS:0,0>
+127.193  TX  ?
+127.201  RX  <Idle|MPos:76.600,11.600,0.000|Bf:8,128|FS:0,0>
+127.503  TX  ?
+127.510  RX  <Idle|MPos:76.600,11.600,0.000|Bf:8,128|FS:0,0>
+127.813  TX  ?
+127.820  RX  <Idle|MPos:76.600,11.600,0.000|Bf:8,128|FS:0,0>
+128.123  TX  ?
+128.130  RX  <Idle|MPos:76.600,11.600,0.000|Bf:8,128|FS:0,0>
+128.433  TX  ?
+128.458  RX  <Idle|MPos:76.600,11.600,0.000|Bf:8,128|FS:0,0>
+128.741  TX  ?
+128.748  RX  <Idle|MPos:76.600,11.600,0.000|Bf:8,128|FS:0,0>
+129.051  TX  ?
+129.058  RX  <Idle|MPos:76.600,11.600,0.000|Bf:8,128|FS:0,0>
+129.360  TX  ?
+129.367  RX  <Idle|MPos:76.600,11.600,0.000|Bf:8,128|FS:0,0>
+129.670  TX  ?
+129.677  RX  <Idle|MPos:76.600,11.600,0.000|Bf:8,128|FS:0,0>
+129.979  --  final state: Idle
+130.488  --  port open: DTR reset the board, waiting for the welcome line
+132.168  RX  Grbl 1.1h ['$' for help]
+132.813  TX  ?
+132.820  RX  <Idle|MPos:76.600,11.600,0.000|Bf:8,128|FS:0,0>
+133.122  TX  ?
+133.130  RX  <Idle|MPos:76.600,11.600,0.000|Bf:8,128|FS:0,0>
+133.432  TX  ?
+133.440  RX  <Idle|MPos:76.600,11.600,0.000|Bf:8,128|FS:0,0>
+133.742  OK  session 16: back at X=76.600 Y=11.600, left at X=76.600 Y=11.600
+133.743  TX  $J=G21G90X65.4Y-9.8F1200
+133.748  RX  ok
+133.809  TX  ?
+133.816  RX  <Jog|MPos:76.104,10.653,0.000|Bf:8,128|FS:0,0>
+133.978  TX  ?
+133.985  RX  <Jog|MPos:74.519,7.623,0.000|Bf:8,128|FS:0,0>
+134.147  TX  ?
+134.154  RX  <Jog|MPos:72.834,4.404,0.000|Bf:8,128|FS:0,0>
+134.315  TX  ?
+134.322  RX  <Jog|MPos:71.149,1.184,0.000|Bf:8,128|FS:0,0>
+134.483  TX  ?
+134.491  RX  <Jog|MPos:69.464,-2.035,0.000|Bf:8,128|FS:0,0>
+134.652  TX  ?
+134.659  RX  <Jog|MPos:67.779,-5.255,0.000|Bf:8,128|FS:0,0>
+134.821  TX  ?
+134.828  RX  <Jog|MPos:66.094,-8.474,0.000|Bf:8,128|FS:0,0>
+134.990  TX  ?
+134.996  RX  <Idle|MPos:65.400,-9.800,0.000|Bf:8,128|FS:0,0>
+135.158  OK  session 16: jog to X=65.4 Y=-9.8: reply ok, now X=65.400 Y=-9.800
+135.158  TX  ?
+135.165  RX  <Idle|MPos:65.400,-9.800,0.000|Bf:8,128|FS:0,0>
+135.468  --  waiting 3 s of stillness before the port is closed (the position is stored after 2 s)
+135.468  TX  ?
+135.475  RX  <Idle|MPos:65.400,-9.800,0.000|Bf:8,128|FS:0,0>
+135.778  TX  ?
+135.785  RX  <Idle|MPos:65.400,-9.800,0.000|Bf:8,128|FS:0,0>
+136.087  TX  ?
+136.094  RX  <Idle|MPos:65.400,-9.800,0.000|Bf:8,128|FS:0,0>
+136.397  TX  ?
+136.404  RX  <Idle|MPos:65.400,-9.800,0.000|Bf:8,128|FS:0,0>
+136.706  TX  ?
+136.713  RX  <Idle|MPos:65.400,-9.800,0.000|Bf:8,128|FS:0,0>
+137.016  TX  ?
+137.023  RX  <Idle|MPos:65.400,-9.800,0.000|Bf:8,128|FS:0,0>
+137.326  TX  ?
+137.333  RX  <Idle|MPos:65.400,-9.800,0.000|Bf:8,128|FS:0,0>
+137.635  TX  ?
+137.642  RX  <Idle|MPos:65.400,-9.800,0.000|Bf:8,128|FS:0,0>
+137.945  TX  ?
+137.952  RX  <Idle|MPos:65.400,-9.800,0.000|Bf:8,128|FS:0,0>
+138.254  TX  ?
+138.261  RX  <Idle|MPos:65.400,-9.800,0.000|Bf:8,128|FS:0,0>
+138.564  --  final state: Idle
+139.073  --  port open: DTR reset the board, waiting for the welcome line
+140.753  RX  Grbl 1.1h ['$' for help]
+141.398  TX  ?
+141.405  RX  <Idle|MPos:65.400,-9.800,0.000|Bf:8,128|FS:0,0>
+141.708  TX  ?
+141.715  RX  <Idle|MPos:65.400,-9.800,0.000|Bf:8,128|FS:0,0>
+142.017  TX  ?
+142.024  RX  <Idle|MPos:65.400,-9.800,0.000|Bf:8,128|FS:0,0>
+142.327  OK  session 17: back at X=65.400 Y=-9.800, left at X=65.400 Y=-9.800
+142.327  TX  $J=G21G90X48.5Y-11.5F1200
+142.332  RX  ok
+142.393  TX  ?
+142.400  RX  <Jog|MPos:64.344,-9.906,0.000|Bf:8,128|FS:0,0>
+142.562  TX  ?
+142.569  RX  <Jog|MPos:60.964,-10.246,0.000|Bf:8,128|FS:0,0>
+142.730  TX  ?
+142.737  RX  <Jog|MPos:57.372,-10.608,0.000|Bf:8,128|FS:0,0>
+142.899  TX  ?
+142.906  RX  <Jog|MPos:53.781,-10.969,0.000|Bf:8,128|FS:0,0>
+143.067  TX  ?
+143.074  RX  <Jog|MPos:50.190,-11.330,0.000|Bf:8,128|FS:0,0>
+143.236  TX  ?
+143.243  RX  <Idle|MPos:48.500,-11.500,0.000|Bf:8,128|FS:0,0>
+143.404  OK  session 17: jog to X=48.5 Y=-11.5: reply ok, now X=48.500 Y=-11.500
+143.404  TX  ?
+143.412  RX  <Idle|MPos:48.500,-11.500,0.000|Bf:8,128|FS:0,0>
+143.714  --  waiting 3 s of stillness before the port is closed (the position is stored after 2 s)
+143.714  TX  ?
+143.721  RX  <Idle|MPos:48.500,-11.500,0.000|Bf:8,128|FS:0,0>
+144.024  TX  ?
+144.031  RX  <Idle|MPos:48.500,-11.500,0.000|Bf:8,128|FS:0,0>
+144.334  TX  ?
+144.341  RX  <Idle|MPos:48.500,-11.500,0.000|Bf:8,128|FS:0,0>
+144.643  TX  ?
+144.650  RX  <Idle|MPos:48.500,-11.500,0.000|Bf:8,128|FS:0,0>
+144.953  TX  ?
+144.960  RX  <Idle|MPos:48.500,-11.500,0.000|Bf:8,128|FS:0,0>
+145.262  TX  ?
+145.269  RX  <Idle|MPos:48.500,-11.500,0.000|Bf:8,128|FS:0,0>
+145.572  TX  ?
+145.579  RX  <Idle|MPos:48.500,-11.500,0.000|Bf:8,128|FS:0,0>
+145.881  TX  ?
+145.889  RX  <Idle|MPos:48.500,-11.500,0.000|Bf:8,128|FS:0,0>
+146.191  TX  ?
+146.198  RX  <Idle|MPos:48.500,-11.500,0.000|Bf:8,128|FS:0,0>
+146.501  TX  ?
+146.509  RX  <Idle|MPos:48.500,-11.500,0.000|Bf:8,128|FS:0,0>
+146.811  --  final state: Idle
+147.319  --  port open: DTR reset the board, waiting for the welcome line
+149.000  RX  Grbl 1.1h ['$' for help]
+149.645  TX  ?
+149.652  RX  <Idle|MPos:48.500,-11.500,0.000|Bf:8,128|FS:0,0>
+149.955  TX  ?
+149.962  RX  <Idle|MPos:48.500,-11.500,0.000|Bf:8,128|FS:0,0>
+150.264  TX  ?
+150.272  RX  <Idle|MPos:48.500,-11.500,0.000|Bf:8,128|FS:0,0>
+150.574  OK  session 18: back at X=48.500 Y=-11.500, left at X=48.500 Y=-11.500
+150.575  TX  $J=G21G90X24.9Y-27.7F1200
+150.580  RX  ok
+150.641  TX  ?
+150.648  RX  <Jog|MPos:47.619,-12.104,0.000|Bf:8,128|FS:0,0>
+150.809  TX  ?
+150.816  RX  <Jog|MPos:44.801,-14.039,0.000|Bf:8,128|FS:0,0>
+150.978  TX  ?
+150.985  RX  <Jog|MPos:41.807,-16.094,0.000|Bf:8,128|FS:0,0>
+151.146  TX  ?
+151.153  RX  <Jog|MPos:38.813,-18.149,0.000|Bf:8,128|FS:0,0>
+151.315  TX  ?
+151.322  RX  <Jog|MPos:35.819,-20.204,0.000|Bf:8,128|FS:0,0>
+151.483  TX  ?
+151.491  RX  <Jog|MPos:32.825,-22.260,0.000|Bf:8,128|FS:0,0>
+151.652  TX  ?
+151.659  RX  <Jog|MPos:29.831,-24.315,0.000|Bf:8,128|FS:0,0>
+151.820  TX  ?
+151.827  RX  <Jog|MPos:26.837,-26.370,0.000|Bf:8,128|FS:0,0>
+151.989  TX  ?
+151.996  RX  <Idle|MPos:24.900,-27.700,0.000|Bf:8,128|FS:0,0>
+152.157  OK  session 18: jog to X=24.9 Y=-27.7: reply ok, now X=24.900 Y=-27.700
+152.157  TX  ?
+152.165  RX  <Idle|MPos:24.900,-27.700,0.000|Bf:8,128|FS:0,0>
+152.467  --  waiting 3 s of stillness before the port is closed (the position is stored after 2 s)
+152.467  TX  ?
+152.474  RX  <Idle|MPos:24.900,-27.700,0.000|Bf:8,128|FS:0,0>
+152.777  TX  ?
+152.784  RX  <Idle|MPos:24.900,-27.700,0.000|Bf:8,128|FS:0,0>
+153.086  TX  ?
+153.094  RX  <Idle|MPos:24.900,-27.700,0.000|Bf:8,128|FS:0,0>
+153.397  TX  ?
+153.404  RX  <Idle|MPos:24.900,-27.700,0.000|Bf:8,128|FS:0,0>
+153.707  TX  ?
+153.714  RX  <Idle|MPos:24.900,-27.700,0.000|Bf:8,128|FS:0,0>
+154.016  TX  ?
+154.042  RX  <Idle|MPos:24.900,-27.700,0.000|Bf:8,128|FS:0,0>
+154.324  TX  ?
+154.331  RX  <Idle|MPos:24.900,-27.700,0.000|Bf:8,128|FS:0,0>
+154.634  TX  ?
+154.641  RX  <Idle|MPos:24.900,-27.700,0.000|Bf:8,128|FS:0,0>
+154.943  TX  ?
+154.950  RX  <Idle|MPos:24.900,-27.700,0.000|Bf:8,128|FS:0,0>
+155.253  TX  ?
+155.260  RX  <Idle|MPos:24.900,-27.700,0.000|Bf:8,128|FS:0,0>
+155.562  --  final state: Idle
+156.070  --  port open: DTR reset the board, waiting for the welcome line
+157.751  RX  Grbl 1.1h ['$' for help]
+158.396  TX  ?
+158.403  RX  <Idle|MPos:24.900,-27.700,0.000|Bf:8,128|FS:0,0>
+158.706  TX  ?
+158.713  RX  <Idle|MPos:24.900,-27.700,0.000|Bf:8,128|FS:0,0>
+159.016  TX  ?
+159.023  RX  <Idle|MPos:24.900,-27.700,0.000|Bf:8,128|FS:0,0>
+159.325  OK  session 19: back at X=24.900 Y=-27.700, left at X=24.900 Y=-27.700
+159.325  TX  $J=G21G90X26.0Y-44.9F1200
+159.331  RX  ok
+159.392  TX  ?
+159.399  RX  <Jog|MPos:24.954,-28.549,0.000|Bf:8,128|FS:0,0>
+159.560  TX  ?
+159.567  RX  <Jog|MPos:25.172,-31.947,0.000|Bf:8,128|FS:0,0>
+159.728  TX  ?
+159.735  RX  <Jog|MPos:25.402,-35.557,0.000|Bf:8,128|FS:0,0>
+159.897  TX  ?
+159.904  RX  <Jog|MPos:25.633,-39.167,0.000|Bf:8,128|FS:0,0>
+160.066  TX  ?
+160.073  RX  <Jog|MPos:25.864,-42.777,0.000|Bf:8,128|FS:0,0>
+160.234  TX  ?
+160.241  RX  <Idle|MPos:26.000,-44.900,0.000|Bf:8,128|FS:0,0>
+160.403  OK  session 19: jog to X=26.0 Y=-44.9: reply ok, now X=26.000 Y=-44.900
+160.403  TX  ?
+160.410  RX  <Idle|MPos:26.000,-44.900,0.000|Bf:8,128|FS:0,0>
+160.712  --  waiting 3 s of stillness before the port is closed (the position is stored after 2 s)
+160.712  TX  ?
+160.720  RX  <Idle|MPos:26.000,-44.900,0.000|Bf:8,128|FS:0,0>
+161.022  TX  ?
+161.030  RX  <Idle|MPos:26.000,-44.900,0.000|Bf:8,128|FS:0,0>
+161.332  TX  ?
+161.339  RX  <Idle|MPos:26.000,-44.900,0.000|Bf:8,128|FS:0,0>
+161.641  TX  ?
+161.648  RX  <Idle|MPos:26.000,-44.900,0.000|Bf:8,128|FS:0,0>
+161.951  TX  ?
+161.958  RX  <Idle|MPos:26.000,-44.900,0.000|Bf:8,128|FS:0,0>
+162.261  TX  ?
+162.268  RX  <Idle|MPos:26.000,-44.900,0.000|Bf:8,128|FS:0,0>
+162.570  TX  ?
+162.578  RX  <Idle|MPos:26.000,-44.900,0.000|Bf:8,128|FS:0,0>
+162.880  TX  ?
+162.887  RX  <Idle|MPos:26.000,-44.900,0.000|Bf:8,128|FS:0,0>
+163.190  TX  ?
+163.197  RX  <Idle|MPos:26.000,-44.900,0.000|Bf:8,128|FS:0,0>
+163.500  TX  ?
+163.507  RX  <Idle|MPos:26.000,-44.900,0.000|Bf:8,128|FS:0,0>
+163.809  --  final state: Idle
+164.317  --  port open: DTR reset the board, waiting for the welcome line
+165.998  RX  Grbl 1.1h ['$' for help]
+166.643  TX  ?
+166.651  RX  <Idle|MPos:26.000,-44.900,0.000|Bf:8,128|FS:0,0>
+166.953  TX  ?
+166.960  RX  <Idle|MPos:26.000,-44.900,0.000|Bf:8,128|FS:0,0>
+167.263  TX  ?
+167.270  RX  <Idle|MPos:26.000,-44.900,0.000|Bf:8,128|FS:0,0>
+167.573  OK  session 20: back at X=26.000 Y=-44.900, left at X=26.000 Y=-44.900
+167.573  TX  $J=G21G90X44.3Y-45.9F1200
+167.578  RX  ok
+167.639  TX  ?
+167.646  RX  <Jog|MPos:27.064,-44.958,0.000|Bf:8,128|FS:0,0>
+167.808  TX  ?
+167.815  RX  <Jog|MPos:30.469,-45.144,0.000|Bf:8,128|FS:0,0>
+167.976  TX  ?
+167.983  RX  <Jog|MPos:34.086,-45.342,0.000|Bf:8,128|FS:0,0>
+168.145  TX  ?
+168.152  RX  <Jog|MPos:37.703,-45.540,0.000|Bf:8,128|FS:0,0>
+168.313  TX  ?
+168.321  RX  <Jog|MPos:41.321,-45.737,0.000|Bf:8,128|FS:0,0>
+168.482  TX  ?
+168.490  RX  <Idle|MPos:44.300,-45.900,0.000|Bf:8,128|FS:0,0>
+168.651  OK  session 20: jog to X=44.3 Y=-45.9: reply ok, now X=44.300 Y=-45.900
+168.651  TX  ?
+168.658  RX  <Idle|MPos:44.300,-45.900,0.000|Bf:8,128|FS:0,0>
+168.961  --  waiting 3 s of stillness before the port is closed (the position is stored after 2 s)
+168.961  TX  ?
+168.968  RX  <Idle|MPos:44.300,-45.900,0.000|Bf:8,128|FS:0,0>
+169.271  TX  ?
+169.278  RX  <Idle|MPos:44.300,-45.900,0.000|Bf:8,128|FS:0,0>
+169.581  TX  ?
+169.588  RX  <Idle|MPos:44.300,-45.900,0.000|Bf:8,128|FS:0,0>
+169.890  TX  ?
+169.898  RX  <Idle|MPos:44.300,-45.900,0.000|Bf:8,128|FS:0,0>
+170.200  TX  ?
+170.207  RX  <Idle|MPos:44.300,-45.900,0.000|Bf:8,128|FS:0,0>
+170.510  TX  ?
+170.517  RX  <Idle|MPos:44.300,-45.900,0.000|Bf:8,128|FS:0,0>
+170.820  TX  ?
+170.827  RX  <Idle|MPos:44.300,-45.900,0.000|Bf:8,128|FS:0,0>
+171.130  TX  ?
+171.137  RX  <Idle|MPos:44.300,-45.900,0.000|Bf:8,128|FS:0,0>
+171.439  TX  ?
+171.447  RX  <Idle|MPos:44.300,-45.900,0.000|Bf:8,128|FS:0,0>
+171.749  TX  ?
+171.756  RX  <Idle|MPos:44.300,-45.900,0.000|Bf:8,128|FS:0,0>
+172.059  --  final state: Idle
+172.567  --  port open: DTR reset the board, waiting for the welcome line
+174.248  RX  Grbl 1.1h ['$' for help]
+174.893  TX  ?
+174.900  RX  <Idle|MPos:44.300,-45.900,0.000|Bf:8,128|FS:0,0>
+175.203  TX  ?
+175.210  RX  <Idle|MPos:44.300,-45.900,0.000|Bf:8,128|FS:0,0>
+175.512  TX  ?
+175.520  RX  <Idle|MPos:44.300,-45.900,0.000|Bf:8,128|FS:0,0>
+175.822  OK  session 21: back at X=44.300 Y=-45.900, left at X=44.300 Y=-45.900
+175.822  TX  $J=G21G90X66.3Y-69.5F1200
+175.828  RX  ok
+175.888  TX  ?
+175.896  RX  <Jog|MPos:45.028,-46.681,0.000|Bf:8,128|FS:0,0>
+176.057  TX  ?
+176.064  RX  <Jog|MPos:47.360,-49.182,0.000|Bf:8,128|FS:0,0>
+176.226  TX  ?
+176.233  RX  <Jog|MPos:49.836,-51.839,0.000|Bf:8,128|FS:0,0>
+176.394  TX  ?
+176.401  RX  <Jog|MPos:52.313,-54.496,0.000|Bf:8,128|FS:0,0>
+176.563  TX  ?
+176.571  RX  <Jog|MPos:54.790,-57.153,0.000|Bf:8,128|FS:0,0>
+176.732  TX  ?
+176.739  RX  <Jog|MPos:57.267,-59.810,0.000|Bf:8,128|FS:0,0>
+176.901  TX  ?
+176.908  RX  <Jog|MPos:59.744,-62.467,0.000|Bf:8,128|FS:0,0>
+177.069  TX  ?
+177.076  RX  <Jog|MPos:62.221,-65.124,0.000|Bf:8,128|FS:0,0>
+177.238  TX  ?
+177.245  RX  <Jog|MPos:64.697,-67.781,0.000|Bf:8,128|FS:0,0>
+177.406  TX  ?
+177.414  RX  <Idle|MPos:66.300,-69.500,0.000|Bf:8,128|FS:0,0>
+177.575  OK  session 21: jog to X=66.3 Y=-69.5: reply ok, now X=66.300 Y=-69.500
+177.575  TX  ?
+177.582  RX  <Idle|MPos:66.300,-69.500,0.000|Bf:8,128|FS:0,0>
+177.885  --  waiting 3 s of stillness before the port is closed (the position is stored after 2 s)
+177.885  TX  ?
+177.892  RX  <Idle|MPos:66.300,-69.500,0.000|Bf:8,128|FS:0,0>
+178.195  TX  ?
+178.202  RX  <Idle|MPos:66.300,-69.500,0.000|Bf:8,128|FS:0,0>
+178.504  TX  ?
+178.512  RX  <Idle|MPos:66.300,-69.500,0.000|Bf:8,128|FS:0,0>
+178.814  TX  ?
+178.821  RX  <Idle|MPos:66.300,-69.500,0.000|Bf:8,128|FS:0,0>
+179.124  TX  ?
+179.131  RX  <Idle|MPos:66.300,-69.500,0.000|Bf:8,128|FS:0,0>
+179.434  TX  ?
+179.454  RX  <Idle|MPos:66.300,-69.500,0.000|Bf:8,128|FS:0,0>
+179.736  TX  ?
+179.743  RX  <Idle|MPos:66.300,-69.500,0.000|Bf:8,128|FS:0,0>
+180.046  TX  ?
+180.054  RX  <Idle|MPos:66.300,-69.500,0.000|Bf:8,128|FS:0,0>
+180.356  TX  ?
+180.363  RX  <Idle|MPos:66.300,-69.500,0.000|Bf:8,128|FS:0,0>
+180.666  TX  ?
+180.673  RX  <Idle|MPos:66.300,-69.500,0.000|Bf:8,128|FS:0,0>
+180.976  --  final state: Idle
+181.484  --  port open: DTR reset the board, waiting for the welcome line
+183.164  RX  Grbl 1.1h ['$' for help]
+183.810  TX  ?
+183.817  RX  <Idle|MPos:66.300,-69.500,0.000|Bf:8,128|FS:0,0>
+184.120  TX  ?
+184.127  RX  <Idle|MPos:66.300,-69.500,0.000|Bf:8,128|FS:0,0>
+184.429  TX  ?
+184.436  RX  <Idle|MPos:66.300,-69.500,0.000|Bf:8,128|FS:0,0>
+184.739  OK  session 22: back at X=66.300 Y=-69.500, left at X=66.300 Y=-69.500
+184.739  TX  $J=G21G90X81.0Y-79.7F1200
+184.744  RX  ok
+184.805  TX  ?
+184.812  RX  <Jog|MPos:67.350,-70.229,0.000|Bf:8,128|FS:0,0>
+184.974  TX  ?
+184.981  RX  <Jog|MPos:70.150,-72.171,0.000|Bf:8,128|FS:0,0>
+185.143  TX  ?
+185.150  RX  <Jog|MPos:73.125,-74.236,0.000|Bf:8,128|FS:0,0>
+185.311  TX  ?
+185.318  RX  <Jog|MPos:76.100,-76.300,0.000|Bf:8,128|FS:0,0>
+185.480  TX  ?
+185.487  RX  <Jog|MPos:79.075,-78.364,0.000|Bf:8,128|FS:0,0>
+185.649  TX  ?
+185.656  RX  <Idle|MPos:81.000,-79.700,0.000|Bf:8,128|FS:0,0>
+185.817  OK  session 22: jog to X=81.0 Y=-79.7: reply ok, now X=81.000 Y=-79.700
+185.818  TX  ?
+185.825  RX  <Idle|MPos:81.000,-79.700,0.000|Bf:8,128|FS:0,0>
+186.127  --  waiting 3 s of stillness before the port is closed (the position is stored after 2 s)
+186.127  TX  ?
+186.134  RX  <Idle|MPos:81.000,-79.700,0.000|Bf:8,128|FS:0,0>
+186.437  TX  ?
+186.444  RX  <Idle|MPos:81.000,-79.700,0.000|Bf:8,128|FS:0,0>
+186.747  TX  ?
+186.754  RX  <Idle|MPos:81.000,-79.700,0.000|Bf:8,128|FS:0,0>
+187.056  TX  ?
+187.064  RX  <Idle|MPos:81.000,-79.700,0.000|Bf:8,128|FS:0,0>
+187.366  TX  ?
+187.373  RX  <Idle|MPos:81.000,-79.700,0.000|Bf:8,128|FS:0,0>
+187.676  TX  ?
+187.710  RX  <Idle|MPos:81.000,-79.700,0.000|Bf:8,128|FS:0,0>
+187.992  TX  ?
+187.999  RX  <Idle|MPos:81.000,-79.700,0.000|Bf:8,128|FS:0,0>
+188.302  TX  ?
+188.310  RX  <Idle|MPos:81.000,-79.700,0.000|Bf:8,128|FS:0,0>
+188.612  TX  ?
+188.620  RX  <Idle|MPos:81.000,-79.700,0.000|Bf:8,128|FS:0,0>
+188.922  TX  ?
+188.929  RX  <Idle|MPos:81.000,-79.700,0.000|Bf:8,128|FS:0,0>
+189.232  --  final state: Idle
+189.740  --  port open: DTR reset the board, waiting for the welcome line
+191.421  RX  Grbl 1.1h ['$' for help]
+192.066  TX  ?
+192.073  RX  <Idle|MPos:81.000,-79.700,0.000|Bf:8,128|FS:0,0>
+192.375  TX  ?
+192.382  RX  <Idle|MPos:81.000,-79.700,0.000|Bf:8,128|FS:0,0>
+192.685  TX  ?
+192.692  RX  <Idle|MPos:81.000,-79.700,0.000|Bf:8,128|FS:0,0>
+192.995  OK  session 23: back at X=81.000 Y=-79.700, left at X=81.000 Y=-79.700
+192.995  TX  $J=G21G90X87.6Y-54.6F1200
+193.000  RX  ok
+193.061  TX  ?
+193.068  RX  <Jog|MPos:81.216,-78.877,0.000|Bf:8,128|FS:0,0>
+193.229  TX  ?
+193.237  RX  <Jog|MPos:82.136,-75.380,0.000|Bf:8,128|FS:0,0>
+193.398  TX  ?
+193.406  RX  <Jog|MPos:83.056,-71.882,0.000|Bf:8,128|FS:0,0>
+193.567  TX  ?
+193.575  RX  <Jog|MPos:83.975,-68.384,0.000|Bf:8,128|FS:0,0>
+193.736  TX  ?
+193.743  RX  <Jog|MPos:84.895,-64.887,0.000|Bf:8,128|FS:0,0>
+193.905  TX  ?
+193.912  RX  <Jog|MPos:85.815,-61.389,0.000|Bf:8,128|FS:0,0>
+194.073  TX  ?
+194.080  RX  <Jog|MPos:86.734,-57.892,0.000|Bf:8,128|FS:0,0>
+194.242  TX  ?
+194.249  RX  <Idle|MPos:87.600,-54.600,0.000|Bf:8,128|FS:0,0>
+194.410  OK  session 23: jog to X=87.6 Y=-54.6: reply ok, now X=87.600 Y=-54.600
+194.411  TX  ?
+194.417  RX  <Idle|MPos:87.600,-54.600,0.000|Bf:8,128|FS:0,0>
+194.719  --  waiting 3 s of stillness before the port is closed (the position is stored after 2 s)
+194.719  TX  ?
+194.727  RX  <Idle|MPos:87.600,-54.600,0.000|Bf:8,128|FS:0,0>
+195.029  TX  ?
+195.036  RX  <Idle|MPos:87.600,-54.600,0.000|Bf:8,128|FS:0,0>
+195.339  TX  ?
+195.346  RX  <Idle|MPos:87.600,-54.600,0.000|Bf:8,128|FS:0,0>
+195.649  TX  ?
+195.656  RX  <Idle|MPos:87.600,-54.600,0.000|Bf:8,128|FS:0,0>
+195.958  TX  ?
+195.966  RX  <Idle|MPos:87.600,-54.600,0.000|Bf:8,128|FS:0,0>
+196.268  TX  ?
+196.275  RX  <Idle|MPos:87.600,-54.600,0.000|Bf:8,128|FS:0,0>
+196.578  TX  ?
+196.585  RX  <Idle|MPos:87.600,-54.600,0.000|Bf:8,128|FS:0,0>
+196.888  TX  ?
+196.895  RX  <Idle|MPos:87.600,-54.600,0.000|Bf:8,128|FS:0,0>
+197.198  TX  ?
+197.205  RX  <Idle|MPos:87.600,-54.600,0.000|Bf:8,128|FS:0,0>
+197.507  TX  ?
+197.515  RX  <Idle|MPos:87.600,-54.600,0.000|Bf:8,128|FS:0,0>
+197.817  --  final state: Idle
+198.325  --  port open: DTR reset the board, waiting for the welcome line
+200.006  RX  Grbl 1.1h ['$' for help]
+200.651  TX  ?
+200.658  RX  <Idle|MPos:87.600,-54.600,0.000|Bf:8,128|FS:0,0>
+200.961  TX  ?
+200.968  RX  <Idle|MPos:87.600,-54.600,0.000|Bf:8,128|FS:0,0>
+201.270  TX  ?
+201.278  RX  <Idle|MPos:87.600,-54.600,0.000|Bf:8,128|FS:0,0>
+201.580  OK  session 24: back at X=87.600 Y=-54.600, left at X=87.600 Y=-54.600
+201.580  TX  $J=G21G90X74.1Y-31.6F1200
+201.586  RX  ok
+201.646  TX  ?
+201.654  RX  <Jog|MPos:87.060,-53.680,0.000|Bf:8,128|FS:0,0>
+201.815  TX  ?
+201.822  RX  <Jog|MPos:85.332,-50.736,0.000|Bf:8,128|FS:0,0>
+201.983  TX  ?
+201.991  RX  <Jog|MPos:83.496,-47.608,0.000|Bf:8,128|FS:0,0>
+202.152  TX  ?
+202.159  RX  <Jog|MPos:81.660,-44.480,0.000|Bf:8,128|FS:0,0>
+202.321  TX  ?
+202.328  RX  <Jog|MPos:79.824,-41.352,0.000|Bf:8,128|FS:0,0>
+202.489  TX  ?
+202.496  RX  <Jog|MPos:78.096,-38.408,0.000|Bf:8,128|FS:0,0>
+202.658  TX  ?
+202.665  RX  <Jog|MPos:76.152,-35.096,0.000|Bf:8,128|FS:0,0>
+202.826  TX  ?
+202.835  RX  <Jog|MPos:74.316,-31.968,0.000|Bf:8,128|FS:0,0>
+202.996  TX  ?
+203.003  RX  <Idle|MPos:74.100,-31.600,0.000|Bf:8,128|FS:0,0>
+203.165  OK  session 24: jog to X=74.1 Y=-31.6: reply ok, now X=74.100 Y=-31.600
+203.165  TX  ?
+203.172  RX  <Idle|MPos:74.100,-31.600,0.000|Bf:8,128|FS:0,0>
+203.475  --  waiting 3 s of stillness before the port is closed (the position is stored after 2 s)
+203.475  TX  ?
+203.482  RX  <Idle|MPos:74.100,-31.600,0.000|Bf:8,128|FS:0,0>
+203.784  TX  ?
+203.791  RX  <Idle|MPos:74.100,-31.600,0.000|Bf:8,128|FS:0,0>
+204.094  TX  ?
+204.101  RX  <Idle|MPos:74.100,-31.600,0.000|Bf:8,128|FS:0,0>
+204.404  TX  ?
+204.411  RX  <Idle|MPos:74.100,-31.600,0.000|Bf:8,128|FS:0,0>
+204.714  TX  ?
+204.721  RX  <Idle|MPos:74.100,-31.600,0.000|Bf:8,128|FS:0,0>
+205.023  TX  ?
+205.030  RX  <Idle|MPos:74.100,-31.600,0.000|Bf:8,128|FS:0,0>
+205.333  TX  ?
+205.340  RX  <Idle|MPos:74.100,-31.600,0.000|Bf:8,128|FS:0,0>
+205.643  TX  ?
+205.650  RX  <Idle|MPos:74.100,-31.600,0.000|Bf:8,128|FS:0,0>
+205.952  TX  ?
+205.960  RX  <Idle|MPos:74.100,-31.600,0.000|Bf:8,128|FS:0,0>
+206.262  TX  ?
+206.269  RX  <Idle|MPos:74.100,-31.600,0.000|Bf:8,128|FS:0,0>
+206.572  --  final state: Idle
+207.081  --  port open: DTR reset the board, waiting for the welcome line
+208.761  RX  Grbl 1.1h ['$' for help]
+209.406  TX  ?
+209.413  RX  <Idle|MPos:74.100,-31.600,0.000|Bf:8,128|FS:0,0>
+209.716  TX  ?
+209.723  RX  <Idle|MPos:74.100,-31.600,0.000|Bf:8,128|FS:0,0>
+210.026  TX  ?
+210.033  RX  <Idle|MPos:74.100,-31.600,0.000|Bf:8,128|FS:0,0>
+210.336  OK  session 25: back at X=74.100 Y=-31.600, left at X=74.100 Y=-31.600
+210.336  TX  $J=G21G90X98.2Y-20.5F1200
+210.341  RX  ok
+210.402  TX  ?
+210.409  RX  <Jog|MPos:75.072,-31.152,0.000|Bf:8,128|FS:0,0>
+210.571  TX  ?
+210.578  RX  <Jog|MPos:78.181,-29.720,0.000|Bf:8,128|FS:0,0>
+210.739  TX  ?
+210.746  RX  <Jog|MPos:81.485,-28.198,0.000|Bf:8,128|FS:0,0>
+210.908  TX  ?
+210.915  RX  <Jog|MPos:84.790,-26.677,0.000|Bf:8,128|FS:0,0>
+211.076  TX  ?
+211.084  RX  <Jog|MPos:88.094,-25.155,0.000|Bf:8,128|FS:0,0>
+211.246  TX  ?
+211.253  RX  <Jog|MPos:91.398,-23.633,0.000|Bf:8,128|FS:0,0>
+211.414  TX  ?
+211.421  RX  <Jog|MPos:94.702,-22.111,0.000|Bf:8,128|FS:0,0>
+211.582  TX  ?
+211.590  RX  <Jog|MPos:97.811,-20.679,0.000|Bf:8,128|FS:0,0>
+211.751  TX  ?
+211.759  RX  <Idle|MPos:98.200,-20.500,0.000|Bf:8,128|FS:0,0>
+211.920  OK  session 25: jog to X=98.2 Y=-20.5: reply ok, now X=98.200 Y=-20.500
+211.920  TX  ?
+211.927  RX  <Idle|MPos:98.200,-20.500,0.000|Bf:8,128|FS:0,0>
+212.229  --  waiting 3 s of stillness before the port is closed (the position is stored after 2 s)
+212.230  TX  ?
+212.237  RX  <Idle|MPos:98.200,-20.500,0.000|Bf:8,128|FS:0,0>
+212.539  TX  ?
+212.546  RX  <Idle|MPos:98.200,-20.500,0.000|Bf:8,128|FS:0,0>
+212.849  TX  ?
+212.856  RX  <Idle|MPos:98.200,-20.500,0.000|Bf:8,128|FS:0,0>
+213.159  TX  ?
+213.166  RX  <Idle|MPos:98.200,-20.500,0.000|Bf:8,128|FS:0,0>
+213.469  TX  ?
+213.476  RX  <Idle|MPos:98.200,-20.500,0.000|Bf:8,128|FS:0,0>
+213.778  TX  ?
+213.786  RX  <Idle|MPos:98.200,-20.500,0.000|Bf:8,128|FS:0,0>
+214.088  TX  ?
+214.095  RX  <Idle|MPos:98.200,-20.500,0.000|Bf:8,128|FS:0,0>
+214.398  TX  ?
+214.405  RX  <Idle|MPos:98.200,-20.500,0.000|Bf:8,128|FS:0,0>
+214.707  TX  ?
+214.715  RX  <Idle|MPos:98.200,-20.500,0.000|Bf:8,128|FS:0,0>
+215.017  TX  ?
+215.024  RX  <Idle|MPos:98.200,-20.500,0.000|Bf:8,128|FS:0,0>
+215.327  --  final state: Idle
+215.835  --  port open: DTR reset the board, waiting for the welcome line
+217.516  RX  Grbl 1.1h ['$' for help]
+218.161  TX  ?
+218.168  RX  <Idle|MPos:98.200,-20.500,0.000|Bf:8,128|FS:0,0>
+218.471  TX  ?
+218.478  RX  <Idle|MPos:98.200,-20.500,0.000|Bf:8,128|FS:0,0>
+218.780  TX  ?
+218.788  RX  <Idle|MPos:98.200,-20.500,0.000|Bf:8,128|FS:0,0>
+219.090  OK  session 26: back at X=98.200 Y=-20.500, left at X=98.200 Y=-20.500
+219.090  TX  $J=G21G90X37.8Y-86.3F1200
+219.096  RX  ok
+219.156  TX  ?
+219.164  RX  <Jog|MPos:97.333,-21.444,0.000|Bf:8,128|FS:0,0>
+219.326  TX  ?
+219.333  RX  <Jog|MPos:95.021,-23.963,0.000|Bf:8,128|FS:0,0>
+219.494  TX  ?
+219.502  RX  <Jog|MPos:92.565,-26.639,0.000|Bf:8,128|FS:0,0>
+219.663  TX  ?
+219.672  RX  <Jog|MPos:90.108,-29.315,0.000|Bf:8,128|FS:0,0>
+219.833  TX  ?
+219.840  RX  <Jog|MPos:87.652,-31.991,0.000|Bf:8,128|FS:0,0>
+220.001  TX  ?
+220.009  RX  <Jog|MPos:85.340,-34.510,0.000|Bf:8,128|FS:0,0>
+220.170  TX  ?
+220.176  RX  <Jog|MPos:82.883,-37.186,0.000|Bf:8,128|FS:0,0>
+220.337  TX  ?
+220.344  RX  <Jog|MPos:80.427,-39.862,0.000|Bf:8,128|FS:0,0>
+220.506  TX  ?
+220.514  RX  <Jog|MPos:77.970,-42.538,0.000|Bf:8,128|FS:0,0>
+220.675  TX  ?
+220.683  RX  <Jog|MPos:75.514,-45.214,0.000|Bf:8,128|FS:0,0>
+220.844  TX  ?
+220.852  RX  <Jog|MPos:73.057,-47.890,0.000|Bf:8,128|FS:0,0>
+221.013  TX  ?
+221.020  RX  <Jog|MPos:70.601,-50.567,0.000|Bf:8,128|FS:0,0>
+221.182  TX  ?
+221.190  RX  <Jog|MPos:68.144,-53.243,0.000|Bf:8,128|FS:0,0>
+221.351  TX  ?
+221.358  RX  <Jog|MPos:65.688,-55.919,0.000|Bf:8,128|FS:0,0>
+221.520  TX  ?
+221.527  RX  <Jog|MPos:63.232,-58.595,0.000|Bf:8,128|FS:0,0>
+221.689  TX  ?
+221.696  RX  <Jog|MPos:60.775,-61.271,0.000|Bf:8,128|FS:0,0>
+221.858  TX  ?
+221.865  RX  <Jog|MPos:58.319,-63.947,0.000|Bf:8,128|FS:0,0>
+222.026  TX  ?
+222.033  RX  <Jog|MPos:55.862,-66.623,0.000|Bf:8,128|FS:0,0>
+222.195  TX  ?
+222.202  RX  <Jog|MPos:53.406,-69.299,0.000|Bf:8,128|FS:0,0>
+222.363  TX  ?
+222.371  RX  <Jog|MPos:50.949,-71.975,0.000|Bf:8,128|FS:0,0>
+222.532  TX  ?
+222.539  RX  <Jog|MPos:48.493,-74.651,0.000|Bf:8,128|FS:0,0>
+222.701  TX  ?
+222.708  RX  <Jog|MPos:46.036,-77.327,0.000|Bf:8,128|FS:0,0>
+222.869  TX  ?
+222.876  RX  <Jog|MPos:43.580,-80.003,0.000|Bf:8,128|FS:0,0>
+223.038  TX  ?
+223.045  RX  <Jog|MPos:41.123,-82.679,0.000|Bf:8,128|FS:0,0>
+223.207  TX  ?
+223.214  RX  <Jog|MPos:38.667,-85.356,0.000|Bf:8,128|FS:0,0>
+223.375  TX  ?
+223.382  RX  <Idle|MPos:37.800,-86.300,0.000|Bf:8,128|FS:0,0>
+223.544  OK  session 26: jog to X=37.8 Y=-86.3: reply ok, now X=37.800 Y=-86.300
+223.544  TX  ?
+223.551  RX  <Idle|MPos:37.800,-86.300,0.000|Bf:8,128|FS:0,0>
+223.854  --  waiting 3 s of stillness before the port is closed (the position is stored after 2 s)
+223.854  TX  ?
+223.862  RX  <Idle|MPos:37.800,-86.300,0.000|Bf:8,128|FS:0,0>
+224.164  TX  ?
+224.172  RX  <Idle|MPos:37.800,-86.300,0.000|Bf:8,128|FS:0,0>
+224.474  TX  ?
+224.481  RX  <Idle|MPos:37.800,-86.300,0.000|Bf:8,128|FS:0,0>
+224.784  TX  ?
+224.791  RX  <Idle|MPos:37.800,-86.300,0.000|Bf:8,128|FS:0,0>
+225.094  TX  ?
+225.101  RX  <Idle|MPos:37.800,-86.300,0.000|Bf:8,128|FS:0,0>
+225.403  TX  ?
+225.411  RX  <Idle|MPos:37.800,-86.300,0.000|Bf:8,128|FS:0,0>
+225.713  TX  ?
+225.720  RX  <Idle|MPos:37.800,-86.300,0.000|Bf:8,128|FS:0,0>
+226.023  TX  ?
+226.030  RX  <Idle|MPos:37.800,-86.300,0.000|Bf:8,128|FS:0,0>
+226.333  TX  ?
+226.340  RX  <Idle|MPos:37.800,-86.300,0.000|Bf:8,128|FS:0,0>
+226.642  TX  ?
+226.650  RX  <Idle|MPos:37.800,-86.300,0.000|Bf:8,128|FS:0,0>
+226.952  --  final state: Idle
+227.461  --  port open: DTR reset the board, waiting for the welcome line
+229.141  RX  Grbl 1.1h ['$' for help]
+229.786  TX  ?
+229.794  RX  <Idle|MPos:37.800,-86.300,0.000|Bf:8,128|FS:0,0>
+230.096  TX  ?
+230.103  RX  <Idle|MPos:37.800,-86.300,0.000|Bf:8,128|FS:0,0>
+230.406  TX  ?
+230.413  RX  <Idle|MPos:37.800,-86.300,0.000|Bf:8,128|FS:0,0>
+230.716  OK  session 27: back at X=37.800 Y=-86.300, left at X=37.800 Y=-86.300
+230.716  TX  $J=G21G90X22.0Y-96.8F1200
+230.721  RX  ok
+230.782  TX  ?
+230.790  RX  <Jog|MPos:36.912,-86.890,0.000|Bf:8,128|FS:0,0>
+230.951  TX  ?
+230.958  RX  <Jog|MPos:33.894,-88.896,0.000|Bf:8,128|FS:0,0>
+231.120  TX  ?
+231.127  RX  <Jog|MPos:30.876,-90.901,0.000|Bf:8,128|FS:0,0>
+231.288  TX  ?
+231.295  RX  <Jog|MPos:27.858,-92.907,0.000|Bf:8,128|FS:0,0>
+231.457  TX  ?
+231.464  RX  <Jog|MPos:24.840,-94.912,0.000|Bf:8,128|FS:0,0>
+231.625  TX  ?
+231.632  RX  <Idle|MPos:22.000,-96.800,0.000|Bf:8,128|FS:0,0>
+231.794  OK  session 27: jog to X=22.0 Y=-96.8: reply ok, now X=22.000 Y=-96.800
+231.794  TX  ?
+231.801  RX  <Idle|MPos:22.000,-96.800,0.000|Bf:8,128|FS:0,0>
+232.103  --  waiting 3 s of stillness before the port is closed (the position is stored after 2 s)
+232.104  TX  ?
+232.111  RX  <Idle|MPos:22.000,-96.800,0.000|Bf:8,128|FS:0,0>
+232.413  TX  ?
+232.421  RX  <Idle|MPos:22.000,-96.800,0.000|Bf:8,128|FS:0,0>
+232.723  TX  ?
+232.730  RX  <Idle|MPos:22.000,-96.800,0.000|Bf:8,128|FS:0,0>
+233.033  TX  ?
+233.040  RX  <Idle|MPos:22.000,-96.800,0.000|Bf:8,128|FS:0,0>
+233.343  TX  ?
+233.350  RX  <Idle|MPos:22.000,-96.800,0.000|Bf:8,128|FS:0,0>
+233.652  TX  ?
+233.659  RX  <Idle|MPos:22.000,-96.800,0.000|Bf:8,128|FS:0,0>
+233.961  TX  ?
+233.969  RX  <Idle|MPos:22.000,-96.800,0.000|Bf:8,128|FS:0,0>
+234.271  TX  ?
+234.278  RX  <Idle|MPos:22.000,-96.800,0.000|Bf:8,128|FS:0,0>
+234.580  TX  ?
+234.588  RX  <Idle|MPos:22.000,-96.800,0.000|Bf:8,128|FS:0,0>
+234.890  TX  ?
+234.897  RX  <Idle|MPos:22.000,-96.800,0.000|Bf:8,128|FS:0,0>
+235.200  --  final state: Idle
+235.708  --  port open: DTR reset the board, waiting for the welcome line
+237.389  RX  Grbl 1.1h ['$' for help]
+238.034  TX  ?
+238.041  RX  <Idle|MPos:22.000,-96.800,0.000|Bf:8,128|FS:0,0>
+238.344  TX  ?
+238.351  RX  <Idle|MPos:22.000,-96.800,0.000|Bf:8,128|FS:0,0>
+238.654  TX  ?
+238.661  RX  <Idle|MPos:22.000,-96.800,0.000|Bf:8,128|FS:0,0>
+238.963  OK  session 28: back at X=22.000 Y=-96.800, left at X=22.000 Y=-96.800
+238.963  TX  $J=G21G90X-5.6Y-94.7F1200
+238.969  RX  ok
+239.029  TX  ?
+239.037  RX  <Jog|MPos:20.938,-96.719,0.000|Bf:8,128|FS:0,0>
+239.198  TX  ?
+239.206  RX  <Jog|MPos:17.542,-96.461,0.000|Bf:8,128|FS:0,0>
+239.367  TX  ?
+239.374  RX  <Jog|MPos:13.932,-96.186,0.000|Bf:8,128|FS:0,0>
+239.536  TX  ?
+239.543  RX  <Jog|MPos:10.323,-95.912,0.000|Bf:8,128|FS:0,0>
+239.705  TX  ?
+239.713  RX  <Jog|MPos:6.714,-95.637,0.000|Bf:8,128|FS:0,0>
+239.874  TX  ?
+239.881  RX  <Jog|MPos:3.105,-95.362,0.000|Bf:8,128|FS:0,0>
+240.042  TX  ?
+240.050  RX  <Jog|MPos:-0.505,-95.088,0.000|Bf:8,128|FS:0,0>
+240.211  TX  ?
+240.219  RX  <Jog|MPos:-4.114,-94.813,0.000|Bf:8,128|FS:0,0>
+240.380  TX  ?
+240.387  RX  <Idle|MPos:-5.600,-94.700,0.000|Bf:8,128|FS:0,0>
+240.549  OK  session 28: jog to X=-5.6 Y=-94.7: reply ok, now X=-5.600 Y=-94.700
+240.549  TX  ?
+240.556  RX  <Idle|MPos:-5.600,-94.700,0.000|Bf:8,128|FS:0,0>
+240.858  --  waiting 3 s of stillness before the port is closed (the position is stored after 2 s)
+240.859  TX  ?
+240.866  RX  <Idle|MPos:-5.600,-94.700,0.000|Bf:8,128|FS:0,0>
+241.168  TX  ?
+241.176  RX  <Idle|MPos:-5.600,-94.700,0.000|Bf:8,128|FS:0,0>
+241.478  TX  ?
+241.485  RX  <Idle|MPos:-5.600,-94.700,0.000|Bf:8,128|FS:0,0>
+241.788  TX  ?
+241.795  RX  <Idle|MPos:-5.600,-94.700,0.000|Bf:8,128|FS:0,0>
+242.098  TX  ?
+242.105  RX  <Idle|MPos:-5.600,-94.700,0.000|Bf:8,128|FS:0,0>
+242.407  TX  ?
+242.415  RX  <Idle|MPos:-5.600,-94.700,0.000|Bf:8,128|FS:0,0>
+242.717  TX  ?
+242.724  RX  <Idle|MPos:-5.600,-94.700,0.000|Bf:8,128|FS:0,0>
+243.027  TX  ?
+243.034  RX  <Idle|MPos:-5.600,-94.700,0.000|Bf:8,128|FS:0,0>
+243.337  TX  ?
+243.344  RX  <Idle|MPos:-5.600,-94.700,0.000|Bf:8,128|FS:0,0>
+243.646  TX  ?
+243.653  RX  <Idle|MPos:-5.600,-94.700,0.000|Bf:8,128|FS:0,0>
+243.956  --  final state: Idle
+244.464  --  port open: DTR reset the board, waiting for the welcome line
+246.145  RX  Grbl 1.1h ['$' for help]
+246.790  TX  ?
+246.798  RX  <Idle|MPos:-5.600,-94.700,0.000|Bf:8,128|FS:0,0>
+247.100  TX  ?
+247.107  RX  <Idle|MPos:-5.600,-94.700,0.000|Bf:8,128|FS:0,0>
+247.410  TX  ?
+247.417  RX  <Idle|MPos:-5.600,-94.700,0.000|Bf:8,128|FS:0,0>
+247.719  OK  session 29: back at X=-5.600 Y=-94.700, left at X=-5.600 Y=-94.700
+247.720  TX  $J=G21G90X-19.8Y-84.1F1200
+247.725  RX  ok
+247.786  TX  ?
+247.793  RX  <Jog|MPos:-6.627,-93.934,0.000|Bf:8,128|FS:0,0>
+247.954  TX  ?
+247.962  RX  <Jog|MPos:-9.364,-91.890,0.000|Bf:8,128|FS:0,0>
+248.123  TX  ?
+248.130  RX  <Jog|MPos:-12.272,-89.719,0.000|Bf:8,128|FS:0,0>
+248.292  TX  ?
+248.299  RX  <Jog|MPos:-15.181,-87.548,0.000|Bf:8,128|FS:0,0>
+248.460  TX  ?
+248.468  RX  <Jog|MPos:-18.089,-85.377,0.000|Bf:8,128|FS:0,0>
+248.629  TX  ?
+248.636  RX  <Idle|MPos:-19.800,-84.100,0.000|Bf:8,128|FS:0,0>
+248.798  OK  session 29: jog to X=-19.8 Y=-84.1: reply ok, now X=-19.800 Y=-84.100
+248.798  TX  ?
+248.805  RX  <Idle|MPos:-19.800,-84.100,0.000|Bf:8,128|FS:0,0>
+249.107  --  waiting 3 s of stillness before the port is closed (the position is stored after 2 s)
+249.108  TX  ?
+249.115  RX  <Idle|MPos:-19.800,-84.100,0.000|Bf:8,128|FS:0,0>
+249.417  TX  ?
+249.425  RX  <Idle|MPos:-19.800,-84.100,0.000|Bf:8,128|FS:0,0>
+249.727  TX  ?
+249.734  RX  <Idle|MPos:-19.800,-84.100,0.000|Bf:8,128|FS:0,0>
+250.037  TX  ?
+250.044  RX  <Idle|MPos:-19.800,-84.100,0.000|Bf:8,128|FS:0,0>
+250.347  TX  ?
+250.354  RX  <Idle|MPos:-19.800,-84.100,0.000|Bf:8,128|FS:0,0>
+250.657  TX  ?
+250.681  RX  <Idle|MPos:-19.800,-84.100,0.000|Bf:8,128|FS:0,0>
+250.963  TX  ?
+250.970  RX  <Idle|MPos:-19.800,-84.100,0.000|Bf:8,128|FS:0,0>
+251.273  TX  ?
+251.280  RX  <Idle|MPos:-19.800,-84.100,0.000|Bf:8,128|FS:0,0>
+251.583  TX  ?
+251.590  RX  <Idle|MPos:-19.800,-84.100,0.000|Bf:8,128|FS:0,0>
+251.893  TX  ?
+251.901  RX  <Idle|MPos:-19.800,-84.100,0.000|Bf:8,128|FS:0,0>
+252.203  --  final state: Idle
+252.712  --  port open: DTR reset the board, waiting for the welcome line
+254.392  RX  Grbl 1.1h ['$' for help]
+255.037  TX  ?
+255.045  RX  <Idle|MPos:-19.800,-84.100,0.000|Bf:8,128|FS:0,0>
+255.347  TX  ?
+255.355  RX  <Idle|MPos:-19.800,-84.100,0.000|Bf:8,128|FS:0,0>
+255.657  TX  ?
+255.665  RX  <Idle|MPos:-19.800,-84.100,0.000|Bf:8,128|FS:0,0>
+255.967  OK  session 30: back at X=-19.800 Y=-84.100, left at X=-19.800 Y=-84.100
+255.968  TX  $J=G21G90X-26.3Y-93.0F1200
+255.973  RX  ok
+256.034  TX  ?
+256.041  RX  <Jog|MPos:-20.425,-84.956,0.000|Bf:8,128|FS:0,0>
+256.202  TX  ?
+256.209  RX  <Jog|MPos:-22.425,-87.694,0.000|Bf:8,128|FS:0,0>
+256.371  TX  ?
+256.378  RX  <Jog|MPos:-24.550,-90.604,0.000|Bf:8,128|FS:0,0>
+256.539  TX  ?
+256.546  RX  <Idle|MPos:-26.300,-93.000,0.000|Bf:8,128|FS:0,0>
+256.708  OK  session 30: jog to X=-26.3 Y=-93.0: reply ok, now X=-26.300 Y=-93.000
+256.708  TX  ?
+256.715  RX  <Idle|MPos:-26.300,-93.000,0.000|Bf:8,128|FS:0,0>
+257.018  --  waiting 3 s of stillness before the port is closed (the position is stored after 2 s)
+257.018  TX  ?
+257.025  RX  <Idle|MPos:-26.300,-93.000,0.000|Bf:8,128|FS:0,0>
+257.328  TX  ?
+257.335  RX  <Idle|MPos:-26.300,-93.000,0.000|Bf:8,128|FS:0,0>
+257.638  TX  ?
+257.645  RX  <Idle|MPos:-26.300,-93.000,0.000|Bf:8,128|FS:0,0>
+257.948  TX  ?
+257.955  RX  <Idle|MPos:-26.300,-93.000,0.000|Bf:8,128|FS:0,0>
+258.257  TX  ?
+258.265  RX  <Idle|MPos:-26.300,-93.000,0.000|Bf:8,128|FS:0,0>
+258.567  TX  ?
+258.574  RX  <Idle|MPos:-26.300,-93.000,0.000|Bf:8,128|FS:0,0>
+258.877  TX  ?
+258.884  RX  <Idle|MPos:-26.300,-93.000,0.000|Bf:8,128|FS:0,0>
+259.187  TX  ?
+259.194  RX  <Idle|MPos:-26.300,-93.000,0.000|Bf:8,128|FS:0,0>
+259.496  TX  ?
+259.504  RX  <Idle|MPos:-26.300,-93.000,0.000|Bf:8,128|FS:0,0>
+259.806  TX  ?
+259.813  RX  <Idle|MPos:-26.300,-93.000,0.000|Bf:8,128|FS:0,0>
+260.116  --  final state: Idle
+260.624  --  port open: DTR reset the board, waiting for the welcome line
+262.305  RX  Grbl 1.1h ['$' for help]
+262.950  TX  ?
+262.958  RX  <Idle|MPos:-26.300,-93.000,0.000|Bf:8,128|FS:0,0>
+263.260  TX  ?
+263.267  RX  <Idle|MPos:-26.300,-93.000,0.000|Bf:8,128|FS:0,0>
+263.570  TX  ?
+263.577  RX  <Idle|MPos:-26.300,-93.000,0.000|Bf:8,128|FS:0,0>
+263.880  OK  session 31: back at X=-26.300 Y=-93.000, left at X=-26.300 Y=-93.000
+263.880  TX  $J=G21G90X-44.2Y-92.0F1200
+263.886  RX  ok
+263.946  TX  ?
+263.953  RX  <Jog|MPos:-27.365,-92.940,0.000|Bf:8,128|FS:0,0>
+264.115  TX  ?
+264.122  RX  <Jog|MPos:-30.775,-92.750,0.000|Bf:8,128|FS:0,0>
+264.284  TX  ?
+264.291  RX  <Jog|MPos:-34.398,-92.548,0.000|Bf:8,128|FS:0,0>
+264.452  TX  ?
+264.459  RX  <Jog|MPos:-38.020,-92.345,0.000|Bf:8,128|FS:0,0>
+264.620  TX  ?
+264.627  RX  <Jog|MPos:-41.643,-92.143,0.000|Bf:8,128|FS:0,0>
+264.789  TX  ?
+264.796  RX  <Idle|MPos:-44.200,-92.000,0.000|Bf:8,128|FS:0,0>
+264.957  OK  session 31: jog to X=-44.2 Y=-92.0: reply ok, now X=-44.200 Y=-92.000
+264.957  TX  ?
+264.965  RX  <Idle|MPos:-44.200,-92.000,0.000|Bf:8,128|FS:0,0>
+265.267  --  waiting 3 s of stillness before the port is closed (the position is stored after 2 s)
+265.267  TX  ?
+265.275  RX  <Idle|MPos:-44.200,-92.000,0.000|Bf:8,128|FS:0,0>
+265.577  TX  ?
+265.584  RX  <Idle|MPos:-44.200,-92.000,0.000|Bf:8,128|FS:0,0>
+265.887  TX  ?
+265.894  RX  <Idle|MPos:-44.200,-92.000,0.000|Bf:8,128|FS:0,0>
+266.197  TX  ?
+266.204  RX  <Idle|MPos:-44.200,-92.000,0.000|Bf:8,128|FS:0,0>
+266.507  TX  ?
+266.514  RX  <Idle|MPos:-44.200,-92.000,0.000|Bf:8,128|FS:0,0>
+266.817  TX  ?
+266.850  RX  <Idle|MPos:-44.200,-92.000,0.000|Bf:8,128|FS:0,0>
+267.133  TX  ?
+267.140  RX  <Idle|MPos:-44.200,-92.000,0.000|Bf:8,128|FS:0,0>
+267.443  TX  ?
+267.450  RX  <Idle|MPos:-44.200,-92.000,0.000|Bf:8,128|FS:0,0>
+267.753  TX  ?
+267.760  RX  <Idle|MPos:-44.200,-92.000,0.000|Bf:8,128|FS:0,0>
+268.063  TX  ?
+268.070  RX  <Idle|MPos:-44.200,-92.000,0.000|Bf:8,128|FS:0,0>
+268.373  --  final state: Idle
+268.881  --  port open: DTR reset the board, waiting for the welcome line
+270.562  RX  Grbl 1.1h ['$' for help]
+271.207  TX  ?
+271.215  RX  <Idle|MPos:-44.200,-92.000,0.000|Bf:8,128|FS:0,0>
+271.517  TX  ?
+271.524  RX  <Idle|MPos:-44.200,-92.000,0.000|Bf:8,128|FS:0,0>
+271.827  TX  ?
+271.834  RX  <Idle|MPos:-44.200,-92.000,0.000|Bf:8,128|FS:0,0>
+272.137  OK  session 32: back at X=-44.200 Y=-92.000, left at X=-44.200 Y=-92.000
+272.137  TX  $J=G21G90X-59.2Y-90.0F1200
+272.142  RX  ok
+272.203  TX  ?
+272.210  RX  <Jog|MPos:-45.256,-91.859,0.000|Bf:8,128|FS:0,0>
+272.372  TX  ?
+272.379  RX  <Jog|MPos:-48.637,-91.408,0.000|Bf:8,128|FS:0,0>
+272.540  TX  ?
+272.548  RX  <Jog|MPos:-52.228,-90.930,0.000|Bf:8,128|FS:0,0>
+272.709  TX  ?
+272.716  RX  <Jog|MPos:-55.820,-90.451,0.000|Bf:8,128|FS:0,0>
+272.878  TX  ?
+272.885  RX  <Idle|MPos:-59.200,-90.000,0.000|Bf:8,128|FS:0,0>
+273.046  OK  session 32: jog to X=-59.2 Y=-90.0: reply ok, now X=-59.200 Y=-90.000
+273.046  TX  ?
+273.054  RX  <Idle|MPos:-59.200,-90.000,0.000|Bf:8,128|FS:0,0>
+273.356  --  waiting 3 s of stillness before the port is closed (the position is stored after 2 s)
+273.356  TX  ?
+273.364  RX  <Idle|MPos:-59.200,-90.000,0.000|Bf:8,128|FS:0,0>
+273.666  TX  ?
+273.674  RX  <Idle|MPos:-59.200,-90.000,0.000|Bf:8,128|FS:0,0>
+273.976  TX  ?
+273.983  RX  <Idle|MPos:-59.200,-90.000,0.000|Bf:8,128|FS:0,0>
+274.286  TX  ?
+274.293  RX  <Idle|MPos:-59.200,-90.000,0.000|Bf:8,128|FS:0,0>
+274.596  TX  ?
+274.603  RX  <Idle|MPos:-59.200,-90.000,0.000|Bf:8,128|FS:0,0>
+274.905  TX  ?
+274.912  RX  <Idle|MPos:-59.200,-90.000,0.000|Bf:8,128|FS:0,0>
+275.215  TX  ?
+275.222  RX  <Idle|MPos:-59.200,-90.000,0.000|Bf:8,128|FS:0,0>
+275.525  TX  ?
+275.532  RX  <Idle|MPos:-59.200,-90.000,0.000|Bf:8,128|FS:0,0>
+275.834  TX  ?
+275.842  RX  <Idle|MPos:-59.200,-90.000,0.000|Bf:8,128|FS:0,0>
+276.144  TX  ?
+276.151  RX  <Idle|MPos:-59.200,-90.000,0.000|Bf:8,128|FS:0,0>
+276.454  --  final state: Idle
+276.962  --  port open: DTR reset the board, waiting for the welcome line
+278.643  RX  Grbl 1.1h ['$' for help]
+279.288  TX  ?
+279.296  RX  <Idle|MPos:-59.200,-90.000,0.000|Bf:8,128|FS:0,0>
+279.598  TX  ?
+279.605  RX  <Idle|MPos:-59.200,-90.000,0.000|Bf:8,128|FS:0,0>
+279.908  TX  ?
+279.915  RX  <Idle|MPos:-59.200,-90.000,0.000|Bf:8,128|FS:0,0>
+280.218  OK  session 33: back at X=-59.200 Y=-90.000, left at X=-59.200 Y=-90.000
+280.218  TX  $J=G21G90X-56.2Y-76.5F1200
+280.223  RX  ok
+280.284  TX  ?
+280.291  RX  <Jog|MPos:-59.015,-89.169,0.000|Bf:8,128|FS:0,0>
+280.452  TX  ?
+280.460  RX  <Jog|MPos:-58.277,-85.846,0.000|Bf:8,128|FS:0,0>
+280.621  TX  ?
+280.629  RX  <Jog|MPos:-57.446,-82.108,0.000|Bf:8,128|FS:0,0>
+280.790  TX  ?
+280.797  RX  <Jog|MPos:-56.708,-78.785,0.000|Bf:8,128|FS:0,0>
+280.959  TX  ?
+280.966  RX  <Idle|MPos:-56.200,-76.500,0.000|Bf:8,128|FS:0,0>
+281.127  OK  session 33: jog to X=-56.2 Y=-76.5: reply ok, now X=-56.200 Y=-76.500
+281.128  TX  ?
+281.135  RX  <Idle|MPos:-56.200,-76.500,0.000|Bf:8,128|FS:0,0>
+281.437  --  waiting 3 s of stillness before the port is closed (the position is stored after 2 s)
+281.438  TX  ?
+281.445  RX  <Idle|MPos:-56.200,-76.500,0.000|Bf:8,128|FS:0,0>
+281.747  TX  ?
+281.755  RX  <Idle|MPos:-56.200,-76.500,0.000|Bf:8,128|FS:0,0>
+282.057  TX  ?
+282.064  RX  <Idle|MPos:-56.200,-76.500,0.000|Bf:8,128|FS:0,0>
+282.367  TX  ?
+282.374  RX  <Idle|MPos:-56.200,-76.500,0.000|Bf:8,128|FS:0,0>
+282.677  TX  ?
+282.684  RX  <Idle|MPos:-56.200,-76.500,0.000|Bf:8,128|FS:0,0>
+282.986  TX  ?
+282.998  RX  <Idle|MPos:-56.200,-76.500,0.000|Bf:8,128|FS:0,0>
+283.301  TX  ?
+283.308  RX  <Idle|MPos:-56.200,-76.500,0.000|Bf:8,128|FS:0,0>
+283.611  TX  ?
+283.618  RX  <Idle|MPos:-56.200,-76.500,0.000|Bf:8,128|FS:0,0>
+283.920  TX  ?
+283.928  RX  <Idle|MPos:-56.200,-76.500,0.000|Bf:8,128|FS:0,0>
+284.230  TX  ?
+284.237  RX  <Idle|MPos:-56.200,-76.500,0.000|Bf:8,128|FS:0,0>
+284.540  --  final state: Idle
+285.049  --  port open: DTR reset the board, waiting for the welcome line
+286.729  RX  Grbl 1.1h ['$' for help]
+287.375  TX  ?
+287.382  RX  <Idle|MPos:-56.200,-76.500,0.000|Bf:8,128|FS:0,0>
+287.685  TX  ?
+287.692  RX  <Idle|MPos:-56.200,-76.500,0.000|Bf:8,128|FS:0,0>
+287.994  TX  ?
+288.002  RX  <Idle|MPos:-56.200,-76.500,0.000|Bf:8,128|FS:0,0>
+288.304  OK  session 34: back at X=-56.200 Y=-76.500, left at X=-56.200 Y=-76.500
+288.304  TX  $J=G21G90X-51.6Y-61.0F1200
+288.310  RX  ok
+288.371  TX  ?
+288.379  RX  <Jog|MPos:-55.958,-75.684,0.000|Bf:8,128|FS:0,0>
+288.540  TX  ?
+288.548  RX  <Jog|MPos:-54.929,-72.217,0.000|Bf:8,128|FS:0,0>
+288.709  TX  ?
+288.717  RX  <Jog|MPos:-53.961,-68.954,0.000|Bf:8,128|FS:0,0>
+288.878  TX  ?
+288.885  RX  <Jog|MPos:-52.871,-65.283,0.000|Bf:8,128|FS:0,0>
+289.047  TX  ?
+289.054  RX  <Jog|MPos:-51.842,-61.816,0.000|Bf:8,128|FS:0,0>
+289.215  TX  ?
+289.223  RX  <Idle|MPos:-51.600,-61.000,0.000|Bf:8,128|FS:0,0>
+289.384  OK  session 34: jog to X=-51.6 Y=-61.0: reply ok, now X=-51.600 Y=-61.000
+289.384  TX  ?
+289.391  RX  <Idle|MPos:-51.600,-61.000,0.000|Bf:8,128|FS:0,0>
+289.694  --  waiting 3 s of stillness before the port is closed (the position is stored after 2 s)
+289.694  TX  ?
+289.701  RX  <Idle|MPos:-51.600,-61.000,0.000|Bf:8,128|FS:0,0>
+290.004  TX  ?
+290.011  RX  <Idle|MPos:-51.600,-61.000,0.000|Bf:8,128|FS:0,0>
+290.314  TX  ?
+290.321  RX  <Idle|MPos:-51.600,-61.000,0.000|Bf:8,128|FS:0,0>
+290.623  TX  ?
+290.631  RX  <Idle|MPos:-51.600,-61.000,0.000|Bf:8,128|FS:0,0>
+290.933  TX  ?
+290.941  RX  <Idle|MPos:-51.600,-61.000,0.000|Bf:8,128|FS:0,0>
+291.243  TX  ?
+291.250  RX  <Idle|MPos:-51.600,-61.000,0.000|Bf:8,128|FS:0,0>
+291.553  TX  ?
+291.560  RX  <Idle|MPos:-51.600,-61.000,0.000|Bf:8,128|FS:0,0>
+291.863  TX  ?
+291.870  RX  <Idle|MPos:-51.600,-61.000,0.000|Bf:8,128|FS:0,0>
+292.173  TX  ?
+292.180  RX  <Idle|MPos:-51.600,-61.000,0.000|Bf:8,128|FS:0,0>
+292.483  TX  ?
+292.490  RX  <Idle|MPos:-51.600,-61.000,0.000|Bf:8,128|FS:0,0>
+292.792  --  final state: Idle
+293.301  --  port open: DTR reset the board, waiting for the welcome line
+294.981  RX  Grbl 1.1h ['$' for help]
+295.627  TX  ?
+295.634  RX  <Idle|MPos:-51.600,-61.000,0.000|Bf:8,128|FS:0,0>
+295.937  TX  ?
+295.944  RX  <Idle|MPos:-51.600,-61.000,0.000|Bf:8,128|FS:0,0>
+296.247  TX  ?
+296.254  RX  <Idle|MPos:-51.600,-61.000,0.000|Bf:8,128|FS:0,0>
+296.556  OK  session 35: back at X=-51.600 Y=-61.000, left at X=-51.600 Y=-61.000
+296.556  TX  $J=G21G90X-28.7Y-51.8F1200
+296.562  RX  ok
+296.623  TX  ?
+296.630  RX  <Jog|MPos:-50.613,-60.603,0.000|Bf:8,128|FS:0,0>
+296.791  TX  ?
+296.799  RX  <Jog|MPos:-47.454,-59.334,0.000|Bf:8,128|FS:0,0>
+296.960  TX  ?
+296.968  RX  <Jog|MPos:-44.098,-57.986,0.000|Bf:8,128|FS:0,0>
+297.129  TX  ?
+297.136  RX  <Jog|MPos:-40.742,-56.638,0.000|Bf:8,128|FS:0,0>
+297.298  TX  ?
+297.305  RX  <Jog|MPos:-37.189,-55.210,0.000|Bf:8,128|FS:0,0>
+297.467  TX  ?
+297.475  RX  <Jog|MPos:-34.030,-53.941,0.000|Bf:8,128|FS:0,0>
+297.636  TX  ?
+297.643  RX  <Jog|MPos:-30.477,-52.514,0.000|Bf:8,128|FS:0,0>
+297.805  TX  ?
+297.812  RX  <Idle|MPos:-28.700,-51.800,0.000|Bf:8,128|FS:0,0>
+297.973  OK  session 35: jog to X=-28.7 Y=-51.8: reply ok, now X=-28.700 Y=-51.800
+297.974  TX  ?
+297.981  RX  <Idle|MPos:-28.700,-51.800,0.000|Bf:8,128|FS:0,0>
+298.284  --  waiting 3 s of stillness before the port is closed (the position is stored after 2 s)
+298.284  TX  ?
+298.291  RX  <Idle|MPos:-28.700,-51.800,0.000|Bf:8,128|FS:0,0>
+298.594  TX  ?
+298.601  RX  <Idle|MPos:-28.700,-51.800,0.000|Bf:8,128|FS:0,0>
+298.903  TX  ?
+298.911  RX  <Idle|MPos:-28.700,-51.800,0.000|Bf:8,128|FS:0,0>
+299.213  TX  ?
+299.220  RX  <Idle|MPos:-28.700,-51.800,0.000|Bf:8,128|FS:0,0>
+299.523  TX  ?
+299.530  RX  <Idle|MPos:-28.700,-51.800,0.000|Bf:8,128|FS:0,0>
+299.833  TX  ?
+299.840  RX  <Idle|MPos:-28.700,-51.800,0.000|Bf:8,128|FS:0,0>
+300.143  TX  ?
+300.150  RX  <Idle|MPos:-28.700,-51.800,0.000|Bf:8,128|FS:0,0>
+300.452  TX  ?
+300.460  RX  <Idle|MPos:-28.700,-51.800,0.000|Bf:8,128|FS:0,0>
+300.762  TX  ?
+300.769  RX  <Idle|MPos:-28.700,-51.800,0.000|Bf:8,128|FS:0,0>
+301.072  TX  ?
+301.079  RX  <Idle|MPos:-28.700,-51.800,0.000|Bf:8,128|FS:0,0>
+301.382  --  final state: Idle
+301.890  --  port open: DTR reset the board, waiting for the welcome line
+303.571  RX  Grbl 1.1h ['$' for help]
+304.216  TX  ?
+304.224  RX  <Idle|MPos:-28.700,-51.800,0.000|Bf:8,128|FS:0,0>
+304.526  TX  ?
+304.533  RX  <Idle|MPos:-28.700,-51.800,0.000|Bf:8,128|FS:0,0>
+304.836  TX  ?
+304.843  RX  <Idle|MPos:-28.700,-51.800,0.000|Bf:8,128|FS:0,0>
+305.145  OK  session 36: back at X=-28.700 Y=-51.800, left at X=-28.700 Y=-51.800
+305.146  TX  $J=G21G90X-27.0Y-35.9F1200
+305.151  RX  ok
+305.212  TX  ?
+305.219  RX  <Jog|MPos:-28.609,-50.952,0.000|Bf:8,128|FS:0,0>
+305.380  TX  ?
+305.388  RX  <Jog|MPos:-28.247,-47.560,0.000|Bf:8,128|FS:0,0>
+305.549  TX  ?
+305.557  RX  <Jog|MPos:-27.861,-43.956,0.000|Bf:8,128|FS:0,0>
+305.718  TX  ?
+305.725  RX  <Jog|MPos:-27.476,-40.352,0.000|Bf:8,128|FS:0,0>
+305.887  TX  ?
+305.894  RX  <Jog|MPos:-27.091,-36.748,0.000|Bf:8,128|FS:0,0>
+306.056  TX  ?
+306.063  RX  <Idle|MPos:-27.000,-35.900,0.000|Bf:8,128|FS:0,0>
+306.224  OK  session 36: jog to X=-27.0 Y=-35.9: reply ok, now X=-27.000 Y=-35.900
+306.224  TX  ?
+306.232  RX  <Idle|MPos:-27.000,-35.900,0.000|Bf:8,128|FS:0,0>
+306.534  --  waiting 3 s of stillness before the port is closed (the position is stored after 2 s)
+306.534  TX  ?
+306.541  RX  <Idle|MPos:-27.000,-35.900,0.000|Bf:8,128|FS:0,0>
+306.844  TX  ?
+306.851  RX  <Idle|MPos:-27.000,-35.900,0.000|Bf:8,128|FS:0,0>
+307.154  TX  ?
+307.161  RX  <Idle|MPos:-27.000,-35.900,0.000|Bf:8,128|FS:0,0>
+307.464  TX  ?
+307.471  RX  <Idle|MPos:-27.000,-35.900,0.000|Bf:8,128|FS:0,0>
+307.773  TX  ?
+307.781  RX  <Idle|MPos:-27.000,-35.900,0.000|Bf:8,128|FS:0,0>
+308.083  TX  ?
+308.090  RX  <Idle|MPos:-27.000,-35.900,0.000|Bf:8,128|FS:0,0>
+308.393  TX  ?
+308.400  RX  <Idle|MPos:-27.000,-35.900,0.000|Bf:8,128|FS:0,0>
+308.702  TX  ?
+308.709  RX  <Idle|MPos:-27.000,-35.900,0.000|Bf:8,128|FS:0,0>
+309.011  TX  ?
+309.019  RX  <Idle|MPos:-27.000,-35.900,0.000|Bf:8,128|FS:0,0>
+309.321  TX  ?
+309.328  RX  <Idle|MPos:-27.000,-35.900,0.000|Bf:8,128|FS:0,0>
+309.631  --  final state: Idle
+310.139  --  port open: DTR reset the board, waiting for the welcome line
+311.820  RX  Grbl 1.1h ['$' for help]
+312.465  TX  ?
+312.472  RX  <Idle|MPos:-27.000,-35.900,0.000|Bf:8,128|FS:0,0>
+312.775  TX  ?
+312.782  RX  <Idle|MPos:-27.000,-35.900,0.000|Bf:8,128|FS:0,0>
+313.084  TX  ?
+313.091  RX  <Idle|MPos:-27.000,-35.900,0.000|Bf:8,128|FS:0,0>
+313.394  OK  session 37: back at X=-27.000 Y=-35.900, left at X=-27.000 Y=-35.900
+313.394  TX  $J=G21G90X-48.5Y-16.4F1200
+313.399  RX  ok
+313.460  TX  ?
+313.467  RX  <Jog|MPos:-27.949,-35.040,0.000|Bf:8,128|FS:0,0>
+313.629  TX  ?
+313.636  RX  <Jog|MPos:-30.478,-32.746,0.000|Bf:8,128|FS:0,0>
+313.797  TX  ?
+313.804  RX  <Jog|MPos:-33.165,-30.308,0.000|Bf:8,128|FS:0,0>
+313.966  TX  ?
+313.973  RX  <Jog|MPos:-35.853,-27.871,0.000|Bf:8,128|FS:0,0>
+314.134  TX  ?
+314.142  RX  <Jog|MPos:-38.540,-25.433,0.000|Bf:8,128|FS:0,0>
+314.303  TX  ?
+314.310  RX  <Jog|MPos:-41.228,-22.996,0.000|Bf:8,128|FS:0,0>
+314.471  TX  ?
+314.479  RX  <Jog|MPos:-43.915,-20.558,0.000|Bf:8,128|FS:0,0>
+314.640  TX  ?
+314.648  RX  <Jog|MPos:-46.603,-18.121,0.000|Bf:8,128|FS:0,0>
+314.809  TX  ?
+314.816  RX  <Idle|MPos:-48.500,-16.400,0.000|Bf:8,128|FS:0,0>
+314.978  OK  session 37: jog to X=-48.5 Y=-16.4: reply ok, now X=-48.500 Y=-16.400
+314.978  TX  ?
+314.985  RX  <Idle|MPos:-48.500,-16.400,0.000|Bf:8,128|FS:0,0>
+315.288  --  waiting 3 s of stillness before the port is closed (the position is stored after 2 s)
+315.288  TX  ?
+315.295  RX  <Idle|MPos:-48.500,-16.400,0.000|Bf:8,128|FS:0,0>
+315.598  TX  ?
+315.605  RX  <Idle|MPos:-48.500,-16.400,0.000|Bf:8,128|FS:0,0>
+315.907  TX  ?
+315.915  RX  <Idle|MPos:-48.500,-16.400,0.000|Bf:8,128|FS:0,0>
+316.217  TX  ?
+316.224  RX  <Idle|MPos:-48.500,-16.400,0.000|Bf:8,128|FS:0,0>
+316.527  TX  ?
+316.534  RX  <Idle|MPos:-48.500,-16.400,0.000|Bf:8,128|FS:0,0>
+316.837  TX  ?
+316.876  RX  <Idle|MPos:-48.500,-16.400,0.000|Bf:8,128|FS:0,0>
+317.138  TX  ?
+317.145  RX  <Idle|MPos:-48.500,-16.400,0.000|Bf:8,128|FS:0,0>
+317.448  TX  ?
+317.455  RX  <Idle|MPos:-48.500,-16.400,0.000|Bf:8,128|FS:0,0>
+317.758  TX  ?
+317.765  RX  <Idle|MPos:-48.500,-16.400,0.000|Bf:8,128|FS:0,0>
+318.067  TX  ?
+318.075  RX  <Idle|MPos:-48.500,-16.400,0.000|Bf:8,128|FS:0,0>
+318.377  --  final state: Idle
+318.885  --  port open: DTR reset the board, waiting for the welcome line
+320.566  RX  Grbl 1.1h ['$' for help]
+321.211  TX  ?
+321.219  RX  <Idle|MPos:-48.500,-16.400,0.000|Bf:8,128|FS:0,0>
+321.521  TX  ?
+321.529  RX  <Idle|MPos:-48.500,-16.400,0.000|Bf:8,128|FS:0,0>
+321.831  TX  ?
+321.839  RX  <Idle|MPos:-48.500,-16.400,0.000|Bf:8,128|FS:0,0>
+322.141  OK  session 38: back at X=-48.500 Y=-16.400, left at X=-48.500 Y=-16.400
+322.141  TX  $J=G21G90X-37.8Y2.9F1200
+322.147  RX  ok
+322.207  TX  ?
+322.214  RX  <Jog|MPos:-47.986,-15.472,0.000|Bf:8,128|FS:0,0>
+322.376  TX  ?
+322.383  RX  <Jog|MPos:-46.339,-12.503,0.000|Bf:8,128|FS:0,0>
+322.544  TX  ?
+322.551  RX  <Jog|MPos:-44.590,-9.348,0.000|Bf:8,128|FS:0,0>
+322.713  TX  ?
+322.720  RX  <Jog|MPos:-42.841,-6.193,0.000|Bf:8,128|FS:0,0>
+322.881  TX  ?
+322.889  RX  <Jog|MPos:-41.092,-3.038,0.000|Bf:8,128|FS:0,0>
+323.050  TX  ?
+323.057  RX  <Jog|MPos:-39.343,0.116,0.000|Bf:8,128|FS:0,0>
+323.218  TX  ?
+323.226  RX  <Idle|MPos:-37.800,2.900,0.000|Bf:8,128|FS:0,0>
+323.387  OK  session 38: jog to X=-37.8 Y=2.9: reply ok, now X=-37.800 Y=2.900
+323.387  TX  ?
+323.394  RX  <Idle|MPos:-37.800,2.900,0.000|Bf:8,128|FS:0,0>
+323.697  --  waiting 3 s of stillness before the port is closed (the position is stored after 2 s)
+323.697  TX  ?
+323.704  RX  <Idle|MPos:-37.800,2.900,0.000|Bf:8,128|FS:0,0>
+324.007  TX  ?
+324.013  RX  <Idle|MPos:-37.800,2.900,0.000|Bf:8,128|FS:0,0>
+324.316  TX  ?
+324.323  RX  <Idle|MPos:-37.800,2.900,0.000|Bf:8,128|FS:0,0>
+324.626  TX  ?
+324.633  RX  <Idle|MPos:-37.800,2.900,0.000|Bf:8,128|FS:0,0>
+324.935  TX  ?
+324.942  RX  <Idle|MPos:-37.800,2.900,0.000|Bf:8,128|FS:0,0>
+325.245  TX  ?
+325.252  RX  <Idle|MPos:-37.800,2.900,0.000|Bf:8,128|FS:0,0>
+325.554  TX  ?
+325.561  RX  <Idle|MPos:-37.800,2.900,0.000|Bf:8,128|FS:0,0>
+325.863  TX  ?
+325.871  RX  <Idle|MPos:-37.800,2.900,0.000|Bf:8,128|FS:0,0>
+326.174  TX  ?
+326.181  RX  <Idle|MPos:-37.800,2.900,0.000|Bf:8,128|FS:0,0>
+326.483  TX  ?
+326.491  RX  <Idle|MPos:-37.800,2.900,0.000|Bf:8,128|FS:0,0>
+326.793  --  final state: Idle
+327.302  --  port open: DTR reset the board, waiting for the welcome line
+328.982  RX  Grbl 1.1h ['$' for help]
+329.628  TX  ?
+329.635  RX  <Idle|MPos:-37.800,2.900,0.000|Bf:8,128|FS:0,0>
+329.938  TX  ?
+329.945  RX  <Idle|MPos:-37.800,2.900,0.000|Bf:8,128|FS:0,0>
+330.247  TX  ?
+330.254  RX  <Idle|MPos:-37.800,2.900,0.000|Bf:8,128|FS:0,0>
+330.557  OK  session 39: back at X=-37.800 Y=2.900, left at X=-37.800 Y=2.900
+330.557  TX  $J=G21G90X-39.9Y27.7F1200
+330.562  RX  ok
+330.623  TX  ?
+330.630  RX  <Jog|MPos:-37.872,3.748,0.000|Bf:8,128|FS:0,0>
+330.791  TX  ?
+330.799  RX  <Jog|MPos:-38.159,7.139,0.000|Bf:8,128|FS:0,0>
+330.961  TX  ?
+330.968  RX  <Jog|MPos:-38.482,10.955,0.000|Bf:8,128|FS:0,0>
+331.129  TX  ?
+331.136  RX  <Jog|MPos:-38.787,14.558,0.000|Bf:8,128|FS:0,0>
+331.298  TX  ?
+331.305  RX  <Jog|MPos:-39.092,18.162,0.000|Bf:8,128|FS:0,0>
+331.467  TX  ?
+331.474  RX  <Jog|MPos:-39.397,21.765,0.000|Bf:8,128|FS:0,0>
+331.635  TX  ?
+331.642  RX  <Jog|MPos:-39.703,25.368,0.000|Bf:8,128|FS:0,0>
+331.804  TX  ?
+331.811  RX  <Idle|MPos:-39.900,27.700,0.000|Bf:8,128|FS:0,0>
+331.972  OK  session 39: jog to X=-39.9 Y=27.7: reply ok, now X=-39.900 Y=27.700
+331.972  TX  ?
+331.979  RX  <Idle|MPos:-39.900,27.700,0.000|Bf:8,128|FS:0,0>
+332.282  --  waiting 3 s of stillness before the port is closed (the position is stored after 2 s)
+332.282  TX  ?
+332.289  RX  <Idle|MPos:-39.900,27.700,0.000|Bf:8,128|FS:0,0>
+332.592  TX  ?
+332.599  RX  <Idle|MPos:-39.900,27.700,0.000|Bf:8,128|FS:0,0>
+332.902  TX  ?
+332.909  RX  <Idle|MPos:-39.900,27.700,0.000|Bf:8,128|FS:0,0>
+333.211  TX  ?
+333.218  RX  <Idle|MPos:-39.900,27.700,0.000|Bf:8,128|FS:0,0>
+333.521  TX  ?
+333.528  RX  <Idle|MPos:-39.900,27.700,0.000|Bf:8,128|FS:0,0>
+333.831  TX  ?
+333.848  RX  <Idle|MPos:-39.900,27.700,0.000|Bf:8,128|FS:0,0>
+334.151  TX  ?
+334.158  RX  <Idle|MPos:-39.900,27.700,0.000|Bf:8,128|FS:0,0>
+334.460  TX  ?
+334.467  RX  <Idle|MPos:-39.900,27.700,0.000|Bf:8,128|FS:0,0>
+334.769  TX  ?
+334.777  RX  <Idle|MPos:-39.900,27.700,0.000|Bf:8,128|FS:0,0>
+335.079  TX  ?
+335.086  RX  <Idle|MPos:-39.900,27.700,0.000|Bf:8,128|FS:0,0>
+335.389  --  final state: Idle
+335.898  --  port open: DTR reset the board, waiting for the welcome line
+337.579  RX  Grbl 1.1h ['$' for help]
+338.224  TX  ?
+338.231  RX  <Idle|MPos:-39.900,27.700,0.000|Bf:8,128|FS:0,0>
+338.534  TX  ?
+338.541  RX  <Idle|MPos:-39.900,27.700,0.000|Bf:8,128|FS:0,0>
+338.844  TX  ?
+338.851  RX  <Idle|MPos:-39.900,27.700,0.000|Bf:8,128|FS:0,0>
+339.153  OK  session 40: back at X=-39.900 Y=27.700, left at X=-39.900 Y=27.700
+339.154  TX  $J=G21G90X-29.9Y46.7F1200
+339.159  RX  ok
+339.220  TX  ?
+339.227  RX  <Jog|MPos:-39.405,28.641,0.000|Bf:8,128|FS:0,0>
+339.388  TX  ?
+339.395  RX  <Jog|MPos:-37.821,31.650,0.000|Bf:8,128|FS:0,0>
+339.557  TX  ?
+339.564  RX  <Jog|MPos:-36.138,34.849,0.000|Bf:8,128|FS:0,0>
+339.725  TX  ?
+339.733  RX  <Jog|MPos:-34.454,38.047,0.000|Bf:8,128|FS:0,0>
+339.894  TX  ?
+339.902  RX  <Jog|MPos:-32.771,41.245,0.000|Bf:8,128|FS:0,0>
+340.063  TX  ?
+340.070  RX  <Jog|MPos:-31.088,44.443,0.000|Bf:8,128|FS:0,0>
+340.232  TX  ?
+340.239  RX  <Idle|MPos:-29.900,46.700,0.000|Bf:8,128|FS:0,0>
+340.400  OK  session 40: jog to X=-29.9 Y=46.7: reply ok, now X=-29.900 Y=46.700
+340.401  TX  ?
+340.408  RX  <Idle|MPos:-29.900,46.700,0.000|Bf:8,128|FS:0,0>
+340.710  --  waiting 3 s of stillness before the port is closed (the position is stored after 2 s)
+340.710  TX  ?
+340.718  RX  <Idle|MPos:-29.900,46.700,0.000|Bf:8,128|FS:0,0>
+341.020  TX  ?
+341.027  RX  <Idle|MPos:-29.900,46.700,0.000|Bf:8,128|FS:0,0>
+341.330  TX  ?
+341.337  RX  <Idle|MPos:-29.900,46.700,0.000|Bf:8,128|FS:0,0>
+341.639  TX  ?
+341.646  RX  <Idle|MPos:-29.900,46.700,0.000|Bf:8,128|FS:0,0>
+341.949  TX  ?
+341.956  RX  <Idle|MPos:-29.900,46.700,0.000|Bf:8,128|FS:0,0>
+342.259  TX  ?
+342.284  RX  <Idle|MPos:-29.900,46.700,0.000|Bf:8,128|FS:0,0>
+342.567  TX  ?
+342.574  RX  <Idle|MPos:-29.900,46.700,0.000|Bf:8,128|FS:0,0>
+342.876  TX  ?
+342.883  RX  <Idle|MPos:-29.900,46.700,0.000|Bf:8,128|FS:0,0>
+343.186  TX  ?
+343.194  RX  <Idle|MPos:-29.900,46.700,0.000|Bf:8,128|FS:0,0>
+343.497  TX  ?
+343.504  RX  <Idle|MPos:-29.900,46.700,0.000|Bf:8,128|FS:0,0>
+343.806  --  final state: Idle
+344.314  --  port open: DTR reset the board, waiting for the welcome line
+345.995  RX  Grbl 1.1h ['$' for help]
+346.641  TX  ?
+346.648  RX  <Idle|MPos:-29.900,46.700,0.000|Bf:8,128|FS:0,0>
+346.951  TX  ?
+346.958  RX  <Idle|MPos:-29.900,46.700,0.000|Bf:8,128|FS:0,0>
+347.260  TX  ?
+347.268  RX  <Idle|MPos:-29.900,46.700,0.000|Bf:8,128|FS:0,0>
+347.570  OK  session 41: back at X=-29.900 Y=46.700, left at X=-29.900 Y=46.700
+347.570  TX  $J=G21G90X-39.1Y69.9F1200
+347.576  RX  ok
+347.636  TX  ?
+347.644  RX  <Jog|MPos:-30.293,47.691,0.000|Bf:8,128|FS:0,0>
+347.805  TX  ?
+347.812  RX  <Jog|MPos:-31.551,50.864,0.000|Bf:8,128|FS:0,0>
+347.974  TX  ?
+347.981  RX  <Jog|MPos:-32.888,54.235,0.000|Bf:8,128|FS:0,0>
+348.142  TX  ?
+348.149  RX  <Jog|MPos:-34.225,57.606,0.000|Bf:8,128|FS:0,0>
+348.311  TX  ?
+348.318  RX  <Jog|MPos:-35.562,60.977,0.000|Bf:8,128|FS:0,0>
+348.479  TX  ?
+348.487  RX  <Jog|MPos:-36.898,64.348,0.000|Bf:8,128|FS:0,0>
+348.648  TX  ?
+348.655  RX  <Jog|MPos:-38.235,67.719,0.000|Bf:8,128|FS:0,0>
+348.817  TX  ?
+348.824  RX  <Idle|MPos:-39.100,69.900,0.000|Bf:8,128|FS:0,0>
+348.985  OK  session 41: jog to X=-39.1 Y=69.9: reply ok, now X=-39.100 Y=69.900
+348.985  TX  ?
+348.992  RX  <Idle|MPos:-39.100,69.900,0.000|Bf:8,128|FS:0,0>
+349.295  --  waiting 3 s of stillness before the port is closed (the position is stored after 2 s)
+349.295  TX  ?
+349.302  RX  <Idle|MPos:-39.100,69.900,0.000|Bf:8,128|FS:0,0>
+349.605  TX  ?
+349.612  RX  <Idle|MPos:-39.100,69.900,0.000|Bf:8,128|FS:0,0>
+349.915  TX  ?
+349.922  RX  <Idle|MPos:-39.100,69.900,0.000|Bf:8,128|FS:0,0>
+350.225  TX  ?
+350.232  RX  <Idle|MPos:-39.100,69.900,0.000|Bf:8,128|FS:0,0>
+350.535  TX  ?
+350.542  RX  <Idle|MPos:-39.100,69.900,0.000|Bf:8,128|FS:0,0>
+350.844  TX  ?
+350.868  RX  <Idle|MPos:-39.100,69.900,0.000|Bf:8,128|FS:0,0>
+351.150  TX  ?
+351.157  RX  <Idle|MPos:-39.100,69.900,0.000|Bf:8,128|FS:0,0>
+351.460  TX  ?
+351.467  RX  <Idle|MPos:-39.100,69.900,0.000|Bf:8,128|FS:0,0>
+351.769  TX  ?
+351.777  RX  <Idle|MPos:-39.100,69.900,0.000|Bf:8,128|FS:0,0>
+352.079  TX  ?
+352.086  RX  <Idle|MPos:-39.100,69.900,0.000|Bf:8,128|FS:0,0>
+352.388  --  final state: Idle
+352.897  --  port open: DTR reset the board, waiting for the welcome line
+354.578  RX  Grbl 1.1h ['$' for help]
+355.223  TX  ?
+355.230  RX  <Idle|MPos:-39.100,69.900,0.000|Bf:8,128|FS:0,0>
+355.533  TX  ?
+355.540  RX  <Idle|MPos:-39.100,69.900,0.000|Bf:8,128|FS:0,0>
+355.843  TX  ?
+355.850  RX  <Idle|MPos:-39.100,69.900,0.000|Bf:8,128|FS:0,0>
+356.152  OK  session 42: back at X=-39.100 Y=69.900, left at X=-39.100 Y=69.900
+356.152  TX  $J=G21G90X-54.0Y77.9F1200
+356.158  RX  ok
+356.218  TX  ?
+356.226  RX  <Jog|MPos:-40.031,70.400,0.000|Bf:8,128|FS:0,0>
+356.388  TX  ?
+356.395  RX  <Jog|MPos:-43.011,72.000,0.000|Bf:8,128|FS:0,0>
+356.556  TX  ?
+356.563  RX  <Jog|MPos:-46.178,73.700,0.000|Bf:8,128|FS:0,0>
+356.725  TX  ?
+356.732  RX  <Jog|MPos:-49.344,75.400,0.000|Bf:8,128|FS:0,0>
+356.893  TX  ?
+356.900  RX  <Jog|MPos:-52.696,77.200,0.000|Bf:8,128|FS:0,0>
+357.062  TX  ?
+357.069  RX  <Idle|MPos:-54.000,77.900,0.000|Bf:8,128|FS:0,0>
+357.230  OK  session 42: jog to X=-54.0 Y=77.9: reply ok, now X=-54.000 Y=77.900
+357.230  TX  ?
+357.238  RX  <Idle|MPos:-54.000,77.900,0.000|Bf:8,128|FS:0,0>
+357.540  --  waiting 3 s of stillness before the port is closed (the position is stored after 2 s)
+357.540  TX  ?
+357.548  RX  <Idle|MPos:-54.000,77.900,0.000|Bf:8,128|FS:0,0>
+357.850  TX  ?
+357.857  RX  <Idle|MPos:-54.000,77.900,0.000|Bf:8,128|FS:0,0>
+358.160  TX  ?
+358.167  RX  <Idle|MPos:-54.000,77.900,0.000|Bf:8,128|FS:0,0>
+358.470  TX  ?
+358.477  RX  <Idle|MPos:-54.000,77.900,0.000|Bf:8,128|FS:0,0>
+358.779  TX  ?
+358.787  RX  <Idle|MPos:-54.000,77.900,0.000|Bf:8,128|FS:0,0>
+359.089  TX  ?
+359.096  RX  <Idle|MPos:-54.000,77.900,0.000|Bf:8,128|FS:0,0>
+359.399  TX  ?
+359.406  RX  <Idle|MPos:-54.000,77.900,0.000|Bf:8,128|FS:0,0>
+359.708  TX  ?
+359.715  RX  <Idle|MPos:-54.000,77.900,0.000|Bf:8,128|FS:0,0>
+360.018  TX  ?
+360.025  RX  <Idle|MPos:-54.000,77.900,0.000|Bf:8,128|FS:0,0>
+360.328  TX  ?
+360.335  RX  <Idle|MPos:-54.000,77.900,0.000|Bf:8,128|FS:0,0>
+360.638  --  final state: Idle
+361.146  --  port open: DTR reset the board, waiting for the welcome line
+362.827  RX  Grbl 1.1h ['$' for help]
+363.472  TX  ?
+363.479  RX  <Idle|MPos:-54.000,77.900,0.000|Bf:8,128|FS:0,0>
+363.782  TX  ?
+363.789  RX  <Idle|MPos:-54.000,77.900,0.000|Bf:8,128|FS:0,0>
+364.092  TX  ?
+364.099  RX  <Idle|MPos:-54.000,77.900,0.000|Bf:8,128|FS:0,0>
+364.401  OK  session 43: back at X=-54.000 Y=77.900, left at X=-54.000 Y=77.900
+364.401  TX  $J=G21G90X-30.9Y89.8F1200
+364.407  RX  ok
+364.467  TX  ?
+364.474  RX  <Jog|MPos:-53.053,78.388,0.000|Bf:8,128|FS:0,0>
+364.636  TX  ?
+364.643  RX  <Jog|MPos:-50.024,79.948,0.000|Bf:8,128|FS:0,0>
+364.804  TX  ?
+364.812  RX  <Jog|MPos:-46.805,81.607,0.000|Bf:8,128|FS:0,0>
+364.973  TX  ?
+364.980  RX  <Jog|MPos:-43.586,83.265,0.000|Bf:8,128|FS:0,0>
+365.141  TX  ?
+365.148  RX  <Jog|MPos:-40.367,84.923,0.000|Bf:8,128|FS:0,0>
+365.310  TX  ?
+365.317  RX  <Jog|MPos:-37.148,86.581,0.000|Bf:8,128|FS:0,0>
+365.478  TX  ?
+365.485  RX  <Jog|MPos:-33.930,88.239,0.000|Bf:8,128|FS:0,0>
+365.646  TX  ?
+365.654  RX  <Idle|MPos:-30.900,89.800,0.000|Bf:8,128|FS:0,0>
+365.816  OK  session 43: jog to X=-30.9 Y=89.8: reply ok, now X=-30.900 Y=89.800
+365.816  TX  ?
+365.823  RX  <Idle|MPos:-30.900,89.800,0.000|Bf:8,128|FS:0,0>
+366.126  --  waiting 3 s of stillness before the port is closed (the position is stored after 2 s)
+366.126  TX  ?
+366.133  RX  <Idle|MPos:-30.900,89.800,0.000|Bf:8,128|FS:0,0>
+366.436  TX  ?
+366.443  RX  <Idle|MPos:-30.900,89.800,0.000|Bf:8,128|FS:0,0>
+366.745  TX  ?
+366.753  RX  <Idle|MPos:-30.900,89.800,0.000|Bf:8,128|FS:0,0>
+367.055  TX  ?
+367.062  RX  <Idle|MPos:-30.900,89.800,0.000|Bf:8,128|FS:0,0>
+367.365  TX  ?
+367.372  RX  <Idle|MPos:-30.900,89.800,0.000|Bf:8,128|FS:0,0>
+367.675  TX  ?
+367.682  RX  <Idle|MPos:-30.900,89.800,0.000|Bf:8,128|FS:0,0>
+367.985  TX  ?
+367.992  RX  <Idle|MPos:-30.900,89.800,0.000|Bf:8,128|FS:0,0>
+368.294  TX  ?
+368.302  RX  <Idle|MPos:-30.900,89.800,0.000|Bf:8,128|FS:0,0>
+368.605  TX  ?
+368.612  RX  <Idle|MPos:-30.900,89.800,0.000|Bf:8,128|FS:0,0>
+368.915  TX  ?
+368.922  RX  <Idle|MPos:-30.900,89.800,0.000|Bf:8,128|FS:0,0>
+369.224  --  final state: Idle
+369.733  --  port open: DTR reset the board, waiting for the welcome line
+371.414  RX  Grbl 1.1h ['$' for help]
+372.059  TX  ?
+372.066  RX  <Idle|MPos:-30.900,89.800,0.000|Bf:8,128|FS:0,0>
+372.368  TX  ?
+372.375  RX  <Idle|MPos:-30.900,89.800,0.000|Bf:8,128|FS:0,0>
+372.678  TX  ?
+372.685  RX  <Idle|MPos:-30.900,89.800,0.000|Bf:8,128|FS:0,0>
+372.988  OK  session 44: back at X=-30.900 Y=89.800, left at X=-30.900 Y=89.800
+372.988  TX  $J=G21G90X-15.0Y92.4F1200
+372.993  RX  ok
+373.054  TX  ?
+373.061  RX  <Jog|MPos:-29.854,89.971,0.000|Bf:8,128|FS:0,0>
+373.222  TX  ?
+373.229  RX  <Jog|MPos:-26.507,90.518,0.000|Bf:8,128|FS:0,0>
+373.391  TX  ?
+373.398  RX  <Jog|MPos:-22.950,91.100,0.000|Bf:8,128|FS:0,0>
+373.559  TX  ?
+373.566  RX  <Jog|MPos:-19.393,91.682,0.000|Bf:8,128|FS:0,0>
+373.728  TX  ?
+373.735  RX  <Jog|MPos:-15.837,92.263,0.000|Bf:8,128|FS:0,0>
+373.896  TX  ?
+373.904  RX  <Idle|MPos:-15.000,92.400,0.000|Bf:8,128|FS:0,0>
+374.065  OK  session 44: jog to X=-15.0 Y=92.4: reply ok, now X=-15.000 Y=92.400
+374.065  TX  ?
+374.073  RX  <Idle|MPos:-15.000,92.400,0.000|Bf:8,128|FS:0,0>
+374.375  --  waiting 3 s of stillness before the port is closed (the position is stored after 2 s)
+374.375  TX  ?
+374.382  RX  <Idle|MPos:-15.000,92.400,0.000|Bf:8,128|FS:0,0>
+374.684  TX  ?
+374.691  RX  <Idle|MPos:-15.000,92.400,0.000|Bf:8,128|FS:0,0>
+374.994  TX  ?
+375.001  RX  <Idle|MPos:-15.000,92.400,0.000|Bf:8,128|FS:0,0>
+375.304  TX  ?
+375.311  RX  <Idle|MPos:-15.000,92.400,0.000|Bf:8,128|FS:0,0>
+375.614  TX  ?
+375.621  RX  <Idle|MPos:-15.000,92.400,0.000|Bf:8,128|FS:0,0>
+375.923  TX  ?
+375.931  RX  <Idle|MPos:-15.000,92.400,0.000|Bf:8,128|FS:0,0>
+376.233  TX  ?
+376.240  RX  <Idle|MPos:-15.000,92.400,0.000|Bf:8,128|FS:0,0>
+376.543  TX  ?
+376.550  RX  <Idle|MPos:-15.000,92.400,0.000|Bf:8,128|FS:0,0>
+376.853  TX  ?
+376.860  RX  <Idle|MPos:-15.000,92.400,0.000|Bf:8,128|FS:0,0>
+377.162  TX  ?
+377.170  RX  <Idle|MPos:-15.000,92.400,0.000|Bf:8,128|FS:0,0>
+377.472  --  final state: Idle
+377.980  --  port open: DTR reset the board, waiting for the welcome line
+379.661  RX  Grbl 1.1h ['$' for help]
+380.306  TX  ?
+380.314  RX  <Idle|MPos:-15.000,92.400,0.000|Bf:8,128|FS:0,0>
+380.616  TX  ?
+380.623  RX  <Idle|MPos:-15.000,92.400,0.000|Bf:8,128|FS:0,0>
+380.926  TX  ?
+380.933  RX  <Idle|MPos:-15.000,92.400,0.000|Bf:8,128|FS:0,0>
+381.236  OK  session 45: back at X=-15.000 Y=92.400, left at X=-15.000 Y=92.400
+381.236  TX  $J=G21G90X-9.0Y67.1F1200
+381.241  RX  ok
+381.301  TX  ?
+381.309  RX  <Jog|MPos:-14.754,91.363,0.000|Bf:8,128|FS:0,0>
+381.470  TX  ?
+381.477  RX  <Jog|MPos:-13.967,88.045,0.000|Bf:8,128|FS:0,0>
+381.638  TX  ?
+381.646  RX  <Jog|MPos:-13.131,84.520,0.000|Bf:8,128|FS:0,0>
+381.807  TX  ?
+381.814  RX  <Jog|MPos:-12.295,80.994,0.000|Bf:8,128|FS:0,0>
+381.976  TX  ?
+381.983  RX  <Jog|MPos:-11.459,77.469,0.000|Bf:8,128|FS:0,0>
+382.144  TX  ?
+382.151  RX  <Jog|MPos:-10.623,73.943,0.000|Bf:8,128|FS:0,0>
+382.313  TX  ?
+382.320  RX  <Jog|MPos:-9.787,70.418,0.000|Bf:8,128|FS:0,0>
+382.481  TX  ?
+382.488  RX  <Idle|MPos:-9.000,67.100,0.000|Bf:8,128|FS:0,0>
+382.650  OK  session 45: jog to X=-9.0 Y=67.1: reply ok, now X=-9.000 Y=67.100
+382.650  TX  ?
+382.657  RX  <Idle|MPos:-9.000,67.100,0.000|Bf:8,128|FS:0,0>
+382.960  --  waiting 3 s of stillness before the port is closed (the position is stored after 2 s)
+382.960  TX  ?
+382.967  RX  <Idle|MPos:-9.000,67.100,0.000|Bf:8,128|FS:0,0>
+383.269  TX  ?
+383.276  RX  <Idle|MPos:-9.000,67.100,0.000|Bf:8,128|FS:0,0>
+383.579  TX  ?
+383.586  RX  <Idle|MPos:-9.000,67.100,0.000|Bf:8,128|FS:0,0>
+383.888  TX  ?
+383.895  RX  <Idle|MPos:-9.000,67.100,0.000|Bf:8,128|FS:0,0>
+384.198  TX  ?
+384.205  RX  <Idle|MPos:-9.000,67.100,0.000|Bf:8,128|FS:0,0>
+384.507  TX  ?
+384.514  RX  <Idle|MPos:-9.000,67.100,0.000|Bf:8,128|FS:0,0>
+384.817  TX  ?
+384.824  RX  <Idle|MPos:-9.000,67.100,0.000|Bf:8,128|FS:0,0>
+385.126  TX  ?
+385.133  RX  <Idle|MPos:-9.000,67.100,0.000|Bf:8,128|FS:0,0>
+385.436  TX  ?
+385.443  RX  <Idle|MPos:-9.000,67.100,0.000|Bf:8,128|FS:0,0>
+385.746  TX  ?
+385.753  RX  <Idle|MPos:-9.000,67.100,0.000|Bf:8,128|FS:0,0>
+386.055  --  final state: Idle
+386.563  --  port open: DTR reset the board, waiting for the welcome line
+388.244  RX  Grbl 1.1h ['$' for help]
+388.889  TX  ?
+388.896  RX  <Idle|MPos:-9.000,67.100,0.000|Bf:8,128|FS:0,0>
+389.198  TX  ?
+389.205  RX  <Idle|MPos:-9.000,67.100,0.000|Bf:8,128|FS:0,0>
+389.507  TX  ?
+389.514  RX  <Idle|MPos:-9.000,67.100,0.000|Bf:8,128|FS:0,0>
+389.817  OK  session 46: back at X=-9.000 Y=67.100, left at X=-9.000 Y=67.100
+389.817  TX  $J=G21G90X12.0Y60.3F1200
+389.822  RX  ok
+389.883  TX  ?
+389.890  RX  <Jog|MPos:-7.990,66.773,0.000|Bf:8,128|FS:0,0>
+390.052  TX  ?
+390.059  RX  <Jog|MPos:-4.760,65.727,0.000|Bf:8,128|FS:0,0>
+390.220  TX  ?
+390.227  RX  <Jog|MPos:-1.327,64.615,0.000|Bf:8,128|FS:0,0>
+390.389  TX  ?
+390.396  RX  <Jog|MPos:2.106,63.504,0.000|Bf:8,128|FS:0,0>
+390.557  TX  ?
+390.564  RX  <Jog|MPos:5.538,62.392,0.000|Bf:8,128|FS:0,0>
+390.725  TX  ?
+390.732  RX  <Jog|MPos:8.971,61.281,0.000|Bf:8,128|FS:0,0>
+390.894  TX  ?
+390.901  RX  <Idle|MPos:12.000,60.300,0.000|Bf:8,128|FS:0,0>
+391.063  OK  session 46: jog to X=12.0 Y=60.3: reply ok, now X=12.000 Y=60.300
+391.063  TX  ?
+391.070  RX  <Idle|MPos:12.000,60.300,0.000|Bf:8,128|FS:0,0>
+391.372  --  waiting 3 s of stillness before the port is closed (the position is stored after 2 s)
+391.373  TX  ?
+391.380  RX  <Idle|MPos:12.000,60.300,0.000|Bf:8,128|FS:0,0>
+391.682  TX  ?
+391.689  RX  <Idle|MPos:12.000,60.300,0.000|Bf:8,128|FS:0,0>
+391.992  TX  ?
+391.999  RX  <Idle|MPos:12.000,60.300,0.000|Bf:8,128|FS:0,0>
+392.302  TX  ?
+392.309  RX  <Idle|MPos:12.000,60.300,0.000|Bf:8,128|FS:0,0>
+392.611  TX  ?
+392.618  RX  <Idle|MPos:12.000,60.300,0.000|Bf:8,128|FS:0,0>
+392.921  TX  ?
+392.928  RX  <Idle|MPos:12.000,60.300,0.000|Bf:8,128|FS:0,0>
+393.231  TX  ?
+393.238  RX  <Idle|MPos:12.000,60.300,0.000|Bf:8,128|FS:0,0>
+393.540  TX  ?
+393.547  RX  <Idle|MPos:12.000,60.300,0.000|Bf:8,128|FS:0,0>
+393.850  TX  ?
+393.857  RX  <Idle|MPos:12.000,60.300,0.000|Bf:8,128|FS:0,0>
+394.160  TX  ?
+394.167  RX  <Idle|MPos:12.000,60.300,0.000|Bf:8,128|FS:0,0>
+394.469  --  final state: Idle
+394.977  --  port open: DTR reset the board, waiting for the welcome line
+396.658  RX  Grbl 1.1h ['$' for help]
+397.303  TX  ?
+397.310  RX  <Idle|MPos:12.000,60.300,0.000|Bf:8,128|FS:0,0>
+397.613  TX  ?
+397.620  RX  <Idle|MPos:12.000,60.300,0.000|Bf:8,128|FS:0,0>
+397.922  TX  ?
+397.930  RX  <Idle|MPos:12.000,60.300,0.000|Bf:8,128|FS:0,0>
+398.232  OK  session 47: back at X=12.000 Y=60.300, left at X=12.000 Y=60.300
+398.233  TX  $J=G21G90X21.0Y71.9F1200
+398.238  RX  ok
+398.299  TX  ?
+398.306  RX  <Jog|MPos:12.652,61.141,0.000|Bf:8,128|FS:0,0>
+398.467  TX  ?
+398.474  RX  <Jog|MPos:14.870,63.999,0.000|Bf:8,128|FS:0,0>
+398.635  TX  ?
+398.642  RX  <Jog|MPos:16.957,66.688,0.000|Bf:8,128|FS:0,0>
+398.804  TX  ?
+398.812  RX  <Jog|MPos:19.174,69.546,0.000|Bf:8,128|FS:0,0>
+398.973  TX  ?
+398.981  RX  <Idle|MPos:21.000,71.900,0.000|Bf:8,128|FS:0,0>
+399.142  OK  session 47: jog to X=21.0 Y=71.9: reply ok, now X=21.000 Y=71.900
+399.142  TX  ?
+399.149  RX  <Idle|MPos:21.000,71.900,0.000|Bf:8,128|FS:0,0>
+399.451  --  waiting 3 s of stillness before the port is closed (the position is stored after 2 s)
+399.452  TX  ?
+399.459  RX  <Idle|MPos:21.000,71.900,0.000|Bf:8,128|FS:0,0>
+399.761  TX  ?
+399.769  RX  <Idle|MPos:21.000,71.900,0.000|Bf:8,128|FS:0,0>
+400.071  TX  ?
+400.078  RX  <Idle|MPos:21.000,71.900,0.000|Bf:8,128|FS:0,0>
+400.381  TX  ?
+400.388  RX  <Idle|MPos:21.000,71.900,0.000|Bf:8,128|FS:0,0>
+400.690  TX  ?
+400.697  RX  <Idle|MPos:21.000,71.900,0.000|Bf:8,128|FS:0,0>
+401.000  TX  ?
+401.007  RX  <Idle|MPos:21.000,71.900,0.000|Bf:8,128|FS:0,0>
+401.310  TX  ?
+401.317  RX  <Idle|MPos:21.000,71.900,0.000|Bf:8,128|FS:0,0>
+401.619  TX  ?
+401.627  RX  <Idle|MPos:21.000,71.900,0.000|Bf:8,128|FS:0,0>
+401.929  TX  ?
+401.936  RX  <Idle|MPos:21.000,71.900,0.000|Bf:8,128|FS:0,0>
+402.239  TX  ?
+402.246  RX  <Idle|MPos:21.000,71.900,0.000|Bf:8,128|FS:0,0>
+402.549  --  final state: Idle
+403.056  --  port open: DTR reset the board, waiting for the welcome line
+404.737  RX  Grbl 1.1h ['$' for help]
+405.383  TX  ?
+405.390  RX  <Idle|MPos:21.000,71.900,0.000|Bf:8,128|FS:0,0>
+405.692  TX  ?
+405.699  RX  <Idle|MPos:21.000,71.900,0.000|Bf:8,128|FS:0,0>
+406.002  TX  ?
+406.010  RX  <Idle|MPos:21.000,71.900,0.000|Bf:8,128|FS:0,0>
+406.312  OK  session 48: back at X=21.000 Y=71.900, left at X=21.000 Y=71.900
+406.312  TX  $J=G21G90X15.2Y83.6F1200
+406.318  RX  ok
+406.378  TX  ?
+406.385  RX  <Jog|MPos:20.532,72.844,0.000|Bf:8,128|FS:0,0>
+406.547  TX  ?
+406.554  RX  <Jog|MPos:19.035,75.863,0.000|Bf:8,128|FS:0,0>
+406.715  TX  ?
+406.722  RX  <Jog|MPos:17.445,79.071,0.000|Bf:8,128|FS:0,0>
+406.884  TX  ?
+406.892  RX  <Jog|MPos:15.761,82.468,0.000|Bf:8,128|FS:0,0>
+407.053  TX  ?
+407.061  RX  <Idle|MPos:15.200,83.600,0.000|Bf:8,128|FS:0,0>
+407.222  OK  session 48: jog to X=15.2 Y=83.6: reply ok, now X=15.200 Y=83.600
+407.222  TX  ?
+407.229  RX  <Idle|MPos:15.200,83.600,0.000|Bf:8,128|FS:0,0>
+407.532  --  waiting 3 s of stillness before the port is closed (the position is stored after 2 s)
+407.532  TX  ?
+407.539  RX  <Idle|MPos:15.200,83.600,0.000|Bf:8,128|FS:0,0>
+407.842  TX  ?
+407.849  RX  <Idle|MPos:15.200,83.600,0.000|Bf:8,128|FS:0,0>
+408.151  TX  ?
+408.158  RX  <Idle|MPos:15.200,83.600,0.000|Bf:8,128|FS:0,0>
+408.461  TX  ?
+408.468  RX  <Idle|MPos:15.200,83.600,0.000|Bf:8,128|FS:0,0>
+408.770  TX  ?
+408.777  RX  <Idle|MPos:15.200,83.600,0.000|Bf:8,128|FS:0,0>
+409.080  TX  ?
+409.087  RX  <Idle|MPos:15.200,83.600,0.000|Bf:8,128|FS:0,0>
+409.390  TX  ?
+409.397  RX  <Idle|MPos:15.200,83.600,0.000|Bf:8,128|FS:0,0>
+409.699  TX  ?
+409.707  RX  <Idle|MPos:15.200,83.600,0.000|Bf:8,128|FS:0,0>
+410.009  TX  ?
+410.016  RX  <Idle|MPos:15.200,83.600,0.000|Bf:8,128|FS:0,0>
+410.319  TX  ?
+410.326  RX  <Idle|MPos:15.200,83.600,0.000|Bf:8,128|FS:0,0>
+410.628  --  final state: Idle
+411.137  --  port open: DTR reset the board, waiting for the welcome line
+412.818  RX  Grbl 1.1h ['$' for help]
+413.463  TX  ?
+413.470  RX  <Idle|MPos:15.200,83.600,0.000|Bf:8,128|FS:0,0>
+413.773  TX  ?
+413.780  RX  <Idle|MPos:15.200,83.600,0.000|Bf:8,128|FS:0,0>
+414.082  TX  ?
+414.090  RX  <Idle|MPos:15.200,83.600,0.000|Bf:8,128|FS:0,0>
+414.392  OK  session 49: back at X=15.200 Y=83.600, left at X=15.200 Y=83.600
+414.392  TX  $J=G21G90X31.3Y97.4F1200
+414.398  RX  ok
+414.458  TX  ?
+414.466  RX  <Jog|MPos:16.166,84.428,0.000|Bf:8,128|FS:0,0>
+414.628  TX  ?
+414.635  RX  <Jog|MPos:18.742,86.636,0.000|Bf:8,128|FS:0,0>
+414.797  TX  ?
+414.804  RX  <Jog|MPos:21.479,88.982,0.000|Bf:8,128|FS:0,0>
+414.965  TX  ?
+414.972  RX  <Jog|MPos:24.216,91.328,0.000|Bf:8,128|FS:0,0>
+415.134  TX  ?
+415.141  RX  <Jog|MPos:26.953,93.674,0.000|Bf:8,128|FS:0,0>
+415.302  TX  ?
+415.309  RX  <Jog|MPos:29.690,96.020,0.000|Bf:8,128|FS:0,0>
+415.470  TX  ?
+415.477  RX  <Idle|MPos:31.300,97.400,0.000|Bf:8,128|FS:0,0>
+415.639  OK  session 49: jog to X=31.3 Y=97.4: reply ok, now X=31.300 Y=97.400
+415.639  TX  ?
+415.646  RX  <Idle|MPos:31.300,97.400,0.000|Bf:8,128|FS:0,0>
+415.949  --  waiting 3 s of stillness before the port is closed (the position is stored after 2 s)
+415.949  TX  ?
+415.956  RX  <Idle|MPos:31.300,97.400,0.000|Bf:8,128|FS:0,0>
+416.259  TX  ?
+416.265  RX  <Idle|MPos:31.300,97.400,0.000|Bf:8,128|FS:0,0>
+416.568  TX  ?
+416.575  RX  <Idle|MPos:31.300,97.400,0.000|Bf:8,128|FS:0,0>
+416.878  TX  ?
+416.885  RX  <Idle|MPos:31.300,97.400,0.000|Bf:8,128|FS:0,0>
+417.187  TX  ?
+417.194  RX  <Idle|MPos:31.300,97.400,0.000|Bf:8,128|FS:0,0>
+417.497  TX  ?
+417.507  RX  <Idle|MPos:31.300,97.400,0.000|Bf:8,128|FS:0,0>
+417.809  TX  ?
+417.816  RX  <Idle|MPos:31.300,97.400,0.000|Bf:8,128|FS:0,0>
+418.119  TX  ?
+418.126  RX  <Idle|MPos:31.300,97.400,0.000|Bf:8,128|FS:0,0>
+418.428  TX  ?
+418.436  RX  <Idle|MPos:31.300,97.400,0.000|Bf:8,128|FS:0,0>
+418.738  TX  ?
+418.745  RX  <Idle|MPos:31.300,97.400,0.000|Bf:8,128|FS:0,0>
+419.048  --  final state: Idle
+419.556  --  port open: DTR reset the board, waiting for the welcome line
+421.237  RX  Grbl 1.1h ['$' for help]
+421.882  TX  ?
+421.889  RX  <Idle|MPos:31.300,97.400,0.000|Bf:8,128|FS:0,0>
+422.192  TX  ?
+422.199  RX  <Idle|MPos:31.300,97.400,0.000|Bf:8,128|FS:0,0>
+422.502  TX  ?
+422.509  RX  <Idle|MPos:31.300,97.400,0.000|Bf:8,128|FS:0,0>
+422.811  OK  session 50: back at X=31.300 Y=97.400, left at X=31.300 Y=97.400
+422.812  TX  $J=G21G90X99.8Y91.4F1200
+422.817  RX  ok
+422.877  TX  ?
+422.885  RX  <Jog|MPos:32.364,97.307,0.000|Bf:8,128|FS:0,0>
+423.046  TX  ?
+423.053  RX  <Jog|MPos:35.767,97.009,0.000|Bf:8,128|FS:0,0>
+423.215  TX  ?
+423.222  RX  <Jog|MPos:39.384,96.692,0.000|Bf:8,128|FS:0,0>
+423.384  TX  ?
+423.391  RX  <Jog|MPos:42.788,96.394,0.000|Bf:8,128|FS:0,0>
+423.552  TX  ?
+423.559  RX  <Jog|MPos:46.617,96.058,0.000|Bf:8,128|FS:0,0>
+423.721  TX  ?
+423.728  RX  <Jog|MPos:50.020,95.760,0.000|Bf:8,128|FS:0,0>
+423.889  TX  ?
+423.896  RX  <Jog|MPos:53.637,95.443,0.000|Bf:8,128|FS:0,0>
+424.058  TX  ?
+424.065  RX  <Jog|MPos:57.253,95.127,0.000|Bf:8,128|FS:0,0>
+424.226  TX  ?
+424.233  RX  <Jog|MPos:60.870,94.810,0.000|Bf:8,128|FS:0,0>
+424.394  TX  ?
+424.401  RX  <Jog|MPos:64.486,94.493,0.000|Bf:8,128|FS:0,0>
+424.563  TX  ?
+424.570  RX  <Jog|MPos:68.103,94.176,0.000|Bf:8,128|FS:0,0>
+424.731  TX  ?
+424.738  RX  <Jog|MPos:71.719,93.860,0.000|Bf:8,128|FS:0,0>
+424.900  TX  ?
+424.907  RX  <Jog|MPos:75.336,93.543,0.000|Bf:8,128|FS:0,0>
+425.068  TX  ?
+425.075  RX  <Jog|MPos:78.952,93.226,0.000|Bf:8,128|FS:0,0>
+425.236  TX  ?
+425.243  RX  <Jog|MPos:82.569,92.909,0.000|Bf:8,128|FS:0,0>
+425.405  TX  ?
+425.412  RX  <Jog|MPos:86.185,92.593,0.000|Bf:8,128|FS:0,0>
+425.573  TX  ?
+425.580  RX  <Jog|MPos:89.802,92.276,0.000|Bf:8,128|FS:0,0>
+425.742  TX  ?
+425.748  RX  <Jog|MPos:93.418,91.959,0.000|Bf:8,128|FS:0,0>
+425.910  TX  ?
+425.917  RX  <Jog|MPos:97.034,91.642,0.000|Bf:8,128|FS:0,0>
+426.078  TX  ?
+426.085  RX  <Idle|MPos:99.800,91.400,0.000|Bf:8,128|FS:0,0>
+426.247  OK  session 50: jog to X=99.8 Y=91.4: reply ok, now X=99.800 Y=91.400
+426.247  TX  ?
+426.254  RX  <Idle|MPos:99.800,91.400,0.000|Bf:8,128|FS:0,0>
+426.557  --  waiting 3 s of stillness before the port is closed (the position is stored after 2 s)
+426.557  TX  ?
+426.564  RX  <Idle|MPos:99.800,91.400,0.000|Bf:8,128|FS:0,0>
+426.866  TX  ?
+426.873  RX  <Idle|MPos:99.800,91.400,0.000|Bf:8,128|FS:0,0>
+427.176  TX  ?
+427.183  RX  <Idle|MPos:99.800,91.400,0.000|Bf:8,128|FS:0,0>
+427.485  TX  ?
+427.493  RX  <Idle|MPos:99.800,91.400,0.000|Bf:8,128|FS:0,0>
+427.795  TX  ?
+427.802  RX  <Idle|MPos:99.800,91.400,0.000|Bf:8,128|FS:0,0>
+428.105  TX  ?
+428.144  RX  <Idle|MPos:99.800,91.400,0.000|Bf:8,128|FS:0,0>
+428.407  TX  ?
+428.414  RX  <Idle|MPos:99.800,91.400,0.000|Bf:8,128|FS:0,0>
+428.716  TX  ?
+428.723  RX  <Idle|MPos:99.800,91.400,0.000|Bf:8,128|FS:0,0>
+429.026  TX  ?
+429.033  RX  <Idle|MPos:99.800,91.400,0.000|Bf:8,128|FS:0,0>
+429.335  TX  ?
+429.343  RX  <Idle|MPos:99.800,91.400,0.000|Bf:8,128|FS:0,0>
+429.645  --  final state: Idle
+430.154  --  port open: DTR reset the board, waiting for the welcome line
+431.835  RX  Grbl 1.1h ['$' for help]
+432.480  TX  ?
+432.487  RX  <Idle|MPos:99.800,91.400,0.000|Bf:8,128|FS:0,0>
+432.790  TX  ?
+432.797  RX  <Idle|MPos:99.800,91.400,0.000|Bf:8,128|FS:0,0>
+433.099  TX  ?
+433.106  RX  <Idle|MPos:99.800,91.400,0.000|Bf:8,128|FS:0,0>
+433.409  OK  session 51: back at X=99.800 Y=91.400, left at X=99.800 Y=91.400
+433.409  TX  $J=G21G90X18.8Y21.9F1200
+433.414  RX  ok
+433.475  TX  ?
+433.483  RX  <Jog|MPos:98.988,90.704,0.000|Bf:8,128|FS:0,0>
+433.644  TX  ?
+433.651  RX  <Jog|MPos:96.391,88.475,0.000|Bf:8,128|FS:0,0>
+433.813  TX  ?
+433.820  RX  <Jog|MPos:93.632,86.107,0.000|Bf:8,128|FS:0,0>
+433.981  TX  ?
+433.988  RX  <Jog|MPos:90.872,83.740,0.000|Bf:8,128|FS:0,0>
+434.149  TX  ?
+434.156  RX  <Jog|MPos:88.113,81.372,0.000|Bf:8,128|FS:0,0>
+434.318  TX  ?
+434.325  RX  <Jog|MPos:85.353,79.004,0.000|Bf:8,128|FS:0,0>
+434.486  TX  ?
+434.493  RX  <Jog|MPos:82.594,76.636,0.000|Bf:8,128|FS:0,0>
+434.654  TX  ?
+434.661  RX  <Jog|MPos:79.834,74.269,0.000|Bf:8,128|FS:0,0>
+434.823  TX  ?
+434.830  RX  <Jog|MPos:77.075,71.901,0.000|Bf:8,128|FS:0,0>
+434.991  TX  ?
+434.998  RX  <Jog|MPos:74.315,69.533,0.000|Bf:8,128|FS:0,0>
+435.159  TX  ?
+435.166  RX  <Jog|MPos:71.718,67.305,0.000|Bf:8,128|FS:0,0>
+435.328  TX  ?
+435.335  RX  <Jog|MPos:68.958,64.937,0.000|Bf:8,128|FS:0,0>
+435.497  TX  ?
+435.504  RX  <Jog|MPos:66.199,62.569,0.000|Bf:8,128|FS:0,0>
+435.665  TX  ?
+435.672  RX  <Jog|MPos:63.439,60.202,0.000|Bf:8,128|FS:0,0>
+435.834  TX  ?
+435.841  RX  <Jog|MPos:60.680,57.834,0.000|Bf:8,128|FS:0,0>
+436.002  TX  ?
+436.009  RX  <Jog|MPos:57.920,55.466,0.000|Bf:8,128|FS:0,0>
+436.171  TX  ?
+436.178  RX  <Jog|MPos:55.161,53.098,0.000|Bf:8,128|FS:0,0>
+436.339  TX  ?
+436.346  RX  <Jog|MPos:52.401,50.731,0.000|Bf:8,128|FS:0,0>
+436.508  TX  ?
+436.515  RX  <Jog|MPos:49.642,48.363,0.000|Bf:8,128|FS:0,0>
+436.676  TX  ?
+436.684  RX  <Jog|MPos:46.882,45.995,0.000|Bf:8,128|FS:0,0>
+436.846  TX  ?
+436.853  RX  <Jog|MPos:44.123,43.627,0.000|Bf:8,128|FS:0,0>
+437.015  TX  ?
+437.022  RX  <Jog|MPos:41.363,41.260,0.000|Bf:8,128|FS:0,0>
+437.183  TX  ?
+437.190  RX  <Jog|MPos:38.604,38.892,0.000|Bf:8,128|FS:0,0>
+437.352  TX  ?
+437.359  RX  <Jog|MPos:35.844,36.524,0.000|Bf:8,128|FS:0,0>
+437.520  TX  ?
+437.527  RX  <Jog|MPos:33.085,34.157,0.000|Bf:8,128|FS:0,0>
+437.689  TX  ?
+437.696  RX  <Jog|MPos:30.325,31.789,0.000|Bf:8,128|FS:0,0>
+437.857  TX  ?
+437.864  RX  <Jog|MPos:27.566,29.421,0.000|Bf:8,128|FS:0,0>
+438.026  TX  ?
+438.033  RX  <Jog|MPos:24.806,27.053,0.000|Bf:8,128|FS:0,0>
+438.194  TX  ?
+438.201  RX  <Jog|MPos:22.046,24.686,0.000|Bf:8,128|FS:0,0>
+438.362  TX  ?
+438.369  RX  <Jog|MPos:19.287,22.318,0.000|Bf:8,128|FS:0,0>
+438.531  TX  ?
+438.538  RX  <Idle|MPos:18.800,21.900,0.000|Bf:8,128|FS:0,0>
+438.699  OK  session 51: jog to X=18.8 Y=21.9: reply ok, now X=18.800 Y=21.900
+438.700  TX  ?
+438.707  RX  <Idle|MPos:18.800,21.900,0.000|Bf:8,128|FS:0,0>
+439.009  --  waiting 3 s of stillness before the port is closed (the position is stored after 2 s)
+439.009  TX  ?
+439.016  RX  <Idle|MPos:18.800,21.900,0.000|Bf:8,128|FS:0,0>
+439.319  TX  ?
+439.326  RX  <Idle|MPos:18.800,21.900,0.000|Bf:8,128|FS:0,0>
+439.629  TX  ?
+439.636  RX  <Idle|MPos:18.800,21.900,0.000|Bf:8,128|FS:0,0>
+439.938  TX  ?
+439.945  RX  <Idle|MPos:18.800,21.900,0.000|Bf:8,128|FS:0,0>
+440.248  TX  ?
+440.255  RX  <Idle|MPos:18.800,21.900,0.000|Bf:8,128|FS:0,0>
+440.557  TX  ?
+440.564  RX  <Idle|MPos:18.800,21.900,0.000|Bf:8,128|FS:0,0>
+440.867  TX  ?
+440.874  RX  <Idle|MPos:18.800,21.900,0.000|Bf:8,128|FS:0,0>
+441.176  TX  ?
+441.184  RX  <Idle|MPos:18.800,21.900,0.000|Bf:8,128|FS:0,0>
+441.486  TX  ?
+441.493  RX  <Idle|MPos:18.800,21.900,0.000|Bf:8,128|FS:0,0>
+441.796  TX  ?
+441.804  RX  <Idle|MPos:18.800,21.900,0.000|Bf:8,128|FS:0,0>
+442.106  --  final state: Idle
+442.615  --  port open: DTR reset the board, waiting for the welcome line
+444.295  RX  Grbl 1.1h ['$' for help]
+444.941  TX  ?
+444.948  RX  <Idle|MPos:18.800,21.900,0.000|Bf:8,128|FS:0,0>
+445.250  TX  ?
+445.257  RX  <Idle|MPos:18.800,21.900,0.000|Bf:8,128|FS:0,0>
+445.560  TX  ?
+445.567  RX  <Idle|MPos:18.800,21.900,0.000|Bf:8,128|FS:0,0>
+445.869  OK  session 52: back at X=18.800 Y=21.900, left at X=18.800 Y=21.900
+445.870  TX  $J=G21G90X6.6Y29.9F1200
+445.875  RX  ok
+445.935  TX  ?
+445.943  RX  <Jog|MPos:17.916,22.480,0.000|Bf:8,128|FS:0,0>
+446.105  TX  ?
+446.112  RX  <Jog|MPos:14.910,24.451,0.000|Bf:8,128|FS:0,0>
+446.273  TX  ?
+446.280  RX  <Jog|MPos:12.081,26.306,0.000|Bf:8,128|FS:0,0>
+446.442  TX  ?
+446.449  RX  <Jog|MPos:8.899,28.393,0.000|Bf:8,128|FS:0,0>
+446.610  TX  ?
+446.617  RX  <Idle|MPos:6.600,29.900,0.000|Bf:8,128|FS:0,0>
+446.778  OK  session 52: jog to X=6.6 Y=29.9: reply ok, now X=6.600 Y=29.900
+446.779  TX  ?
+446.786  RX  <Idle|MPos:6.600,29.900,0.000|Bf:8,128|FS:0,0>
+447.088  --  waiting 3 s of stillness before the port is closed (the position is stored after 2 s)
+447.088  TX  ?
+447.095  RX  <Idle|MPos:6.600,29.900,0.000|Bf:8,128|FS:0,0>
+447.397  TX  ?
+447.404  RX  <Idle|MPos:6.600,29.900,0.000|Bf:8,128|FS:0,0>
+447.707  TX  ?
+447.714  RX  <Idle|MPos:6.600,29.900,0.000|Bf:8,128|FS:0,0>
+448.016  TX  ?
+448.023  RX  <Idle|MPos:6.600,29.900,0.000|Bf:8,128|FS:0,0>
+448.326  TX  ?
+448.333  RX  <Idle|MPos:6.600,29.900,0.000|Bf:8,128|FS:0,0>
+448.636  TX  ?
+448.677  RX  <Idle|MPos:6.600,29.900,0.000|Bf:8,128|FS:0,0>
+448.939  TX  ?
+448.946  RX  <Idle|MPos:6.600,29.900,0.000|Bf:8,128|FS:0,0>
+449.249  TX  ?
+449.255  RX  <Idle|MPos:6.600,29.900,0.000|Bf:8,128|FS:0,0>
+449.557  TX  ?
+449.564  RX  <Idle|MPos:6.600,29.900,0.000|Bf:8,128|FS:0,0>
+449.867  TX  ?
+449.874  RX  <Idle|MPos:6.600,29.900,0.000|Bf:8,128|FS:0,0>
+450.177  --  final state: Idle
+450.685  --  port open: DTR reset the board, waiting for the welcome line
+452.366  RX  Grbl 1.1h ['$' for help]
+453.012  TX  ?
+453.018  RX  <Idle|MPos:6.600,29.900,0.000|Bf:8,128|FS:0,0>
+453.321  TX  ?
+453.328  RX  <Idle|MPos:6.600,29.900,0.000|Bf:8,128|FS:0,0>
+453.631  TX  ?
+453.638  RX  <Idle|MPos:6.600,29.900,0.000|Bf:8,128|FS:0,0>
+453.940  OK  session 53: back at X=6.600 Y=29.900, left at X=6.600 Y=29.900
+453.940  TX  $J=G21G90X-4.0Y37.9F1200
+453.945  RX  ok
+454.006  TX  ?
+454.014  RX  <Jog|MPos:5.590,30.662,0.000|Bf:8,128|FS:0,0>
+454.176  TX  ?
+454.183  RX  <Jog|MPos:2.898,32.694,0.000|Bf:8,128|FS:0,0>
+454.345  TX  ?
+454.352  RX  <Jog|MPos:0.038,34.852,0.000|Bf:8,128|FS:0,0>
+454.513  TX  ?
+454.520  RX  <Jog|MPos:-2.822,37.011,0.000|Bf:8,128|FS:0,0>
+454.681  TX  ?
+454.688  RX  <Idle|MPos:-4.000,37.900,0.000|Bf:8,128|FS:0,0>
+454.850  OK  session 53: jog to X=-4.0 Y=37.9: reply ok, now X=-4.000 Y=37.900
+454.850  TX  ?
+454.857  RX  <Idle|MPos:-4.000,37.900,0.000|Bf:8,128|FS:0,0>
+455.159  --  waiting 3 s of stillness before the port is closed (the position is stored after 2 s)
+455.159  TX  ?
+455.166  RX  <Idle|MPos:-4.000,37.900,0.000|Bf:8,128|FS:0,0>
+455.469  TX  ?
+455.476  RX  <Idle|MPos:-4.000,37.900,0.000|Bf:8,128|FS:0,0>
+455.779  TX  ?
+455.786  RX  <Idle|MPos:-4.000,37.900,0.000|Bf:8,128|FS:0,0>
+456.088  TX  ?
+456.095  RX  <Idle|MPos:-4.000,37.900,0.000|Bf:8,128|FS:0,0>
+456.398  TX  ?
+456.405  RX  <Idle|MPos:-4.000,37.900,0.000|Bf:8,128|FS:0,0>
+456.707  TX  ?
+456.714  RX  <Idle|MPos:-4.000,37.900,0.000|Bf:8,128|FS:0,0>
+457.016  TX  ?
+457.023  RX  <Idle|MPos:-4.000,37.900,0.000|Bf:8,128|FS:0,0>
+457.326  TX  ?
+457.333  RX  <Idle|MPos:-4.000,37.900,0.000|Bf:8,128|FS:0,0>
+457.635  TX  ?
+457.642  RX  <Idle|MPos:-4.000,37.900,0.000|Bf:8,128|FS:0,0>
+457.945  TX  ?
+457.952  RX  <Idle|MPos:-4.000,37.900,0.000|Bf:8,128|FS:0,0>
+458.254  --  final state: Idle
+458.762  --  port open: DTR reset the board, waiting for the welcome line
+460.443  RX  Grbl 1.1h ['$' for help]
+461.088  TX  ?
+461.095  RX  <Idle|MPos:-4.000,37.900,0.000|Bf:8,128|FS:0,0>
+461.398  TX  ?
+461.405  RX  <Idle|MPos:-4.000,37.900,0.000|Bf:8,128|FS:0,0>
+461.707  TX  ?
+461.715  RX  <Idle|MPos:-4.000,37.900,0.000|Bf:8,128|FS:0,0>
+462.017  OK  session 54: back at X=-4.000 Y=37.900, left at X=-4.000 Y=37.900
+462.017  TX  $J=G21G90X-0.5Y15.5F1200
+462.022  RX  ok
+462.083  TX  ?
+462.090  RX  <Jog|MPos:-3.868,37.055,0.000|Bf:8,128|FS:0,0>
+462.252  TX  ?
+462.259  RX  <Jog|MPos:-3.307,33.462,0.000|Bf:8,128|FS:0,0>
+462.420  TX  ?
+462.427  RX  <Jog|MPos:-2.778,30.081,0.000|Bf:8,128|FS:0,0>
+462.589  TX  ?
+462.596  RX  <Jog|MPos:-2.217,26.489,0.000|Bf:8,128|FS:0,0>
+462.757  TX  ?
+462.764  RX  <Jog|MPos:-1.656,22.896,0.000|Bf:8,128|FS:0,0>
+462.926  TX  ?
+462.933  RX  <Jog|MPos:-1.094,19.304,0.000|Bf:8,128|FS:0,0>
+463.094  TX  ?
+463.101  RX  <Jog|MPos:-0.533,15.711,0.000|Bf:8,128|FS:0,0>
+463.263  TX  ?
+463.270  RX  <Idle|MPos:-0.500,15.500,0.000|Bf:8,128|FS:0,0>
+463.431  OK  session 54: jog to X=-0.5 Y=15.5: reply ok, now X=-0.500 Y=15.500
+463.431  TX  ?
+463.438  RX  <Idle|MPos:-0.500,15.500,0.000|Bf:8,128|FS:0,0>
+463.741  --  waiting 3 s of stillness before the port is closed (the position is stored after 2 s)
+463.741  TX  ?
+463.748  RX  <Idle|MPos:-0.500,15.500,0.000|Bf:8,128|FS:0,0>
+464.051  TX  ?
+464.058  RX  <Idle|MPos:-0.500,15.500,0.000|Bf:8,128|FS:0,0>
+464.360  TX  ?
+464.367  RX  <Idle|MPos:-0.500,15.500,0.000|Bf:8,128|FS:0,0>
+464.670  TX  ?
+464.677  RX  <Idle|MPos:-0.500,15.500,0.000|Bf:8,128|FS:0,0>
+464.979  TX  ?
+464.986  RX  <Idle|MPos:-0.500,15.500,0.000|Bf:8,128|FS:0,0>
+465.289  TX  ?
+465.296  RX  <Idle|MPos:-0.500,15.500,0.000|Bf:8,128|FS:0,0>
+465.599  TX  ?
+465.606  RX  <Idle|MPos:-0.500,15.500,0.000|Bf:8,128|FS:0,0>
+465.908  TX  ?
+465.915  RX  <Idle|MPos:-0.500,15.500,0.000|Bf:8,128|FS:0,0>
+466.217  TX  ?
+466.224  RX  <Idle|MPos:-0.500,15.500,0.000|Bf:8,128|FS:0,0>
+466.527  TX  ?
+466.534  RX  <Idle|MPos:-0.500,15.500,0.000|Bf:8,128|FS:0,0>
+466.837  --  final state: Idle
+467.345  --  port open: DTR reset the board, waiting for the welcome line
+469.026  RX  Grbl 1.1h ['$' for help]
+469.672  TX  ?
+469.679  RX  <Idle|MPos:-0.500,15.500,0.000|Bf:8,128|FS:0,0>
+469.981  TX  ?
+469.988  RX  <Idle|MPos:-0.500,15.500,0.000|Bf:8,128|FS:0,0>
+470.291  TX  ?
+470.298  RX  <Idle|MPos:-0.500,15.500,0.000|Bf:8,128|FS:0,0>
+470.601  OK  session 55: back at X=-0.500 Y=15.500, left at X=-0.500 Y=15.500
+470.601  TX  $J=G21G90X7.9Y-22.2F1200
+470.606  RX  ok
+470.667  TX  ?
+470.674  RX  <Jog|MPos:-0.314,14.667,0.000|Bf:8,128|FS:0,0>
+470.835  TX  ?
+470.842  RX  <Jog|MPos:0.428,11.334,0.000|Bf:8,128|FS:0,0>
+471.003  TX  ?
+471.010  RX  <Jog|MPos:1.217,7.793,0.000|Bf:8,128|FS:0,0>
+471.172  TX  ?
+471.178  RX  <Jog|MPos:2.006,4.252,0.000|Bf:8,128|FS:0,0>
+471.340  TX  ?
+471.348  RX  <Jog|MPos:2.795,0.712,0.000|Bf:8,128|FS:0,0>
+471.509  TX  ?
+471.516  RX  <Jog|MPos:3.584,-2.829,0.000|Bf:8,128|FS:0,0>
+471.678  TX  ?
+471.685  RX  <Jog|MPos:4.373,-6.370,0.000|Bf:8,128|FS:0,0>
+471.847  TX  ?
+471.854  RX  <Jog|MPos:5.162,-9.911,0.000|Bf:8,128|FS:0,0>
+472.015  TX  ?
+472.022  RX  <Jog|MPos:5.951,-13.452,0.000|Bf:8,128|FS:0,0>
+472.184  TX  ?
+472.191  RX  <Jog|MPos:6.740,-16.993,0.000|Bf:8,128|FS:0,0>
+472.352  TX  ?
+472.359  RX  <Jog|MPos:7.529,-20.534,0.000|Bf:8,128|FS:0,0>
+472.521  TX  ?
+472.528  RX  <Idle|MPos:7.900,-22.200,0.000|Bf:8,128|FS:0,0>
+472.689  OK  session 55: jog to X=7.9 Y=-22.2: reply ok, now X=7.900 Y=-22.200
+472.689  TX  ?
+472.696  RX  <Idle|MPos:7.900,-22.200,0.000|Bf:8,128|FS:0,0>
+472.999  --  waiting 3 s of stillness before the port is closed (the position is stored after 2 s)
+472.999  TX  ?
+473.006  RX  <Idle|MPos:7.900,-22.200,0.000|Bf:8,128|FS:0,0>
+473.309  TX  ?
+473.316  RX  <Idle|MPos:7.900,-22.200,0.000|Bf:8,128|FS:0,0>
+473.618  TX  ?
+473.625  RX  <Idle|MPos:7.900,-22.200,0.000|Bf:8,128|FS:0,0>
+473.928  TX  ?
+473.935  RX  <Idle|MPos:7.900,-22.200,0.000|Bf:8,128|FS:0,0>
+474.238  TX  ?
+474.245  RX  <Idle|MPos:7.900,-22.200,0.000|Bf:8,128|FS:0,0>
+474.547  TX  ?
+474.554  RX  <Idle|MPos:7.900,-22.200,0.000|Bf:8,128|FS:0,0>
+474.857  TX  ?
+474.864  RX  <Idle|MPos:7.900,-22.200,0.000|Bf:8,128|FS:0,0>
+475.166  TX  ?
+475.173  RX  <Idle|MPos:7.900,-22.200,0.000|Bf:8,128|FS:0,0>
+475.476  TX  ?
+475.483  RX  <Idle|MPos:7.900,-22.200,0.000|Bf:8,128|FS:0,0>
+475.786  TX  ?
+475.793  RX  <Idle|MPos:7.900,-22.200,0.000|Bf:8,128|FS:0,0>
+476.095  --  final state: Idle
+476.603  --  port open: DTR reset the board, waiting for the welcome line
+478.284  RX  Grbl 1.1h ['$' for help]
+478.929  TX  ?
+478.936  RX  <Idle|MPos:7.900,-22.200,0.000|Bf:8,128|FS:0,0>
+479.239  TX  ?
+479.246  RX  <Idle|MPos:7.900,-22.200,0.000|Bf:8,128|FS:0,0>
+479.549  TX  ?
+479.556  RX  <Idle|MPos:7.900,-22.200,0.000|Bf:8,128|FS:0,0>
+479.858  OK  session 56: back at X=7.900 Y=-22.200, left at X=7.900 Y=-22.200
+479.858  TX  $J=G21G90X8.6Y-34.2F1200
+479.864  RX  ok
+479.924  TX  ?
+479.932  RX  <Jog|MPos:7.949,-23.042,0.000|Bf:8,128|FS:0,0>
+480.094  TX  ?
+480.101  RX  <Jog|MPos:8.158,-26.621,0.000|Bf:8,128|FS:0,0>
+480.262  TX  ?
+480.269  RX  <Jog|MPos:8.367,-30.200,0.000|Bf:8,128|FS:0,0>
+480.430  TX  ?
+480.437  RX  <Jog|MPos:8.575,-33.779,0.000|Bf:8,128|FS:0,0>
+480.599  TX  ?
+480.606  RX  <Idle|MPos:8.600,-34.200,0.000|Bf:8,128|FS:0,0>
+480.767  OK  session 56: jog to X=8.6 Y=-34.2: reply ok, now X=8.600 Y=-34.200
+480.767  TX  ?
+480.774  RX  <Idle|MPos:8.600,-34.200,0.000|Bf:8,128|FS:0,0>
+481.077  --  waiting 3 s of stillness before the port is closed (the position is stored after 2 s)
+481.077  TX  ?
+481.084  RX  <Idle|MPos:8.600,-34.200,0.000|Bf:8,128|FS:0,0>
+481.386  TX  ?
+481.393  RX  <Idle|MPos:8.600,-34.200,0.000|Bf:8,128|FS:0,0>
+481.696  TX  ?
+481.703  RX  <Idle|MPos:8.600,-34.200,0.000|Bf:8,128|FS:0,0>
+482.006  TX  ?
+482.013  RX  <Idle|MPos:8.600,-34.200,0.000|Bf:8,128|FS:0,0>
+482.315  TX  ?
+482.323  RX  <Idle|MPos:8.600,-34.200,0.000|Bf:8,128|FS:0,0>
+482.625  TX  ?
+482.632  RX  <Idle|MPos:8.600,-34.200,0.000|Bf:8,128|FS:0,0>
+482.935  TX  ?
+482.942  RX  <Idle|MPos:8.600,-34.200,0.000|Bf:8,128|FS:0,0>
+483.245  TX  ?
+483.252  RX  <Idle|MPos:8.600,-34.200,0.000|Bf:8,128|FS:0,0>
+483.554  TX  ?
+483.561  RX  <Idle|MPos:8.600,-34.200,0.000|Bf:8,128|FS:0,0>
+483.864  TX  ?
+483.871  RX  <Idle|MPos:8.600,-34.200,0.000|Bf:8,128|FS:0,0>
+484.174  --  final state: Idle
+484.683  --  port open: DTR reset the board, waiting for the welcome line
+486.364  RX  Grbl 1.1h ['$' for help]
+487.008  TX  ?
+487.016  RX  <Idle|MPos:8.600,-34.200,0.000|Bf:8,128|FS:0,0>
+487.318  TX  ?
+487.325  RX  <Idle|MPos:8.600,-34.200,0.000|Bf:8,128|FS:0,0>
+487.628  TX  ?
+487.635  RX  <Idle|MPos:8.600,-34.200,0.000|Bf:8,128|FS:0,0>
+487.937  OK  session 57: back at X=8.600 Y=-34.200, left at X=8.600 Y=-34.200
+487.937  TX  $J=G21G90X-6.4Y-57.1F1200
+487.943  RX  ok
+488.003  TX  ?
+488.010  RX  <Jog|MPos:8.014,-35.095,0.000|Bf:8,128|FS:0,0>
+488.172  TX  ?
+488.179  RX  <Jog|MPos:6.139,-37.957,0.000|Bf:8,128|FS:0,0>
+488.340  TX  ?
+488.347  RX  <Jog|MPos:4.147,-40.998,0.000|Bf:8,128|FS:0,0>
+488.509  TX  ?
+488.516  RX  <Jog|MPos:2.272,-43.861,0.000|Bf:8,128|FS:0,0>
+488.678  TX  ?
+488.685  RX  <Jog|MPos:0.162,-47.081,0.000|Bf:8,128|FS:0,0>
+488.846  TX  ?
+488.853  RX  <Jog|MPos:-1.830,-50.123,0.000|Bf:8,128|FS:0,0>
+489.015  TX  ?
+489.022  RX  <Jog|MPos:-3.822,-53.164,0.000|Bf:8,128|FS:0,0>
+489.184  TX  ?
+489.191  RX  <Jog|MPos:-5.697,-56.027,0.000|Bf:8,128|FS:0,0>
+489.352  TX  ?
+489.360  RX  <Idle|MPos:-6.400,-57.100,0.000|Bf:8,128|FS:0,0>
+489.521  OK  session 57: jog to X=-6.4 Y=-57.1: reply ok, now X=-6.400 Y=-57.100
+489.521  TX  ?
+489.528  RX  <Idle|MPos:-6.400,-57.100,0.000|Bf:8,128|FS:0,0>
+489.831  --  waiting 3 s of stillness before the port is closed (the position is stored after 2 s)
+489.831  TX  ?
+489.838  RX  <Idle|MPos:-6.400,-57.100,0.000|Bf:8,128|FS:0,0>
+490.141  TX  ?
+490.148  RX  <Idle|MPos:-6.400,-57.100,0.000|Bf:8,128|FS:0,0>
+490.450  TX  ?
+490.458  RX  <Idle|MPos:-6.400,-57.100,0.000|Bf:8,128|FS:0,0>
+490.760  TX  ?
+490.768  RX  <Idle|MPos:-6.400,-57.100,0.000|Bf:8,128|FS:0,0>
+491.071  TX  ?
+491.078  RX  <Idle|MPos:-6.400,-57.100,0.000|Bf:8,128|FS:0,0>
+491.381  TX  ?
+491.389  RX  <Idle|MPos:-6.400,-57.100,0.000|Bf:8,128|FS:0,0>
+491.691  TX  ?
+491.698  RX  <Idle|MPos:-6.400,-57.100,0.000|Bf:8,128|FS:0,0>
+492.001  TX  ?
+492.008  RX  <Idle|MPos:-6.400,-57.100,0.000|Bf:8,128|FS:0,0>
+492.310  TX  ?
+492.318  RX  <Idle|MPos:-6.400,-57.100,0.000|Bf:8,128|FS:0,0>
+492.620  TX  ?
+492.627  RX  <Idle|MPos:-6.400,-57.100,0.000|Bf:8,128|FS:0,0>
+492.930  --  final state: Idle
+493.438  --  port open: DTR reset the board, waiting for the welcome line
+495.119  RX  Grbl 1.1h ['$' for help]
+495.764  TX  ?
+495.771  RX  <Idle|MPos:-6.400,-57.100,0.000|Bf:8,128|FS:0,0>
+496.074  TX  ?
+496.081  RX  <Idle|MPos:-6.400,-57.100,0.000|Bf:8,128|FS:0,0>
+496.384  TX  ?
+496.391  RX  <Idle|MPos:-6.400,-57.100,0.000|Bf:8,128|FS:0,0>
+496.693  OK  session 58: back at X=-6.400 Y=-57.100, left at X=-6.400 Y=-57.100
+496.693  TX  $J=G21G90X-84.1Y-73.7F1200
+496.699  RX  ok
+496.760  TX  ?
+496.767  RX  <Jog|MPos:-7.444,-57.323,0.000|Bf:8,128|FS:0,0>
+496.928  TX  ?
+496.935  RX  <Jog|MPos:-10.786,-58.037,0.000|Bf:8,128|FS:0,0>
+497.097  TX  ?
+497.104  RX  <Jog|MPos:-14.337,-58.796,0.000|Bf:8,128|FS:0,0>
+497.266  TX  ?
+497.273  RX  <Jog|MPos:-17.888,-59.554,0.000|Bf:8,128|FS:0,0>
+497.434  TX  ?
+497.442  RX  <Jog|MPos:-21.439,-60.313,0.000|Bf:8,128|FS:0,0>
+497.604  TX  ?
+497.611  RX  <Jog|MPos:-24.990,-61.072,0.000|Bf:8,128|FS:0,0>
+497.772  TX  ?
+497.779  RX  <Jog|MPos:-28.540,-61.830,0.000|Bf:8,128|FS:0,0>
+497.941  TX  ?
+497.948  RX  <Jog|MPos:-32.091,-62.589,0.000|Bf:8,128|FS:0,0>
+498.109  TX  ?
+498.117  RX  <Jog|MPos:-35.642,-63.347,0.000|Bf:8,128|FS:0,0>
+498.278  TX  ?
+498.285  RX  <Jog|MPos:-39.193,-64.106,0.000|Bf:8,128|FS:0,0>
+498.447  TX  ?
+498.454  RX  <Jog|MPos:-42.744,-64.865,0.000|Bf:8,128|FS:0,0>
+498.615  TX  ?
+498.622  RX  <Jog|MPos:-46.085,-65.578,0.000|Bf:8,128|FS:0,0>
+498.784  TX  ?
+498.791  RX  <Jog|MPos:-49.845,-66.382,0.000|Bf:8,128|FS:0,0>
+498.953  TX  ?
+498.960  RX  <Jog|MPos:-53.396,-67.140,0.000|Bf:8,128|FS:0,0>
+499.121  TX  ?
+499.128  RX  <Jog|MPos:-56.947,-67.899,0.000|Bf:8,128|FS:0,0>
+499.290  TX  ?
+499.297  RX  <Jog|MPos:-60.289,-68.613,0.000|Bf:8,128|FS:0,0>
+499.459  TX  ?
+499.466  RX  <Jog|MPos:-64.048,-69.416,0.000|Bf:8,128|FS:0,0>
+499.627  TX  ?
+499.634  RX  <Jog|MPos:-67.599,-70.175,0.000|Bf:8,128|FS:0,0>
+499.796  TX  ?
+499.803  RX  <Jog|MPos:-70.941,-70.889,0.000|Bf:8,128|FS:0,0>
+499.964  TX  ?
+499.972  RX  <Jog|MPos:-74.701,-71.692,0.000|Bf:8,128|FS:0,0>
+500.133  TX  ?
+500.141  RX  <Jog|MPos:-78.043,-72.406,0.000|Bf:8,128|FS:0,0>
+500.302  TX  ?
+500.310  RX  <Jog|MPos:-81.594,-73.165,0.000|Bf:8,128|FS:0,0>
+500.471  TX  ?
+500.478  RX  <Idle|MPos:-84.100,-73.700,0.000|Bf:8,128|FS:0,0>
+500.640  OK  session 58: jog to X=-84.1 Y=-73.7: reply ok, now X=-84.100 Y=-73.700
+500.640  TX  ?
+500.647  RX  <Idle|MPos:-84.100,-73.700,0.000|Bf:8,128|FS:0,0>
+500.950  --  waiting 3 s of stillness before the port is closed (the position is stored after 2 s)
+500.950  TX  ?
+500.957  RX  <Idle|MPos:-84.100,-73.700,0.000|Bf:8,128|FS:0,0>
+501.260  TX  ?
+501.267  RX  <Idle|MPos:-84.100,-73.700,0.000|Bf:8,128|FS:0,0>
+501.569  TX  ?
+501.577  RX  <Idle|MPos:-84.100,-73.700,0.000|Bf:8,128|FS:0,0>
+501.879  TX  ?
+501.887  RX  <Idle|MPos:-84.100,-73.700,0.000|Bf:8,128|FS:0,0>
+502.189  TX  ?
+502.196  RX  <Idle|MPos:-84.100,-73.700,0.000|Bf:8,128|FS:0,0>
+502.499  TX  ?
+502.523  RX  <Idle|MPos:-84.100,-73.700,0.000|Bf:8,128|FS:0,0>
+502.806  TX  ?
+502.813  RX  <Idle|MPos:-84.100,-73.700,0.000|Bf:8,128|FS:0,0>
+503.116  TX  ?
+503.123  RX  <Idle|MPos:-84.100,-73.700,0.000|Bf:8,128|FS:0,0>
+503.425  TX  ?
+503.432  RX  <Idle|MPos:-84.100,-73.700,0.000|Bf:8,128|FS:0,0>
+503.735  TX  ?
+503.742  RX  <Idle|MPos:-84.100,-73.700,0.000|Bf:8,128|FS:0,0>
+504.044  --  final state: Idle
+504.552  --  port open: DTR reset the board, waiting for the welcome line
+506.233  RX  Grbl 1.1h ['$' for help]
+506.879  TX  ?
+506.886  RX  <Idle|MPos:-84.100,-73.700,0.000|Bf:8,128|FS:0,0>
+507.188  TX  ?
+507.196  RX  <Idle|MPos:-84.100,-73.700,0.000|Bf:8,128|FS:0,0>
+507.498  TX  ?
+507.506  RX  <Idle|MPos:-84.100,-73.700,0.000|Bf:8,128|FS:0,0>
+507.808  OK  session 59: back at X=-84.100 Y=-73.700, left at X=-84.100 Y=-73.700
+507.808  TX  $J=G21G90X-94.2Y-58.9F1200
+507.814  RX  ok
+507.874  TX  ?
+507.881  RX  <Jog|MPos:-84.701,-72.819,0.000|Bf:8,128|FS:0,0>
+508.042  TX  ?
+508.049  RX  <Jog|MPos:-86.625,-70.000,0.000|Bf:8,128|FS:0,0>
+508.211  TX  ?
+508.218  RX  <Jog|MPos:-88.669,-67.005,0.000|Bf:8,128|FS:0,0>
+508.379  TX  ?
+508.386  RX  <Jog|MPos:-90.713,-64.010,0.000|Bf:8,128|FS:0,0>
+508.548  TX  ?
+508.555  RX  <Jog|MPos:-92.757,-61.014,0.000|Bf:8,128|FS:0,0>
+508.717  TX  ?
+508.724  RX  <Idle|MPos:-94.200,-58.900,0.000|Bf:8,128|FS:0,0>
+508.885  OK  session 59: jog to X=-94.2 Y=-58.9: reply ok, now X=-94.200 Y=-58.900
+508.885  TX  ?
+508.893  RX  <Idle|MPos:-94.200,-58.900,0.000|Bf:8,128|FS:0,0>
+509.195  --  waiting 3 s of stillness before the port is closed (the position is stored after 2 s)
+509.195  TX  ?
+509.203  RX  <Idle|MPos:-94.200,-58.900,0.000|Bf:8,128|FS:0,0>
+509.505  TX  ?
+509.512  RX  <Idle|MPos:-94.200,-58.900,0.000|Bf:8,128|FS:0,0>
+509.815  TX  ?
+509.822  RX  <Idle|MPos:-94.200,-58.900,0.000|Bf:8,128|FS:0,0>
+510.125  TX  ?
+510.132  RX  <Idle|MPos:-94.200,-58.900,0.000|Bf:8,128|FS:0,0>
+510.435  TX  ?
+510.442  RX  <Idle|MPos:-94.200,-58.900,0.000|Bf:8,128|FS:0,0>
+510.744  TX  ?
+510.775  RX  <Idle|MPos:-94.200,-58.900,0.000|Bf:8,128|FS:0,0>
+511.058  TX  ?
+511.065  RX  <Idle|MPos:-94.200,-58.900,0.000|Bf:8,128|FS:0,0>
+511.368  TX  ?
+511.375  RX  <Idle|MPos:-94.200,-58.900,0.000|Bf:8,128|FS:0,0>
+511.677  TX  ?
+511.684  RX  <Idle|MPos:-94.200,-58.900,0.000|Bf:8,128|FS:0,0>
+511.987  TX  ?
+511.994  RX  <Idle|MPos:-94.200,-58.900,0.000|Bf:8,128|FS:0,0>
+512.297  --  final state: Idle
+512.805  --  port open: DTR reset the board, waiting for the welcome line
+514.486  RX  Grbl 1.1h ['$' for help]
+515.131  TX  ?
+515.138  RX  <Idle|MPos:-94.200,-58.900,0.000|Bf:8,128|FS:0,0>
+515.441  TX  ?
+515.448  RX  <Idle|MPos:-94.200,-58.900,0.000|Bf:8,128|FS:0,0>
+515.751  TX  ?
+515.758  RX  <Idle|MPos:-94.200,-58.900,0.000|Bf:8,128|FS:0,0>
+516.060  OK  session 60: back at X=-94.200 Y=-58.900, left at X=-94.200 Y=-58.900
+516.061  TX  $J=G21G90X-88.6Y-29.3F1200
+516.066  RX  ok
+516.127  TX  ?
+516.134  RX  <Jog|MPos:-94.041,-58.060,0.000|Bf:8,128|FS:0,0>
+516.295  TX  ?
+516.303  RX  <Jog|MPos:-93.406,-54.701,0.000|Bf:8,128|FS:0,0>
+516.465  TX  ?
+516.472  RX  <Jog|MPos:-92.730,-51.133,0.000|Bf:8,128|FS:0,0>
+516.634  TX  ?
+516.641  RX  <Jog|MPos:-92.055,-47.564,0.000|Bf:8,128|FS:0,0>
+516.802  TX  ?
+516.809  RX  <Jog|MPos:-91.380,-43.995,0.000|Bf:8,128|FS:0,0>
+516.970  TX  ?
+516.978  RX  <Jog|MPos:-90.705,-40.426,0.000|Bf:8,128|FS:0,0>
+517.139  TX  ?
+517.146  RX  <Jog|MPos:-90.030,-36.857,0.000|Bf:8,128|FS:0,0>
+517.308  TX  ?
+517.315  RX  <Jog|MPos:-89.355,-33.289,0.000|Bf:8,128|FS:0,0>
+517.476  TX  ?
+517.484  RX  <Jog|MPos:-88.679,-29.720,0.000|Bf:8,128|FS:0,0>
+517.646  TX  ?
+517.653  RX  <Idle|MPos:-88.600,-29.300,0.000|Bf:8,128|FS:0,0>
+517.814  OK  session 60: jog to X=-88.6 Y=-29.3: reply ok, now X=-88.600 Y=-29.300
+517.815  TX  ?
+517.822  RX  <Idle|MPos:-88.600,-29.300,0.000|Bf:8,128|FS:0,0>
+518.124  --  waiting 3 s of stillness before the port is closed (the position is stored after 2 s)
+518.124  TX  ?
+518.131  RX  <Idle|MPos:-88.600,-29.300,0.000|Bf:8,128|FS:0,0>
+518.434  TX  ?
+518.441  RX  <Idle|MPos:-88.600,-29.300,0.000|Bf:8,128|FS:0,0>
+518.744  TX  ?
+518.751  RX  <Idle|MPos:-88.600,-29.300,0.000|Bf:8,128|FS:0,0>
+519.054  TX  ?
+519.061  RX  <Idle|MPos:-88.600,-29.300,0.000|Bf:8,128|FS:0,0>
+519.363  TX  ?
+519.371  RX  <Idle|MPos:-88.600,-29.300,0.000|Bf:8,128|FS:0,0>
+519.673  TX  ?
+519.681  RX  <Idle|MPos:-88.600,-29.300,0.000|Bf:8,128|FS:0,0>
+519.984  TX  ?
+519.991  RX  <Idle|MPos:-88.600,-29.300,0.000|Bf:8,128|FS:0,0>
+520.293  TX  ?
+520.300  RX  <Idle|MPos:-88.600,-29.300,0.000|Bf:8,128|FS:0,0>
+520.603  TX  ?
+520.610  RX  <Idle|MPos:-88.600,-29.300,0.000|Bf:8,128|FS:0,0>
+520.913  TX  ?
+520.920  RX  <Idle|MPos:-88.600,-29.300,0.000|Bf:8,128|FS:0,0>
+521.223  --  final state: Idle
+521.731  --  port open: DTR reset the board, waiting for the welcome line
+523.412  RX  Grbl 1.1h ['$' for help]
+524.058  TX  ?
+524.065  RX  <Idle|MPos:-88.600,-29.300,0.000|Bf:8,128|FS:0,0>
+524.367  TX  ?
+524.374  RX  <Idle|MPos:-88.600,-29.300,0.000|Bf:8,128|FS:0,0>
+524.677  TX  ?
+524.684  RX  <Idle|MPos:-88.600,-29.300,0.000|Bf:8,128|FS:0,0>
+524.987  OK  session 61: back at X=-88.600 Y=-29.300, left at X=-88.600 Y=-29.300
+524.987  TX  $J=G21G90X-83.1Y-18.3F1200
+524.992  RX  ok
+525.053  TX  ?
+525.061  RX  <Jog|MPos:-88.126,-28.352,0.000|Bf:8,128|FS:0,0>
+525.222  TX  ?
+525.230  RX  <Jog|MPos:-86.609,-25.317,0.000|Bf:8,128|FS:0,0>
+525.391  TX  ?
+525.400  RX  <Jog|MPos:-84.997,-22.093,0.000|Bf:8,128|FS:0,0>
+525.561  TX  ?
+525.568  RX  <Jog|MPos:-83.384,-18.869,0.000|Bf:8,128|FS:0,0>
+525.730  TX  ?
+525.737  RX  <Idle|MPos:-83.100,-18.300,0.000|Bf:8,128|FS:0,0>
+525.898  OK  session 61: jog to X=-83.1 Y=-18.3: reply ok, now X=-83.100 Y=-18.300
+525.899  TX  ?
+525.906  RX  <Idle|MPos:-83.100,-18.300,0.000|Bf:8,128|FS:0,0>
+526.208  --  waiting 3 s of stillness before the port is closed (the position is stored after 2 s)
+526.208  TX  ?
+526.216  RX  <Idle|MPos:-83.100,-18.300,0.000|Bf:8,128|FS:0,0>
+526.518  TX  ?
+526.525  RX  <Idle|MPos:-83.100,-18.300,0.000|Bf:8,128|FS:0,0>
+526.828  TX  ?
+526.835  RX  <Idle|MPos:-83.100,-18.300,0.000|Bf:8,128|FS:0,0>
+527.138  TX  ?
+527.145  RX  <Idle|MPos:-83.100,-18.300,0.000|Bf:8,128|FS:0,0>
+527.448  TX  ?
+527.455  RX  <Idle|MPos:-83.100,-18.300,0.000|Bf:8,128|FS:0,0>
+527.758  TX  ?
+527.765  RX  <Idle|MPos:-83.100,-18.300,0.000|Bf:8,128|FS:0,0>
+528.067  TX  ?
+528.075  RX  <Idle|MPos:-83.100,-18.300,0.000|Bf:8,128|FS:0,0>
+528.377  TX  ?
+528.384  RX  <Idle|MPos:-83.100,-18.300,0.000|Bf:8,128|FS:0,0>
+528.687  TX  ?
+528.694  RX  <Idle|MPos:-83.100,-18.300,0.000|Bf:8,128|FS:0,0>
+528.997  TX  ?
+529.004  RX  <Idle|MPos:-83.100,-18.300,0.000|Bf:8,128|FS:0,0>
+529.306  --  final state: Idle
+529.815  --  port open: DTR reset the board, waiting for the welcome line
+531.496  RX  Grbl 1.1h ['$' for help]
+532.141  TX  ?
+532.148  RX  <Idle|MPos:-83.100,-18.300,0.000|Bf:8,128|FS:0,0>
+532.451  TX  ?
+532.458  RX  <Idle|MPos:-83.100,-18.300,0.000|Bf:8,128|FS:0,0>
+532.760  TX  ?
+532.768  RX  <Idle|MPos:-83.100,-18.300,0.000|Bf:8,128|FS:0,0>
+533.070  OK  session 62: back at X=-83.100 Y=-18.300, left at X=-83.100 Y=-18.300
+533.070  TX  $J=G21G90X-79.5Y2.0F1200
+533.076  RX  ok
+533.136  TX  ?
+533.144  RX  <Jog|MPos:-82.952,-17.463,0.000|Bf:8,128|FS:0,0>
+533.306  TX  ?
+533.313  RX  <Jog|MPos:-82.321,-13.905,0.000|Bf:8,128|FS:0,0>
+533.474  TX  ?
+533.481  RX  <Jog|MPos:-81.690,-10.347,0.000|Bf:8,128|FS:0,0>
+533.643  TX  ?
+533.650  RX  <Jog|MPos:-81.059,-6.790,0.000|Bf:8,128|FS:0,0>
+533.812  TX  ?
+533.819  RX  <Jog|MPos:-80.428,-3.232,0.000|Bf:8,128|FS:0,0>
+533.980  TX  ?
+533.987  RX  <Jog|MPos:-79.797,0.326,0.000|Bf:8,128|FS:0,0>
+534.149  TX  ?
+534.156  RX  <Idle|MPos:-79.500,2.000,0.000|Bf:8,128|FS:0,0>
+534.317  OK  session 62: jog to X=-79.5 Y=2.0: reply ok, now X=-79.500 Y=2.000
+534.317  TX  ?
+534.324  RX  <Idle|MPos:-79.500,2.000,0.000|Bf:8,128|FS:0,0>
+534.627  --  waiting 3 s of stillness before the port is closed (the position is stored after 2 s)
+534.627  TX  ?
+534.634  RX  <Idle|MPos:-79.500,2.000,0.000|Bf:8,128|FS:0,0>
+534.937  TX  ?
+534.944  RX  <Idle|MPos:-79.500,2.000,0.000|Bf:8,128|FS:0,0>
+535.246  TX  ?
+535.252  RX  <Idle|MPos:-79.500,2.000,0.000|Bf:8,128|FS:0,0>
+535.555  TX  ?
+535.562  RX  <Idle|MPos:-79.500,2.000,0.000|Bf:8,128|FS:0,0>
+535.864  TX  ?
+535.871  RX  <Idle|MPos:-79.500,2.000,0.000|Bf:8,128|FS:0,0>
+536.174  TX  ?
+536.181  RX  <Idle|MPos:-79.500,2.000,0.000|Bf:8,128|FS:0,0>
+536.484  TX  ?
+536.491  RX  <Idle|MPos:-79.500,2.000,0.000|Bf:8,128|FS:0,0>
+536.793  TX  ?
+536.800  RX  <Idle|MPos:-79.500,2.000,0.000|Bf:8,128|FS:0,0>
+537.103  TX  ?
+537.110  RX  <Idle|MPos:-79.500,2.000,0.000|Bf:8,128|FS:0,0>
+537.413  TX  ?
+537.420  RX  <Idle|MPos:-79.500,2.000,0.000|Bf:8,128|FS:0,0>
+537.722  --  final state: Idle
+538.230  --  port open: DTR reset the board, waiting for the welcome line
+539.911  RX  Grbl 1.1h ['$' for help]
+540.556  TX  ?
+540.563  RX  <Idle|MPos:-79.500,2.000,0.000|Bf:8,128|FS:0,0>
+540.866  TX  ?
+540.873  RX  <Idle|MPos:-79.500,2.000,0.000|Bf:8,128|FS:0,0>
+541.175  TX  ?
+541.183  RX  <Idle|MPos:-79.500,2.000,0.000|Bf:8,128|FS:0,0>
+541.486  OK  session 63: back at X=-79.500 Y=2.000, left at X=-79.500 Y=2.000
+541.486  TX  $J=G21G90X-90.5Y19.7F1200
+541.491  RX  ok
+541.552  TX  ?
+541.559  RX  <Jog|MPos:-80.061,2.903,0.000|Bf:8,128|FS:0,0>
+541.721  TX  ?
+541.728  RX  <Jog|MPos:-81.857,5.793,0.000|Bf:8,128|FS:0,0>
+541.889  TX  ?
+541.896  RX  <Jog|MPos:-83.765,8.863,0.000|Bf:8,128|FS:0,0>
+542.058  TX  ?
+542.065  RX  <Jog|MPos:-85.673,11.934,0.000|Bf:8,128|FS:0,0>
+542.226  TX  ?
+542.234  RX  <Jog|MPos:-87.582,15.004,0.000|Bf:8,128|FS:0,0>
+542.396  TX  ?
+542.403  RX  <Jog|MPos:-89.490,18.074,0.000|Bf:8,128|FS:0,0>
+542.564  TX  ?
+542.571  RX  <Idle|MPos:-90.500,19.700,0.000|Bf:8,128|FS:0,0>
+542.733  OK  session 63: jog to X=-90.5 Y=19.7: reply ok, now X=-90.500 Y=19.700
+542.733  TX  ?
+542.740  RX  <Idle|MPos:-90.500,19.700,0.000|Bf:8,128|FS:0,0>
+543.043  --  waiting 3 s of stillness before the port is closed (the position is stored after 2 s)
+543.043  TX  ?
+543.050  RX  <Idle|MPos:-90.500,19.700,0.000|Bf:8,128|FS:0,0>
+543.353  TX  ?
+543.360  RX  <Idle|MPos:-90.500,19.700,0.000|Bf:8,128|FS:0,0>
+543.663  TX  ?
+543.670  RX  <Idle|MPos:-90.500,19.700,0.000|Bf:8,128|FS:0,0>
+543.972  TX  ?
+543.979  RX  <Idle|MPos:-90.500,19.700,0.000|Bf:8,128|FS:0,0>
+544.282  TX  ?
+544.289  RX  <Idle|MPos:-90.500,19.700,0.000|Bf:8,128|FS:0,0>
+544.592  TX  ?
+544.599  RX  <Idle|MPos:-90.500,19.700,0.000|Bf:8,128|FS:0,0>
+544.901  TX  ?
+544.909  RX  <Idle|MPos:-90.500,19.700,0.000|Bf:8,128|FS:0,0>
+545.211  TX  ?
+545.218  RX  <Idle|MPos:-90.500,19.700,0.000|Bf:8,128|FS:0,0>
+545.521  TX  ?
+545.528  RX  <Idle|MPos:-90.500,19.700,0.000|Bf:8,128|FS:0,0>
+545.831  TX  ?
+545.838  RX  <Idle|MPos:-90.500,19.700,0.000|Bf:8,128|FS:0,0>
+546.140  --  final state: Idle
+546.649  --  port open: DTR reset the board, waiting for the welcome line
+548.330  RX  Grbl 1.1h ['$' for help]
+548.975  TX  ?
+548.982  RX  <Idle|MPos:-90.500,19.700,0.000|Bf:8,128|FS:0,0>
+549.285  TX  ?
+549.292  RX  <Idle|MPos:-90.500,19.700,0.000|Bf:8,128|FS:0,0>
+549.595  TX  ?
+549.602  RX  <Idle|MPos:-90.500,19.700,0.000|Bf:8,128|FS:0,0>
+549.904  OK  session 64: back at X=-90.500 Y=19.700, left at X=-90.500 Y=19.700
+549.905  TX  $J=G21G90X-99.1Y36.4F1200
+549.910  RX  ok
+549.971  TX  ?
+549.978  RX  <Jog|MPos:-90.989,20.649,0.000|Bf:8,128|FS:0,0>
+550.140  TX  ?
+550.147  RX  <Jog|MPos:-92.552,23.685,0.000|Bf:8,128|FS:0,0>
+550.308  TX  ?
+550.315  RX  <Jog|MPos:-94.214,26.911,0.000|Bf:8,128|FS:0,0>
+550.477  TX  ?
+550.484  RX  <Jog|MPos:-95.875,30.138,0.000|Bf:8,128|FS:0,0>
+550.645  TX  ?
+550.652  RX  <Jog|MPos:-97.536,33.364,0.000|Bf:8,128|FS:0,0>
+550.814  TX  ?
+550.821  RX  <Idle|MPos:-99.100,36.400,0.000|Bf:8,128|FS:0,0>
+550.982  OK  session 64: jog to X=-99.1 Y=36.4: reply ok, now X=-99.100 Y=36.400
+550.983  TX  ?
+550.990  RX  <Idle|MPos:-99.100,36.400,0.000|Bf:8,128|FS:0,0>
+551.292  --  waiting 3 s of stillness before the port is closed (the position is stored after 2 s)
+551.292  TX  ?
+551.300  RX  <Idle|MPos:-99.100,36.400,0.000|Bf:8,128|FS:0,0>
+551.602  TX  ?
+551.609  RX  <Idle|MPos:-99.100,36.400,0.000|Bf:8,128|FS:0,0>
+551.912  TX  ?
+551.919  RX  <Idle|MPos:-99.100,36.400,0.000|Bf:8,128|FS:0,0>
+552.222  TX  ?
+552.229  RX  <Idle|MPos:-99.100,36.400,0.000|Bf:8,128|FS:0,0>
+552.531  TX  ?
+552.539  RX  <Idle|MPos:-99.100,36.400,0.000|Bf:8,128|FS:0,0>
+552.841  TX  ?
+552.848  RX  <Idle|MPos:-99.100,36.400,0.000|Bf:8,128|FS:0,0>
+553.151  TX  ?
+553.158  RX  <Idle|MPos:-99.100,36.400,0.000|Bf:8,128|FS:0,0>
+553.461  TX  ?
+553.468  RX  <Idle|MPos:-99.100,36.400,0.000|Bf:8,128|FS:0,0>
+553.770  TX  ?
+553.777  RX  <Idle|MPos:-99.100,36.400,0.000|Bf:8,128|FS:0,0>
+554.080  TX  ?
+554.087  RX  <Idle|MPos:-99.100,36.400,0.000|Bf:8,128|FS:0,0>
+554.389  --  final state: Idle
+554.898  --  port open: DTR reset the board, waiting for the welcome line
+556.579  RX  Grbl 1.1h ['$' for help]
+557.224  TX  ?
+557.231  RX  <Idle|MPos:-99.100,36.400,0.000|Bf:8,128|FS:0,0>
+557.534  TX  ?
+557.541  RX  <Idle|MPos:-99.100,36.400,0.000|Bf:8,128|FS:0,0>
+557.844  TX  ?
+557.851  RX  <Idle|MPos:-99.100,36.400,0.000|Bf:8,128|FS:0,0>
+558.153  OK  session 65: back at X=-99.100 Y=36.400, left at X=-99.100 Y=36.400
+558.153  TX  $J=G21G90X-81.0Y48.1F1200
+558.159  RX  ok
+558.219  TX  ?
+558.227  RX  <Jog|MPos:-98.204,36.979,0.000|Bf:8,128|FS:0,0>
+558.388  TX  ?
+558.395  RX  <Jog|MPos:-95.157,38.949,0.000|Bf:8,128|FS:0,0>
+558.557  TX  ?
+558.564  RX  <Jog|MPos:-92.111,40.918,0.000|Bf:8,128|FS:0,0>
+558.725  TX  ?
+558.733  RX  <Jog|MPos:-89.244,42.771,0.000|Bf:8,128|FS:0,0>
+558.894  TX  ?
+558.901  RX  <Jog|MPos:-86.197,44.741,0.000|Bf:8,128|FS:0,0>
+559.063  TX  ?
+559.070  RX  <Jog|MPos:-82.971,46.826,0.000|Bf:8,128|FS:0,0>
+559.232  TX  ?
+559.239  RX  <Idle|MPos:-81.000,48.100,0.000|Bf:8,128|FS:0,0>
+559.400  OK  session 65: jog to X=-81.0 Y=48.1: reply ok, now X=-81.000 Y=48.100
+559.400  TX  ?
+559.407  RX  <Idle|MPos:-81.000,48.100,0.000|Bf:8,128|FS:0,0>
+559.710  --  waiting 3 s of stillness before the port is closed (the position is stored after 2 s)
+559.710  TX  ?
+559.717  RX  <Idle|MPos:-81.000,48.100,0.000|Bf:8,128|FS:0,0>
+560.020  TX  ?
+560.027  RX  <Idle|MPos:-81.000,48.100,0.000|Bf:8,128|FS:0,0>
+560.330  TX  ?
+560.337  RX  <Idle|MPos:-81.000,48.100,0.000|Bf:8,128|FS:0,0>
+560.640  TX  ?
+560.647  RX  <Idle|MPos:-81.000,48.100,0.000|Bf:8,128|FS:0,0>
+560.949  TX  ?
+560.956  RX  <Idle|MPos:-81.000,48.100,0.000|Bf:8,128|FS:0,0>
+561.259  TX  ?
+561.294  RX  <Idle|MPos:-81.000,48.100,0.000|Bf:8,128|FS:0,0>
+561.577  TX  ?
+561.584  RX  <Idle|MPos:-81.000,48.100,0.000|Bf:8,128|FS:0,0>
+561.886  TX  ?
+561.893  RX  <Idle|MPos:-81.000,48.100,0.000|Bf:8,128|FS:0,0>
+562.196  TX  ?
+562.203  RX  <Idle|MPos:-81.000,48.100,0.000|Bf:8,128|FS:0,0>
+562.506  TX  ?
+562.513  RX  <Idle|MPos:-81.000,48.100,0.000|Bf:8,128|FS:0,0>
+562.815  --  final state: Idle
+563.324  --  port open: DTR reset the board, waiting for the welcome line
+565.005  RX  Grbl 1.1h ['$' for help]
+565.650  TX  ?
+565.658  RX  <Idle|MPos:-81.000,48.100,0.000|Bf:8,128|FS:0,0>
+565.960  TX  ?
+565.967  RX  <Idle|MPos:-81.000,48.100,0.000|Bf:8,128|FS:0,0>
+566.270  TX  ?
+566.277  RX  <Idle|MPos:-81.000,48.100,0.000|Bf:8,128|FS:0,0>
+566.580  OK  session 66: back at X=-81.000 Y=48.100, left at X=-81.000 Y=48.100
+566.580  TX  $J=G21G90X-65.9Y24.4F1200
+566.585  RX  ok
+566.646  TX  ?
+566.653  RX  <Jog|MPos:-80.428,47.202,0.000|Bf:8,128|FS:0,0>
+566.814  TX  ?
+566.821  RX  <Jog|MPos:-78.598,44.330,0.000|Bf:8,128|FS:0,0>
+566.983  TX  ?
+566.990  RX  <Jog|MPos:-76.653,41.277,0.000|Bf:8,128|FS:0,0>
+567.152  TX  ?
+567.159  RX  <Jog|MPos:-74.708,38.225,0.000|Bf:8,128|FS:0,0>
+567.320  TX  ?
+567.328  RX  <Jog|MPos:-72.764,35.173,0.000|Bf:8,128|FS:0,0>
+567.490  TX  ?
+567.497  RX  <Jog|MPos:-70.819,32.120,0.000|Bf:8,128|FS:0,0>
+567.658  TX  ?
+567.665  RX  <Jog|MPos:-68.874,29.068,0.000|Bf:8,128|FS:0,0>
+567.827  TX  ?
+567.834  RX  <Jog|MPos:-66.930,26.016,0.000|Bf:8,128|FS:0,0>
+567.995  TX  ?
+568.002  RX  <Idle|MPos:-65.900,24.400,0.000|Bf:8,128|FS:0,0>
+568.164  OK  session 66: jog to X=-65.9 Y=24.4: reply ok, now X=-65.900 Y=24.400
+568.164  TX  ?
+568.171  RX  <Idle|MPos:-65.900,24.400,0.000|Bf:8,128|FS:0,0>
+568.474  --  waiting 3 s of stillness before the port is closed (the position is stored after 2 s)
+568.474  TX  ?
+568.481  RX  <Idle|MPos:-65.900,24.400,0.000|Bf:8,128|FS:0,0>
+568.784  TX  ?
+568.791  RX  <Idle|MPos:-65.900,24.400,0.000|Bf:8,128|FS:0,0>
+569.094  TX  ?
+569.101  RX  <Idle|MPos:-65.900,24.400,0.000|Bf:8,128|FS:0,0>
+569.403  TX  ?
+569.410  RX  <Idle|MPos:-65.900,24.400,0.000|Bf:8,128|FS:0,0>
+569.713  TX  ?
+569.720  RX  <Idle|MPos:-65.900,24.400,0.000|Bf:8,128|FS:0,0>
+570.023  TX  ?
+570.030  RX  <Idle|MPos:-65.900,24.400,0.000|Bf:8,128|FS:0,0>
+570.332  TX  ?
+570.340  RX  <Idle|MPos:-65.900,24.400,0.000|Bf:8,128|FS:0,0>
+570.643  TX  ?
+570.650  RX  <Idle|MPos:-65.900,24.400,0.000|Bf:8,128|FS:0,0>
+570.953  TX  ?
+570.961  RX  <Idle|MPos:-65.900,24.400,0.000|Bf:8,128|FS:0,0>
+571.264  TX  ?
+571.271  RX  <Idle|MPos:-65.900,24.400,0.000|Bf:8,128|FS:0,0>
+571.574  --  final state: Idle
+572.082  --  port open: DTR reset the board, waiting for the welcome line
+573.763  RX  Grbl 1.1h ['$' for help]
+574.408  TX  ?
+574.415  RX  <Idle|MPos:-65.900,24.400,0.000|Bf:8,128|FS:0,0>
+574.717  TX  ?
+574.725  RX  <Idle|MPos:-65.900,24.400,0.000|Bf:8,128|FS:0,0>
+575.028  TX  ?
+575.035  RX  <Idle|MPos:-65.900,24.400,0.000|Bf:8,128|FS:0,0>
+575.337  OK  session 67: back at X=-65.900 Y=24.400, left at X=-65.900 Y=24.400
+575.338  TX  $J=G21G90X-98.5Y70.9F1200
+575.343  RX  ok
+575.404  TX  ?
+575.411  RX  <Jog|MPos:-66.513,25.274,0.000|Bf:8,128|FS:0,0>
+575.572  TX  ?
+575.579  RX  <Jog|MPos:-68.474,28.071,0.000|Bf:8,128|FS:0,0>
+575.741  TX  ?
+575.748  RX  <Jog|MPos:-70.557,31.043,0.000|Bf:8,128|FS:0,0>
+575.910  TX  ?
+575.917  RX  <Jog|MPos:-72.641,34.015,0.000|Bf:8,128|FS:0,0>
+576.078  TX  ?
+576.085  RX  <Jog|MPos:-74.724,36.986,0.000|Bf:8,128|FS:0,0>
+576.247  TX  ?
+576.254  RX  <Jog|MPos:-76.808,39.958,0.000|Bf:8,128|FS:0,0>
+576.415  TX  ?
+576.422  RX  <Jog|MPos:-78.891,42.930,0.000|Bf:8,128|FS:0,0>
+576.584  TX  ?
+576.591  RX  <Jog|MPos:-80.974,45.902,0.000|Bf:8,128|FS:0,0>
+576.752  TX  ?
+576.759  RX  <Jog|MPos:-83.058,48.874,0.000|Bf:8,128|FS:0,0>
+576.920  TX  ?
+576.927  RX  <Jog|MPos:-85.141,51.845,0.000|Bf:8,128|FS:0,0>
+577.088  TX  ?
+577.095  RX  <Jog|MPos:-87.225,54.817,0.000|Bf:8,128|FS:0,0>
+577.257  TX  ?
+577.264  RX  <Jog|MPos:-89.308,57.789,0.000|Bf:8,128|FS:0,0>
+577.426  TX  ?
+577.433  RX  <Jog|MPos:-91.392,60.761,0.000|Bf:8,128|FS:0,0>
+577.594  TX  ?
+577.601  RX  <Jog|MPos:-93.475,63.733,0.000|Bf:8,128|FS:0,0>
+577.762  TX  ?
+577.769  RX  <Jog|MPos:-95.559,66.705,0.000|Bf:8,128|FS:0,0>
+577.931  TX  ?
+577.938  RX  <Jog|MPos:-97.642,69.676,0.000|Bf:8,128|FS:0,0>
+578.099  TX  ?
+578.108  RX  <Idle|MPos:-98.500,70.900,0.000|Bf:8,128|FS:0,0>
+578.269  OK  session 67: jog to X=-98.5 Y=70.9: reply ok, now X=-98.500 Y=70.900
+578.269  TX  ?
+578.277  RX  <Idle|MPos:-98.500,70.900,0.000|Bf:8,128|FS:0,0>
+578.579  --  waiting 3 s of stillness before the port is closed (the position is stored after 2 s)
+578.579  TX  ?
+578.586  RX  <Idle|MPos:-98.500,70.900,0.000|Bf:8,128|FS:0,0>
+578.889  TX  ?
+578.896  RX  <Idle|MPos:-98.500,70.900,0.000|Bf:8,128|FS:0,0>
+579.199  TX  ?
+579.206  RX  <Idle|MPos:-98.500,70.900,0.000|Bf:8,128|FS:0,0>
+579.508  TX  ?
+579.516  RX  <Idle|MPos:-98.500,70.900,0.000|Bf:8,128|FS:0,0>
+579.818  TX  ?
+579.825  RX  <Idle|MPos:-98.500,70.900,0.000|Bf:8,128|FS:0,0>
+580.128  TX  ?
+580.135  RX  <Idle|MPos:-98.500,70.900,0.000|Bf:8,128|FS:0,0>
+580.438  TX  ?
+580.445  RX  <Idle|MPos:-98.500,70.900,0.000|Bf:8,128|FS:0,0>
+580.747  TX  ?
+580.754  RX  <Idle|MPos:-98.500,70.900,0.000|Bf:8,128|FS:0,0>
+581.057  TX  ?
+581.064  RX  <Idle|MPos:-98.500,70.900,0.000|Bf:8,128|FS:0,0>
+581.367  TX  ?
+581.374  RX  <Idle|MPos:-98.500,70.900,0.000|Bf:8,128|FS:0,0>
+581.676  --  final state: Idle
+582.185  --  port open: DTR reset the board, waiting for the welcome line
+583.866  RX  Grbl 1.1h ['$' for help]
+584.511  TX  ?
+584.518  RX  <Idle|MPos:-98.500,70.900,0.000|Bf:8,128|FS:0,0>
+584.821  TX  ?
+584.828  RX  <Idle|MPos:-98.500,70.900,0.000|Bf:8,128|FS:0,0>
+585.130  TX  ?
+585.138  RX  <Idle|MPos:-98.500,70.900,0.000|Bf:8,128|FS:0,0>
+585.440  OK  session 68: back at X=-98.500 Y=70.900, left at X=-98.500 Y=70.900
+585.440  TX  $J=G21G90X-97.2Y88.4F1200
+585.446  RX  ok
+585.506  TX  ?
+585.513  RX  <Jog|MPos:-98.421,71.967,0.000|Bf:8,128|FS:0,0>
+585.675  TX  ?
+585.683  RX  <Jog|MPos:-98.183,75.168,0.000|Bf:8,128|FS:0,0>
+585.844  TX  ?
+585.852  RX  <Jog|MPos:-97.913,78.796,0.000|Bf:8,128|FS:0,0>
+586.013  TX  ?
+586.021  RX  <Jog|MPos:-97.628,82.638,0.000|Bf:8,128|FS:0,0>
+586.182  TX  ?
+586.190  RX  <Jog|MPos:-97.374,86.052,0.000|Bf:8,128|FS:0,0>
+586.351  TX  ?
+586.359  RX  <Idle|MPos:-97.200,88.400,0.000|Bf:8,128|FS:0,0>
+586.520  OK  session 68: jog to X=-97.2 Y=88.4: reply ok, now X=-97.200 Y=88.400
+586.520  TX  ?
+586.528  RX  <Idle|MPos:-97.200,88.400,0.000|Bf:8,128|FS:0,0>
+586.830  --  waiting 3 s of stillness before the port is closed (the position is stored after 2 s)
+586.830  TX  ?
+586.837  RX  <Idle|MPos:-97.200,88.400,0.000|Bf:8,128|FS:0,0>
+587.140  TX  ?
+587.147  RX  <Idle|MPos:-97.200,88.400,0.000|Bf:8,128|FS:0,0>
+587.450  TX  ?
+587.457  RX  <Idle|MPos:-97.200,88.400,0.000|Bf:8,128|FS:0,0>
+587.759  TX  ?
+587.767  RX  <Idle|MPos:-97.200,88.400,0.000|Bf:8,128|FS:0,0>
+588.069  TX  ?
+588.076  RX  <Idle|MPos:-97.200,88.400,0.000|Bf:8,128|FS:0,0>
+588.379  TX  ?
+588.391  RX  <Idle|MPos:-97.200,88.400,0.000|Bf:8,128|FS:0,0>
+588.694  TX  ?
+588.701  RX  <Idle|MPos:-97.200,88.400,0.000|Bf:8,128|FS:0,0>
+589.003  TX  ?
+589.011  RX  <Idle|MPos:-97.200,88.400,0.000|Bf:8,128|FS:0,0>
+589.313  TX  ?
+589.320  RX  <Idle|MPos:-97.200,88.400,0.000|Bf:8,128|FS:0,0>
+589.623  TX  ?
+589.630  RX  <Idle|MPos:-97.200,88.400,0.000|Bf:8,128|FS:0,0>
+589.933  --  final state: Idle
+590.441  --  port open: DTR reset the board, waiting for the welcome line
+592.122  RX  Grbl 1.1h ['$' for help]
+592.767  TX  ?
+592.774  RX  <Idle|MPos:-97.200,88.400,0.000|Bf:8,128|FS:0,0>
+593.077  TX  ?
+593.084  RX  <Idle|MPos:-97.200,88.400,0.000|Bf:8,128|FS:0,0>
+593.387  TX  ?
+593.394  RX  <Idle|MPos:-97.200,88.400,0.000|Bf:8,128|FS:0,0>
+593.697  OK  session 69: back at X=-97.200 Y=88.400, left at X=-97.200 Y=88.400
+593.697  TX  $J=G21G90X-85.4Y82.7F1200
+593.702  RX  ok
+593.763  TX  ?
+593.770  RX  <Jog|MPos:-96.248,87.940,0.000|Bf:8,128|FS:0,0>
+593.931  TX  ?
+593.938  RX  <Jog|MPos:-93.203,86.469,0.000|Bf:8,128|FS:0,0>
+594.100  TX  ?
+594.107  RX  <Jog|MPos:-89.968,84.906,0.000|Bf:8,128|FS:0,0>
+594.269  TX  ?
+594.276  RX  <Jog|MPos:-86.732,83.344,0.000|Bf:8,128|FS:0,0>
+594.437  TX  ?
+594.444  RX  <Idle|MPos:-85.400,82.700,0.000|Bf:8,128|FS:0,0>
+594.606  OK  session 69: jog to X=-85.4 Y=82.7: reply ok, now X=-85.400 Y=82.700
+594.606  TX  ?
+594.613  RX  <Idle|MPos:-85.400,82.700,0.000|Bf:8,128|FS:0,0>
+594.916  --  waiting 3 s of stillness before the port is closed (the position is stored after 2 s)
+594.916  TX  ?
+594.923  RX  <Idle|MPos:-85.400,82.700,0.000|Bf:8,128|FS:0,0>
+595.226  TX  ?
+595.233  RX  <Idle|MPos:-85.400,82.700,0.000|Bf:8,128|FS:0,0>
+595.536  TX  ?
+595.543  RX  <Idle|MPos:-85.400,82.700,0.000|Bf:8,128|FS:0,0>
+595.845  TX  ?
+595.853  RX  <Idle|MPos:-85.400,82.700,0.000|Bf:8,128|FS:0,0>
+596.155  TX  ?
+596.162  RX  <Idle|MPos:-85.400,82.700,0.000|Bf:8,128|FS:0,0>
+596.465  TX  ?
+596.472  RX  <Idle|MPos:-85.400,82.700,0.000|Bf:8,128|FS:0,0>
+596.775  TX  ?
+596.782  RX  <Idle|MPos:-85.400,82.700,0.000|Bf:8,128|FS:0,0>
+597.085  TX  ?
+597.092  RX  <Idle|MPos:-85.400,82.700,0.000|Bf:8,128|FS:0,0>
+597.394  TX  ?
+597.402  RX  <Idle|MPos:-85.400,82.700,0.000|Bf:8,128|FS:0,0>
+597.704  TX  ?
+597.711  RX  <Idle|MPos:-85.400,82.700,0.000|Bf:8,128|FS:0,0>
+598.014  --  final state: Idle
+598.523  --  port open: DTR reset the board, waiting for the welcome line
+600.204  RX  Grbl 1.1h ['$' for help]
+600.849  TX  ?
+600.856  RX  <Idle|MPos:-85.400,82.700,0.000|Bf:8,128|FS:0,0>
+601.159  TX  ?
+601.166  RX  <Idle|MPos:-85.400,82.700,0.000|Bf:8,128|FS:0,0>
+601.469  TX  ?
+601.476  RX  <Idle|MPos:-85.400,82.700,0.000|Bf:8,128|FS:0,0>
+601.778  OK  session 70: back at X=-85.400 Y=82.700, left at X=-85.400 Y=82.700
+601.779  TX  $J=G21G90X0.0Y0.0F1200
+601.784  RX  ok
+601.844  TX  ?
+601.851  RX  <Jog|MPos:-84.478,81.808,0.000|Bf:8,128|FS:0,0>
+602.013  TX  ?
+602.020  RX  <Jog|MPos:-82.174,79.576,0.000|Bf:8,128|FS:0,0>
+602.182  TX  ?
+602.189  RX  <Jog|MPos:-79.563,77.048,0.000|Bf:8,128|FS:0,0>
+602.351  TX  ?
+602.358  RX  <Jog|MPos:-76.799,74.371,0.000|Bf:8,128|FS:0,0>
+602.520  TX  ?
+602.527  RX  <Jog|MPos:-74.341,71.991,0.000|Bf:8,128|FS:0,0>
+602.688  TX  ?
+602.696  RX  <Jog|MPos:-71.576,69.313,0.000|Bf:8,128|FS:0,0>
+602.857  TX  ?
+602.864  RX  <Jog|MPos:-69.119,66.933,0.000|Bf:8,128|FS:0,0>
+603.026  TX  ?
+603.034  RX  <Jog|MPos:-66.508,64.405,0.000|Bf:8,128|FS:0,0>
+603.195  TX  ?
+603.203  RX  <Jog|MPos:-63.896,61.876,0.000|Bf:8,128|FS:0,0>
+603.364  TX  ?
+603.371  RX  <Jog|MPos:-61.285,59.348,0.000|Bf:8,128|FS:0,0>
+603.533  TX  ?
+603.540  RX  <Jog|MPos:-58.674,56.819,0.000|Bf:8,128|FS:0,0>
+603.701  TX  ?
+603.709  RX  <Jog|MPos:-56.063,54.290,0.000|Bf:8,128|FS:0,0>
+603.870  TX  ?
+603.878  RX  <Jog|MPos:-53.452,51.762,0.000|Bf:8,128|FS:0,0>
+604.039  TX  ?
+604.046  RX  <Jog|MPos:-50.841,49.233,0.000|Bf:8,128|FS:0,0>
+604.209  TX  ?
+604.215  RX  <Jog|MPos:-48.229,46.705,0.000|Bf:8,128|FS:0,0>
+604.377  TX  ?
+604.384  RX  <Jog|MPos:-45.618,44.176,0.000|Bf:8,128|FS:0,0>
+604.545  TX  ?
+604.552  RX  <Jog|MPos:-43.007,41.647,0.000|Bf:8,128|FS:0,0>
+604.713  TX  ?
+604.720  RX  <Jog|MPos:-40.396,39.119,0.000|Bf:8,128|FS:0,0>
+604.882  TX  ?
+604.889  RX  <Jog|MPos:-37.785,36.590,0.000|Bf:8,128|FS:0,0>
+605.050  TX  ?
+605.057  RX  <Jog|MPos:-35.174,34.062,0.000|Bf:8,128|FS:0,0>
+605.219  TX  ?
+605.226  RX  <Jog|MPos:-32.563,31.533,0.000|Bf:8,128|FS:0,0>
+605.387  TX  ?
+605.394  RX  <Jog|MPos:-29.951,29.004,0.000|Bf:8,128|FS:0,0>
+605.556  TX  ?
+605.563  RX  <Jog|MPos:-27.494,26.625,0.000|Bf:8,128|FS:0,0>
+605.725  TX  ?
+605.732  RX  <Jog|MPos:-24.729,23.947,0.000|Bf:8,128|FS:0,0>
+605.893  TX  ?
+605.900  RX  <Jog|MPos:-22.118,21.419,0.000|Bf:8,128|FS:0,0>
+606.062  TX  ?
+606.069  RX  <Jog|MPos:-19.507,18.890,0.000|Bf:8,128|FS:0,0>
+606.230  TX  ?
+606.237  RX  <Jog|MPos:-17.049,16.510,0.000|Bf:8,128|FS:0,0>
+606.399  TX  ?
+606.407  RX  <Jog|MPos:-14.285,13.833,0.000|Bf:8,128|FS:0,0>
+606.568  TX  ?
+606.575  RX  <Jog|MPos:-11.827,11.453,0.000|Bf:8,128|FS:0,0>
+606.737  TX  ?
+606.744  RX  <Jog|MPos:-9.216,8.924,0.000|Bf:8,128|FS:0,0>
+606.905  TX  ?
+606.912  RX  <Jog|MPos:-6.605,6.396,0.000|Bf:8,128|FS:0,0>
+607.074  TX  ?
+607.081  RX  <Jog|MPos:-3.994,3.867,0.000|Bf:8,128|FS:0,0>
+607.242  TX  ?
+607.249  RX  <Jog|MPos:-1.382,1.339,0.000|Bf:8,128|FS:0,0>
+607.411  TX  ?
+607.417  RX  <Idle|MPos:0.000,0.000,0.000|Bf:8,128|FS:0,0>
+607.579  OK  session 70: jog to X=0.0 Y=0.0: reply ok, now X=0.000 Y=0.000
+607.579  TX  ?
+607.586  RX  <Idle|MPos:0.000,0.000,0.000|Bf:8,128|FS:0,0>
+607.888  --  waiting 3 s of stillness before the port is closed (the position is stored after 2 s)
+607.889  TX  ?
+607.895  RX  <Idle|MPos:0.000,0.000,0.000|Bf:8,128|FS:0,0>
+608.198  TX  ?
+608.205  RX  <Idle|MPos:0.000,0.000,0.000|Bf:8,128|FS:0,0>
+608.507  TX  ?
+608.514  RX  <Idle|MPos:0.000,0.000,0.000|Bf:8,128|FS:0,0>
+608.817  TX  ?
+608.824  RX  <Idle|MPos:0.000,0.000,0.000|Bf:8,128|FS:0,0>
+609.126  TX  ?
+609.133  RX  <Idle|MPos:0.000,0.000,0.000|Bf:8,128|FS:0,0>
+609.436  TX  ?
+609.443  RX  <Idle|MPos:0.000,0.000,0.000|Bf:8,128|FS:0,0>
+609.745  TX  ?
+609.752  RX  <Idle|MPos:0.000,0.000,0.000|Bf:8,128|FS:0,0>
+610.054  TX  ?
+610.061  RX  <Idle|MPos:0.000,0.000,0.000|Bf:8,128|FS:0,0>
+610.364  TX  ?
+610.371  RX  <Idle|MPos:0.000,0.000,0.000|Bf:8,128|FS:0,0>
+610.673  TX  ?
+610.680  RX  <Idle|MPos:0.000,0.000,0.000|Bf:8,128|FS:0,0>
+610.983  --  final state: Idle
+611.491  --  port open: DTR reset the board, waiting for the welcome line
+613.172  RX  Grbl 1.1h ['$' for help]
+613.817  TX  ?
+613.824  RX  <Idle|MPos:0.000,0.000,0.000|Bf:8,128|FS:0,0>
+614.127  TX  ?
+614.134  RX  <Idle|MPos:0.000,0.000,0.000|Bf:8,128|FS:0,0>
+614.436  TX  ?
+614.443  RX  <Idle|MPos:0.000,0.000,0.000|Bf:8,128|FS:0,0>
+614.746  OK  session 71: back at X=0.000 Y=0.000, left at X=0.000 Y=0.000
+614.746  TX  ?
+614.753  RX  <Idle|MPos:0.000,0.000,0.000|Bf:8,128|FS:0,0>
+615.055  --  waiting 3 s of stillness before the port is closed (the position is stored after 2 s)
+615.056  TX  ?
+615.062  RX  <Idle|MPos:0.000,0.000,0.000|Bf:8,128|FS:0,0>
+615.365  TX  ?
+615.372  RX  <Idle|MPos:0.000,0.000,0.000|Bf:8,128|FS:0,0>
+615.674  TX  ?
+615.681  RX  <Idle|MPos:0.000,0.000,0.000|Bf:8,128|FS:0,0>
+615.984  TX  ?
+615.991  RX  <Idle|MPos:0.000,0.000,0.000|Bf:8,128|FS:0,0>
+616.293  TX  ?
+616.300  RX  <Idle|MPos:0.000,0.000,0.000|Bf:8,128|FS:0,0>
+616.603  TX  ?
+616.610  RX  <Idle|MPos:0.000,0.000,0.000|Bf:8,128|FS:0,0>
+616.912  TX  ?
+616.919  RX  <Idle|MPos:0.000,0.000,0.000|Bf:8,128|FS:0,0>
+617.222  TX  ?
+617.229  RX  <Idle|MPos:0.000,0.000,0.000|Bf:8,128|FS:0,0>
+617.531  TX  ?
+617.538  RX  <Idle|MPos:0.000,0.000,0.000|Bf:8,128|FS:0,0>
+617.841  TX  ?
+617.847  RX  <Idle|MPos:0.000,0.000,0.000|Bf:8,128|FS:0,0>
+618.150  --  final state: Idle
+618.657  OK  the machine was found at 70 different positions after 70 resets
+618.657  OK  the head ends at the origin (X=0.000 Y=0.000)
+618.657  ==  0 check(s) failed over 72 reopenings

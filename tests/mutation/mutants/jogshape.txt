@@ -1,0 +1,6 @@
+# Mutants of JogCurve_Fraction (REQ-CoreLR-D-LcdJoystickUI-0021, -0027). Run: tools/mutate.py --test test_jogcurve --batch tests/mutation/mutants/jogshape.txt --timeout 120
+# name @@ file @@ old @@ new
+EQUIVALENT (at the dead zone's edge r = 0 and Shape(0) = 0, with < or <=) dead zone not honoured @@ JogCurve.c @@ if (magnitude <= (uint16_t)LCDJOYSTICKUI_DEADZONE)\n   {\n      return 0; @@ if (magnitude < (uint16_t)LCDJOYSTICKUI_DEADZONE)\n   {\n      return 0;
+dead zone not subtracted @@ JogCurve.c @@ r = (uint16_t)(magnitude - (uint16_t)LCDJOYSTICKUI_DEADZONE); @@ r = magnitude;
+range not clamped @@ JogCurve.c @@ if (r > (uint16_t)JOGCURVE_RANGE)\n   {\n      r = (uint16_t)JOGCURVE_RANGE;\n   } @@ (empty)
+EQUIVALENT (n never exceeds 4096 while r is clamped, as the code's comment says; the clamp stays because the build is 38 bytes smaller with it) n not clamped @@ JogCurve.c @@ if (n > 4096u)\n   {\n      n = 4096u;   /* never reached while r is clamped (K is rounded up: r = RANGE gives exactly 4096); kept because measured: the build is 38 bytes SMALLER with it */\n   } @@ (empty)

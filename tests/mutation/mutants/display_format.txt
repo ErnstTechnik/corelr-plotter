@@ -1,0 +1,26 @@
+# Mutants of the length display (REQ-CoreLR-D-LcdJoystickUI-0023). Run: tools/mutate.py --test test_ui --batch tests/mutation/mutants/display_format.txt --timeout 120
+# name @@ file @@ old @@ new
+truncates instead of rounding @@ LcdJoystickUI.cpp @@ (magnitude + 50u) / 100u @@ magnitude / 100u
+rounds up from 49 um @@ LcdJoystickUI.cpp @@ (magnitude + 50u) / 100u @@ (magnitude + 51u) / 100u
+rounds up only from 51 um @@ LcdJoystickUI.cpp @@ (magnitude + 50u) / 100u @@ (magnitude + 49u) / 100u
+minus sign on a zero result @@ LcdJoystickUI.cpp @@ if (withSign && (valueUm < 0) && (tenths != 0u)) @@ if (withSign && (valueUm < 0))
+sign shown whatever withSign says @@ LcdJoystickUI.cpp @@ if (withSign && (valueUm < 0) && (tenths != 0u)) @@ if ((valueUm < 0) && (tenths != 0u))
+sign never shown @@ LcdJoystickUI.cpp @@ if (withSign && (valueUm < 0) && (tenths != 0u)) @@ if (0)
+sign one column too far left @@ LcdJoystickUI.cpp @@ s_composeLine[at - 1u] = '-'; @@ s_composeLine[at - 2u] = '-';
+decimal digit wrong radix @@ LcdJoystickUI.cpp @@ (char)('0' + (uint8_t)(tenths % 10u)) @@ (char)('0' + (uint8_t)(tenths % 9u))
+integer part stops a digit early @@ LcdJoystickUI.cpp @@ } while (whole != 0u); @@ } while (whole > 9u);
+integer part is not a do-while (0 prints no digit) @@ LcdJoystickUI.cpp @@ do\n   {\n      at--; @@ while (whole != 0u)\n   {\n      at--;
+point not written @@ LcdJoystickUI.cpp @@ s_composeLine[pointColumn] = '.'; @@ (empty)
+blank is not a blank @@ LcdJoystickUI.cpp @@ memset(s_composeLine, ' ', LCDJOYSTICKUI_COLS); @@ memset(s_composeLine, '.', LCDJOYSTICKUI_COLS);
+status tag not placed @@ LcdJoystickUI.cpp @@ : StatusTagFor(s_machineState); @@ : ' ';
+X without its sign @@ LcdJoystickUI.cpp @@ PutMm(LCDJOYSTICKUI_X_POINT_COLUMN, pos.X, 1); @@ PutMm(LCDJOYSTICKUI_X_POINT_COLUMN, pos.X, 0);
+Y without its sign @@ LcdJoystickUI.cpp @@ PutMm(LCDJOYSTICKUI_Y_POINT_COLUMN, pos.Y, 1); @@ PutMm(LCDJOYSTICKUI_Y_POINT_COLUMN, pos.Y, 0);
+L and R swapped @@ LcdJoystickUI.cpp @@ PutMm(LCDJOYSTICKUI_X_POINT_COLUMN, lr.L, 0); @@ PutMm(LCDJOYSTICKUI_X_POINT_COLUMN, lr.R, 0);
+wizard step label gone @@ LcdJoystickUI.cpp @@ PSTR("+-")); @@ PSTR(""));
+entry not bounded above @@ LcdJoystickUI.cpp @@ if (s_calMachineValueUm > LCDJOYSTICKUI_CAL_MAX_UM) @@ if (0)
+entry bound too high @@ LcdJoystickUI.cpp @@ s_calMachineValueUm = LCDJOYSTICKUI_CAL_MAX_UM; @@ s_calMachineValueUm = LCDJOYSTICKUI_CAL_MAX_UM + 1000L;
+X point column 5 @@ SwConfig.h @@ #define LCDJOYSTICKUI_X_POINT_COLUMN 6u @@ #define LCDJOYSTICKUI_X_POINT_COLUMN 5u
+Y point column 13 @@ SwConfig.h @@ #define LCDJOYSTICKUI_Y_POINT_COLUMN 14u @@ #define LCDJOYSTICKUI_Y_POINT_COLUMN 13u
+L label column 2 @@ SwConfig.h @@ #define LCDJOYSTICKUI_L_LABEL_COLUMN 1u @@ #define LCDJOYSTICKUI_L_LABEL_COLUMN 2u
+R label column 8 @@ SwConfig.h @@ #define LCDJOYSTICKUI_R_LABEL_COLUMN 9u @@ #define LCDJOYSTICKUI_R_LABEL_COLUMN 8u
+wizard step column 8 @@ SwConfig.h @@ #define LCDJOYSTICKUI_CAL_STEP_COLUMN 9u @@ #define LCDJOYSTICKUI_CAL_STEP_COLUMN 8u

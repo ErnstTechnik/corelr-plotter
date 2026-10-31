@@ -1,0 +1,60 @@
+# Copyright (C) 2026 ErnstTechnik and the CoreLR contributors
+# SPDX-License-Identifier: GPL-3.0-or-later
+name: ci
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:                # "Run workflow" in the Actions tab (the file must be on the default branch)
+jobs:
+  firmware:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v5
+      - uses: ./.github/actions/doxygen     # Doxygen 1.15.0 (Ubuntu 22.04 has 1.9.1, which the documentation is not written for)
+      - run: sudo apt-get update && sudo apt-get install -y ninja-build cmake gcc-multilib g++-multilib python3 curl graphviz
+      - uses: ./.github/actions/avr-gcc     # avr-gcc 7.3.0: the documented sizes are those of this compiler
+      - name: Build both variants, 48-bit and 64-bit arithmetic (the size limits are enforced at link time)
+        run: |
+          cmake --preset avr-default && cmake --build --preset avr-default
+          cmake --preset avr-math64  && cmake --build --preset avr-math64 --target corelr_serial
+          cmake --build --preset avr-default --target bench      # the bring-up sketches must keep building
+      # `ctest` also builds the `doc` target and checks its output (tests doxygen_build, doxygen_output: no markup warning, each image documented with its own code and diagrams); doxygen 1.15.0 (the action
+      # above) and graphviz (the distribution, apt line above).
+      - name: Host tests, tool help, links, API documentation
+        run: cmake --preset host && ctest --preset host
+      - uses: actions/upload-artifact@v6
+        if: always()          # also when a test failed: the generated pages are what one looks at
+        with:
+          name: api-docs
+          path: build/doxygen          # serial/ and sd/, one documentation per image, and index.html
+      - uses: actions/upload-artifact@v6
+        with:
+          name: firmware
+          path: |
+            build/avr-default/*.hex
+            build/avr-default/*.map
+            build/avr-default/firmware/*.elf
+      # The mutation testing is the workflow `mutation` (manual, and run by `release` on a tag): too slow for every push.
+
+  # The minimum CMake the project announces (cmake_minimum_required 3.20): no presets (they need 3.25), the same builds and tests configured by hand. It exists because the runner's CMake
+  # hid a defect of CMake 3.x in cmake/ExportIno.cmake (release workflow, 2026-10-31).
+  cmake-3-20:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v5
+      - run: sudo apt-get update && sudo apt-get install -y ninja-build gcc-multilib g++-multilib python3 curl graphviz
+      - uses: ./.github/actions/cmake
+        with:
+          version: 3.20.6
+          sha256: 458777097903b0f35a0452266b923f0a2f5b62fe331e636e2dcc4b636b768e36
+      - uses: ./.github/actions/doxygen
+      - uses: ./.github/actions/avr-gcc
+      - name: Both images and the IDE export, configured by hand
+        run: |
+          cmake -S . -B build/avr -G Ninja -DCMAKE_TOOLCHAIN_FILE="$PWD/cmake/avr-gcc.cmake" && cmake --build build/avr
+          cmake --build build/avr --target export_ino
+      - name: Host tests, tool help, links, API documentation
+        run: |
+          cmake -S . -B build/host -G Ninja -DCORELR_HOST_TESTS_ONLY=ON && cmake --build build/host
+          cd build/host && ctest --output-on-failure

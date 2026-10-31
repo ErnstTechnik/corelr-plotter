@@ -1,0 +1,60 @@
+# Copyright (C) 2026 ErnstTechnik and the CoreLR contributors
+# SPDX-License-Identifier: GPL-3.0-or-later
+name: release
+# A tag vX.Y.Z builds both images, the IDE export and the API documentation, and prepares a DRAFT GitHub Release with the files (tools/release_package.sh -h; CONTRIBUTING.md,
+# "Versions, changelog, releases"). The release stays a draft: the maintainer writes the notes ("what was verified on the machine and what was not") and publishes it by hand.
+# "Run workflow" (any branch) does everything except the release: the files are kept as the workflow's artifact `release`, to look at before the first real tag.
+# On a tag, the workflow `mutation` runs first (about an hour) and the release is prepared only if it passes; "Run workflow" skips it (run `mutation` by hand when you want it).
+# Written 2026-10-28, never run on GitHub yet.
+on:
+  push:
+    tags: ["v[0-9]+.[0-9]+.[0-9]+"]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  mutation:
+    if: startsWith(github.ref, 'refs/tags/')
+    uses: ./.github/workflows/mutation.yml
+  package:
+    needs: mutation
+    if: ${{ !failure() && !cancelled() }}      # the mutation job succeeded, or was skipped ("Run workflow")
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: write          # creates the draft release
+    steps:
+      - uses: actions/checkout@v5
+      - uses: ./.github/actions/doxygen
+      - run: sudo apt-get update && sudo apt-get install -y ninja-build cmake gcc-multilib g++-multilib python3 curl graphviz zip
+      - uses: ./.github/actions/avr-gcc     # the same compiler as the ci workflow: the documented sizes are those of avr-gcc 7.3.0
+      - name: The tag is the version of firmware/config/Version.h (REQ-CoreLR-D-Build-0020)
+        id: version
+        run: |
+          if [ "$GITHUB_REF_TYPE" = tag ]; then
+            V=$(python3 tools/analysis/check_version.py --tag "$GITHUB_REF_NAME" --sources)
+          else
+            V=$(python3 tools/analysis/check_version.py --sources)
+          fi
+          test -n "$V" || { echo "no version in firmware/config/Version.h"; exit 1; }
+          echo "version=$V" >> "$GITHUB_OUTPUT"
+      - name: Build both images, the size limits are enforced at link time
+        run: |
+          cmake --preset avr-default && cmake --build --preset avr-default
+          cmake --build --preset avr-default --target export_ino
+      - name: Host tests and API documentation (a release does not ship what the tests refuse)
+        run: |
+          cmake --preset host && ctest --preset host
+          cmake --build --preset host --target doc_package
+      - name: Collect the files
+        run: tools/release_package.sh -v "${{ steps.version.outputs.version }}" -o release-out
+      - uses: actions/upload-artifact@v6
+        with:
+          name: release
+          path: release-out
+      - name: Draft GitHub Release
+        if: github.ref_type == 'tag'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" release-out/* --draft --verify-tag --title "CoreLR ${{ steps.version.outputs.version }}" \
+            --notes "Draft. To write before publishing: what changed (CHANGELOG.md), what was verified on the machine and what was not, and whether the first flash costs a recalibration. build-info.txt lists the compiler, the flags and the size of each image; SHA256SUMS checks every file. There is no .eep on purpose: it would erase the calibration."

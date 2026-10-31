@@ -1,0 +1,22 @@
+# Mutants of the Control jog's response (REQ-CoreLR-D-LcdJoystickUI-0021): tools/mutate.py --test test_jogcurve --batch tests/mutation/mutants/jogcurve.txt
+# (and again with -D JOGCURVE_USE_TABLE=1 for the tabulated shape; the computed one is the default). The test #includes JogCurve.c, so a mutant is a change of that file.
+# name @@ file @@ old @@ new
+dead zone not subtracted @@ JogCurve.c @@ r = (uint16_t)(magnitude - (uint16_t)LCDJOYSTICKUI_DEADZONE); @@ r = magnitude;
+dead zone subtracted twice @@ JogCurve.c @@ r = (uint16_t)(magnitude - (uint16_t)LCDJOYSTICKUI_DEADZONE); @@ r = (uint16_t)(magnitude - 2u * (uint16_t)LCDJOYSTICKUI_DEADZONE);
+speed per axis, not the norm (largest axis) @@ JogCurve.c @@ uint32_t m = Motion_Hypot((int32_t)dx, (int32_t)dy); @@ uint32_t m = (uint32_t)(((dx < 0 ? -dx : dx) > (dy < 0 ? -dy : dy)) ? (dx < 0 ? -dx : dx) : (dy < 0 ? -dy : dy));
+speed per axis, not the norm (sum) @@ JogCurve.c @@ uint32_t m = Motion_Hypot((int32_t)dx, (int32_t)dy); @@ uint32_t m = (uint32_t)((dx < 0 ? -dx : dx) + (dy < 0 ? -dy : dy));
+full scale taken as the ADC's end @@ JogCurve.c @@ #define JOGCURVE_RANGE (LCDJOYSTICKUI_STICK_FULL_SCALE - LCDJOYSTICKUI_DEADZONE) @@ #define JOGCURVE_RANGE (511 - LCDJOYSTICKUI_DEADZONE)
+reciprocal off (K 1 % too small) @@ JogCurve.c @@ #define JOGCURVE_K ((4096UL * 4096UL + (JOGCURVE_RANGE) - 1UL) / (JOGCURVE_RANGE)) @@ #define JOGCURVE_K (((4096UL * 4096UL + (JOGCURVE_RANGE) - 1UL) / (JOGCURVE_RANGE)) * 99UL / 100UL)
+the time is not used @@ JogCurve.c @@ (uint32_t)JogCurve_Fraction((uint16_t)m) * (uint32_t)elapsedMs) >> 6); @@ (uint32_t)JogCurve_Fraction((uint16_t)m) * 30u) >> 6);
+the maximum speed is half @@ JogCurve.c @@ scaled = (int32_t)(((uint32_t)LCDJOYSTICKUI_JOG_MAX_SPEED * @@ scaled = (int32_t)(((uint32_t)LCDJOYSTICKUI_JOG_MAX_SPEED / 2u * 
+X displacement uses dy @@ JogCurve.c @@ *outDxUm = Carry(&s_remainderX, (scaled * (int32_t)dx) / (int32_t)m); @@ *outDxUm = Carry(&s_remainderX, (scaled * (int32_t)dy) / (int32_t)m);
+Y displacement uses dx @@ JogCurve.c @@ *outDyUm = Carry(&s_remainderY, (scaled * (int32_t)dy) / (int32_t)m); @@ *outDyUm = Carry(&s_remainderY, (scaled * (int32_t)dx) / (int32_t)m);
+Y displacement sign flipped @@ JogCurve.c @@ *outDyUm = Carry(&s_remainderY, (scaled * (int32_t)dy) / (int32_t)m); @@ *outDyUm = Carry(&s_remainderY, -(scaled * (int32_t)dy) / (int32_t)m);
+the remainder is dropped @@ JogCurve.c @@ *remainder = (int16_t)(total & 1023L); @@ *remainder = 0;
+a centred stick keeps the remainder @@ JogCurve.c @@ JogCurve_Reset();                       /* the stick is centred: nothing carried into the next push */\n      *outDxUm = 0; @@ *outDxUm = 0;
+Reset does nothing @@ JogCurve.c @@ void JogCurve_Reset(void)\n{\n   s_remainderX = 0;\n   s_remainderY = 0;\n} @@ void JogCurve_Reset(void)\n{\n}
+inside the dead zone it still moves @@ JogCurve.c @@ if (m <= (uint32_t)LCDJOYSTICKUI_DEADZONE) @@ if (m < 1u)
+table: the interval is 129 wide (a wrong slope) @@ JogCurve.c @@ + (uint16_t)((((uint32_t)(uint16_t)(b - a)) * (n & 127u)) >> 7)); @@ + (uint16_t)((((uint32_t)(uint16_t)(b - a)) * (n & 127u)) >> 8));
+table: no interpolation @@ JogCurve.c @@ return (uint16_t)(a + (uint16_t)((((uint32_t)(uint16_t)(b - a)) * (n & 127u)) >> 7)); @@ return a;
+table: the end of the table is not reached @@ JogCurve.c @@ return pgm_read_word(&kJogCurve[JOGCURVE_TABLE_STEPS]); @@ return pgm_read_word(&kJogCurve[JOGCURVE_TABLE_STEPS - 1]);
+computed: n squared without the scale @@ JogCurve.c @@ uint32_t f = ((uint32_t)n * n) >> 8;             /* Q24 -> Q16 */ @@ uint32_t f = ((uint32_t)n * n) >> 9;

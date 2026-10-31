@@ -1,0 +1,72 @@
+; REFUSAL TEST: error:33 -- relative moves:
+; judged where they END; the 9th of 10 small
+; steps crosses the left limit.
+; Pen up throughout. The marked line must be
+; REFUSED: the job halts
+; (Alarm, E on the LCD), nothing moves on that
+; line. Then Ctrl-X / SW /
+; Candle's Reset (control panel) to
+; acknowledge.
+M5
+G90 G0 X0 Y0
+G21 G17 G54 G94
+G91
+M5
+G0 X-10
+G0 X-10
+G0 X-10
+G0 X-10
+G0 X-10
+G0 X-10
+G0 X-10
+G0 X-10
+G0 X-10
+G0 X-10
+G0 X-10
+G0 X-10
+G0 X-10
+G0 X-10
+G0 X-10
+G0 X-10
+G0 X-10
+G0 X-10
+G0 X-10
+G0 X-10
+G0 X-10
+G0 X-10
+G0 X-10
+G0 X-10
+G0 X-10
+G0 X-10
+G0 X-10
+G0 X-10
+G0 X-10
+G0 X-10
+G0 X-10
+G0 X-10
+G0 X-10
+G0 X-10
+G0 X-10
+G0 X-10
+G0 X-10
+G0 X-10
+G0 X-10
+G0 X-10
+G0 X-10
+G0 X-10
+G0 X-10
+G0 X-10
+G0 X-10
+G0 X-10
+G0 X-10
+G0 X-10
+G0 X-10
+G0 X-10
+G0 X-10
+; the previous step ended 2.5 mm inside the
+; limit; this one ends beyond: REFUSED
+G0 X-10
+G90
+M5
+G90 G0 X0 Y0
+M30

@@ -1,0 +1,9 @@
+# Mutants of the display's conditional cap (REQ-CoreLR-D-LcdJoystickUI-0023). It exists only when the configuration can reach 9999.95 mm, so
+# run it under the arithmetic that can: tools/mutate.py --test test_ui --batch tests/mutation/mutants/display_cap.txt --timeout 120 -D CORELR_MATH=CORELR_MATH_64
+# name @@ file @@ old @@ new
+cap one tenth too high @@ LcdJoystickUI.cpp @@ if (tenths > 99999u) @@ if (tenths > 100000u)
+cap value too low @@ LcdJoystickUI.cpp @@ tenths = 99999u; @@ tenths = 99998u;
+cap compiled out @@ LcdJoystickUI.cpp @@ #if LCDJOYSTICKUI_DISPLAY_CAP\n   if (tenths @@ #if 0\n   if (tenths
+condition never true @@ LcdJoystickUI.cpp @@ #if (LCDJOYSTICKUI_LENGTH_BOUND_UM >= 9999950L) || @@ #if (0) ||
+condition never true (all terms) @@ LcdJoystickUI.cpp @@ #if (LCDJOYSTICKUI_LENGTH_BOUND_UM >= 9999950L) || (LCDJOYSTICKUI_JOG_LIMIT_UM >= 9999950L) || (LCDJOYSTICKUI_CAL_MAX_UM >= 9999950L) @@ #if 0
+INT32_MIN negated in a signed int @@ LcdJoystickUI.cpp @@ (0u - (uint32_t)valueUm) @@ (uint32_t)(valueUm + 1) + 1u

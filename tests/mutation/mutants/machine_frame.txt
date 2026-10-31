@@ -1,0 +1,30 @@
+# machine frame, WCO, $#, $H, G53 (REQ-CoreLR-D-SerialLink-0012, REQ-CoreLR-D-GCodeParser-0018, REQ-CoreLR-D-Motion-0030). Test: test_seriallink.
+offset X sign @@ Motion.c @@ offset.X = offsetX - referenceX; @@ offset.X = referenceX - offsetX;
+offset Y flip dropped @@ Motion.c @@ offset.Y = -MOTION_Y_FROM_INTERNAL(offsetY, referenceY); @@ offset.Y = MOTION_Y_FROM_INTERNAL(offsetY, referenceY);
+G53 Z zero lowers the pen @@ GCodeParser.c @@ return (parsed->ZValueUm >= 0) ? (int8_t)0 : (int8_t)1; @@ return (parsed->ZValueUm > 0) ? (int8_t)0 : (int8_t)1;
+G53 Z inverted @@ GCodeParser.c @@ return (parsed->ZValueUm >= 0) ? (int8_t)0 : (int8_t)1; @@ return (parsed->ZValueUm >= 0) ? (int8_t)1 : (int8_t)0;
+G53 X added not subtracted @@ GCodeParser.c @@ (parsed->XValueUm - offset.X) @@ (parsed->XValueUm + offset.X)
+G53 Y added not subtracted @@ GCodeParser.c @@ (parsed->YValueUm - offset.Y) @@ (parsed->YValueUm + offset.Y)
+G53 X ignores a missing word @@ GCodeParser.c @@ parsed->HasX ? (parsed->XValueUm - offset.X) : current.X @@ (parsed->XValueUm - offset.X)
+G53 and G92 on one line allowed @@ GCodeParser.c @@ || MACHINE_WORD(outParsed))\n @@ )\n
+G53 with an arc mode allowed @@ GCodeParser.c @@ (EffectiveMode(outParsed) > 1) @@ (EffectiveMode(outParsed) > 2)
+G53 with no mode allowed @@ GCodeParser.c @@ ((EffectiveMode(outParsed) < 0) || @@ (
+G53 never set @@ GCodeParser.c @@ outParsed->Machine = 1;  @@ outParsed->Machine = 0;  
+home leaves the pen down @@ GCodeParser.c @@ if (s_state.PenDown)\n   {\n      s_state.PenDown = 0;\n      PenControl_RequestUp();\n   }\n   (void)Motion_QueueMove(origin); @@ (void)Motion_QueueMove(origin);
+home lifts a pen already up @@ GCodeParser.c @@ if (s_state.PenDown)\n   {\n      s_state.PenDown = 0; @@ if (1)\n   {\n      s_state.PenDown = 0;
+home does not move @@ GCodeParser.c @@ (void)Motion_QueueMove(origin);\n   return GCODEPARSER_OK; @@ return GCODEPARSER_OK;
+home does not wait @@ GCodeParser.c @@ origin.Y = 0;\n   if (!(Motion_IsIdle() && Motion_PlannerIsEmpty()))\n   {\n      return GCODEPARSER_BUSY;\n   } @@ origin.Y = 0;
+MPos X not shifted @@ SerialLink.c @@ position.X += wco.X; @@ 
+MPos Y not shifted @@ SerialLink.c @@ position.Y += wco.Y; @@ 
+WCO period 11 @@ SerialLink.c @@ s_wcoCount = 10u; @@ s_wcoCount = 11u;
+WCO period 9 @@ SerialLink.c @@ s_wcoCount = 10u; @@ s_wcoCount = 9u;
+WCO change in Y not noticed @@ SerialLink.c @@ || (wco.Y != s_wcoSentY) @@ 
+WCO change in X not noticed @@ SerialLink.c @@ (wco.X != s_wcoSentX) || @@ 
+WCO sent value not remembered @@ SerialLink.c @@ s_wcoSentX = wco.X; @@ 
+WCO not first @@ SerialLink.c @@ s_wcoCount = 0;\n   s_welcome = WELCOME_LINE;\n} @@ s_wcoCount = 5;\n   s_welcome = WELCOME_LINE;\n}
+status WCO Y printed as X @@ SerialLink.c @@ at = TextFmt_Micrometres(text, at, sizeof(text), wco.Y);\n      at = TextFmt_StrP(text, at, sizeof(text), PSTR(",0.000")); @@ at = TextFmt_Micrometres(text, at, sizeof(text), wco.X);\n      at = TextFmt_StrP(text, at, sizeof(text), PSTR(",0.000"));
+$# says G91 @@ SerialLink.c @@ [G92: @@ [G91:
+$# prints the offset X twice @@ SerialLink.c @@ at = TextFmt_Micrometres(text, at, sizeof(text), wco.Y);\n   at = TextFmt_StrP(text, at, sizeof(text), PSTR(",0.000]\\r\\n[TLO @@ at = TextFmt_Micrometres(text, at, sizeof(text), wco.X);\n   at = TextFmt_StrP(text, at, sizeof(text), PSTR(",0.000]\\r\\n[TLO
+$H busy answered at once @@ SerialLink.c @@ result = GCodeParser_ExecuteHome();\n   if (result == GCODEPARSER_BUSY)\n   {\n      return 1; @@ result = GCodeParser_ExecuteHome();\n   if (result == GCODEPARSER_BUSY)\n   {\n      return 0;
+$H prefix match @@ SerialLink.c @@ ((s_len == 2u) && (s_line[1] == 'H')) @@ (s_line[1] == 'H')
+$H never called @@ SerialLink.c @@ result = GCodeParser_ExecuteHome(); @@ result = GCODEPARSER_OK;

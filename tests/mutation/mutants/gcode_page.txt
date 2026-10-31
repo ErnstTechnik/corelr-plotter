@@ -1,0 +1,44 @@
+# Mutants of tests/tools/test_gcode_page.py (the check of docs/doxygen/gcode.md against the real parser) and, through it, of the parser's own set of words (REQ-CoreLR-D-Build-0018).
+# Run:  tools/mutate.py --test gcode_page --script tests/tools/test_gcode_page.py --batch tests/mutation/mutants/gcode_page.txt
+# Every mutant must be caught by tests/tools/test_gcode_page.py: its self-test (fabricated pages and parser) for the checker's lines, the check of the real page for the firmware's.
+# (The script builds tests/host/gcode_probe.c against the mutated firmware sources, per image: it needs gcc -m32, as the host tests do.)
+rows of the other image's block are read @@ test_gcode_page.py @@ if active[-1] not in (None, variant) or not raw.startswith("|"): @@ if not raw.startswith("|"):
+an \\if block is never closed @@ test_gcode_page.py @@         if ENDIF.match(raw):\n            active.pop()\n            continue @@         if ENDIF.match(raw):\n            continue
+a two-cell row is a row @@ test_gcode_page.py @@ if len(c) < 3 or not CODE.match(c[0]): @@ if len(c) < 2 or not CODE.match(c[0]):
+a row whose first cell is not code is a row @@ test_gcode_page.py @@ if len(c) < 3 or not CODE.match(c[0]): @@ if len(c) < 3:
+the status table is not read @@ test_gcode_page.py @@ if c[1].startswith("@ref "): @@ if False:
+any code span is an answer @@ test_gcode_page.py @@ elif first and ANSWER.match(first.group(1)): @@ elif first:
+a word is known only when the parser says ok @@ test_gcode_page.py @@ known = set(o for o, a in zip(owners, answers) if a != "error:20") @@ known = set(o for o, a in zip(owners, answers) if a == "ok")
+a refused word is known too @@ test_gcode_page.py @@ known = set(o for o, a in zip(owners, answers) if a != "error:20") @@ known = set(o for o, a in zip(owners, answers) if a != "error:99")
+a word is tried alone only @@ test_gcode_page.py @@ WORD_TEMPLATES = ("{w}", "{w} L20 P1 X0 Y0", "{w} G1 X0 Y0") @@ WORD_TEMPLATES = ("{w}",)
+G10 is not tried with its context @@ test_gcode_page.py @@ WORD_TEMPLATES = ("{w}", "{w} L20 P1 X0 Y0", "{w} G1 X0 Y0") @@ WORD_TEMPLATES = ("{w}", "{w} G1 X0 Y0")
+G53 is not tried with its context @@ test_gcode_page.py @@ WORD_TEMPLATES = ("{w}", "{w} L20 P1 X0 Y0", "{w} G1 X0 Y0") @@ WORD_TEMPLATES = ("{w}", "{w} L20 P1 X0 Y0")
+the words above 49 are not tried @@ test_gcode_page.py @@ for kind, n in [("G", n) for n in range(100)] + [("M", n) for n in range(100)]: @@ for kind, n in [("G", n) for n in range(50)] + [("M", n) for n in range(50)]:
+the M words are not tried @@ test_gcode_page.py @@ for kind, n in [("G", n) for n in range(100)] + [("M", n) for n in range(100)]: @@ for kind, n in [("G", n) for n in range(100)]:
+the letters are tried with another number @@ test_gcode_page.py @@ lines.append("%s3" % c) @@ lines.append("%s1" % c)
+the letters are not tried @@ test_gcode_page.py @@     for c in letters:\n        lines.append("%s3" % c)\n        owners.append(c) @@     for c in "":\n        lines.append("%s3" % c)\n        owners.append(c)
+an end row shows no word @@ test_gcode_page.py @@ if answer in ("ok", "end"): @@ if answer == "ok":
+a refused row shows words @@ test_gcode_page.py @@ if answer in ("ok", "end"): @@ if True:
+a wrong answer passes @@ test_gcode_page.py @@         if got != want:\n            problems.append("%s: `%s` is answered @@         if False:\n            problems.append("%s: `%s` is answered
+a word of the parser that the page lacks passes @@ test_gcode_page.py @@     for w in sorted(words - shown_words): @@     for w in sorted(set()):
+a word of the page that the parser lacks passes @@ test_gcode_page.py @@     for w in sorted(shown_words - words): @@     for w in sorted(set()):
+a letter of the parser that the page lacks passes @@ test_gcode_page.py @@     for c in sorted(letters - shown_letters): @@     for c in sorted(set()):
+a letter of the page that the parser lacks passes @@ test_gcode_page.py @@     for c in sorted(shown_letters - letters): @@     for c in sorted(set()):
+a macro that is gone passes @@ test_gcode_page.py @@         if macro not in macros: @@         if False:
+a macro with another number passes @@ test_gcode_page.py @@         elif macros[macro] != number: @@         elif False:
+an answer that no status line lists passes @@ test_gcode_page.py @@         if answer.startswith("error:") and answer[len("error:"):] not in listed: @@         if False:
+a page with no row passes @@ test_gcode_page.py @@     if not rows:\n        return ["%s: no row in the page" % variant] @@     if False:\n        return ["%s: no row in the page" % variant]
+only the serial image is checked @@ test_gcode_page.py @@ VARIANTS = ("serial", "sd") @@ VARIANTS = ("serial",)
+the probe is always built for the sd image @@ test_gcode_page.py @@ "CORELR_JOB_SOURCE=CORELR_JOB_SOURCE_%s" % variant.upper() @@ "CORELR_JOB_SOURCE=CORELR_JOB_SOURCE_SD"
+the first answer is the only one that counts @@ test_gcode_page.py @@     for (line, want), got in zip(rows, answers): @@     for (line, want), got in list(zip(rows, answers))[:1]:
+G53 is lost in the serial image @@ GCodeParser.c @@             else if (g == 53) @@             else if (g == 55)
+G4 is accepted @@ GCodeParser.c @@ else if ((g != 17) && (g != 21) && (g != 54) && (g != 94)) @@ else if ((g != 17) && (g != 21) && (g != 54) && (g != 94) && (g != 4))
+G94 is refused @@ GCodeParser.c @@ else if ((g != 17) && (g != 21) && (g != 54) && (g != 94)) @@ else if ((g != 17) && (g != 21) && (g != 54) && (g != 95))
+M9 is lost in the serial image @@ GCodeParser.c @@ if (GCodeNumberToCode(&number) == 9u) @@ if (GCodeNumberToCode(&number) == 8u)
+M30 is refused @@ GCodeParser.c @@ outParsed->MValue != 5 && outParsed->MValue != 2 && outParsed->MValue != 30 @@ outParsed->MValue != 5 && outParsed->MValue != 2 && outParsed->MValue != 31
+M0 is accepted @@ GCodeParser.c @@ outParsed->MValue != 3 && outParsed->MValue != 5 && outParsed->MValue != 2 @@ outParsed->MValue != 3 && outParsed->MValue != 5 && outParsed->MValue != 0 && outParsed->MValue != 2
+N is refused @@ GCodeParser.c @@          case 'N':\n @@          case 'n':\n
+T is lost in the serial image @@ GCodeParser.c @@          case 'T': /* a tool number @@          case 't': /* a tool number
+Z is accepted in the sd image @@ SwConfig.h @@ #define CORELR_GCODE_Z 0 @@ #define CORELR_GCODE_Z 1
+the status number of an unsupported word changes @@ GCodeParser.h @@ #define GCODEPARSER_ERR_UNSUPPORTED      20u @@ #define GCODEPARSER_ERR_UNSUPPORTED      22u
+the status number of an arc radius changes @@ GCodeParser.h @@ #define GCODEPARSER_ERR_ARC_RADIUS       34u @@ #define GCODEPARSER_ERR_ARC_RADIUS       37u

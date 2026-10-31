@@ -1,0 +1,13 @@
+; Circle R=100 mm, centre = origin
+M5
+G90 G0 X0 Y0
+G21 G17 G54 G94
+M5
+G0 X100 Y0
+M3
+G3 X-100 Y0 I-100 J0
+G3 X100 Y0 I100 J0
+M5
+M5
+G0 X0 Y0
+M30

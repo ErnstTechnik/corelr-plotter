@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 440" width="640" height="440" role="img">
+  <title>CoreLR machine, schematic</title>
+  <desc>Cable-driven wall plotter: two stepper motors L and R at the top of the wall; each motor sits in a chassis; each cable leaves the top of its spool horizontally, passes through a guide hole in the chassis wall, and meets the other at a head that hangs by gravity, with the pen at the cables' intersection and the servo below it; D is the distance between the two guide holes; dashed rectangle = travel zone, inset from the guide holes by Xmargin (sides) and Ymargin (top); drawing axes with +Y up.</desc>
+  <style>
+    .blue{fill:#2F7FDB} .orange{fill:#F2711C}
+    .cable{stroke:#2F7FDB;stroke-width:2.5;fill:none}
+    .dim{stroke:#0F1B2D;stroke-width:1.2;fill:none}
+    .t{font-family:sans-serif;font-size:15px;fill:#0F1B2D}
+    .tw{font-family:sans-serif;font-size:20px;font-weight:bold;fill:#FFFFFF;text-anchor:middle}
+  </style>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#0F1B2D"/></marker>
+  </defs>
+  <!-- wall -->
+  <rect x="30" y="50" width="580" height="370" rx="6" fill="#F4F7FB" stroke="#C9D6E8" stroke-width="2"/>
+  <!-- travel zone -->
+  <rect x="200" y="104" width="240" height="292" fill="none" stroke="#2F7FDB" stroke-width="1.5" stroke-dasharray="7 5"/>
+  <text class="t" x="430" y="388" text-anchor="end" style="fill:#2F7FDB">travel zone</text>
+  <!-- distance D: between the cable exit points (guides in the chassis walls), not the motors -->
+  <line stroke="#0F1B2D" stroke-width="1" stroke-dasharray="3 3" x1="170" y1="24" x2="170" y2="50"/>
+  <line stroke="#0F1B2D" stroke-width="1" stroke-dasharray="3 3" x1="470" y1="24" x2="470" y2="50"/>
+  <line class="dim" x1="172" y1="26" x2="468" y2="26" marker-start="url(#a)" marker-end="url(#a)"/>
+  <text class="t" x="320" y="19" text-anchor="middle">D</text>
+  <!-- chassis holding each motor; the guide is a hole in its inner wall -->
+  <rect x="70" y="40" width="100" height="80" rx="4" fill="#FFFFFF" stroke="#0F1B2D" stroke-width="2"/>
+  <rect x="470" y="40" width="100" height="80" rx="4" fill="#FFFFFF" stroke="#0F1B2D" stroke-width="2"/>
+  <circle class="blue" cx="120" cy="80" r="26"/>
+  <circle cx="120" cy="80" r="13" fill="#FFFFFF" opacity=".35"/>
+  <text class="tw" x="120" y="87">L</text>
+  <circle class="blue" cx="520" cy="80" r="26"/>
+  <circle cx="520" cy="80" r="13" fill="#FFFFFF" opacity=".35"/>
+  <text class="tw" x="520" y="87">R</text>
+  <!-- cables: horizontal off the top of the spool -> guide -> head -->
+  <path class="cable" d="M120 54H170L330 236"/>
+  <path class="cable" d="M520 54H470L330 236"/>
+  <circle cx="170" cy="54" r="5" fill="#FFFFFF" stroke="#0F1B2D" stroke-width="2"/>
+  <circle cx="470" cy="54" r="5" fill="#FFFFFF" stroke="#0F1B2D" stroke-width="2"/>
+  <text class="t" x="220" y="150" transform="rotate(45 220 150)">l<tspan font-size="11" dy="4">L</tspan></text>
+  <text class="t" x="420" y="150" transform="rotate(-45 420 150)" text-anchor="end">l<tspan font-size="11" dy="4">R</tspan></text>
+  <!-- margins, relative to the guide holes (not to the motors); not to scale -->
+  <g stroke="#0F1B2D" stroke-width="1" stroke-dasharray="3 3">
+    <line x1="170" y1="124" x2="170" y2="142"/><line x1="470" y1="124" x2="470" y2="142"/>
+    <line x1="170" y1="54" x2="470" y2="54"/>
+  </g>
+  <line class="dim" x1="171" y1="135" x2="199" y2="135" marker-start="url(#a)" marker-end="url(#a)"/>
+  <line class="dim" x1="441" y1="135" x2="469" y2="135" marker-start="url(#a)" marker-end="url(#a)"/>
+  <text class="t" x="164" y="139" text-anchor="end">Xmargin</text>
+  <text class="t" x="476" y="139">Xmargin</text>
+  <line class="dim" x1="320" y1="55" x2="320" y2="103" marker-start="url(#a)" marker-end="url(#a)"/>
+  <text class="t" x="327" y="84">Ymargin</text>
+  <!-- drawn trace, ending at the pen -->
+  <path d="M250 300C262 262 280 292 292 254S318 230 330 236" fill="none" stroke="#0F1B2D" stroke-width="2" stroke-linecap="round"/>
+  <!-- head: the cables meet at the pen point P (reference); the servo hangs below it -->
+  <rect x="308" y="248" width="44" height="30" rx="4" fill="#FFFFFF" stroke="#0F1B2D" stroke-width="2"/>
+  <text class="t" x="330" y="267" text-anchor="middle" style="font-size:11px">servo</text>
+  <circle cx="330" cy="236" r="10" fill="none" stroke="#F2711C" stroke-width="1.8"/>
+  <circle class="orange" cx="330" cy="236" r="4"/>
+  <text class="t" x="330" y="300" text-anchor="middle">pen = reference</text>
+  <!-- gravity -->
+  <line class="dim" x1="410" y1="244" x2="410" y2="290" marker-end="url(#a)"/>
+  <text class="t" x="418" y="272" style="font-style:italic">g</text>
+  <!-- axes -->
+  <g class="dim" stroke-width="1.8">
+    <line x1="215" y1="372" x2="215" y2="320" marker-end="url(#a)"/>
+    <line x1="215" y1="372" x2="267" y2="372" marker-end="url(#a)"/>
+  </g>
+  <circle cx="215" cy="372" r="3.5" fill="#0F1B2D"/>
+  <text class="t" x="221" y="322">+Y</text>
+  <text class="t" x="271" y="377">+X</text>
+</svg>

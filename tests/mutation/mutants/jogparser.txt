@@ -1,0 +1,9 @@
+# Mutants of GCodeParser_ExecuteJog (REQ-CoreLR-D-GCodeParser-0015, P2, P6). Run: tools/mutate.py --test test_parser --batch tests/mutation/mutants/jogparser.txt --timeout 120
+# name @@ file @@ old @@ new
+a motion word is allowed in a jog @@ GCodeParser.c @@ parsed.HasM || parsed.HasI || parsed.HasJ || (parsed.MotionWord >= 0) @@ parsed.HasM || parsed.HasI || parsed.HasJ
+a pen word is allowed in a jog @@ GCodeParser.c @@ parsed.HasM || parsed.HasI || parsed.HasJ || (parsed.MotionWord >= 0) @@ parsed.HasI || parsed.HasJ || (parsed.MotionWord >= 0)
+an arc offset is allowed in a jog @@ GCodeParser.c @@ parsed.HasM || parsed.HasI || parsed.HasJ || (parsed.MotionWord >= 0) @@ parsed.HasM || (parsed.MotionWord >= 0)
+a jog without an axis word moves @@ GCodeParser.c @@ if (!(parsed.HasX || parsed.HasY))\n   {\n      return GCODEPARSER_OK; @@ if (0)\n   {\n      return GCODEPARSER_OK;
+the reach is not checked in a jog @@ GCodeParser.c @@ if (OutOfReach(&target) || !Motion_TravelAllows(&target))\n   {\n      return GCODEPARSER_ERR_TARGET_INVALID;\n   }\n   if (!Motion_PlannerHasRoom()) @@ if (!Motion_TravelAllows(&target))\n   {\n      return GCODEPARSER_ERR_TARGET_INVALID;\n   }\n   if (!Motion_PlannerHasRoom())
+a full planner is not BUSY for a jog @@ GCodeParser.c @@ if (!Motion_PlannerHasRoom())\n   {\n      return GCODEPARSER_BUSY;\n   }\n   (void)Motion_QueueMove(target);\n   return GCODEPARSER_OK; @@ (void)Motion_QueueMove(target);\n   return GCODEPARSER_OK;
+a jog needs a motion word @@ GCodeParser.c @@ if (!jog && (outParsed->OriginCmd == 0u) && (outParsed->HasX @@ if ((outParsed->OriginCmd == 0u) && (outParsed->HasX

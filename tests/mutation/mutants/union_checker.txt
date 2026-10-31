@@ -1,0 +1,44 @@
+# Mutants of tools/check_mutants_union.py: the union of the runs of a mutant batch, and the inputs it must never take for a success.
+# Run:  tools/mutate.py --test union_checker --script tests/tools/test_check_mutants_union.py --batch tests/mutation/mutants/union_checker.txt
+# Every mutant must be caught by tests/tools/test_check_mutants_union.py.
+the union needs ALL runs to kill @@ check_mutants_union.py @@ if any(r[name] == "CAUGHT" for _, r in runs): @@ if all(r[name] == "CAUGHT" for _, r in runs):
+a mutant killed by no run is still caught @@ check_mutants_union.py @@ if any(r[name] == "CAUGHT" for _, r in runs): @@ if True:
+equivalent: the name need only CONTAIN the word @@ check_mutants_union.py @@ elif name.startswith("EQUIVALENT"): @@ elif "EQUIVALENT" in name:
+everything unkilled is equivalent @@ check_mutants_union.py @@ elif name.startswith("EQUIVALENT"): @@ elif True:
+no mutant is ever equivalent @@ check_mutants_union.py @@ elif name.startswith("EQUIVALENT"): @@ elif False:
+a gap does not fail @@ check_mutants_union.py @@ return 1 if gaps else 0 @@ return 0
+everything fails @@ check_mutants_union.py @@ return 1 if gaps else 0 @@ return 1
+an empty output is accepted @@ check_mutants_union.py @@ if not any(l.strip() for l in lines): @@ if False:
+a run without a summary is accepted @@ check_mutants_union.py @@ if declared is None: @@ if False:
+the summary count is not compared @@ check_mutants_union.py @@ if declared != len(verdicts): @@ if False:
+a run of no mutant is accepted @@ check_mutants_union.py @@ if declared == 0: @@ if False:
+a mutant listed twice is accepted @@ check_mutants_union.py @@ if name in verdicts: @@ if False:
+runs of different batches are accepted @@ check_mutants_union.py @@ if set(r) != first: @@ if False:
+an unreadable file is a gap, not a bad input @@ check_mutants_union.py @@ print("check_mutants_union.py: %s: %s" % (f, e), file=sys.stderr)\n            return 2 @@ print("check_mutants_union.py: %s: %s" % (f, e), file=sys.stderr)\n            return 1
+different batches exit 1 @@ check_mutants_union.py @@ file=sys.stderr)\n            return 2\n\n    if not a.quiet: @@ file=sys.stderr)\n            return 1\n\n    if not a.quiet:
+NOT CAUGHT lines are not read @@ check_mutants_union.py @@ VERDICT = re.compile(r"^(CAUGHT|NOT CAUGHT|INVALID)\\s+(.*\\S)\\s*$") @@ VERDICT = re.compile(r"^(CAUGHT|INVALID)\\s+(.*\\S)\\s*$")
+INVALID lines are not read @@ check_mutants_union.py @@ VERDICT = re.compile(r"^(CAUGHT|NOT CAUGHT|INVALID)\\s+(.*\\S)\\s*$") @@ VERDICT = re.compile(r"^(CAUGHT|NOT CAUGHT)\\s+(.*\\S)\\s*$")
+the summary line is not recognised @@ check_mutants_union.py @@ SUMMARY = re.compile(r"^(\\d+) mutant\\(s\\), (\\d+) not killed\\s*$") @@ SUMMARY = re.compile(r"^(\\d+) mutant\\(s\\), (\\d+) killed\\s*$")
+the (hang) suffix is kept in the name @@ check_mutants_union.py @@ TAIL_HANG = re.compile(r" \\((?:hang|stream hash changed)\\)$") @@ TAIL_HANG = re.compile(r" \\((?:stream hash changed)\\)$")
+the (stream hash changed) suffix is kept @@ check_mutants_union.py @@ TAIL_HANG = re.compile(r" \\((?:hang|stream hash changed)\\)$") @@ TAIL_HANG = re.compile(r" \\((?:hang)\\)$")
+the INVALID 'old occurs' explanation is kept @@ check_mutants_union.py @@ TAIL_INVALID = re.compile(r" \\((?:'old' occurs \\d+ times in .*|no file .*)\\)$") @@ TAIL_INVALID = re.compile(r" \\((?:no file .*)\\)$")
+the INVALID 'no file' explanation is kept @@ check_mutants_union.py @@ TAIL_INVALID = re.compile(r" \\((?:'old' occurs \\d+ times in .*|no file .*)\\)$") @@ TAIL_INVALID = re.compile(r" \\((?:'old' occurs \\d+ times in .*)\\)$")
+an INVALID line is cleaned like a CAUGHT one @@ check_mutants_union.py @@ name = TAIL_INVALID.sub("", name) if m.group(1) == "INVALID" else TAIL_HANG.sub("", name) @@ name = TAIL_HANG.sub("", name)
+a CAUGHT line is cleaned like an INVALID one @@ check_mutants_union.py @@ name = TAIL_INVALID.sub("", name) if m.group(1) == "INVALID" else TAIL_HANG.sub("", name) @@ name = TAIL_INVALID.sub("", name)
+-q does not hide the per-run lines @@ check_mutants_union.py @@ if not a.quiet: @@ if True:
+-q hides everything @@ check_mutants_union.py @@ if not a.quiet: @@ if False:
+the per-run count is the number of mutants @@ check_mutants_union.py @@ sum(v == "CAUGHT" for v in r.values())) @@ len(r))
+a caught mutant counts twice @@ check_mutants_union.py @@ caught += 1 @@ caught += 2
+an equivalent mutant is not counted @@ check_mutants_union.py @@ equivalent += 1 @@ pass
+the gap report is silent @@ check_mutants_union.py @@ print("  GAP  %s   (%s in every run)" % (name[:100], " / ".join(why))) @@ pass
+the gap report names the wrong mutant @@ check_mutants_union.py @@ gaps.append((name, sorted({r[name] for _, r in runs}))) @@ gaps.append((sorted(first)[0], sorted({r[name] for _, r in runs})))
+the gap report omits the verdicts @@ check_mutants_union.py @@ gaps.append((name, sorted({r[name] for _, r in runs}))) @@ gaps.append((name, []))
+the first line of a file is skipped @@ check_mutants_union.py @@ for l in lines:\n        m = SUMMARY.match(l) @@ for l in lines[1:]:\n        m = SUMMARY.match(l)
+a missing file raises instead of exit 2 @@ check_mutants_union.py @@ except OSError as e:\n        raise ValueError("cannot read: %s" % e.strerror) @@ except ZeroDivisionError as e:\n        raise ValueError("cannot read: %s" % e.strerror)
+a REFUSED name need only contain the word @@ check_mutants_union.py @@ elif name.startswith("REFUSED") and all(r[name] == "INVALID" for _, r in runs): @@ elif "REFUSED" in name and all(r[name] == "INVALID" for _, r in runs):
+every REFUSED mutant is accepted @@ check_mutants_union.py @@ elif name.startswith("REFUSED") and all(r[name] == "INVALID" for _, r in runs): @@ elif name.startswith("REFUSED"):
+REFUSED needs INVALID in only one run @@ check_mutants_union.py @@ elif name.startswith("REFUSED") and all(r[name] == "INVALID" for _, r in runs): @@ elif name.startswith("REFUSED") and any(r[name] == "INVALID" for _, r in runs):
+no mutant is ever refused @@ check_mutants_union.py @@ elif name.startswith("REFUSED") and all(r[name] == "INVALID" for _, r in runs): @@ elif False:
+a refused mutant is not counted @@ check_mutants_union.py @@ refused += 1 @@ pass
+a refused mutant counts twice @@ check_mutants_union.py @@ refused += 1 @@ refused += 2
+a refused mutant is counted as equivalent @@ check_mutants_union.py @@ refused += 1 @@ equivalent += 1

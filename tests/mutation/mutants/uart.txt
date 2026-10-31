@@ -1,0 +1,36 @@
+# Mutants of the UART driver (REQ-CoreLR-D-Uart): tools/mutate.py --test test_uart --batch tests/mutation/mutants/uart.txt
+# name @@ file @@ old @@ new
+ring holds 127, not 128 @@ Uart.c @@ if ((uint8_t)(head - s_rxTail) >= UART_RX_SIZE)\n      {\n         MarkGap(); @@ if ((uint8_t)(head - s_rxTail) >= UART_RX_SIZE - 1u)\n      {\n         MarkGap();
+ring full not detected @@ Uart.c @@ if ((uint8_t)(head - s_rxTail) >= UART_RX_SIZE)\n      {\n         MarkGap();\n         return;\n      } @@ 
+overflow does not mark the gap @@ Uart.c @@ if ((uint8_t)(head - s_rxTail) >= UART_RX_SIZE)\n      {\n         MarkGap(); @@ if ((uint8_t)(head - s_rxTail) >= UART_RX_SIZE)\n      {
+slot index not masked @@ Uart.c @@ s_rx[head & (UART_RX_SIZE - 1u)] = data; @@ s_rx[head % 200u] = data;
+'?' stored in the ring @@ Uart.c @@ if (data == (uint8_t)'?')\n   {\n      s_realtime |= UART_RT_STATUS;\n   } @@ if (data == (uint8_t)'?')\n   {\n      s_realtime |= UART_RT_STATUS; s_rx[s_rxHead++ & 127u] = data;\n   }
+'!' mistaken for '~' @@ Uart.c @@ s_realtime |= UART_RT_HOLD; @@ s_realtime |= UART_RT_RESUME;
+'~' not recognised @@ Uart.c @@ else if (data == (uint8_t)'~') @@ else if (data == (uint8_t)'}')
+Ctrl-X not recognised @@ Uart.c @@ else if (data == 0x18u) @@ else if (data == 0x19u)
+0x7F kept @@ Uart.c @@ else if (data < 0x7Fu) @@ else if (data < 0x80u)
+0x80 and above kept @@ Uart.c @@ else if (data < 0x7Fu) @@ else if (1)
+EQUIVALENT (0x7E is '~', a real-time byte taken by an earlier branch: this threshold is never reached by it) 0x7E dropped as if real-time @@ Uart.c @@ else if (data < 0x7Fu) @@ else if (data < 0x7Eu)
+framing error kept @@ Uart.c @@ if ((status & (1u << FE0)) != 0u)\n      {\n         return;\n      } @@ 
+framing error does not mark the gap @@ Uart.c @@ if ((status & ((1u << FE0) | (1u << DOR0))) != 0u)\n   {\n      MarkGap(); @@ if ((status & ((1u << FE0) | (1u << DOR0))) != 0u)\n   {
+overrun drops the good byte @@ Uart.c @@ if ((status & (1u << FE0)) != 0u) @@ if ((status & ((1u << FE0) | (1u << DOR0))) != 0u)
+EQUIVALENT (the flush runs under cli(): head = tail and tail = head leave the same empty ring; where the next byte lands is not observable) flush forgets the tail @@ Uart.c @@ s_rxTail = s_rxHead;\n   s_gapSet = 0; @@ s_rxHead = s_rxTail;\n   s_gapSet = 0;
+flush keeps a pending gap @@ Uart.c @@ s_rxTail = s_rxHead;\n   s_gapSet = 0; @@ s_rxTail = s_rxHead;
+gap reported on every byte @@ Uart.c @@ if ((s_gapSet != 0u) && (s_gapAt == s_rxTail))\n   {\n      s_gapSet = 0;\n      return 1u; @@ if ((s_gapSet != 0u) && (s_gapAt == s_rxTail))\n   {\n      return 1u;
+gap reported one byte early @@ Uart.c @@ if ((s_gapSet != 0u) && (s_gapAt == s_rxTail)) @@ if ((s_gapSet != 0u) && ((uint8_t)(s_gapAt - 1u) == s_rxTail))
+gap marked at the tail, not the head @@ Uart.c @@ s_gapAt = s_rxHead; @@ s_gapAt = s_rxTail;
+second loss replaces the first @@ Uart.c @@ if (s_gapSet == 0u)\n   {\n      s_gapAt = s_rxHead; @@ if (1)\n   {\n      s_gapAt = s_rxHead;
+flags not cleared when taken @@ Uart.c @@ flags = s_realtime;\n   s_realtime = 0; @@ flags = s_realtime;
+rx free wrong @@ Uart.c @@ return (uint8_t)(UART_RX_SIZE - (uint8_t)(s_rxHead - s_rxTail)); @@ return (uint8_t)(UART_RX_SIZE - 1u - (uint8_t)(s_rxHead - s_rxTail));
+tx free wrong @@ Uart.c @@ return (uint8_t)(UART_TX_SIZE - (uint8_t)(s_txHead - s_txTail)); @@ return (uint8_t)(UART_TX_SIZE - 1u - (uint8_t)(s_txHead - s_txTail));
+tx full overwrites @@ Uart.c @@ if ((uint8_t)(head - s_txTail) >= UART_TX_SIZE)\n   {\n      return 0;\n   } @@ 
+tx never starts @@ Uart.c @@ UCSR0B = (uint8_t)(UCSR0B | (1u << UDRIE0)); @@ UCSR0B = (uint8_t)(UCSR0B);
+tx interrupt left on @@ Uart.c @@ if (tail == s_txHead)\n   {\n      UCSR0B = (uint8_t)(UCSR0B & (uint8_t)~(1u << UDRIE0));\n   } @@ 
+tx interrupt switched off too soon @@ Uart.c @@ if (tail == s_txHead) @@ if (1)
+tx interrupt clears the receiver @@ Uart.c @@ UCSR0B = (uint8_t)(UCSR0B & (uint8_t)~(1u << UDRIE0)); @@ UCSR0B = (uint8_t)(1u << TXEN0);
+tx byte order reversed @@ Uart.c @@ UDR0 = s_tx[tail & (UART_TX_SIZE - 1u)]; @@ UDR0 = s_tx[(uint8_t)(s_txHead - 1u) & (UART_TX_SIZE - 1u)];
+no double-speed mode @@ Uart.c @@ UCSR0A = (uint8_t)(1u << U2X0); @@ UCSR0A = 0;
+wrong frame format @@ Uart.c @@ UCSR0C = (uint8_t)((1u << UCSZ01) | (1u << UCSZ00)); @@ UCSR0C = (uint8_t)(1u << UCSZ01);
+receiver interrupt not enabled @@ Uart.c @@ UCSR0B = (uint8_t)((1u << RXEN0) | (1u << TXEN0) | (1u << RXCIE0)); @@ UCSR0B = (uint8_t)((1u << RXEN0) | (1u << TXEN0));
+bootloader leftovers not read @@ Uart.c @@ while ((UCSR0A & (1u << RXC0)) != 0u)\n   {\n      (void)UDR0;                                        /* what the bootloader left in the receiver */\n   } @@ 
+only one leftover byte is read @@ Uart.c @@ while ((UCSR0A & (1u << RXC0)) != 0u)\n   {\n      (void)UDR0; @@ if ((UCSR0A & (1u << RXC0)) != 0u)\n   {\n      (void)UDR0; 

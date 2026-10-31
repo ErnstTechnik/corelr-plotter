@@ -1,0 +1,10 @@
+# Mutants of the Z pen word (REQ-CoreLR-D-GCodeParser-0014, P7). Run: tools/mutate.py --test test_parser --batch tests/mutation/mutants/zword.txt --timeout 120   (the last one needs -D CORELR_GCODE_Z=0: with Z compiled in, its branch is unreachable)
+# name @@ file @@ old @@ new
+absolute Z above 0 is not "up" @@ GCodeParser.c @@ if (parsed->ZValueUm > 0)\n   {\n      return 0; @@ if (parsed->ZValueUm > 0)\n   {\n      return 1;
+Z below 0 is not "down" @@ GCodeParser.c @@ if (parsed->ZValueUm < 0)\n   {\n      return 1; @@ if (parsed->ZValueUm < 0)\n   {\n      return 0;
+relative Z0 changes the pen @@ GCodeParser.c @@ return incremental ? (int8_t)-1 : (int8_t)1; @@ return 1;
+absolute Z0 is "up" @@ GCodeParser.c @@ return incremental ? (int8_t)-1 : (int8_t)1; @@ return incremental ? (int8_t)-1 : (int8_t)0;
+Z does not reach the pen @@ GCodeParser.c @@ if (PenFromZ(parsed) >= 0)\n   {\n      /* a Z word, as M3 @@ if (0)\n   {\n      /* a Z word, as M3
+Z while moves are queued is not BUSY @@ GCodeParser.c @@ if ((parsed.HasM || (PenFromZ(&parsed) >= 0)) && @@ if (parsed.HasM &&
+M and Z on one line accepted @@ GCodeParser.c @@ if (outParsed->HasM)\n      {\n         return GCODEPARSER_ERR_UNUSED_WORDS; @@ if (0)\n      {\n         return GCODEPARSER_ERR_UNUSED_WORDS;
+Z not refused without CORELR_GCODE_Z @@ GCodeParser.c @@ if (!jog && !(CORELR_GCODE_Z)) @@ if (0)

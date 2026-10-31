@@ -1,0 +1,14 @@
+# Mutants of the 48-bit arithmetic (REQ-CoreLR-D-Motion-0024). Run:
+#   tools/mutate.py --test test_arith --batch tests/mutation/mutants/hypot48.txt -D CORELR_MATH=CORELR_MATH_48
+# Expected: every mutant CAUGHT (a crash counts). Calibration ones: --test test_position. Ratio ones: --test test_trig.
+# name @@ file @@ old @@ new
+no downward fix-up @@ Motion.c @@ while ((int32_t)(v - r1 * r1) < 0)\n   {\n      r1--;\n   } @@ (empty)
+shift bound 2^16 not 2^15 @@ Motion.c @@ while ((xs | ys) >= 0x8000UL) @@ while ((xs | ys) >= 0x10000UL)
+shift bound 2^13 @@ Motion.c @@ while ((xs | ys) >= 0x8000UL) @@ while ((xs | ys) >= 0x2000UL)
+no saturation of x @@ Motion.c @@ if (ax > (uint32_t)CORELR_MATH_48_LIMIT_UM) { ax = (uint32_t)CORELR_MATH_48_LIMIT_UM; }\n @@ (empty)
+no saturation of y @@ Motion.c @@ if (ay > (uint32_t)CORELR_MATH_48_LIMIT_UM) { ay = (uint32_t)CORELR_MATH_48_LIMIT_UM; }\n @@ (empty)
+root not shifted back @@ Motion.c @@ while (s-- != 0u)\n   {\n      r0 <<= 1;\n   }\n   return Refine @@ return Refine
+early exit drops y @@ Motion.c @@ r0 = ISqrt32(SumSq(xs, ys)); @@ r0 = ISqrt32(SumSq(xs, 0));
+Newton divisor r0 not 2*r0 @@ Motion.c @@ (v - r0 * r0) / (r0 << 1) @@ (v - r0 * r0) / r0
+residual uses the scaled v @@ Motion.c @@ return Refine(r0, SumSq(ax, ay)); @@ return Refine(r0, SumSq(xs, ys));
+abs of x forgotten @@ Motion.c @@ uint32_t ax = (uint32_t)((x < 0) ? -x : x); @@ uint32_t ax = (uint32_t)x;

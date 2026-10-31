@@ -1,0 +1,47 @@
+# The SD browser (REQ-CoreLR-D-SDReader-0005/-0006/-0008/-0009). Test: test_sdreader.
+card error never noted @@ SDReader.cpp @@ if (s_card.errorCode() != 0u)\n   {\n      s_cardLost = 1;\n   } @@ if (s_card.errorCode() != 0u)\n   {\n      s_cardLost = 0;\n   }
+recover does nothing @@ SDReader.cpp @@ if (!s_cardLost)\n   {\n      return 0;\n   }\n   s_cardLost = 0;\n   (void)SDReader_Mount(); @@ return 0;\n   s_cardLost = 0;\n   (void)SDReader_Mount();
+recover does not remount @@ SDReader.cpp @@ s_cardLost = 0;\n   (void)SDReader_Mount();   /* back @@ s_cardLost = 0;\n   /* back
+recover does not clear the flag @@ SDReader.cpp @@ s_cardLost = 0;\n   (void)SDReader_Mount();   /* back @@ (void)SDReader_Mount();   /* back
+recover always fires @@ SDReader.cpp @@ if (!s_cardLost)\n   {\n      return 0;\n   }\n   s_cardLost = 0; @@ s_cardLost = 0;
+mount keeps the old path @@ SDReader.cpp @@ s_currentPath[0] = '/';\n   s_currentPath[1] = '\0';\n\n   if (!s_card.init @@ if (!s_card.init
+failed job open not noted @@ SDReader.cpp @@ NoteCardError();   /* a failed open @@ /* a failed open
+# (equivalent through the UI's order of calls, kept as a note: a scan error in the rank search is noted anyway by the count that always runs first)
+# scan error not noted in the rank search @@ SDReader.cpp @@ NoteCardError();\n      if (!haveBest) @@ if (!haveBest)
+scan error not noted in the count @@ SDReader.cpp @@ NoteCardError();\n      s_dirCount = dirs; @@ s_dirCount = dirs;
+directories not first @@ SDReader.cpp @@ FindEntryAtRank(0u, (uint8_t)(realIndex - dirCount), (uint8_t *)outName) @@ FindEntryAtRank(0u, realIndex, (uint8_t *)outName)
+path bound off by one @@ SDReader.cpp @@ < SDREADER_PATH_SIZE); @@ <= SDREADER_PATH_SIZE);
+path separator not counted @@ SDReader.cpp @@ strlen(name) + 1u); /* separator + name */ @@ strlen(name)); /* separator + name */
+go up stays @@ SDReader.cpp @@ (void)OpenDirByPath(s_currentPath); /* the one remaining path walk */ @@ 
+comment not stripped @@ SDReader.cpp @@ if (c == ';')\n      {\n         break;\n      } @@ if (c == 'Q')\n      {\n         break;\n      }
+# The rank cache (REQ-CoreLR-D-SDReader-0010)
+next entry not one scan away @@ SDReader.cpp @@ ((uint8_t)(s_rcRank + 1u) == rank) @@ ((uint8_t)(s_rcRank + 5u) == rank)
+previous entry scanned the wrong way @@ SDReader.cpp @@ found = ScanPass(wantDirectory, 0, s_rcName, 1, name); @@ found = ScanPass(wantDirectory, 0, s_rcName, 0, name);
+previous entry not one scan away @@ SDReader.cpp @@ ((uint8_t)(rank + 1u) == s_rcRank) @@ ((uint8_t)(rank + 5u) == s_rcRank)
+last of its kind not special @@ SDReader.cpp @@ else if (((uint8_t)(rank + 1u) == CountEntries(wantDirectory)) @@ else if (((uint8_t)(rank + 9u) == CountEntries(wantDirectory))
+last of its kind found as the first @@ SDReader.cpp @@ found = ScanPass(wantDirectory, 0, 0, 1, name); /* the last of its kind (not @@ found = ScanPass(wantDirectory, 0, 0, 0, name); /* the last of its kind (not
+same entry rescanned @@ SDReader.cpp @@ if (s_rcValid && (s_rcKind == wantDirectory) && (s_rcRank == rank)) @@ if (0)
+counts never kept @@ SDReader.cpp @@ s_countsValid = (uint8_t)(s_cardLost ? 0u : 1u); @@ s_countsValid = 0;
+cache kept across an enter @@ SDReader.cpp @@ AppendPathComponent(name);\n         InvalidateListing(); @@ AppendPathComponent(name);
+cache kept across a go up @@ SDReader.cpp @@ InvalidateListing();\n   (void)OpenDirByPath @@ (void)OpenDirByPath
+cache kept across a remount @@ SDReader.cpp @@ s_jobFile.close();\n   InvalidateListing(); @@ s_jobFile.close();
+above bound inclusive @@ SDReader.cpp @@ memcmp(entry.name, above, 11u) <= 0 @@ memcmp(entry.name, above, 11u) < 0
+below bound inclusive @@ SDReader.cpp @@ memcmp(entry.name, below, 11u) >= 0 @@ memcmp(entry.name, below, 11u) > 0
+largest taken as smallest @@ SDReader.cpp @@ if ((wantLargest != 0u) ? (order < 0) : (order > 0)) @@ if ((wantLargest != 0u) ? (order > 0) : (order > 0))
+smallest taken as largest @@ SDReader.cpp @@ if ((wantLargest != 0u) ? (order < 0) : (order > 0)) @@ if ((wantLargest != 0u) ? (order < 0) : (order < 0))
+floor of the chain lost @@ SDReader.cpp @@ found = ScanPass(wantDirectory, (pass != 0u) ? s_rcName : 0, 0, 0, name); @@ found = ScanPass(wantDirectory, 0, 0, 0, name);
+cache set for a failed search @@ SDReader.cpp @@ if (!found)\n   {\n      return 0;\n   }\n   s_rcValid = 1; @@ s_rcValid = 1;
+# Saturating counts (REQ-CoreLR-D-SDReader-0011)
+directory count wraps @@ SDReader.cpp @@ dirs = (uint8_t)(dirs + (dirs < 255u)); @@ dirs = (uint8_t)(dirs + 1u);
+file count wraps @@ SDReader.cpp @@ files = (uint8_t)(files + (files < 255u)); @@ files = (uint8_t)(files + 1u);
+total wraps @@ SDReader.cpp @@ return (uint8_t)((count > 255u) ? 255u : count); @@ return (uint8_t)count;
+last of its kind taken when the count saturated @@ SDReader.cpp @@ && (CountEntries(wantDirectory) < 255u)) @@ )
+# The refused descent is reported (REQ-CoreLR-D-SDReader-0011)
+refusal never reported @@ SDReader.cpp @@ else\n   {\n      s_enterRefused = 1;\n   } @@ else\n   {\n   }
+report never cleared @@ SDReader.cpp @@ s_enterRefused = 0;\n   if (!ResolveBrowserEntry @@ if (!ResolveBrowserEntry
+# The card pulled during a job (REQ-CoreLR-D-SDReader-0012)
+job failure never noted @@ SDReader.cpp @@ s_jobFailed = 1;   /* the read failed on the card @@ s_jobFailed = 0;   /* the read failed on the card
+failed job not marked for a remount @@ SDReader.cpp @@ s_cardLost = 1;\n      return;            /* the half line @@ return;            /* the half line
+half line published after the failure @@ SDReader.cpp @@ return;            /* the half line just read is not published */ @@ /* the half line just read is not published */
+# (equivalent: a failed card keeps failing, and the job is stopped by the state machine) reading goes on after the failure @@ SDReader.cpp @@ if (s_jobFailed || !s_jobFile.isOpen() @@ if (!s_jobFile.isOpen()
+failure flag survives the next job @@ SDReader.cpp @@ s_jobFailed = 0;\n   s_jobFile.close(); @@ s_jobFile.close();

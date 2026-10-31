@@ -1,0 +1,7 @@
+# img2gcode -- image -> GCode for the CoreLR plotter. Pure pip, works the same on Linux and Windows.
+numpy
+pillow
+opencv-python-headless
+scikit-image
+potracer
+svgelements

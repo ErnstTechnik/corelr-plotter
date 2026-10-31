@@ -1,0 +1,14 @@
+; REFUSAL TEST: top margin Y=547.029
+; Pen up throughout. The marked line must be
+; REFUSED: the job halts (E), nothing moves.
+; Then SW to acknowledge, jog or Return home.
+M5
+G90 G0 X0 Y0
+G21 G17 G54 G94
+; 1 mm inside the top margin: accepted
+G0 X0 Y546.029
+; 1 mm beyond it: REFUSED (error 33)
+G1 X0 Y548.029
+M5
+G0 X0 Y0
+M30

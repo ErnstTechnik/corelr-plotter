@@ -1,0 +1,32 @@
+# Mutants of tools/analysis/check_image_symbols.py (what the linked image holds against cmake/variant_modules.txt, REQ-CoreLR-D-Build-0014): its list reader, its patterns, its object and symbol checks.
+# Run:  tools/mutate.py --test image_symbols --script tests/tools/test_image_symbols.py --batch tests/mutation/mutants/image_symbols.txt
+# Every mutant must be caught by tests/tools/test_image_symbols.py.
+the other image is the same image @@ check_image_symbols.py @@     return [p for p, i in entries if i != image] @@     return [p for p, i in entries if i == image]
+objects are not looked at @@ check_image_symbols.py @@     v = ["object linked: " + o for o in object_hits(map_text, others)] @@     v = []
+symbols are not looked at @@ check_image_symbols.py @@     v += ["symbol: " + s for s in symbol_hits(nm_text, others)] @@     v += []
+a source file is never an object hit @@ check_image_symbols.py @@             if p.endswith(SOURCE): @@             if False:
+a directory is a source file @@ check_image_symbols.py @@             if p.endswith(SOURCE): @@             if True:
+a source file matches whatever its folder @@ check_image_symbols.py @@                 if o.endswith("/" + rel + ".obj") or o.endswith("/" + rel + ".o"): @@                 if o.endswith(rel + ".obj") or o.endswith(rel + ".o"):
+the .o objects are ignored @@ check_image_symbols.py @@  or o.endswith("/" + rel + ".o") @@ 
+a directory matches nothing @@ check_image_symbols.py @@             elif "/" + rel.rstrip("/") + "/" in o: @@             elif False:
+the objects are searched by the first letter of a name @@ check_image_symbols.py @@     objs = set(re.findall(r"[^\s()]+\.(?:obj|o)\b", map_text)) @@     objs = set(re.findall(r"[^\s()]+\.obj\b", map_text))
+the pattern of SdFile is lost @@ check_image_symbols.py @@ (Sd2Card|SdFile|SdVolume|SdFat|SdBaseFile)(::|\b)" @@ (Sd2Card|SdVolume|SdFat|SdBaseFile)(::|\b)"
+the pattern of Sd2Card is lost @@ check_image_symbols.py @@ (Sd2Card|SdFile|SdVolume|SdFat|SdBaseFile)(::|\b)" @@ (SdFile|SdVolume|SdFat|SdBaseFile)(::|\b)"
+the pattern of SdVolume is lost @@ check_image_symbols.py @@ (Sd2Card|SdFile|SdVolume|SdFat|SdBaseFile)(::|\b)" @@ (Sd2Card|SdFile|SdFat|SdBaseFile)(::|\b)"
+the vtable of SdFile is not matched @@ check_image_symbols.py @@ (Sd2Card|SdFile|SdVolume|SdFat|SdBaseFile)(::|\b)" @@ (Sd2Card|SdFile|SdVolume|SdFat|SdBaseFile)::"
+the SPI classes are lost @@ check_image_symbols.py @@ r"\bSPI(Class|Settings)\b|^SPI\b" @@ r"^SPI\b"
+SDReader is not recognised @@ check_image_symbols.py @@ r"^SDReader_" @@ r"^SDReaderX_"
+Uart is not recognised @@ check_image_symbols.py @@ r"^Uart_" @@ r"^UartX_"
+SerialLink is not recognised @@ check_image_symbols.py @@ r"^SerialLink_" @@ r"^SerialLinkX_"
+a pattern matches anywhere in a name @@ check_image_symbols.py @@ "Uart":       r"^Uart_" @@ "Uart":       r"Uart_"
+a symbol line is read from the wrong column @@ check_image_symbols.py @@         parts = line.split(None, 2) @@         parts = line.split(None, 3)
+a module without a pattern is accepted @@ check_image_symbols.py @@         if module_of(p) not in PATTERNS: @@         if False:
+the image of a list line is not checked @@ check_image_symbols.py @@         if image not in ("sd", "serial"): @@         if False:
+a comment line is read @@ check_image_symbols.py @@         if not line.strip() or line.lstrip().startswith("#") or "|" not in line: @@         if not line.strip() or "|" not in line:
+the fields are not stripped @@ check_image_symbols.py @@         p, image = (x.strip() for x in line.split("|", 1)) @@         p, image = (x for x in line.split("|", 1))
+the violations are not counted @@ check_image_symbols.py @@     return len(v) @@     return 0
+the images are not added @@ check_image_symbols.py @@             total += one( @@             total = one(
+a missing build is not an error @@ check_image_symbols.py @@         if not os.path.isfile(f): @@         if False:
+one image needs no ELF @@ check_image_symbols.py @@             if not (a.variant and a.elf): @@             if False:
+the map is the ELF @@ check_image_symbols.py @@ a.map or os.path.splitext(a.elf)[0] + ".map" @@ a.map or a.elf
+the module of a path keeps its extension @@ check_image_symbols.py @@     return os.path.splitext(os.path.basename(path.rstrip("/")))[0] @@     return os.path.basename(path.rstrip("/"))

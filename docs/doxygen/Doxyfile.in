@@ -1,0 +1,158 @@
+# Doxyfile.in -- API documentation of the CoreLR firmware (REQ-CoreLR-D-Build-0013).
+#
+# Copyright (C) 2026 ErnstTechnik and the CoreLR contributors
+# SPDX-License-Identifier: GPL-3.0-or-later
+#
+# Processed by CMake (cmake/Doxygen.cmake, configure_file @ONLY) into <doc dir>/Doxyfile; only the @...@ values are substituted. Doxygen is run from the
+# repository root, so every path below is relative to it and the generated documentation names no absolute path.
+# Only the settings that differ from Doxygen's defaults are listed, each with the reason.
+
+# ------------------------------------------------------------------ project
+PROJECT_NAME           = "CoreLR plotter firmware, @CORELR_DOC_VARIANT@ variant"
+PROJECT_LOGO           = docs/branding/logo-56.png
+PROJECT_NUMBER         = @CORELR_DOC_VERSION@
+PROJECT_BRIEF          = "Cable-driven wall plotter: Arduino Nano (ATmega328P). Reference of the @CORELR_DOC_VARIANT@ image."
+OUTPUT_DIRECTORY       = @CORELR_DOC_OUTDIR@
+CREATE_SUBDIRS         = NO
+# C project: "functions", "macros", no class vocabulary (the .cpp files are thin C++ shells behind C headers)
+OPTIMIZE_OUTPUT_FOR_C  = YES
+EXTENSION_MAPPING      = ino=C++
+# YES, and STRIP_FROM_PATH left empty: Doxygen strips the directory it is run from (the repository root), so a file is "firmware/src/Motion.h", never an absolute path
+FULL_PATH_NAMES        = YES
+# the directories of every include of the images (also those of the vendored code), so that a class page says `#include <Print.h>`, not an absolute path
+STRIP_FROM_INC_PATH    = firmware/src firmware/config third_party/sdfat third_party/arduino-core/cores/arduino \
+                         third_party/arduino-core/variants/eightanaloginputs third_party/arduino-core/libraries/SPI/src
+JAVADOC_AUTOBRIEF      = NO
+MARKDOWN_SUPPORT       = YES
+AUTOLINK_SUPPORT       = YES
+
+# ------------------------------------------------------------------ input
+# What is compiled for the AVR (CLAUDE.md, "Repository layout"): our own sources, and the vendored code the image is built with, read as it is and grouped by
+# docs/doxygen/third_party.dox (a different set for each image: cmake/Doxygen.cmake). tests/ and tools/ are not listed.
+INPUT                  = firmware/src firmware/config firmware/app docs/doxygen/mainpage.md docs/doxygen/hardware.md docs/doxygen/gcode.md docs/doxygen/requirements.md docs/doxygen/requirements_functional.md docs/doxygen/requirements_design.md requirements/functional requirements/design docs/protocol/SerialProtocol.md docs/protocol/EepromLayout.md docs/doxygen/groups.dox docs/doxygen/third_party.dox \
+                         @CORELR_DOC_THIRD_PARTY@
+FILE_PATTERNS          = *.h *.c *.cpp *.ino *.md *.dox
+# The requirement files and the protocol are read on GitHub too, so they stay plain: Doxygen reads them through tools/analysis/req_refs.py --filter, which gives each page its id, each requirement
+# heading its label (the target of the links), turns the citations of one requirement by another into @req{} links (a Doxygen alias: the Doxyfile's ALIASES), and marks what applies
+# to the other image only (--image: the image this run documents; the protocol is the serial link's: --applies serial).
+FILTER_PATTERNS        = */requirements/functional/*.md="python3 tools/analysis/req_refs.py --image @CORELR_DOC_VARIANT@ --filter" */requirements/design/*.md="python3 tools/analysis/req_refs.py --image @CORELR_DOC_VARIANT@ --filter" */docs/protocol/SerialProtocol.md="python3 tools/analysis/req_refs.py --image @CORELR_DOC_VARIANT@ --applies serial --protocol --filter" */docs/protocol/EepromLayout.md="python3 tools/analysis/req_refs.py --image @CORELR_DOC_VARIANT@ --filter"
+RECURSIVE              = NO
+# the modules of the OTHER image (cmake/variant_modules.txt): their files are empty under the guards, and with EXTRACT_ALL = YES Doxygen would still make an empty page of each
+EXCLUDE                = @CORELR_DOC_EXCLUDE@
+USE_MDFILE_AS_MAINPAGE = docs/doxygen/mainpage.md
+# an item of the serial protocol (docs/protocol/SerialProtocol.md) is cited as @proto{FW-03}, @proto{P7}, @proto{D1}, @proto{M-1} or, for a section, @protosec{4-6,4.6} (the label,
+# whose dots are dashes, and the text): a link to its definition in the protocol page (the input filter gives each definition its label).
+# a document of the repository that is a page of this documentation is cited as @docref{EepromLayout,docs/protocol/EepromLayout.md} (the page, and the text): a link to the page.
+# a requirement is cited in the comments as @req{REQ-CoreLR-F-Area-nnnn}: a link to its heading (the quoted title ends the argument of \ref, which would otherwise swallow a following '/') (each carries an anchor, tools/analysis/req_refs.py checks them). Ordinary comments keep the plain identifier.
+ALIASES                = "req{1}=\ref \1 \"\1\"" \
+                         "proto{1}=\ref proto-\1 \"\1\"" "protosec{2}=\ref proto-\1 \"\2\"" \
+                         "docref{2}=\ref \1 \"\2\""
+# the pictures of the main page (docs/branding: the wordmark, the machine) and of the hardware chapter (docs/doxygen/hardware.md): \image html overview.svg is found in one of these directories (Doxygen does not look into subdirectories) and copied into html/
+IMAGE_PATH             = docs/branding docs/hardware/images docs/hardware/images/wiring
+
+# ------------------------------------------------------------------ what is extracted
+# EXTRACT_ALL = NO: an item appears when it carries a comment, so the page is the documentation that was written, not a list of names;
+# what is missing is reported as a "not documented" warning (WARN_IF_UNDOCUMENTED) and counted by tools/analysis/doc_warnings.py.
+# Two runs of this template for each image (cmake/Doxygen.cmake, maintainer's choice 2026-10-29): the INVENTORY run (EXTRACT_ALL = NO, XML only: 3 s) is what lists what has no comment, with
+# the warnings the tests read; the HTML run (EXTRACT_ALL = YES) documents every member, so that the graphs of the callers and the lists of references also hold the functions that have no
+# comment yet (Doxygen draws only the callers that it documents).
+EXTRACT_ALL            = @CORELR_DOC_EXTRACT_ALL@
+# ALWAYS_DETAILED_SEC = YES: a member with only a one-line @brief still gets its entry under "Function Documentation". Doxygen 1.9.1 (Ubuntu 22.04, the CI's)
+# gives it none and lists it in the summary only; 1.15 gives it one. Set, both print the same pages (tests/tools/test_doxygen.py looks for the entry).
+ALWAYS_DETAILED_SEC    = YES
+# Static functions and variables of the .c files carry the design reasoning of the modules (the rule is "private types stay in the .c").
+EXTRACT_STATIC         = YES
+EXTRACT_PRIVATE        = YES
+EXTRACT_LOCAL_CLASSES  = YES
+# NO: the undocumented members are listed (and warned about) rather than silently dropped
+HIDE_UNDOC_MEMBERS     = NO
+HIDE_UNDOC_CLASSES     = YES
+SORT_MEMBER_DOCS       = NO
+SORT_BRIEF_DOCS        = YES
+SORT_GROUP_NAMES       = YES
+GROUP_NESTED_COMPOUNDS = NO
+
+# ------------------------------------------------------------------ preprocessing: ONE VARIANT PER RUN
+# The firmware is compiled twice (CORELR_JOB_SOURCE = sd | serial) and so is the documentation: cmake/Doxygen.cmake generates one Doxyfile per variant from
+# this template (@CORELR_DOC_VARIANT@ = serial or sd) and each run documents the code of that image, as the compiler sees it (decided 2026-10-27: a single output
+# showing both variants mixed up what exists in which image).
+# ENABLE_PREPROCESSING = YES is needed: with NO every documented `#define` is ignored. With EXPAND_ONLY_PREDEF = YES an `#if` expands only the macros of
+# PREDEFINED and EXPAND_AS_DEFINED (any other identifier counts as 0), so the selectors are given here:
+#  - PREDEFINED: the target's definitions as the compiler has them (cmake/TargetDefs.cmake: F_CPU, ARDUINO..., __AVR__, __AVR_ATmega328P__; the build reads the same list), the variant, written as the firmware build writes it (cmake/Firmware.cmake: CORELR_JOB_SOURCE=CORELR_JOB_SOURCE_<SERIAL|SD>), and the compiler's
+#    attributes, which are not C to Doxygen and must not hide anything: PROGMEM (the tables in flash) and __attribute__((...)) (before this was here, `} __attribute__((packed))
+#    Entry_t;` made a structure of its own called __attribute__, and the line `__attribute__((noinline))` before a definition detached the comment of 8 functions of Motion.c);
+#  - EXPAND_AS_DEFINED: the names of the variants and the other selectors whose value in the shipped image matters (the arithmetic, the optional menu entries...):
+#    they expand to the definition found in the sources, so no value is copied here and their own `#define` stays documented.
+# The debug switches (CORELR_DEBUG_*) are not listed: undefined = 0 = off, as in the shipped images; the 64-bit arithmetic is not shown (no shipped image uses it).
+ENABLE_PREPROCESSING   = YES
+SEARCH_INCLUDES        = YES
+INCLUDE_PATH           = firmware/src firmware/config
+MACRO_EXPANSION        = YES
+EXPAND_ONLY_PREDEF     = YES
+PREDEFINED             = @CORELR_DOC_TARGET_DEFS@ PROGMEM= "__attribute__(x)=" CORELR_JOB_SOURCE=CORELR_JOB_SOURCE_@CORELR_DOC_JOBSRC@
+EXPAND_AS_DEFINED      = CORELR_JOB_SOURCE_SD CORELR_JOB_SOURCE_SERIAL \
+                         CORELR_MATH CORELR_MATH_64 CORELR_MATH_48 \
+                         CORELR_MENU_HOME CORELR_Y_UP CORELR_GCODE_Z CALIBRATION_POSITION_RING \
+                         LCDJOYSTICKUI_PEN_GLYPHS LCDJOYSTICKUI_HAS_SD
+# \if serial ... \endif and \if sd ... \endif in docs/doxygen/mainpage.md
+ENABLED_SECTIONS       = @CORELR_DOC_VARIANT@
+# the include guards (CORELR_<MODULE>_H) are not API
+EXCLUDE_SYMBOLS        = CORELR_*_H
+
+# ------------------------------------------------------------------ sources shown
+SOURCE_BROWSER         = YES
+INLINE_SOURCES         = NO
+STRIP_CODE_COMMENTS    = NO
+# what each function and variable is used by / uses (maintainer's request, 2026-10-29): a variable lists the functions that reference it ("Referenced by"), a function lists the variables
+# and the functions that it references ("References"); both read the source, so they follow the image's own #if
+REFERENCED_BY_RELATION = YES
+REFERENCES_RELATION    = YES
+
+# ------------------------------------------------------------------ output
+GENERATE_HTML          = @CORELR_DOC_GENERATE_HTML@
+# the inventory run writes XML (the cheapest output that makes Doxygen parse every comment, so that it gives all its warnings); it is deleted at once
+GENERATE_XML           = @CORELR_DOC_GENERATE_XML@
+XML_PROGRAMLISTING     = NO
+HTML_OUTPUT            = html
+GENERATE_LATEX         = NO
+GENERATE_TREEVIEW      = YES
+FULL_SIDEBAR           = NO
+SEARCHENGINE           = YES
+DISABLE_INDEX          = NO
+GENERATE_TODOLIST      = NO
+GENERATE_TESTLIST      = NO
+GENERATE_BUGLIST       = NO
+GENERATE_DEPRECATEDLIST= NO
+SHOW_USED_FILES        = NO
+SHOW_FILES             = YES
+SHOW_NAMESPACES        = NO
+
+# ------------------------------------------------------------------ graphs (optional: CMake sets HAVE_DOT from the presence of `dot`)
+HAVE_DOT               = @CORELR_DOC_HAVE_DOT@
+DOT_IMAGE_FORMAT       = svg
+# SVG that the browser draws itself, with a clickable node (maintainer's decision, 2026-10-31); the pages grow (REQ-CoreLR-D-Build-0013, measured there)
+INTERACTIVE_SVG        = YES
+# the limits of the call graphs, set on purpose (they were Doxygen's defaults before 2026-10-31: 50 nodes, and a red frame on the node of a graph that was cut)
+DOT_GRAPH_MAX_NODES    = 250
+MAX_DOT_GRAPH_DEPTH    = 0
+# the graph of the calls that a function makes, and the graph of the functions that call it (maintainer's requests, 2026-10-29)
+CALL_GRAPH             = YES
+CALLER_GRAPH           = YES
+INCLUDE_GRAPH          = YES
+INCLUDED_BY_GRAPH      = YES
+COLLABORATION_GRAPH    = NO
+CLASS_GRAPH            = NO
+GRAPHICAL_HIERARCHY    = NO
+DIRECTORY_GRAPH        = NO
+GROUP_GRAPHS           = YES
+
+# ------------------------------------------------------------------ diagnostics
+QUIET                  = YES
+WARNINGS               = YES
+WARN_IF_UNDOCUMENTED   = YES
+WARN_IF_DOC_ERROR      = YES
+WARN_IF_INCOMPLETE_DOC = YES
+WARN_NO_PARAMDOC       = NO
+WARN_AS_ERROR          = NO
+WARN_FORMAT            = "$file:$line: $text"
+WARN_LOGFILE           = @CORELR_DOC_LOG@

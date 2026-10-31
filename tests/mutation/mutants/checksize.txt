@@ -1,0 +1,18 @@
+# Mutants of cmake/CheckSize.cmake (REQ-CoreLR-D-Build-0004): the flash/RAM arithmetic of the Arduino IDE and the two limits.
+# Run:  tools/mutate.py --test cmake/check_size --script tests/cmake/test_check_size.sh --batch tests/mutation/mutants/checksize.txt
+# Every mutant must be caught by tests/cmake/test_check_size.sh.
+flash ignores .data @@ CheckSize.cmake @@ foreach(sec text data bootloader) @@ foreach(sec text bootloader)
+flash ignores .text @@ CheckSize.cmake @@ foreach(sec text data bootloader) @@ foreach(sec data bootloader)
+RAM ignores .noinit @@ CheckSize.cmake @@ foreach(sec data bss noinit) @@ foreach(sec data bss)
+RAM ignores .bss @@ CheckSize.cmake @@ foreach(sec data bss noinit) @@ foreach(sec data noinit)
+RAM ignores .data @@ CheckSize.cmake @@ foreach(sec data bss noinit) @@ foreach(sec bss noinit)
+flash subtracts @@ CheckSize.cmake @@ math(EXPR flash "${flash} + ${CMAKE_MATCH_1}") @@ math(EXPR flash "${flash} - ${CMAKE_MATCH_1}")
+RAM subtracts @@ CheckSize.cmake @@ math(EXPR ram "${ram} + ${CMAKE_MATCH_1}") @@ math(EXPR ram "${ram} - ${CMAKE_MATCH_1}")
+flash limit is exclusive @@ CheckSize.cmake @@ if(flash GREATER FLASH_MAX) @@ if(flash GREATER_EQUAL FLASH_MAX)
+flash limit is off by one @@ CheckSize.cmake @@ if(flash GREATER FLASH_MAX) @@ if(flash GREATER "${flash_free}")
+RAM limit is exclusive @@ CheckSize.cmake @@ if(ram GREATER RAM_MAX) @@ if(ram GREATER_EQUAL RAM_MAX)
+RAM limit is not enforced @@ CheckSize.cmake @@ if(ram GREATER RAM_MAX) @@ if(ram GREATER 999999)
+flash over the limit only warns @@ CheckSize.cmake @@ message(FATAL_ERROR "${NAME}: TOO BIG @@ message(STATUS "${NAME}: TOO BIG
+RAM over the limit only warns @@ CheckSize.cmake @@ message(FATAL_ERROR "${NAME}: static RAM @@ message(STATUS "${NAME}: static RAM
+free flash is wrong @@ CheckSize.cmake @@ math(EXPR flash_free "${FLASH_MAX} - ${flash}") @@ math(EXPR flash_free "${FLASH_MAX} + ${flash}")
+free RAM is wrong @@ CheckSize.cmake @@ math(EXPR ram_free "${RAM_MAX} - ${ram}") @@ math(EXPR ram_free "${RAM_MAX} + ${ram}")

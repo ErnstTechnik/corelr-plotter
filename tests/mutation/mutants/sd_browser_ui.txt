@@ -1,0 +1,5 @@
+# "Path too long" on the SD browser's screen (REQ-CoreLR-D-SDReader-0011). Test: test_ui, built with -D CORELR_JOB_SOURCE=CORELR_JOB_SOURCE_SD
+message not shown @@ LcdJoystickUI.cpp @@ PrintPadded_P(1, PSTR("Path too long")); @@ PrintPadded_P(1, PSTR("             "));
+index reset after a refusal @@ LcdJoystickUI.cpp @@ if (wasDirectory && SDReader_BrowserEnterRefused()) @@ if (0)
+message kept after a move @@ LcdJoystickUI.cpp @@ s_browserRefused = 0;      /* any move @@ /* any move
+message never set @@ LcdJoystickUI.cpp @@ s_browserRefused = 1; /* the path would not fit @@ /* the path would not fit

@@ -1,0 +1,14 @@
+; REFUSAL TEST: left limit X=-512.500
+; Pen up throughout. The marked line must be
+; REFUSED: the job halts (E), nothing moves.
+; Then SW to acknowledge, jog or Return home.
+M5
+G90 G0 X0 Y0
+G21 G17 G54 G94
+; 1 mm inside the left limit: accepted
+G0 X-511.5 Y242.029
+; 1 mm beyond it: REFUSED (error 33)
+G1 X-513.5 Y242.029
+M5
+G0 X0 Y0
+M30

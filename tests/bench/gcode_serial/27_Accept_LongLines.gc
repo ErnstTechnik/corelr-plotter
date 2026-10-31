@@ -1,0 +1,28 @@
+; ACCEPTED (serial variant only: the SD
+; variant's line is shorter):
+; lines of up to 80 SIGNIFICANT characters
+; (after blanks and comments are
+; removed), six decimals, the way a generator
+; writes them.
+M5
+G90 G0 X0 Y0
+G21 G17 G54 G94
+; 80 significant characters: G1X and 77 zeros
+; (X0)
+G1X00000000000000000000000000000000000000000000000000000000000000000000000000000
+; the same idea with blanks and a comment: 166
+; raw characters, 5 significant
+                                                  G1 X0 Y0                              ; padding padding padding padding padding padding padding padding 
+; six-decimal arcs: a circle in two half arcs,
+; far from the origin
+G0 X143.580245 Y80.500000
+G3X103.333333Y80.500000I-20.123456J0.000000F1000
+G3X143.580245Y80.500000I20.123456J0.000000F1000
+; a long chord with an odd digit count
+G1 X-12.345678 Y-23.456789 F1000.123456 S1000.123456 N123456
+G1 X-12.345678 Y23.456789
+G1 X12.345678 Y23.456789
+G1 X12.345678 Y-23.456789
+M5
+G90 G0 X0 Y0
+M30

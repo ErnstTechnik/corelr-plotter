@@ -1,0 +1,34 @@
+# Mutants of the error causes (FW-04), G21/G54/G94 and the program end M2/M30 (FW-10), REQ-CoreLR-F-GCodeInterpreter-0007/-0012.
+#   tools/mutate.py --test test_parser --batch tests/mutation/mutants/parser_errors_end.txt
+# name @@ file @@ old @@ new
+code saturation removed (G277 becomes G21) @@ GCodeParser.c @@ (number->Negative || (number->IntegerPart > 254L)) ? 255u : (uint8_t)number->IntegerPart @@ (uint8_t)number->IntegerPart
+saturation at 300 (M258 becomes M2) @@ GCodeParser.c @@ (number->IntegerPart > 254L) @@ (number->IntegerPart > 300L)
+negative code not refused (M-5 is M5, G-1...) @@ GCodeParser.c @@ (number->Negative || (number->IntegerPart > 254L)) ? 255u @@ (number->IntegerPart > 254L) ? 255u
+word letter check removed @@ GCodeParser.c @@ if ((letter < 'A') || (letter > 'Z'))\n      {\n         return GCODEPARSER_ERR_EXPECTED_LETTER;\n      } @@ (empty)
+word letter check lower bound @@ GCodeParser.c @@ if ((letter < 'A') || (letter > 'Z')) @@ if (letter > 'Z')
+word letter check upper bound @@ GCodeParser.c @@ if ((letter < 'A') || (letter > 'Z')) @@ if (letter < 'A')
+bad number reported as unsupported @@ GCodeParser.c @@ return GCODEPARSER_ERR_BAD_NUMBER; /* a letter with no following number */ @@ return GCODEPARSER_ERR_UNSUPPORTED;
+unknown word reported as bad number @@ GCodeParser.c @@ return GCODEPARSER_ERR_UNSUPPORTED; /* unrecognized word */ @@ return GCODEPARSER_ERR_BAD_NUMBER;
+fractional G accepted @@ GCodeParser.c @@ if (number.HasFraction)\n            {\n               return GCODEPARSER_ERR_UNSUPPORTED; /* e.g. G92.1 -- outside V1 scope */\n            } @@ (empty)
+G21 not accepted @@ GCodeParser.c @@ && (g != 21) @@ && 1
+G54 not accepted @@ GCodeParser.c @@ && (g != 54) @@ && 1
+G94 not accepted @@ GCodeParser.c @@ && (g != 94) @@ && 1
+G20 accepted too (silent 25.4x error) @@ GCodeParser.c @@ && (g != 21) @@ && (g != 21) && (g != 20)
+G55 accepted too @@ GCodeParser.c @@ && (g != 54) @@ && (g != 54) && (g != 55)
+M2 not accepted @@ GCodeParser.c @@ && outParsed->MValue != 2 @@ && 1
+M30 not accepted @@ GCodeParser.c @@ && outParsed->MValue != 30) @@ )
+M0 accepted too @@ GCodeParser.c @@ && outParsed->MValue != 2 @@ && outParsed->MValue != 2 && outParsed->MValue != 0
+program end does not report END @@ GCodeParser.c @@ return GCODEPARSER_END;\n         } @@ }
+program end does not reset the modal state @@ GCodeParser.c @@ GCodeParser_Init(); /* back to the job-start values; no motion on this line (refused at tokenizing) */ @@ 
+program end forgets the pen @@ GCodeParser.c @@ s_state.PenDown = 0;\n         PenControl_RequestUp();\n         if @@ s_state.PenDown = 0;\n         if
+M5 behaves as a program end @@ GCodeParser.c @@ if (parsed->MValue != 5) @@ if (1)
+M3 lifts the pen @@ GCodeParser.c @@ if (parsed->MValue == 3) @@ if (parsed->MValue == 0)
+program end with a move accepted @@ GCodeParser.c @@ if (outParsed->HasM && (outParsed->MValue != 3) && (outParsed->MValue != 5)) @@ if (0)
+program end with a move: wrong cause @@ GCodeParser.c @@ if (outParsed->HasM && (outParsed->MValue != 3) && (outParsed->MValue != 5))\n      {\n         /* A program end is the last thing a line does, and the pen lift it implies would be queued *before* the move\n          * of the same line (REQ-CoreLR-D-GCodeParser-0011); nobody writes "M30 G1 X5", so it is refused, not reordered */\n         return GCODEPARSER_ERR_UNSUPPORTED; @@ if (outParsed->HasM && (outParsed->MValue != 3) && (outParsed->MValue != 5))\n      {\n         return GCODEPARSER_ERR_UNUSED_WORDS;
+program end not drained (no BUSY) @@ GCodeParser.c @@ if ((parsed.HasM || (PenFromZ(&parsed) >= 0)) && !(Motion_IsIdle() && Motion_PlannerIsEmpty())) @@ if (0)
+no motion mode: wrong cause @@ GCodeParser.c @@ return GCODEPARSER_ERR_NO_AXIS_WORDS;\n      }\n      if (mode >= 2) @@ return GCODEPARSER_ERR_UNSUPPORTED;\n      }\n      if (mode >= 2)
+arc without end point: wrong cause @@ GCodeParser.c @@ if (!(outParsed->HasX || outParsed->HasY))\n         {\n            return GCODEPARSER_ERR_NO_AXIS_WORDS; @@ if (!(outParsed->HasX || outParsed->HasY))\n         {\n            return GCODEPARSER_ERR_ARC_NO_OFFSET;
+arc without centre: wrong cause @@ GCodeParser.c @@ return GCODEPARSER_ERR_ARC_NO_OFFSET; @@ return GCODEPARSER_ERR_NO_AXIS_WORDS;
+offset on straight move: wrong cause @@ GCodeParser.c @@ return GCODEPARSER_ERR_UNUSED_WORDS; /* an offset on a straight move @@ return GCODEPARSER_ERR_ARC_NO_OFFSET; /* an offset on a straight move
+reach: wrong cause @@ GCodeParser.c @@ /* the zone: REQ-CoreLR-F-GCodeInterpreter-0016 */\n      {\n         return GCODEPARSER_ERR_TARGET_INVALID; @@ /* the zone: REQ-CoreLR-F-GCodeInterpreter-0016 */\n      {\n         return GCODEPARSER_ERR_ARC_RADIUS;
+arc radius: wrong cause @@ GCodeParser.c @@ return GCODEPARSER_ERR_ARC_RADIUS; @@ return GCODEPARSER_ERR_TARGET_INVALID;

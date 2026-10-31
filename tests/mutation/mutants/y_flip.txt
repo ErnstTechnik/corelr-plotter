@@ -1,0 +1,21 @@
+# Mutants of the Y flip and of CORELR_Y_UP (REQ-CoreLR-D-Motion-0025): the conversions drawing <-> internal Y, and the jog sign.
+# Each mutant must be caught by at least one of the tests (test_arith: XYToLR; test_position: the persisted/restored conversions;
+# test_ui: the jog), in BOTH settings -- the #else branches only exist with -D CORELR_Y_UP=0:
+#   for y in 1 0; do for t in test_arith test_position test_ui; do tools/mutate.py --test $t -D CORELR_Y_UP=$y --batch tests/mutation/mutants/y_flip.txt; done; done
+# Read the 6 runs together, a mutant must be caught by one of them. A NOT CAUGHT is expected in two cases: the test does not own that code (the jog is
+# test_ui's, the conversions test_arith's and test_position's), or the mutant lives in the branch not compiled in that setting ('up:' lines with
+# Y_UP=0, 'down:' and 'jog sign (down)' with Y_UP=1), or is equivalent there ('... bypasses the macro' writes the Y_UP=0 formula, so with Y_UP=0
+# it changes nothing). Checked 2026-10-08: every other combination is caught.
+# name @@ file @@ old @@ new
+up: to-internal not flipped @@ Motion.c @@ #define MOTION_Y_TO_INTERNAL(offset, y)    ((offset) - (y)) @@ #define MOTION_Y_TO_INTERNAL(offset, y)    ((offset) + (y))
+up: to-internal flips about zero @@ Motion.c @@ #define MOTION_Y_TO_INTERNAL(offset, y)    ((offset) - (y)) @@ #define MOTION_Y_TO_INTERNAL(offset, y)    (-(y))
+up: from-internal not flipped @@ Motion.c @@ #define MOTION_Y_FROM_INTERNAL(offset, iy) ((offset) - (iy)) @@ #define MOTION_Y_FROM_INTERNAL(offset, iy) ((iy) - (offset))
+up: from-internal flips about zero @@ Motion.c @@ #define MOTION_Y_FROM_INTERNAL(offset, iy) ((offset) - (iy)) @@ #define MOTION_Y_FROM_INTERNAL(offset, iy) (-(iy))
+down: to-internal flipped @@ Motion.c @@ #define MOTION_Y_TO_INTERNAL(offset, y)    ((offset) + (y)) @@ #define MOTION_Y_TO_INTERNAL(offset, y)    ((offset) - (y))
+down: from-internal flipped @@ Motion.c @@ #define MOTION_Y_FROM_INTERNAL(offset, iy) ((iy) - (offset)) @@ #define MOTION_Y_FROM_INTERNAL(offset, iy) ((offset) - (iy))
+XYToLR bypasses the macro @@ Motion.c @@ int32_t internalY = MOTION_Y_TO_INTERNAL(params.WorkOriginOffsetY, position.Y); @@ int32_t internalY = params.WorkOriginOffsetY + position.Y;
+persisted Y bypasses the macro @@ Motion.c @@ *outInternalY = MOTION_Y_TO_INTERNAL(offsetY, s_currentPosition.Y); @@ *outInternalY = s_currentPosition.Y + offsetY;
+restored Y bypasses the macro @@ Motion.c @@ read in the new frame */\n   s_currentPosition.Y = MOTION_Y_FROM_INTERNAL(offsetY, internalY); @@ read in the new frame */\n   s_currentPosition.Y = internalY - offsetY;
+jog sign (up) not flipped @@ LcdJoystickUI.cpp @@ pos.Y -= moveY;     /* dy > 0 @@ pos.Y += moveY;     /* dy > 0
+jog sign (down) flipped @@ LcdJoystickUI.cpp @@ pos.Y += moveY;     /* Y down: the same motion @@ pos.Y -= moveY;     /* Y down: the same motion
+the position keeper's restored Y bypasses the macro @@ Motion.c @@ s_currentPosition.Y = MOTION_Y_FROM_INTERNAL(offsetY, internalY);   /* the flip, as in Motion_XYToLR() */ @@ s_currentPosition.Y = internalY - offsetY;   /* the flip, as in Motion_XYToLR() */

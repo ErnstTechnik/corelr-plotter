@@ -1,0 +1,4 @@
+M5
+G0 X0 Y0
+G1 X10.000 Y10.000 F1000 S0 ; padded so that it is far too long for the SD
+G0 X0 Y0

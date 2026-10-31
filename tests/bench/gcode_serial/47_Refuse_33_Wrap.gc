@@ -1,0 +1,18 @@
+; REFUSAL TEST: error:33 -- 8589934.592 mm =
+; 2^33 um, which once wrapped to 0.
+; Pen up throughout. The marked line must be
+; REFUSED: the job halts
+; (Alarm, E on the LCD), nothing moves on that
+; line. Then Ctrl-X / SW /
+; Candle's Reset (control panel) to
+; acknowledge.
+M5
+G90 G0 X0 Y0
+G21 G17 G54 G94
+; accepted baseline move
+G0 X10 Y10
+; REFUSED: error:33
+G1 X8589934.592
+M5
+G90 G0 X0 Y0
+M30

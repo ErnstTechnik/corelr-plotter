@@ -1,0 +1,44 @@
+; ACCEPTED (serial variant): the pen by M3/M5
+; and by the Z word.
+; Z <= 0 = pen down, Z > 0 = pen up under G90;
+; under G91 the sign
+; of the move decides, Z0 changes nothing. THE
+; Z THRESHOLD IS A
+; PROJECT CONVENTION, STILL OPEN (P7): check it
+; on a real generator.
+; Watch the servo, not the paper (the head
+; draws a short line).
+M5
+G90 G0 X0 Y0
+G21 G17 G54 G94
+M3
+G1 X10
+M5
+G0 X0
+; Z words: down, up
+G1 Z0
+G1 X10
+G0 Z5
+G0 X0
+G1 Z-1 F100
+G1 X10
+G0 Z2
+G0 X0
+; a Z-only line, and G0 with Z
+G0 Z-0.5
+G0 Z0.5
+; relative: the sign of the move
+G91
+G1 Z-2
+G1 Z3
+G1 Z0
+G90
+; a Z with a move on the same line: the pen
+; first
+G1 Z-1 X10 F100
+G1 Z3 X0
+; Candle's Z buttons send $J= with Z: see
+; README, console
+M5
+G90 G0 X0 Y0
+M30

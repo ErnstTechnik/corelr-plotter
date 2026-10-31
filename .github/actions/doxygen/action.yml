@@ -1,0 +1,18 @@
+# Copyright (C) 2026 ErnstTechnik and the CoreLR contributors
+# SPDX-License-Identifier: GPL-3.0-or-later
+# Doxygen 1.15.0, the version the documentation is written for (docs/doxygen/Doxyfile.in), from the project's own release, checked against its published SHA-256.
+# Ubuntu 22.04's package is 1.9.1: it reads the requirement links, the code spans and the protocol labels differently and gives some 2 400 markup warnings (CI run of 2026-10-31).
+# Used by ci.yml and release.yml after the checkout; graphviz still comes from apt.
+name: Doxygen 1.15.0
+description: Installs the Doxygen 1.15.0 Linux binary and puts it first on the PATH
+runs:
+  using: composite
+  steps:
+    - shell: bash
+      run: |
+        set -e
+        curl -fsSL -o "$RUNNER_TEMP/doxygen.tar.gz" https://github.com/doxygen/doxygen/releases/download/Release_1_15_0/doxygen-1.15.0.linux.bin.tar.gz
+        echo "0ec2e5b2c3cd82b7106d19cb42d8466450730b8cb7a9e85af712be38bf4523a1  $RUNNER_TEMP/doxygen.tar.gz" | sha256sum -c -
+        mkdir -p "$HOME/doxygen" && tar -xzf "$RUNNER_TEMP/doxygen.tar.gz" -C "$HOME/doxygen" --strip-components=1
+        echo "$HOME/doxygen/bin" >> "$GITHUB_PATH"
+        "$HOME/doxygen/bin/doxygen" --version

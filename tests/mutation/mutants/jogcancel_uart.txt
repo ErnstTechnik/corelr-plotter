@@ -1,0 +1,5 @@
+# Mutants of the 0x85 byte in the UART receive interrupt (REQ-CoreLR-D-Uart, P2). Run: tools/mutate.py --test test_uart --batch tests/mutation/mutants/jogcancel_uart.txt --timeout 120
+# name @@ file @@ old @@ new
+0x85 is not flagged @@ Uart.c @@ else if (data == 0x85u)\n   {\n      s_realtime |= UART_RT_JOGCANCEL; @@ else if (data == 0x85u)\n   {\n      s_realtime |= 0;
+0x85 raises the cancel flag @@ Uart.c @@ s_realtime |= UART_RT_JOGCANCEL; @@ s_realtime |= UART_RT_CANCEL;
+0x84 is flagged too @@ Uart.c @@ else if (data == 0x85u) @@ else if (data == 0x85u || data == 0x84u)

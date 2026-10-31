@@ -1,0 +1,18 @@
+# Mutants of the stick's discrete use (REQ-CoreLR-D-LcdJoystickUI-0022): tools/mutate.py --test test_ui --batch tests/mutation/mutants/ternary.txt
+# (add -D CORELR_JOB_SOURCE=CORELR_JOB_SOURCE_SD for the SD browser's mutant; the polarity flags default to 1/1)
+# name @@ file @@ old @@ new
+threshold ignored (the dead zone only) @@ LcdJoystickUI.cpp @@ if (magnitude >= LCDJOYSTICKUI_TERNARY_ON) @@ if (magnitude > 0)
+no hysteresis @@ LcdJoystickUI.cpp @@ else if ((magnitude < LCDJOYSTICKUI_TERNARY_OFF) || ((d > 0) != (*state > 0))) @@ else if ((magnitude < LCDJOYSTICKUI_TERNARY_ON) || ((d > 0) != (*state > 0)))
+never released @@ LcdJoystickUI.cpp @@ else if ((magnitude < LCDJOYSTICKUI_TERNARY_OFF) || ((d > 0) != (*state > 0))) @@ else if ((d > 0) != (*state > 0))
+a reading through the middle keeps the old side @@ LcdJoystickUI.cpp @@ else if ((magnitude < LCDJOYSTICKUI_TERNARY_OFF) || ((d > 0) != (*state > 0))) @@ else if (magnitude < LCDJOYSTICKUI_TERNARY_OFF)
+the two axes share their state @@ LcdJoystickUI.cpp @@ int8_t *state = &s_state[(analogPin == LCDJOYSTICKUI_X_PIN) ? 0 : 1]; @@ int8_t *state = &s_state[0];
+the sign is reversed @@ LcdJoystickUI.cpp @@ *state = (int8_t)((d > 0) ? 1 : -1); @@ *state = (int8_t)((d > 0) ? -1 : 1);
+the menu wraps round @@ LcdJoystickUI.cpp @@ if ((next < 0) || (next >= (int16_t)MENU_ITEM_COUNT))\n      {\n         return;\n      } @@ if (next < 0) { next = MENU_ITEM_COUNT - 1; } else if (next >= (int16_t)MENU_ITEM_COUNT) { next = 0; }
+the menu stops one item short @@ LcdJoystickUI.cpp @@ if ((next < 0) || (next >= (int16_t)MENU_ITEM_COUNT)) @@ if ((next < 0) || (next >= (int16_t)MENU_ITEM_COUNT - 1))
+the motor select toggles again @@ LcdJoystickUI.cpp @@ if (dx < 0)\n   {\n      s_adjustSelectedMotor = STEPPER_MOTOR_L;\n   } @@ if (dx < 0)\n   {\n      s_adjustSelectedMotor = (s_adjustSelectedMotor == STEPPER_MOTOR_L) ? STEPPER_MOTOR_R : STEPPER_MOTOR_L;\n   }
+left selects R and right selects L @@ LcdJoystickUI.cpp @@ if (dx < 0)\n   {\n      s_adjustSelectedMotor = STEPPER_MOTOR_L; @@ if (dx < 0)\n   {\n      s_adjustSelectedMotor = STEPPER_MOTOR_R;
+the step size wraps (right) @@ LcdJoystickUI.cpp @@ if ((dx > 0) && (s_calMachineStepIndex < (uint8_t)(LCDJOYSTICKUI_CAL_STEP_COUNT - 1u)))\n      {\n         s_calMachineStepIndex++;\n      } @@ if (dx > 0)\n      {\n         s_calMachineStepIndex = (uint8_t)((s_calMachineStepIndex + 1u) % LCDJOYSTICKUI_CAL_STEP_COUNT);\n      }
+the step size wraps (left) @@ LcdJoystickUI.cpp @@ else if ((dx < 0) && (s_calMachineStepIndex > 0u))\n      {\n         s_calMachineStepIndex--;\n      } @@ else if (dx < 0)\n      {\n         s_calMachineStepIndex = (uint8_t)((s_calMachineStepIndex + LCDJOYSTICKUI_CAL_STEP_COUNT - 1u) % LCDJOYSTICKUI_CAL_STEP_COUNT);\n      }
+the step size changes while held @@ LcdJoystickUI.cpp @@ if (xDeflected && !s_xWasDeflected)\n   {\n      /* right = a coarser step @@ if (xDeflected)\n   {\n      /* right = a coarser step
+the value steps the wrong way (stick down increases) @@ LcdJoystickUI.cpp @@ s_calMachineValueUm += (dy < 0) ? stepUm : -stepUm; @@ s_calMachineValueUm += (dy > 0) ? stepUm : -stepUm;
+the SD list wraps @@ LcdJoystickUI.cpp @@ if ((dy > 0) && (s_browserIndex + 1u < s_browserTotal))\n         {\n            s_browserIndex++; @@ if (dy > 0)\n         {\n            s_browserIndex = (uint8_t)((s_browserIndex + 1u) % s_browserTotal);

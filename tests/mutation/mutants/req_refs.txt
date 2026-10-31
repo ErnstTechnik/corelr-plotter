@@ -1,0 +1,233 @@
+# Mutants of tools/analysis/req_refs.py (the requirement links of the API documentation) and of its checks (REQ-CoreLR-D-Build-0019).
+# Run:  tools/mutate.py --test req_refs --script tests/tools/test_req_refs.py --batch tests/mutation/mutants/req_refs.txt
+# Every mutant must be caught by tests/tools/test_req_refs.py (its self-test on fabricated trees; no Doxygen needed).
+an area name cannot hold a digit @@ req_refs.py @@ ID = r"REQ-CoreLR-[FD]-[A-Za-z0-9]+-\\d{4}" @@ ID = r"REQ-CoreLR-[FD]-[A-Za-z]+-\\d{4}"
+a design requirement is not a requirement @@ req_refs.py @@ ID = r"REQ-CoreLR-[FD]-[A-Za-z0-9]+-\\d{4}" @@ ID = r"REQ-CoreLR-[F]-[A-Za-z0-9]+-\\d{4}"
+a requirement is a third-level heading @@ req_refs.py @@ HEADING = re.compile(r"^## (%s)\\b" % ID) @@ HEADING = re.compile(r"^### (%s)\\b" % ID)
+the anchor is written with another attribute @@ req_refs.py @@ ANCHOR = re.compile(r'^<a id="(%s)"></a>\\s*$' % ID) @@ ANCHOR = re.compile(r'^<a name="(%s)"></a>\\s*$' % ID)
+the sketch's own directory is not read @@ req_refs.py @@ for base in ("app", "src", "config"): @@ for base in ("src", "config"):
+the configuration headers are not read @@ req_refs.py @@ for base in ("app", "src", "config"): @@ for base in ("app", "src"):
+a C++ source is not read @@ req_refs.py @@ CODE_SUFFIXES = (".c", ".h", ".cpp", ".ino") @@ CODE_SUFFIXES = (".c", ".h", ".ino")
+a .txt file is read @@ req_refs.py @@ CODE_SUFFIXES = (".c", ".h", ".cpp", ".ino") @@ CODE_SUFFIXES = (".c", ".h", ".cpp", ".ino", ".txt")
+a .dox page is not read @@ req_refs.py @@ glob.glob(os.path.join(root, "docs", "doxygen", "*.md")) + glob.glob(os.path.join(root, "docs", "doxygen", "*.dox")) @@ glob.glob(os.path.join(root, "docs", "doxygen", "*.md"))
+the design requirements are not read @@ req_refs.py @@ glob.glob(os.path.join(root, "requirements", "functional", "*.md")) + glob.glob(os.path.join(root, "requirements", "design", "*.md")) @@ glob.glob(os.path.join(root, "requirements", "functional", "*.md"))
+a requirement is never defined @@ req_refs.py @@             if m:\n                ids.add(m.group(1)) @@             if m:\n                ids.add("")
+an anchor of another requirement passes @@ req_refs.py @@                 if not a or a.group(1) != m.group(1): @@                 if not a:
+a missing anchor passes @@ req_refs.py @@                 if not a or a.group(1) != m.group(1): @@                 if False:
+a stale anchor passes @@ req_refs.py @@             if a and (i - 1) not in wanted: @@             if False:
+a /*! comment is not a Doxygen comment @@ req_refs.py @@  or c.startswith("/*!") @@ 
+a string is a comment @@ req_refs.py @@         if c[0] in "\"'":\n            continue @@         if False:\n            continue
+the end of a range is the start @@ req_refs.py @@ found.append((m.start(), m.group("prefix") + m.group("m"), False, m.end(), True)) @@ found.append((m.start(), m.group("prefix") + m.group("n"), False, m.end(), True))
+the closing brace of an @req{} is not skipped @@ req_refs.py @@ (1 if m.group("at") and text[m.end():m.end() + 1] == "}" else 0) @@ 0
+an unknown requirement passes @@ req_refs.py @@                 if ident not in ids:\n                    found.append((where, "unknown", "%s is cited and no heading defines it" % ident))\n                if is_doc and TITLE @@                 if False:\n                    found.append((where, "unknown", "%s is cited and no heading defines it" % ident))\n                if is_doc and TITLE
+an unknown requirement of a page passes @@ req_refs.py @@             if ident not in ids:\n                found.append((where, "unknown", "%s is cited and no heading defines it" % ident))\n            if loose: @@             if False:\n                found.append((where, "unknown", "%s is cited and no heading defines it" % ident))\n            if loose:
+a plain identifier in a Doxygen comment passes @@ req_refs.py @@                 elif is_doc and not wrapped: @@                 elif False:
+an @req{} in an ordinary comment passes @@ req_refs.py @@                 elif not is_doc and wrapped: @@                 elif False:
+a wrapped identifier in a Doxygen comment is a literal @@ req_refs.py @@                 elif not is_doc and wrapped: @@                 elif wrapped:
+a range in a Doxygen comment passes @@ req_refs.py @@                 elif is_doc and loose: @@                 elif False:
+a plain identifier in a page passes @@ req_refs.py @@             elif not wrapped:\n                found.append((where, "plain", "%s in a Doxygen page @@             elif False:\n                found.append((where, "plain", "%s in a Doxygen page
+a shorthand in a page passes @@ req_refs.py @@             if loose:\n                found.append((where, "shorthand", "%s: write a @req{} for each requirement, not a range or a shorthand" % ident))\n            elif not wrapped @@             if False:\n                found.append((where, "shorthand", "%s: write a @req{} for each requirement, not a range or a shorthand" % ident))\n            elif not wrapped
+a @defgroup title may hold a requirement @@ req_refs.py @@ |addtogroup|name) @@ |addtogroup|name2)
+a @name title may hold a requirement @@ req_refs.py @@ |subsubsection|addtogroup|name) @@ |subsubsection|addtogroup)
+a @page title may hold a requirement @@ req_refs.py @@ @(?:defgroup|page|section @@ @(?:defgroup|pages|section
+the pages are not checked @@ req_refs.py @@  + page_problems(root, ids, known) @@ 
+the comments are not checked @@ req_refs.py @@ comment_problems(root, ids, known) +  @@ 
+the anchors are not checked @@ req_refs.py @@ anchor_problems(root) + comment_problems @@ comment_problems
+an anchor is written again every time @@ req_refs.py @@                 if not ANCHOR.match(nxt):\n                    out.append @@                 if True:\n                    out.append
+the end of a range is lost in the rewriting @@ req_refs.py @@         if m.group("range"):\n            out += ".." + one(m.group("prefix"), m.group("m")) @@         if m.group("range"):\n            out += ""
+the slash of a shorthand is lost in the rewriting @@ req_refs.py @@ out.append(sep[:-1] if sep.endswith("-") else sep) @@ out.append(sep[:-1])
+the comma of a shorthand is kept with its minus @@ req_refs.py @@ out.append(sep[:-1] if sep.endswith("-") else sep) @@ out.append(sep)
+a slash shorthand takes a minus @@ req_refs.py @@ SHORT = re.compile(r"(?:\\s*(?:,|, and| and)\\s*-|/-?) @@ SHORT = re.compile(r"(?:\\s*(?:,|, and| and)\\s*-|/)
+a shorthand with 'and' is not seen @@ req_refs.py @@ SHORT = re.compile(r"(?:\\s*(?:,|, and| and)\\s*-|/-?) @@ SHORT = re.compile(r"(?:\\s*(?:,|, and)\\s*-|/-?)
+a shorthand with a comma is not seen @@ req_refs.py @@ SHORT = re.compile(r"(?:\\s*(?:,|, and| and)\\s*-|/-?) @@ SHORT = re.compile(r"(?:\\s*(?:, and| and)\\s*-|/-?)
+the rewriting changes the ordinary comments @@ req_refs.py @@             if is_doc:\n                pieces.append(text[pos:start]) @@             if True:\n                pieces.append(text[pos:start])
+the rewriting does not change the pages @@ req_refs.py @@         new = proto_rewrite(docref_rewrite(rewrite(text)), known) @@         new = text
+both modes at once are accepted @@ req_refs.py @@     if args.add_anchors and args.convert: @@     if False:
+the status is always 0 @@ req_refs.py @@     return len(problems) @@     return 0
+41 problems are printed @@ req_refs.py @@ for where, kind, text in problems if args.list else problems[:40]: @@ for where, kind, text in problems if args.list else problems[:41]:
+--list prints no more than the default @@ req_refs.py @@ for where, kind, text in problems if args.list else problems[:40]: @@ for where, kind, text in problems[:40]:
+a clean tree does not say so @@ req_refs.py @@     if not problems:\n        print("ok: @@     if False:\n        print("ok:
+a link to a requirement is not replaced by the requirement's link @@ req_refs.py @@         out.append(rewrite(text) if CHAIN.match(text) else m.group(0))       # a link to @@         out.append(m.group(0))       # a link to
+a link that is not to a requirement is rewritten @@ req_refs.py @@         out.append(rewrite(text) if CHAIN.match(text) else m.group(0))       # a link to @@         out.append(rewrite(text))       # a link to
+the backticks of a link text are kept @@ req_refs.py @@         text = m.group(1).replace("`", "").strip() @@         text = m.group(1).strip()
+a code span alone is not converted @@ req_refs.py @@ out.append(rewrite(content) if CHAIN.match(content) else m.group(0))\n            after @@ out.append(m.group(0))\n            after
+the text before a span is not converted @@ req_refs.py @@ out.append(plain_after(text[pos:m.start()], after)) @@ out.append(text[pos:m.start()])
+the text after the last span is not converted @@ req_refs.py @@ out.append(plain_after(text[pos:], after)) @@ out.append(text[pos:])
+the text before a link is not converted @@ req_refs.py @@         out.append(spans(line[pos:m.start()])) @@         out.append(line[pos:m.start()])
+the text after the last link is not converted @@ req_refs.py @@     out.append(spans(line[pos:]))\n    return URL_LOOKALIKE @@     out.append(line[pos:])\n    return URL_LOOKALIKE
+a code block never ends @@ req_refs.py @@         if FENCE.match(line):\n            fenced = not fenced\n        if fenced or FENCE.match(line): @@         if FENCE.match(line):\n            fenced = True\n        if fenced or FENCE.match(line):
+a code block is converted @@ req_refs.py @@         if fenced or FENCE.match(line):\n            out.append(line) @@         if FENCE.match(line):\n            out.append(line)
+every top-level heading is a page title @@ req_refs.py @@         if not titled and line.startswith("# "): @@         if line.startswith("# "):
+a requirement heading gets no label @@ req_refs.py @@             out.append("%s%s {#%s}" % (line, " (%s image only: not in this image)" % tag if other(tag) else "", h.group(1))) @@             out.append(line + (" (%s image only: not in this image)" % tag if other(tag) else ""))
+the anchor line is kept @@ req_refs.py @@             if a and a.group(1) == h.group(1):\n                out.append("") @@             if False:\n                out.append("")
+the anchor of another requirement is blanked @@ req_refs.py @@             if a and a.group(1) == h.group(1): @@             if a:
+the anchor line of another requirement is converted @@ req_refs.py @@         elif line.startswith("#") or ANCHOR.match(line): @@         elif line.startswith("#"):
+another heading is converted @@ req_refs.py @@         elif line.startswith("#") or ANCHOR.match(line): @@         elif ANCHOR.match(line):
+the page id is not the file name @@ req_refs.py @@ sys.stdout.write(filter_text(read(args.filter), os.path.splitext(os.path.basename(args.filter))[0], args.image, args.applies, args.protocol, protocol_ids(args.root), @@ sys.stdout.write(filter_text(read(args.filter), "page", args.image, args.applies, args.protocol, protocol_ids(args.root),
+--filter does nothing @@ req_refs.py @@     if args.filter:\n        sys.stdout @@     if False:\n        sys.stdout
+a citation of a requirement file that names nothing passes @@ req_refs.py @@                 if ident not in ids:\n                    found.append(("%s:%d" % (rel, n), "spec" @@                 if False:\n                    found.append(("%s:%d" % (rel, n), "spec"
+a code block of a requirement file is read @@ req_refs.py @@             if fenced:\n                continue\n            for c in COMMAND @@             if False:\n                continue\n            for c in COMMAND
+a Doxygen command in a requirement file passes @@ req_refs.py @@             for c in COMMAND.finditer(line): @@             for c in COMMAND.finditer(""):
+a name that only starts like a command is one @@ req_refs.py @@ endlatexonly)\\b") @@ endlatexonly)")
+the \\if command is not one @@ req_refs.py @@ COMMAND = re.compile(r"\\\\(?:if|ifnot| @@ COMMAND = re.compile(r"\\\\(?:ifx|ifnot|
+the requirement prose is not checked @@ req_refs.py @@  + spec_problems(root, ids, known) @@ 
+a range does not make a chain @@ req_refs.py @@ CHAIN = re.compile(r"^%s(?:\\.\\.\\d{4})? @@ CHAIN = re.compile(r"^%s
+a shorthand does not make a chain @@ req_refs.py @@ (?:(?:\\s*(?:,|, and| and)\\s*-|/-?)\\d{4}(?:\\.\\.\\d{4})?)*$" % ID) @@ (?:)*$" % ID)
+a picture of the hardware images keeps its path @@ req_refs.py @@     line = IMAGE_LINK.sub(r"](\1)", line) @@     line = line
+the wiring pictures keep their directory @@ req_refs.py @@ IMAGE_LINK = re.compile(r"\]\((?:\.\./)+docs/hardware/images/(?:wiring/)?([^)/\s]+)\)") @@ IMAGE_LINK = re.compile(r"\]\((?:\.\./)+docs/hardware/images/([^)\s]+)\)")
+a picture one level up is not found @@ req_refs.py @@ IMAGE_LINK = re.compile(r"\]\((?:\.\./)+docs @@ IMAGE_LINK = re.compile(r"\]\((?:\.\./\.\./)docs
+any picture path is shortened @@ req_refs.py @@ docs/hardware/images/(?:wiring/)?([^)/\s]+)\)") @@ docs/(?:\w+/)*([^)/\s]+)\)")
+file: is not defused in a text @@ req_refs.py @@     return URL_LOOKALIKE.sub(lambda m: m.group(1) + "\u200b:", "".join(out)) @@     return "".join(out)
+file: is not defused in a heading @@ req_refs.py @@             out.append(URL_LOOKALIKE.sub(lambda m: m.group(1) + "\u200b:", line)) @@             out.append(line)
+a word that ends with file is defused @@ req_refs.py @@ URL_LOOKALIKE = re.compile(r"(?<![A-Za-z0-9])(file):(?=[A-Za-z])") @@ URL_LOOKALIKE = re.compile(r"(file):(?=[A-Za-z])")
+file: and a blank is defused @@ req_refs.py @@ URL_LOOKALIKE = re.compile(r"(?<![A-Za-z0-9])(file):(?=[A-Za-z])") @@ URL_LOOKALIKE = re.compile(r"(?<![A-Za-z0-9])(file):")
+only serial is a tag value @@ req_refs.py @@ TAG = re.compile(r"^\*Applies to: (serial|sd) image only\*\s*$") @@ TAG = re.compile(r"^\*Applies to: (serial) image only\*\s*$")
+the tag is not at the start of the line @@ req_refs.py @@ TAG = re.compile(r"^\*Applies to: (serial|sd) image only\* @@ TAG = re.compile(r"\*Applies to: (serial|sd) image only\*
+the tag is read from the heading line @@ req_refs.py @@     j = i + 1\n    if j < len(lines) and ANCHOR.match(lines[j]): @@     j = i\n    if j < len(lines) and ANCHOR.match(lines[j]):
+the anchor line is not skipped @@ req_refs.py @@     if j < len(lines) and ANCHOR.match(lines[j]):\n        j += 1\n    m = TAG @@     if False:\n        j += 1\n    m = TAG
+a tag two lines below is read @@ req_refs.py @@     m = TAG.match(lines[j]) if j < len(lines) else None\n    return m.group(1) if m else None @@     m = TAG.match(lines[j]) or (TAG.match(lines[j + 1]) if j + 1 < len(lines) else None) if j < len(lines) else None\n    return m.group(1) if m else None
+one tag is enough for a whole file @@ req_refs.py @@ return tags[0] if tags and tags[0] and all(t == tags[0] for t in tags) else None @@ return tags[0] if tags and tags[0] and any(t == tags[0] for t in tags) else None
+the first requirement decides a file @@ req_refs.py @@ return tags[0] if tags and tags[0] and all(t == tags[0] for t in tags) else None @@ return tags[0] if tags and tags[0] else None
+a file with no requirement has a tag @@ req_refs.py @@ return tags[0] if tags and tags[0] and all( @@ return tags[0] if tags[:1] and tags[0] and all(
+a file has no image @@ req_refs.py @@ common_tag(read(p).split("\\n")) for p in requirement_files(root)} @@ None for p in requirement_files(root)}
+a trailing comment of the module list is part of the image @@ req_refs.py @@             line = line.split("#")[0].strip() @@             line = line.strip()
+a vendored directory is a module @@ req_refs.py @@ if entry.startswith("firmware/src/") and image in IMAGES: @@ if image in IMAGES:
+any word is an image @@ req_refs.py @@ if entry.startswith("firmware/src/") and image in IMAGES: @@ if entry.startswith("firmware/src/"):
+an invalid tag passes @@ req_refs.py @@                 if not TAG.match(line):\n                    found.append @@                 if False:\n                    found.append
+a misplaced tag passes @@ req_refs.py @@                 elif n not in ok_places: @@                 elif False:
+the tag is looked for one line too early @@ req_refs.py @@ j = i + 2 if i + 1 < len(lines) and ANCHOR.match(lines[i + 1]) else i + 1 @@ j = i + 1
+the module of one image is not checked @@ req_refs.py @@         if m and m.group(1) in modules: @@         if False:
+any tag satisfies the module @@ req_refs.py @@                 if tag_of(lines, i) != modules[m.group(1)]: @@                 if tag_of(lines, i) is None:
+the tags are not checked @@ req_refs.py @@  + tag_problems(root) @@ 
+a requirement of its own image is marked @@ req_refs.py @@         return image is not None and tag is not None and tag != image @@         return image is not None and tag is not None and tag == image
+a requirement with no tag is marked @@ req_refs.py @@         return image is not None and tag is not None and tag != image @@         return image is not None and tag != image
+everything is marked when there is no image @@ req_refs.py @@         return image is not None and tag is not None and tag != image @@         return tag is not None and tag != image
+the title is not marked @@ req_refs.py @@             out.append("%s%s {#%s}" % (line, " (%s image only: not in this image)" % whole if other(whole) else "", stem)) @@             out.append("%s {#%s}" % (line, stem))
+the requirement heading is not marked @@ req_refs.py @@             out.append("%s%s {#%s}" % (line, " (%s image only: not in this image)" % tag if other(tag) else "", h.group(1))) @@             out.append("%s {#%s}" % (line, h.group(1)))
+the tag line is not a banner @@ req_refs.py @@             out.append("**Not part of the %s image.** It applies to the %s image only." % (image, t.group(1)) if other(t.group(1)) else line) @@             out.append(line)
+the banner of the own image is a banner @@ req_refs.py @@ if other(t.group(1)) else line) @@ if True else line)
+the tags decide over --applies @@ req_refs.py @@     whole = applies or common_tag(lines) @@     whole = common_tag(lines) or applies
+--applies is ignored @@ req_refs.py @@     whole = applies or common_tag(lines) @@     whole = common_tag(lines)
+the tags do not make a title @@ req_refs.py @@     whole = applies or common_tag(lines) @@     whole = applies
+the image is not passed to the filter @@ req_refs.py @@ sys.stdout.write(filter_text(read(args.filter), os.path.splitext(os.path.basename(args.filter))[0], args.image, args.applies, args.protocol, protocol_ids(args.root), @@ sys.stdout.write(filter_text(read(args.filter), os.path.splitext(os.path.basename(args.filter))[0], None, args.applies, args.protocol, protocol_ids(args.root),
+--applies is not passed to the filter @@ req_refs.py @@ sys.stdout.write(filter_text(read(args.filter), os.path.splitext(os.path.basename(args.filter))[0], args.image, args.applies, args.protocol, protocol_ids(args.root), @@ sys.stdout.write(filter_text(read(args.filter), os.path.splitext(os.path.basename(args.filter))[0], args.image, None, args.protocol, protocol_ids(args.root),
+any image is accepted @@ req_refs.py @@     ap.add_argument("--image", choices=IMAGES) @@     ap.add_argument("--image")
+a dot ends a label: the label keeps it @@ req_refs.py @@ return "proto-" + item.replace(".", "-") @@ return "proto-" + item
+the label has no prefix @@ req_refs.py @@ return "proto-" + item.replace(".", "-") @@ return item.replace(".", "-")
+a repeated item defines again: the later table counts @@ req_refs.py @@             elif r:\n                ids.add(r.group(2)) @@             elif r:\n                ids.add(r.group(2))\n                ids.add("X")
+a code block of the protocol defines items @@ req_refs.py @@             if fenced:\n                continue\n            h = PROTO_HEAD @@             if False:\n                continue\n            h = PROTO_HEAD
+the sections are not items @@ req_refs.py @@             if h:\n                ids.add(h.group(1)) @@             if h:\n                pass
+the table rows are not items @@ req_refs.py @@             elif r:\n                ids.add(r.group(2)) @@             elif r:\n                pass
+a row item is only a request @@ req_refs.py @@ PROTO_ROW = re.compile(r"^\\|\\s*(?:<a id=\\"[^\\"]*\\"></a>)?(\\**)(FW-\\d{2}|P\\d{1,2}|D\\d|M-\\d{1,2}) @@ PROTO_ROW = re.compile(r"^\\|\\s*(?:<a id=\\"[^\\"]*\\"></a>)?(\\**)(FW-\\d{2})
+no point is an item @@ req_refs.py @@ (FW-\\d{2}|P\\d{1,2}|D\\d|M-\\d{1,2})(\\**)(?=\\s*\\|) @@ (FW-\\d{2}|D\\d|M-\\d{1,2})(\\**)(?=\\s*\\|)
+no decision is an item @@ req_refs.py @@ (FW-\\d{2}|P\\d{1,2}|D\\d|M-\\d{1,2})(\\**)(?=\\s*\\|) @@ (FW-\\d{2}|P\\d{1,2}|M-\\d{1,2})(\\**)(?=\\s*\\|)
+no measurement is an item @@ req_refs.py @@ (FW-\\d{2}|P\\d{1,2}|D\\d|M-\\d{1,2})(\\**)(?=\\s*\\|) @@ (FW-\\d{2}|P\\d{1,2}|D\\d)(\\**)(?=\\s*\\|)
+a section of the first level is no item @@ req_refs.py @@ PROTO_HEAD = re.compile(r"^#{2,4}  @@ PROTO_HEAD = re.compile(r"^#{3,4} 
+a section of the fourth level is no item @@ req_refs.py @@ PROTO_HEAD = re.compile(r"^#{2,4}  @@ PROTO_HEAD = re.compile(r"^#{2,3} 
+a section is written as a request @@ req_refs.py @@ return "@protosec{%s,%s}" % (proto_label(item)[len("proto-"):], item) if SECTION_ID.match(item) else "@proto{%s}" % item @@ return "@proto{%s}" % item
+a request is written as a section @@ req_refs.py @@ return "@protosec{%s,%s}" % (proto_label(item)[len("proto-"):], item) if SECTION_ID.match(item) else "@proto{%s}" % item @@ return "@protosec{%s,%s}" % (proto_label(item)[len("proto-"):], item)
+an unknown item is linked @@ req_refs.py @@         if item in known and not any(a < e and s < b for s, e in skip) @@         if not any(a < e and s < b for s, e in skip)
+an alias that is there is cited again @@ req_refs.py @@  and not any(a < e and s < b for s, e in skip) and not any(a < e and s < b for s, e, _ in edits): @@  and not any(a < e and s < b for s, e, _ in edits):
+an edit may overlap another @@ req_refs.py @@  and not any(a < e and s < b for s, e, _ in edits): @@ :
+a section sign is not a citation @@ req_refs.py @@     for m in re.finditer(r"§\\s?(\\d+(?:\\.\\d+)*)(?![\\d]|\\.\\d)", text): @@     for m in re.finditer(r"§§\\s?(\\d+(?:\\.\\d+)*)(?![\\d]|\\.\\d)", text):
+a request inside a word is a citation @@ req_refs.py @@ (?<![\\w@{-])(FW-\\d{2})(?!\\d)", text):\n        add(m.start(1), m.end(1), m.group(1))\n    for m in re.finditer(r"SerialProtocol @@ (FW-\\d{2})(?!\\d)", text):\n        add(m.start(1), m.end(1), m.group(1))\n    for m in re.finditer(r"SerialProtocol
+a request followed by a digit is a citation @@ req_refs.py @@ (?<![\\w@{-])(FW-\\d{2})(?!\\d)", text):\n        add(m.start(1), m.end(1), m.group(1))\n    for m in re.finditer(r"SerialProtocol @@ (?<![\\w@{-])(FW-\\d{2})", text):\n        add(m.start(1), m.end(1), m.group(1))\n    for m in re.finditer(r"SerialProtocol
+an item after the file's name is not linked @@ req_refs.py @@ SerialProtocol\\.md`?[ ,]+(?:section |§ ?)? @@ SerialProtocolX\\.md`?[ ,]+(?:section |§ ?)?
+the word section after the file's name is not read @@ req_refs.py @@ SerialProtocol\\.md`?[ ,]+(?:section |§ ?)? @@ SerialProtocol\\.md`?[ ,]+(?:§ ?)?
+a point after the file's name is not linked @@ req_refs.py @@ (\\d+(?:\\.\\d+)*(?![\\d]|\\.\\d)|P\\d{1,2}\\b|D\\d\\b)", text):\n        add(m.start(1), m.end(1), m.group(1))\n        pos @@ (\\d+(?:\\.\\d+)*(?![\\d]|\\.\\d)|D\\d\\b)", text):\n        add(m.start(1), m.end(1), m.group(1))\n        pos
+a decision after the file's name is not linked @@ req_refs.py @@ (\\d+(?:\\.\\d+)*(?![\\d]|\\.\\d)|P\\d{1,2}\\b|D\\d\\b)", text):\n        add(m.start(1), m.end(1), m.group(1))\n        pos @@ (\\d+(?:\\.\\d+)*(?![\\d]|\\.\\d)|P\\d{1,2}\\b)", text):\n        add(m.start(1), m.end(1), m.group(1))\n        pos
+the list after the file's name stops at the first item @@ req_refs.py @@             q = re.match(r"(?:\\}|\\))?,\\s*(\\d+ @@             q = re.match(r"(?:\\}|\\))?;\\s*(\\d+
+the list after an alias of a section is not read @@ req_refs.py @@     for m in re.finditer(r"@protosec\\{[^,}]*,[^}]*\\}", text): @@     for m in re.finditer(r"@protosecX\\{[^,}]*,[^}]*\\}", text):
+a number after an alias is a section whatever the alias @@ req_refs.py @@     for m in re.finditer(r"@protosec\\{[^,}]*,[^}]*\\}", text): @@     for m in re.finditer(r"@proto(?:sec)?\\{[^}]*\\}", text):
+points joined by a slash are not read @@ req_refs.py @@     for m in re.finditer(r"\\bP\\d{1,2}(?:/P\\d{1,2})+\\b", text): @@     for m in re.finditer(r"\\bP\\d{1,2}(?:/PX\\d{1,2})+\\b", text):
+a point in parentheses is not read @@ req_refs.py @@     for m in re.finditer(r"(?:(?<=\\()|(?<=, ))(P\\d{1,2})\\b(?=[,);]| \\([a-z]\\))", text): @@     for m in re.finditer(r"(?:(?<=, ))(P\\d{1,2})\\b(?=[,);]| \\([a-z]\\))", text):
+a point after a comma is not read @@ req_refs.py @@     for m in re.finditer(r"(?:(?<=\\()|(?<=, ))(P\\d{1,2})\\b(?=[,);]| \\([a-z]\\))", text): @@     for m in re.finditer(r"(?:(?<=\\())(P\\d{1,2})\\b(?=[,);]| \\([a-z]\\))", text):
+any P word is a point @@ req_refs.py @@ (P\\d{1,2})\\b(?=[,);]| \\([a-z]\\))", text): @@ (P\\d{1,2})\\b", text):
+a point with a letter is not read @@ req_refs.py @@ (P\\d{1,2})\\b(?=[,);]| \\([a-z]\\))", text): @@ (P\\d{1,2})\\b(?=[,);])", text):
+the word decision is not read @@ req_refs.py @@ \\b(?:points?|decisions?|requests?) ((?:P|D|FW-) @@ \\b(?:points?|requests?) ((?:P|D|FW-)
+the word point is not read @@ req_refs.py @@ \\b(?:points?|decisions?|requests?) ((?:P|D|FW-) @@ \\b(?:decisions?|requests?) ((?:P|D|FW-)
+the list after the word stops at the first id @@ req_refs.py @@ (?:(?:,|\\s+and|\\s+or)\\s+(?:P|D|FW-)\\d{1,2})*)", text): @@ (?:)*)", text):
+the list after the word does not take 'and' @@ req_refs.py @@ (?:(?:,|\\s+and|\\s+or)\\s+(?:P|D|FW-)\\d{1,2})*)", text): @@ (?:(?:,|\\s+or)\\s+(?:P|D|FW-)\\d{1,2})*)", text):
+the edits are applied in the wrong order @@ req_refs.py @@             add(m.start(1) + q.start(), m.start(1) + q.end(), q.group(0))\n    return sorted(edits) @@             add(m.start(1) + q.start(), m.start(1) + q.end(), q.group(0))\n    return sorted(edits, reverse=True)
+the rewriting loses the text after the last edit @@ req_refs.py @@     out.append(text[pos:])\n    return "".join(out)\n\n\ndef tag_of @@     return "".join(out)\n\n\ndef tag_of
+the rewriting loses the text before an edit @@ req_refs.py @@     for a, b, repl in proto_edits(text, known):\n        out.append(text[pos:a])\n        out.append(repl) @@     for a, b, repl in proto_edits(text, known):\n        out.append(repl)
+a plain citation of the protocol passes @@ req_refs.py @@         for a, b, repl in proto_edits(text, known):\n            found.append((a, "plain" @@         for a, b, repl in []:\n            found.append((a, "plain"
+an unknown plain request passes @@ req_refs.py @@         if m.group(1) not in known and not any(s_ <= m.start() < e for s_, e in skip): @@         if False:
+a request inside an alias is unknown @@ req_refs.py @@         if m.group(1) not in known and not any(s_ <= m.start() < e for s_, e in skip): @@         if m.group(1) not in known:
+an unknown request in an alias passes @@ req_refs.py @@             item = m.group("id")\n            if item not in known: @@             item = m.group("id")\n            if False:
+a section written as a request passes @@ req_refs.py @@             elif SECTION_ID.match(item):\n                found.append((m.start(), "label" @@             elif False:\n                found.append((m.start(), "label"
+an unknown section passes @@ req_refs.py @@             item = m.group("text")\n            if item not in known: @@             item = m.group("text")\n            if False:
+a wrong label passes @@ req_refs.py @@             elif proto_label(item)[len("proto-"):] != m.group("label"): @@             elif False:
+an alias in an ordinary comment passes @@ req_refs.py @@         if not is_doc:\n            found.append((m.start(), "literal", "%s in a comment Doxygen does not read: it would show as text; write the plain item" % m.group(0))) @@         if False:\n            found.append((m.start(), "literal", "%s in a comment Doxygen does not read: it would show as text; write the plain item" % m.group(0)))
+an alias in a Doxygen comment is a literal @@ req_refs.py @@         if not is_doc:\n            found.append((m.start(), "literal", "%s in a comment Doxygen does not read: it would show as text; write the plain item" % m.group(0))) @@         if True:\n            found.append((m.start(), "literal", "%s in a comment Doxygen does not read: it would show as text; write the plain item" % m.group(0)))
+the protocol items are not checked in the comments @@ req_refs.py @@             for off, kind, msg in proto_problems(c, known, is_doc): @@             for off, kind, msg in []:
+the protocol items are not checked in the pages @@ req_refs.py @@         for off, kind, msg in docref_problems(text, True) + proto_problems(text, known, True): @@         for off, kind, msg in docref_problems(text, True):
+an item on a title line passes @@ req_refs.py @@             for m in PROTO_USE.finditer(c):\n                line = c[c.rfind("\\n", 0, m.start()) + 1:(c.find("\\n", m.start()) if c.find("\\n", m.start()) >= 0 else len(c))]\n                if is_doc and TITLE.search(line): @@             for m in PROTO_USE.finditer(c):\n                line = c[c.rfind("\\n", 0, m.start()) + 1:(c.find("\\n", m.start()) if c.find("\\n", m.start()) >= 0 else len(c))]\n                if False:
+the protocol is not read for the check @@ req_refs.py @@     known = protocol_ids(root)\n    return (anchor_problems @@     known = frozenset()\n    return (anchor_problems
+an unknown request in a requirement's prose passes @@ req_refs.py @@                 if known and m.group(1) not in known: @@                 if False:
+a requirement checks its requests with no protocol @@ req_refs.py @@                 if known and m.group(1) not in known: @@                 if m.group(1) not in known:
+a section is labelled twice @@ req_refs.py @@         if ph and ph.group(1) not in labelled: @@         if ph:
+a section is not labelled @@ req_refs.py @@         if ph and ph.group(1) not in labelled:\n            labelled.add(ph.group(1)) @@         if False:\n            labelled.add(ph.group(1))
+a repeated row has its own anchor @@ req_refs.py @@         if pr and pr.group(2) not in labelled: @@         if pr:
+a row has no anchor @@ req_refs.py @@         if pr and pr.group(2) not in labelled:\n            labelled.add(pr.group(2)) @@         if False:\n            labelled.add(pr.group(2))
+the stars of an item are lost @@ req_refs.py @@ % (proto_label(pr.group(2)), first, bar, link_citations(rest, known, stems))) @@ % (proto_label(pr.group(2)), pr.group(2), bar, link_citations(rest, known, stems)))
+the protocol is labelled without --protocol @@ req_refs.py @@         ph = PROTO_HEAD.match(line) if protocol else None\n        pr = PROTO_ROW.match(line) if protocol else None @@         ph = PROTO_HEAD.match(line)\n        pr = PROTO_ROW.match(line)
+the filter does not know the protocol's items @@ req_refs.py @@ args.applies, args.protocol, protocol_ids(args.root), @@ args.applies, args.protocol, None,
+a code span that ends with the file's name gives no context @@ req_refs.py @@             after = content.endswith("SerialProtocol.md") @@             after = False
+the context is given after any span @@ req_refs.py @@             after = content.endswith("SerialProtocol.md") @@             after = True
+the context is not removed @@ req_refs.py @@         return plain(prefix + text)[len(prefix):] @@         return plain(prefix + text)
+the conversion does not rewrite the protocol of a comment @@ req_refs.py @@ pieces.append(proto_rewrite(docref_rewrite(rewrite(c)), known)) @@ pieces.append(docref_rewrite(rewrite(c)))
+the conversion does not rewrite the protocol of a page @@ req_refs.py @@         new = proto_rewrite(docref_rewrite(rewrite(text)), known) @@         new = docref_rewrite(rewrite(text))
+the pages of the documentation are not listed @@ req_refs.py @@ DOC_PAGES = {"docs/protocol/EepromLayout.md": "EepromLayout"} @@ DOC_PAGES = {}
+the page has another name @@ req_refs.py @@ DOC_PAGES = {"docs/protocol/EepromLayout.md": "EepromLayout"} @@ DOC_PAGES = {"docs/protocol/EepromLayout.md": "Layout"}
+the alias is written with another name @@ req_refs.py @@     return "@docref{%s,%s}" % (DOC_PAGES[path], path) @@     return "@doc{%s,%s}" % (DOC_PAGES[path], path)
+the alias loses its text @@ req_refs.py @@     return "@docref{%s,%s}" % (DOC_PAGES[path], path) @@     return "@docref{%s,}" % (DOC_PAGES[path])
+a path inside an alias is written again @@ req_refs.py @@             if not any(m.start() < e and s < m.end() for s, e in skip):\n                edits.append((m.start(), m.end(), docref_link(path))) @@             if True:\n                edits.append((m.start(), m.end(), docref_link(path)))
+the paths are not written as aliases @@ req_refs.py @@         out.append(text[pos:a])\n        out.append(repl)\n        pos = b\n    out.append(text[pos:])\n    return "".join(out)\n\n\ndef docref_problems @@         out.append(text[pos:a])\n        pos = a\n    out.append(text[pos:])\n    return "".join(out)\n\n\ndef docref_problems
+a plain path in a Doxygen comment passes @@ req_refs.py @@     if is_doc:\n        for a, b, repl in docref_edits(text): @@     if False:\n        for a, b, repl in docref_edits(text):
+an alias of an unknown page passes @@ req_refs.py @@         if m.group("page") not in pages: @@         if False:
+an alias with another text passes @@ req_refs.py @@         elif pages[m.group("page")] != m.group("text"): @@         elif False:
+a page an alias in an ordinary comment passes @@ req_refs.py @@         if not is_doc:\n            found.append((m.start(), "literal", "%s in a comment Doxygen does not read: it would show as text; write the plain path" @@         if False:\n            found.append((m.start(), "literal", "%s in a comment Doxygen does not read: it would show as text; write the plain path"
+a page an alias in a Doxygen comment is a literal @@ req_refs.py @@         if not is_doc:\n            found.append((m.start(), "literal", "%s in a comment Doxygen does not read: it would show as text; write the plain path" @@         if True:\n            found.append((m.start(), "literal", "%s in a comment Doxygen does not read: it would show as text; write the plain path"
+a page alias is not an atom @@ req_refs.py @@ PROTO_ATOM = re.compile(r"@(?:req|proto|protosec|docref)\\{[^}]*\\}") @@ PROTO_ATOM = re.compile(r"@(?:req|proto|protosec)\\{[^}]*\\}")
+a path alone in a code span stays a code span @@ req_refs.py @@             if content in DOC_PAGES:\n                out.append(docref_link(content)) @@             if False:\n                out.append(docref_link(content))
+a plain path in a requirement file is not linked @@ req_refs.py @@         text = docref_rewrite(rewrite(text))\n        text = proto_rewrite(text, known) if known else text @@         text = rewrite(text)\n        text = proto_rewrite(text, known) if known else text
+the lint does not look for plain paths in the comments @@ req_refs.py @@             for off, kind, msg in docref_problems(c, is_doc): @@             for off, kind, msg in []:
+the lint does not look for plain paths in the pages @@ req_refs.py @@         for off, kind, msg in docref_problems(text, True) + proto_problems(text, known, True): @@         for off, kind, msg in proto_problems(text, known, True):
+a page alias on a title line passes @@ req_refs.py @@             for m in DOCREF_USE.finditer(c):\n                line = c[c.rfind @@             for m in []:\n                line = c[c.rfind
+the conversion does not write the page aliases of the comments @@ req_refs.py @@ pieces.append(proto_rewrite(docref_rewrite(rewrite(c)), known)) @@ pieces.append(proto_rewrite(rewrite(c), known))
+the conversion does not write the page aliases of the pages @@ req_refs.py @@         new = proto_rewrite(docref_rewrite(rewrite(text)), known) @@         new = proto_rewrite(rewrite(text), known)
+a short citation is taken inside a full one @@ req_refs.py @@ SHORT_CITE = re.compile(r"(?<![\\w-])(?P<id> @@ SHORT_CITE = re.compile(r"(?P<id>
+a short citation is taken inside a longer word @@ req_refs.py @@ [A-Za-z0-9]+-\\d{4})(?![\\w-])") @@ [A-Za-z0-9]+-\\d{4})")
+a full citation is a file-level one @@ req_refs.py @@ (?P<file>[FD]-[A-Za-z0-9]+)(?![A-Za-z0-9]|-\\d)") @@ (?P<file>[FD]-[A-Za-z0-9]+)(?![A-Za-z0-9])")
+a file-level citation may end inside the name @@ req_refs.py @@ (?P<file>[FD]-[A-Za-z0-9]+)(?![A-Za-z0-9]|-\\d)") @@ (?P<file>[FD]-[A-Za-z0-9]+)(?!-\\d)")
+a number after a word is a relative citation @@ req_refs.py @@ REL_CITE = re.compile(r"(?<![\\w/.\\-])-(?P<n> @@ REL_CITE = re.compile(r"(?<![/.\\-])-(?P<n>
+a number after a slash is a relative citation @@ req_refs.py @@ REL_CITE = re.compile(r"(?<![\\w/.\\-])-(?P<n> @@ REL_CITE = re.compile(r"(?<![\\w.\\-])-(?P<n>
+a number of more digits is a relative citation @@ req_refs.py @@ -(?P<n>\\d{4})(?![\\w-])") @@ -(?P<n>\\d{4})")
+the shorthand of a full citation is resolved twice @@ req_refs.py @@         if not any(a <= m.start() < b for a, b in covered): @@         if True:
+a table does not end with a line of prose @@ req_refs.py @@     if not table:\n        ctx.columns = {}\n        segments = [(0, line, 0)] @@     if not table:\n        segments = [(0, line, 0)]
+the first citation of a row is not the first @@ req_refs.py @@                     use = later[0] if later else ctx.columns.get(k) @@                     use = later[-1] if later else ctx.columns.get(k)
+the column is not looked at @@ req_refs.py @@                     use = later[0] if later else ctx.columns.get(k) @@                     use = later[0] if later else None
+the row is not looked at @@ req_refs.py @@                     use = later[0] if later else ctx.columns.get(k) @@                     use = ctx.columns.get(k)
+the column memory is another column @@ req_refs.py @@                     use = later[0] if later else ctx.columns.get(k) @@                     use = later[0] if later else ctx.columns.get(0)
+an empty cell erases the column @@ req_refs.py @@         if table and prefix is not None:\n            ctx.columns[k] = prefix @@         if table:\n            ctx.columns[k] = prefix
+a resolved relative citation is not the context of the next @@ req_refs.py @@                     edits.append((base + off, base + end, ident))\n                    prefix = use @@                     edits.append((base + off, base + end, ident))
+a relative citation is resolved to a requirement that does not exist @@ req_refs.py @@                 if ident in ids:\n                    edits.append @@                 if ident:\n                    edits.append
+a short citation that names no requirement is not told @@ req_refs.py @@                 if ident not in ids:\n                    found.append((number, "unknown", "%s is cited and no heading defines it" % ident)) @@                 if False:\n                    found.append((number, "unknown", "%s is cited and no heading defines it" % ident))
+a file-level citation that names no file is not told @@ req_refs.py @@                 if "REQ-CoreLR-" + pre not in stems: @@                 if False:
+a short citation is not written in full @@ req_refs.py @@                 if kind == "short":\n                    edits.append((base + off, base + end, ident)) @@                 if kind == "full":\n                    edits.append((base + off, base + end, ident))
+the edits of a line shift each other @@ req_refs.py @@     for start, end, text in sorted(edits, reverse=True): @@     for start, end, text in sorted(edits):
+the headings of the protocol are read for citations @@ req_refs.py @@         if fenced or FENCE.match(line) or line.startswith("#"): @@         if fenced or FENCE.match(line):
+the code blocks of the protocol are read for citations @@ req_refs.py @@         if fenced or FENCE.match(line) or line.startswith("#"): @@         if line.startswith("#"):
+a relative citation without context is an error @@ req_refs.py @@ + [x for x in protocol_cite_problems(root, ids) if x[1] != "relative"]) @@ + [x for x in protocol_cite_problems(root, ids)])
+the citations of the protocol are not checked @@ req_refs.py @@ + [x for x in protocol_cite_problems(root, ids) if x[1] != "relative"]) @@ + [])
+a file-level citation of a file that does not exist is linked @@ req_refs.py @@ if m.group(0) in stems else m.group(0), text) @@ if True else m.group(0), text)
+a file-level citation alone in a code span is not linked @@ req_refs.py @@             elif stems and content in stems: @@             elif False:
+a requirement file resolves the short form too @@ req_refs.py @@             if protocol and ids is not None: @@             if ids is not None:
+the protocol is filtered without the requirements @@ req_refs.py @@             if protocol and ids is not None: @@             if protocol:
+a requirement file links a file-level citation @@ req_refs.py @@ stems if protocol else None) @@ stems)
+--unresolved is a failure @@ req_refs.py @@         for where, kind, text in protocol_cite_problems(args.root, defined(args.root)):\n            if kind == "relative":\n                print("%s: %s" % (where, text))\n        return 0 @@         for where, kind, text in protocol_cite_problems(args.root, defined(args.root)):\n            if kind == "relative":\n                print("%s: %s" % (where, text))\n        return 1
+--unresolved lists the errors too @@ req_refs.py @@             if kind == "relative":\n                print("%s: %s" % (where, text)) @@             if True:\n                print("%s: %s" % (where, text))
+the first row of an item is not read for citations @@ req_refs.py @@ % (proto_label(pr.group(2)), first, bar, link_citations(rest, known, stems))) @@ % (proto_label(pr.group(2)), first, bar, rest))
+the first row of an item keeps its short citations @@ req_refs.py @@             if ids is not None:\n                line = protocol_line(line, ctx, ids, stems or set())\n            first, bar @@             first, bar
+the first cell of an item is read as a citation @@ req_refs.py @@ line[1:].lstrip().partition("|")        # the first cell @@ line[1:].lstrip().partition("~")        # the first cell

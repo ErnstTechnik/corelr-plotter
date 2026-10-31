@@ -1,0 +1,12 @@
+# Mutants of the helpers introduced by the flash trims: caught by the HASH of every entry sent to Stepper.
+#   tools/mutate.py --test test_arc --hash --batch tests/mutation/mutants/generator_hash.txt      (and --test test_motion)
+# name @@ file @@ old @@ new
+StepMotor: fields of the wrong motor @@ Motion.c @@ int32_t s1 = isL ? m->SL1 : m->SR1; @@ int32_t s1 = isL ? m->SR1 : m->SL1;
+StepMotor: direction inverted @@ Motion.c @@ *cmd += (s1 > s0) ? 1 : -1; @@ *cmd += (s1 > s0) ? -1 : 1;
+StepMotor: the other motor's count @@ Motion.c @@ int32_t *cmd = isL ? &m->CmdL : &m->CmdR; @@ int32_t *cmd = isL ? &m->CmdR : &m->CmdL;
+V2Gain: braking operands swapped @@ Motion.c @@ V2Gain(exitV, endQ8, sMidQ8) @@ V2Gain(exitV, sMidQ8, endQ8)
+V2Gain: acceleration from zero @@ Motion.c @@ V2Gain(m->EntryV, sMidQ8, m->RampStartQ8) @@ V2Gain(m->EntryV, sMidQ8, 0u)
+# The clamp only bounds a distance beyond which v^2 exceeds VMAX^2 and the speed cap applies anyway: equivalent, named so for tools/check_mutants_union.py.
+EQUIVALENT (the clamp bounds a distance beyond which the speed cap applies anyway) V2Gain: clamp widened @@ Motion.c @@ if (um > 2000u) @@ if (um > 20000u)
+memcmp over 4 bytes (X only) @@ Motion.c @@ memcmp(from, &blk->Target, sizeof *from) == 0 @@ memcmp(from, &blk->Target, 4) == 0
+memcmp inverted @@ Motion.c @@ memcmp(from, &blk->Target, sizeof *from) == 0 @@ memcmp(from, &blk->Target, sizeof *from) != 0

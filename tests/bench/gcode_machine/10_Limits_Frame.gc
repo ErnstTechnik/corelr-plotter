@@ -1,0 +1,82 @@
+; Fills the travel zone, inset 5 mm
+; X -507.5 .. 507.5  Y -58.0 .. 542.0 mm
+; geometry D=1065 OX=532.5 OY=597.029
+; Origin where it was calibrated.
+M5
+G90 G0 X0 Y0
+G21 G17 G54 G94
+; frame
+G0 X-507.5 Y-57.971
+M3
+G1 X507.5 Y-57.971
+G1 X507.5 Y542.029
+G1 X-507.5 Y542.029
+G1 X-507.5 Y-57.971
+M5
+; diagonals
+G0 X-507.5 Y-57.971
+M3
+G1 X507.5 Y542.029
+M5
+G0 X-507.5 Y542.029
+M3
+G1 X507.5 Y-57.971
+M5
+; the inscribed circle, R=300.0
+M5
+G0 X300 Y242.029
+M3
+G3 X-300 Y242.029 I-300 J0
+G3 X300 Y242.029 I300 J0
+M5
+; big arc, top edge, centre above the zone
+G0 X-507.5 Y542.029
+M3
+G3 X507.5 Y542.029 I507.5 J1752.585
+M5
+; big arc, left edge, centre beyond it
+G0 X-507.5 Y542.029
+M3
+G2 X-507.5 Y-57.971 I-392.6 J-300
+M5
+; big arc, right edge, centre beyond it
+G0 X507.5 Y-57.971
+M3
+G2 X507.5 Y542.029 I392.6 J300
+M5
+; corner marks, 10 mm arms, inward
+G0 X-507.5 Y-57.971
+M3
+G1 X-497.5 Y-57.971
+M5
+G0 X-507.5 Y-57.971
+M3
+G1 X-507.5 Y-47.971
+M5
+G0 X-507.5 Y542.029
+M3
+G1 X-497.5 Y542.029
+M5
+G0 X-507.5 Y542.029
+M3
+G1 X-507.5 Y532.029
+M5
+G0 X507.5 Y-57.971
+M3
+G1 X497.5 Y-57.971
+M5
+G0 X507.5 Y-57.971
+M3
+G1 X507.5 Y-47.971
+M5
+G0 X507.5 Y542.029
+M3
+G1 X497.5 Y542.029
+M5
+G0 X507.5 Y542.029
+M3
+G1 X507.5 Y532.029
+M5
+M5
+G0 X0 Y0
+M30

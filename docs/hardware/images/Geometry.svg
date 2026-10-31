@@ -1,0 +1,158 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1700 1330" width="1700" height="1330" font-family="DejaVu Sans, Verdana, Arial, sans-serif">
+<title>CoreLR geometry</title>
+<desc>Dimensions, coordinate frames, calibration and cable lengths of the CoreLR wall plotter, D = 1000 mm, Lref = 700 mm</desc>
+<defs><marker id="a_0b7285" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" fill="#0b7285"/></marker><marker id="s_0b7285" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M10 0L0 5L10 10z" fill="#0b7285"/></marker><marker id="a_1c6dd0" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" fill="#1c6dd0"/></marker><marker id="s_1c6dd0" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M10 0L0 5L10 10z" fill="#1c6dd0"/></marker><marker id="a_212529" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" fill="#212529"/></marker><marker id="s_212529" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M10 0L0 5L10 10z" fill="#212529"/></marker><marker id="a_2b8a3e" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" fill="#2b8a3e"/></marker><marker id="s_2b8a3e" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M10 0L0 5L10 10z" fill="#2b8a3e"/></marker><marker id="a_7048e8" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" fill="#7048e8"/></marker><marker id="s_7048e8" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M10 0L0 5L10 10z" fill="#7048e8"/></marker><marker id="a_868e96" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" fill="#868e96"/></marker><marker id="s_868e96" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M10 0L0 5L10 10z" fill="#868e96"/></marker><marker id="a_c2255c" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" fill="#c2255c"/></marker><marker id="s_c2255c" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M10 0L0 5L10 10z" fill="#c2255c"/></marker><marker id="a_d9480f" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" fill="#d9480f"/></marker><marker id="s_d9480f" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M10 0L0 5L10 10z" fill="#d9480f"/></marker><marker id="a_f08c00" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" fill="#f08c00"/></marker><marker id="s_f08c00" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M10 0L0 5L10 10z" fill="#f08c00"/></marker><marker id="a_f1f3f5" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" fill="#f1f3f5"/></marker><marker id="s_f1f3f5" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M10 0L0 5L10 10z" fill="#f1f3f5"/></marker></defs>
+<rect width="1700" height="1330" fill="#fff"/>
+<text x="40.0" y="46.0" fill="#212529" font-size="26" text-anchor="start" font-weight="bold">CoreLR geometry: what to measure, what to enter, what the firmware assumes</text>
+<text x="40.0" y="72.0" fill="#868e96" font-size="13.5" text-anchor="start" font-weight="normal">Example machine D = 1000 mm, Lref = 700 mm: NOT the maintainer's machine (the firmware's factory values are 0, so both must be entered). Every figure on this page is computed from the formulas and checked</text>
+<text x="40.0" y="92.9" fill="#868e96" font-size="13.5" text-anchor="start" font-weight="normal">against the firmware's own code by tools/generators/gen_geometry_svg.py --verify.</text>
+<rect x="40.0" y="110.0" width="1000.0" height="730.0" fill="#f1f3f5" fill-opacity="1" stroke="#ced4da" stroke-width="1" rx="0"/>
+<text x="52.0" y="134.0" fill="#212529" font-size="16" text-anchor="start" font-weight="bold">A. The machine seen from the front, to scale (0.78 px per mm); the casings are schematic</text>
+<line x1="100.0" y1="262.0" x2="940.0" y2="262.0" stroke="#868e96" stroke-width="1.2" stroke-dasharray="6 4" opacity="1"/>
+<text x="528.0" y="254.0" fill="#868e96" font-size="12" text-anchor="start" font-weight="normal">line of the two exit holes</text>
+<line x1="520.0" y1="262.0" x2="520.0" y2="774.1" stroke="#868e96" stroke-width="1" stroke-dasharray="2 5" opacity="1"/>
+<line x1="130.0" y1="262.0" x2="520.0" y2="644.1" stroke="#1c6dd0" stroke-width="3" opacity="1"/>
+<line x1="910.0" y1="262.0" x2="520.0" y2="644.1" stroke="#d9480f" stroke-width="3" opacity="1"/>
+<rect x="108.0" y="246.0" width="44.0" height="32.0" fill="#fff" fill-opacity="1" stroke="#1c6dd0" stroke-width="2.5" rx="3"/>
+<circle cx="130.0" cy="262.0" r="4" fill="#1c6dd0" stroke="#1c6dd0" stroke-width="1.5"/>
+<text x="100.0" y="268.0" fill="#1c6dd0" font-size="18" text-anchor="end" font-weight="bold" paint-order="stroke" stroke="#fff" stroke-width="4" stroke-linejoin="round">Motor L</text>
+<text x="130.0" y="240.0" fill="#1c6dd0" font-size="11" text-anchor="middle" font-weight="normal" paint-order="stroke" stroke="#fff" stroke-width="4" stroke-linejoin="round">exit hole</text>
+<rect x="888.0" y="246.0" width="44.0" height="32.0" fill="#fff" fill-opacity="1" stroke="#d9480f" stroke-width="2.5" rx="3"/>
+<circle cx="910.0" cy="262.0" r="4" fill="#d9480f" stroke="#d9480f" stroke-width="1.5"/>
+<text x="940.0" y="268.0" fill="#d9480f" font-size="18" text-anchor="start" font-weight="bold" paint-order="stroke" stroke="#fff" stroke-width="4" stroke-linejoin="round">Motor R</text>
+<text x="910.0" y="240.0" fill="#d9480f" font-size="11" text-anchor="middle" font-weight="normal" paint-order="stroke" stroke="#fff" stroke-width="4" stroke-linejoin="round">exit hole</text>
+<line x1="130.0" y1="200.0" x2="910.0" y2="200.0" stroke="#212529" stroke-width="1.3" marker-start="url(#s_212529)" marker-end="url(#a_212529)"/>
+<line x1="130.0" y1="262.0" x2="130.0" y2="200.0" stroke="#212529" stroke-width=".8" stroke-dasharray="3 3"/>
+<line x1="910.0" y1="262.0" x2="910.0" y2="200.0" stroke="#212529" stroke-width=".8" stroke-dasharray="3 3"/>
+<text x="520.0" y="186.5" fill="#212529" font-size="15" text-anchor="middle" font-weight="bold" paint-order="stroke" stroke="#fff" stroke-width="4" stroke-linejoin="round" transform="rotate(0.0 520.0 186.5)">D = distance between the two cable exit holes = 1000 mm   (LCD: "Motor dist (mm)")</text>
+<line x1="130.0" y1="234.0" x2="520.0" y2="234.0" stroke="#868e96" stroke-width="1.3" marker-start="url(#s_868e96)" marker-end="url(#a_868e96)"/>
+<line x1="130.0" y1="262.0" x2="130.0" y2="234.0" stroke="#868e96" stroke-width=".8" stroke-dasharray="3 3"/>
+<line x1="520.0" y1="262.0" x2="520.0" y2="234.0" stroke="#868e96" stroke-width=".8" stroke-dasharray="3 3"/>
+<text x="325.0" y="223.2" fill="#868e96" font-size="12" text-anchor="middle" font-weight="bold" paint-order="stroke" stroke="#fff" stroke-width="4" stroke-linejoin="round" transform="rotate(0.0 325.0 223.2)">D/2 = 500</text>
+<line x1="520.0" y1="234.0" x2="910.0" y2="234.0" stroke="#868e96" stroke-width="1.3" marker-start="url(#s_868e96)" marker-end="url(#a_868e96)"/>
+<line x1="520.0" y1="262.0" x2="520.0" y2="234.0" stroke="#868e96" stroke-width=".8" stroke-dasharray="3 3"/>
+<line x1="910.0" y1="262.0" x2="910.0" y2="234.0" stroke="#868e96" stroke-width=".8" stroke-dasharray="3 3"/>
+<text x="715.0" y="223.2" fill="#868e96" font-size="12" text-anchor="middle" font-weight="bold" paint-order="stroke" stroke="#fff" stroke-width="4" stroke-linejoin="round" transform="rotate(0.0 715.0 223.2)">D/2 = 500</text>
+<line x1="106.2" y1="286.3" x2="496.2" y2="668.4" stroke="#1c6dd0" stroke-width="1.3" marker-start="url(#s_1c6dd0)" marker-end="url(#a_1c6dd0)"/>
+<line x1="130.0" y1="262.0" x2="106.2" y2="286.3" stroke="#1c6dd0" stroke-width=".8" stroke-dasharray="3 3"/>
+<line x1="520.0" y1="644.1" x2="496.2" y2="668.4" stroke="#1c6dd0" stroke-width=".8" stroke-dasharray="3 3"/>
+<text x="291.8" y="487.0" fill="#1c6dd0" font-size="15" text-anchor="middle" font-weight="bold" paint-order="stroke" stroke="#fff" stroke-width="4" stroke-linejoin="round" transform="rotate(44.4 291.8 487.0)">L = Lref = 700 mm</text>
+<line x1="933.8" y1="286.3" x2="543.8" y2="668.4" stroke="#d9480f" stroke-width="1.3" marker-start="url(#s_d9480f)" marker-end="url(#a_d9480f)"/>
+<line x1="910.0" y1="262.0" x2="933.8" y2="286.3" stroke="#d9480f" stroke-width=".8" stroke-dasharray="3 3"/>
+<line x1="520.0" y1="644.1" x2="543.8" y2="668.4" stroke="#d9480f" stroke-width=".8" stroke-dasharray="3 3"/>
+<text x="748.2" y="487.0" fill="#d9480f" font-size="15" text-anchor="middle" font-weight="bold" paint-order="stroke" stroke="#fff" stroke-width="4" stroke-linejoin="round" transform="rotate(315.6 748.2 487.0)">R = Lref = 700 mm</text>
+<text x="508.0" y="332.0" fill="#f08c00" font-size="13" text-anchor="end" font-weight="bold" paint-order="stroke" stroke="#fff" stroke-width="4" stroke-linejoin="round">Lref  (LCD: "Ref length (mm)")</text>
+<text x="508.0" y="349.0" fill="#f08c00" font-size="12" text-anchor="end" font-weight="normal" paint-order="stroke" stroke="#fff" stroke-width="4" stroke-linejoin="round">tape measure, exit hole to pen, on both cables</text>
+<line x1="695.0" y1="262.0" x2="695.0" y2="644.1" stroke="#c2255c" stroke-width="1.3" marker-start="url(#s_c2255c)" marker-end="url(#a_c2255c)"/>
+<line x1="524.0" y1="644.1" x2="701.0" y2="644.1" stroke="#c2255c" stroke-width="0.8" stroke-dasharray="3 3" opacity="1"/>
+<text x="707.0" y="556.1" fill="#c2255c" font-size="14" text-anchor="start" font-weight="bold" paint-order="stroke" stroke="#fff" stroke-width="4" stroke-linejoin="round">H = sqrt(Lref^2 - (D/2)^2)</text>
+<text x="707.0" y="574.1" fill="#c2255c" font-size="14" text-anchor="start" font-weight="bold" paint-order="stroke" stroke="#fff" stroke-width="4" stroke-linejoin="round">= 489.898 mm</text>
+<text x="707.0" y="592.1" fill="#c2255c" font-size="12" text-anchor="start" font-weight="normal" paint-order="stroke" stroke="#fff" stroke-width="4" stroke-linejoin="round">depth of O below the exit holes</text>
+<rect x="442.0" y="566.1" width="156.0" height="156.0" fill="#0b7285" fill-opacity="0.1" stroke="#0b7285" stroke-width="1.8" rx="0" stroke-dasharray="6 3"/>
+<text x="442.0" y="739.1" fill="#0b7285" font-size="12" text-anchor="start" font-weight="bold" paint-order="stroke" stroke="#fff" stroke-width="4" stroke-linejoin="round">test square 200 x 200 mm</text>
+<line x1="520.0" y1="644.1" x2="670.0" y2="644.1" stroke="#2b8a3e" stroke-width="3" marker-end="url(#a_2b8a3e)" opacity="1"/>
+<line x1="520.0" y1="644.1" x2="520.0" y2="494.1" stroke="#2b8a3e" stroke-width="3" marker-end="url(#a_2b8a3e)" opacity="1"/>
+<text x="676.0" y="668.1" fill="#2b8a3e" font-size="15" text-anchor="start" font-weight="bold" paint-order="stroke" stroke="#fff" stroke-width="4" stroke-linejoin="round">+X (right)</text>
+<text x="530.0" y="488.1" fill="#2b8a3e" font-size="15" text-anchor="start" font-weight="bold" paint-order="stroke" stroke="#fff" stroke-width="4" stroke-linejoin="round">+Y (UP the wall)</text>
+<circle cx="520.0" cy="644.1" r="7" fill="#c2255c" stroke="#fff" stroke-width="2"/>
+<text x="534.0" y="672.1" fill="#c2255c" font-size="15" text-anchor="start" font-weight="bold" paint-order="stroke" stroke="#fff" stroke-width="4" stroke-linejoin="round">O = (0, 0)</text>
+<text x="534.0" y="690.1" fill="#c2255c" font-size="12" text-anchor="start" font-weight="normal" paint-order="stroke" stroke="#fff" stroke-width="4" stroke-linejoin="round">= reference position = drawing origin</text>
+<line x1="130.0" y1="262.0" x2="130.0" y2="437.0" stroke="#7048e8" stroke-width="2" stroke-dasharray="7 4" marker-end="url(#a_7048e8)" opacity="1"/>
+<line x1="130.0" y1="262.0" x2="240.0" y2="262.0" stroke="#7048e8" stroke-width="2" stroke-dasharray="7 4" marker-end="url(#a_7048e8)" opacity="1"/>
+<text x="138.0" y="454.0" fill="#7048e8" font-size="13" text-anchor="start" font-weight="bold" paint-order="stroke" stroke="#fff" stroke-width="4" stroke-linejoin="round">Y (down)</text>
+<text x="246.0" y="280.0" fill="#7048e8" font-size="13" text-anchor="start" font-weight="bold" paint-order="stroke" stroke="#fff" stroke-width="4" stroke-linejoin="round">X (right)</text>
+<line x1="130.0" y1="644.1" x2="520.0" y2="644.1" stroke="#7048e8" stroke-width="0.9" stroke-dasharray="2 4" opacity="1"/>
+<text x="138.0" y="638.1" fill="#7048e8" font-size="12" text-anchor="start" font-weight="normal" paint-order="stroke" stroke="#fff" stroke-width="4" stroke-linejoin="round">internal Y of O = H</text>
+<rect x="52.0" y="740.0" width="440.0" height="88.0" fill="#fff" fill-opacity="1" stroke="#7048e8" stroke-width="1.2" rx="4"/>
+<text x="62.0" y="760.0" fill="#7048e8" font-size="12.5" text-anchor="start" font-weight="bold">INTERNAL frame (violet), used only by the kinematics:</text>
+<text x="62.0" y="778.0" fill="#7048e8" font-size="12.5" text-anchor="start" font-weight="normal">origin at the exit hole of motor L, X to the right, Y DOWN.</text>
+<text x="62.0" y="796.0" fill="#7048e8" font-size="12.5" text-anchor="start" font-weight="normal">O is at (D/2, H) = (500, 489.898).  Never shown.</text>
+<text x="62.0" y="814.0" fill="#2b8a3e" font-size="12.5" text-anchor="start" font-weight="bold">DRAWING frame (green): GCode, LCD, status report.</text>
+<rect x="1060.0" y="110.0" width="625.0" height="730.0" fill="#fff" fill-opacity="1" stroke="#ced4da" stroke-width="1" rx="0"/>
+<text x="1075.0" y="134.0" fill="#212529" font-size="16" text-anchor="start" font-weight="bold">B. The test square 200 x 200 mm, zoomed (1.75 px per mm)</text>
+<rect x="1200.0" y="335.0" width="350.0" height="350.0" fill="#0b7285" fill-opacity="0.08" stroke="#0b7285" stroke-width="2" rx="0"/>
+<line x1="1175.0" y1="510.0" x2="1575.0" y2="510.0" stroke="#2b8a3e" stroke-width="2" marker-end="url(#a_2b8a3e)" opacity="1"/>
+<line x1="1375.0" y1="710.0" x2="1375.0" y2="310.0" stroke="#2b8a3e" stroke-width="2" marker-end="url(#a_2b8a3e)" opacity="1"/>
+<text x="1578.0" y="515.0" fill="#2b8a3e" font-size="15" text-anchor="start" font-weight="bold" paint-order="stroke" stroke="#fff" stroke-width="4" stroke-linejoin="round">+X</text>
+<text x="1383.0" y="305.0" fill="#2b8a3e" font-size="15" text-anchor="start" font-weight="bold" paint-order="stroke" stroke="#fff" stroke-width="4" stroke-linejoin="round">+Y</text>
+<text x="1200.0" y="526.0" fill="#868e96" font-size="11" text-anchor="middle" font-weight="normal" paint-order="stroke" stroke="#fff" stroke-width="4" stroke-linejoin="round">-100</text>
+<text x="1367.0" y="689.0" fill="#868e96" font-size="11" text-anchor="end" font-weight="normal" paint-order="stroke" stroke="#fff" stroke-width="4" stroke-linejoin="round">-100</text>
+<text x="1287.5" y="526.0" fill="#868e96" font-size="11" text-anchor="middle" font-weight="normal" paint-order="stroke" stroke="#fff" stroke-width="4" stroke-linejoin="round">-50</text>
+<text x="1367.0" y="601.5" fill="#868e96" font-size="11" text-anchor="end" font-weight="normal" paint-order="stroke" stroke="#fff" stroke-width="4" stroke-linejoin="round">-50</text>
+<text x="1462.5" y="526.0" fill="#868e96" font-size="11" text-anchor="middle" font-weight="normal" paint-order="stroke" stroke="#fff" stroke-width="4" stroke-linejoin="round">50</text>
+<text x="1367.0" y="426.5" fill="#868e96" font-size="11" text-anchor="end" font-weight="normal" paint-order="stroke" stroke="#fff" stroke-width="4" stroke-linejoin="round">50</text>
+<text x="1550.0" y="526.0" fill="#868e96" font-size="11" text-anchor="middle" font-weight="normal" paint-order="stroke" stroke="#fff" stroke-width="4" stroke-linejoin="round">100</text>
+<text x="1367.0" y="339.0" fill="#868e96" font-size="11" text-anchor="end" font-weight="normal" paint-order="stroke" stroke="#fff" stroke-width="4" stroke-linejoin="round">100</text>
+<circle cx="1375.0" cy="510.0" r="5" fill="#c2255c" stroke="#fff" stroke-width="1.5"/>
+<circle cx="1375.0" cy="510.0" r="4" fill="#fff" stroke="#0b7285" stroke-width="2"/>
+<text x="1387.0" y="544.0" fill="#0b7285" font-size="13" text-anchor="start" font-weight="bold" paint-order="stroke" stroke="#fff" stroke-width="4" stroke-linejoin="round">(0, 0) mm</text>
+<text x="1387.0" y="560.0" fill="#1c6dd0" font-size="13" text-anchor="start" font-weight="bold" paint-order="stroke" stroke="#fff" stroke-width="4" stroke-linejoin="round">L = 700</text>
+<text x="1387.0" y="575.0" fill="#d9480f" font-size="13" text-anchor="start" font-weight="bold" paint-order="stroke" stroke="#fff" stroke-width="4" stroke-linejoin="round">R = 700</text>
+<circle cx="1200.0" cy="335.0" r="4" fill="#fff" stroke="#0b7285" stroke-width="2"/>
+<text x="1188.0" y="287.0" fill="#0b7285" font-size="13" text-anchor="end" font-weight="bold" paint-order="stroke" stroke="#fff" stroke-width="4" stroke-linejoin="round">(-100, 100) mm</text>
+<text x="1188.0" y="303.0" fill="#1c6dd0" font-size="13" text-anchor="end" font-weight="bold" paint-order="stroke" stroke="#fff" stroke-width="4" stroke-linejoin="round">L = 558.588</text>
+<text x="1188.0" y="318.0" fill="#d9480f" font-size="13" text-anchor="end" font-weight="bold" paint-order="stroke" stroke="#fff" stroke-width="4" stroke-linejoin="round">R = 715.556</text>
+<circle cx="1550.0" cy="335.0" r="4" fill="#fff" stroke="#0b7285" stroke-width="2"/>
+<text x="1562.0" y="287.0" fill="#0b7285" font-size="13" text-anchor="start" font-weight="bold" paint-order="stroke" stroke="#fff" stroke-width="4" stroke-linejoin="round">(100, 100) mm</text>
+<text x="1562.0" y="303.0" fill="#1c6dd0" font-size="13" text-anchor="start" font-weight="bold" paint-order="stroke" stroke="#fff" stroke-width="4" stroke-linejoin="round">L = 715.556</text>
+<text x="1562.0" y="318.0" fill="#d9480f" font-size="13" text-anchor="start" font-weight="bold" paint-order="stroke" stroke="#fff" stroke-width="4" stroke-linejoin="round">R = 558.588</text>
+<circle cx="1200.0" cy="685.0" r="4" fill="#fff" stroke="#0b7285" stroke-width="2"/>
+<text x="1188.0" y="707.0" fill="#0b7285" font-size="13" text-anchor="end" font-weight="bold" paint-order="stroke" stroke="#fff" stroke-width="4" stroke-linejoin="round">(-100, -100) mm</text>
+<text x="1188.0" y="723.0" fill="#1c6dd0" font-size="13" text-anchor="end" font-weight="bold" paint-order="stroke" stroke="#fff" stroke-width="4" stroke-linejoin="round">L = 712.727</text>
+<text x="1188.0" y="738.0" fill="#d9480f" font-size="13" text-anchor="end" font-weight="bold" paint-order="stroke" stroke="#fff" stroke-width="4" stroke-linejoin="round">R = 841.415</text>
+<circle cx="1550.0" cy="685.0" r="4" fill="#fff" stroke="#0b7285" stroke-width="2"/>
+<text x="1562.0" y="707.0" fill="#0b7285" font-size="13" text-anchor="start" font-weight="bold" paint-order="stroke" stroke="#fff" stroke-width="4" stroke-linejoin="round">(100, -100) mm</text>
+<text x="1562.0" y="723.0" fill="#1c6dd0" font-size="13" text-anchor="start" font-weight="bold" paint-order="stroke" stroke="#fff" stroke-width="4" stroke-linejoin="round">L = 841.415</text>
+<text x="1562.0" y="738.0" fill="#d9480f" font-size="13" text-anchor="start" font-weight="bold" paint-order="stroke" stroke="#fff" stroke-width="4" stroke-linejoin="round">R = 712.727</text>
+<text x="1075.0" y="800.0" fill="#868e96" font-size="12" text-anchor="start" font-weight="normal">L and R: cable lengths in mm at each point, exit hole to pen (formulas in C). Top</text>
+<text x="1075.0" y="818.6" fill="#868e96" font-size="12" text-anchor="start" font-weight="normal">row: both cables shorter than Lref; bottom row: both longer.</text>
+<rect x="40.0" y="870.0" width="800.0" height="440.0" fill="#fff" fill-opacity="1" stroke="#ced4da" stroke-width="1" rx="0"/>
+<text x="52.0" y="894.0" fill="#212529" font-size="16" text-anchor="start" font-weight="bold">C. Formulas (drawing frame, mm; the firmware computes in whole micrometres)</text>
+<text x="54.0" y="924.0" fill="#868e96" font-size="13" text-anchor="start" font-weight="bold">Given</text>
+<text x="190.0" y="924.0" fill="#212529" font-size="13" text-anchor="start" font-weight="normal">D (between the two cable exit holes, the pivots) and Lref (cable length at the</text>
+<text x="190.0" y="946.0" fill="#212529" font-size="13" text-anchor="start" font-weight="normal">  reference position), with Lref > D/2.</text>
+<text x="54.0" y="968.0" fill="#868e96" font-size="13" text-anchor="start" font-weight="bold">Depth of O</text>
+<text x="190.0" y="968.0" fill="#c2255c" font-size="13" text-anchor="start" font-weight="bold">H = sqrt(Lref^2 - (D/2)^2) = 489.898 mm. The origin is H BELOW the line of the exit</text>
+<text x="190.0" y="990.0" fill="#c2255c" font-size="13" text-anchor="start" font-weight="bold">  holes.</text>
+<text x="54.0" y="1012.0" fill="#868e96" font-size="13" text-anchor="start" font-weight="bold">Motors</text>
+<text x="190.0" y="1012.0" fill="#212529" font-size="13" text-anchor="start" font-weight="normal">L at (-D/2, +H) = (-500, 489.898);  R at (+D/2, +H) = (500, 489.898)  in the drawing</text>
+<text x="190.0" y="1034.0" fill="#212529" font-size="13" text-anchor="start" font-weight="normal">  frame.</text>
+<text x="54.0" y="1056.0" fill="#868e96" font-size="13" text-anchor="start" font-weight="bold">Cable lengths</text>
+<text x="190.0" y="1056.0" fill="#1c6dd0" font-size="13" text-anchor="start" font-weight="bold">L = sqrt( (x + D/2)^2 + (H - y)^2 )</text>
+<text x="54.0" y="1078.0" fill="#868e96" font-size="13" text-anchor="start" font-weight="bold"></text>
+<text x="190.0" y="1078.0" fill="#d9480f" font-size="13" text-anchor="start" font-weight="bold">R = sqrt( (x - D/2)^2 + (H - y)^2 )</text>
+<text x="54.0" y="1100.0" fill="#868e96" font-size="13" text-anchor="start" font-weight="bold">Inverse</text>
+<text x="190.0" y="1100.0" fill="#212529" font-size="13" text-anchor="start" font-weight="normal">x = (L^2 - R^2) / (2 D);   y = H - sqrt( L^2 - (x + D/2)^2 )</text>
+<text x="54.0" y="1122.0" fill="#868e96" font-size="13" text-anchor="start" font-weight="bold">Internal frame</text>
+<text x="190.0" y="1122.0" fill="#7048e8" font-size="13" text-anchor="start" font-weight="bold">X = x + D/2,  Y = H - y   (so O is (D/2, H)).</text>
+<text x="54.0" y="1144.0" fill="#868e96" font-size="13" text-anchor="start" font-weight="bold">Steps</text>
+<text x="190.0" y="1144.0" fill="#212529" font-size="13" text-anchor="start" font-weight="normal">2037.9 steps per turn, spool 35 mm: 109.956 mm per turn = 54 um per step.</text>
+<text x="54.0" y="1166.0" fill="#868e96" font-size="13" text-anchor="start" font-weight="bold">Direction</text>
+<text x="190.0" y="1166.0" fill="#212529" font-size="13" text-anchor="start" font-weight="normal">Intended: MORE steps = LONGER cable, on both motors. Software direction flags in</text>
+<text x="190.0" y="1188.0" fill="#212529" font-size="13" text-anchor="start" font-weight="normal">  HwConfig.h: L reversed = 1, R reversed = 0 (flipped 2026-10-10 after the bench).</text>
+<text x="54.0" y="1210.0" fill="#868e96" font-size="13" text-anchor="start" font-weight="bold">Limit</text>
+<text x="190.0" y="1210.0" fill="#212529" font-size="13" text-anchor="start" font-weight="normal">A GCode target of 2097.152 mm or more in X or Y is refused (error:33).</text>
+<text x="54.0" y="1238.0" fill="#868e96" font-size="12.5" text-anchor="start" font-weight="normal">At O: L = R = Lref.  Moving up (+y) shortens both cables, down lengthens both; +x lengthens L and shortens</text>
+<text x="54.0" y="1257.4" fill="#868e96" font-size="12.5" text-anchor="start" font-weight="normal">R.</text>
+<text x="54.0" y="1276.8" fill="#868e96" font-size="12.5" text-anchor="start" font-weight="normal">The LCD's L,R line shows these two lengths in mm; its X,Y line shows x and y.</text>
+<text x="54.0" y="1300.1" fill="#212529" font-size="12.5" text-anchor="start" font-weight="normal">Example: D = 1000, Lref = 700, H = 489.898; at O L = R = 700; at (-100, +100) L = 558.588, R = 715.556.</text>
+<rect x="870.0" y="870.0" width="790.0" height="218.0" fill="#fff" fill-opacity="1" stroke="#ced4da" stroke-width="1" rx="0"/>
+<text x="882.0" y="894.0" fill="#212529" font-size="16" text-anchor="start" font-weight="bold">D. Calibration on the LCD: main menu > Calibrate machine</text>
+<text x="884.0" y="922.0" fill="#212529" font-size="13" text-anchor="start" font-weight="normal">1. Measure D with a tape, between the two cable exit holes. Enter it: "Motor dist (mm)".</text>
+<text x="884.0" y="945.0" fill="#212529" font-size="13" text-anchor="start" font-weight="normal">2. Choose Lref > D/2 (for instance 700 mm). Enter it: "Ref length (mm)". The firmware then knows H.</text>
+<text x="884.0" y="968.0" fill="#212529" font-size="13" text-anchor="start" font-weight="normal">3. Adjustment jog: X selects [L] or [R], Y winds or unwinds that cable. Bring the pen to the point</text>
+<text x="884.0" y="988.0" fill="#212529" font-size="13" text-anchor="start" font-weight="normal">    where BOTH cables measure Lref (tape, exit hole to pen): on the vertical through the middle, H</text>
+<text x="884.0" y="1008.0" fill="#212529" font-size="13" text-anchor="start" font-weight="normal">    under the line of the exit holes.</text>
+<text x="884.0" y="1031.0" fill="#212529" font-size="13" text-anchor="start" font-weight="normal">4. SW = confirm. The firmware declares the pen to be at (0, 0) with L = R = Lref. It cannot check it.</text>
+<text x="884.0" y="1054.0" fill="#212529" font-size="13" text-anchor="start" font-weight="normal">Then "Calibrate pen" sets the two servo angles (factory 60 and 95). The position survives power cuts;</text>
+<text x="884.0" y="1074.0" fill="#212529" font-size="13" text-anchor="start" font-weight="normal">    moving the motors by hand while off requires a new calibration.</text>
+<rect x="870.0" y="1103.0" width="790.0" height="195.0" fill="#fff8e1" fill-opacity="1" stroke="#f08c00" stroke-width="1.5" rx="0"/>
+<text x="882.0" y="1127.0" fill="#f08c00" font-size="16" text-anchor="start" font-weight="bold">E. What the model assumes</text>
+<text x="884.0" y="1152.0" fill="#212529" font-size="12.5" text-anchor="start" font-weight="normal">- Each motor is a POINT: the cable leaves it through a FIXED hole in the casing of the winder (confirmed</text>
+<text x="884.0" y="1171.0" fill="#212529" font-size="12.5" text-anchor="start" font-weight="normal">  by the maintainer, 2026-10-10), so the exit hole is the pivot and does not move with the cable's</text>
+<text x="884.0" y="1190.0" fill="#212529" font-size="12.5" text-anchor="start" font-weight="normal">  direction. L and R are the straight lengths from that hole to the pen.</text>
+<text x="884.0" y="1212.0" fill="#212529" font-size="12.5" text-anchor="start" font-weight="normal">- The pen is the point where both cables meet (no offset between the cable attachment and the pen tip).</text>
+<text x="884.0" y="1234.0" fill="#212529" font-size="12.5" text-anchor="start" font-weight="normal">- The steps wind a constant 54 um of cable per step (the layers building up on the spool are ignored).</text>
+<text x="884.0" y="1256.0" fill="#212529" font-size="12.5" text-anchor="start" font-weight="normal">- O is where you calibrate, not necessarily the centre of the paper. Nothing in the firmware measures the</text>
+<text x="884.0" y="1275.0" fill="#212529" font-size="12.5" text-anchor="start" font-weight="normal">  wall, the cables or the pen: D, Lref and step 3 are the maintainer's measurements.</text>
+</svg>

@@ -1,0 +1,30 @@
+# Copyright (C) 2026 ErnstTechnik and the CoreLR contributors
+# SPDX-License-Identifier: GPL-3.0-or-later
+# CheckSize.cmake -- run with `cmake -DSIZE_TOOL=avr-size -DELF=... -DNAME=... -DFLASH_MAX=n -DRAM_MAX=n -P CheckSize.cmake`.
+# Same arithmetic as the Arduino IDE (platform.txt): flash = .text + .data; static RAM = .data + .bss + .noinit.
+# Fails the build when either is over the limit. The worst-case STACK is not here: tools/analysis/stack_depth.py measures it from the ELF.
+execute_process(COMMAND ${SIZE_TOOL} -A ${ELF} OUTPUT_VARIABLE out RESULT_VARIABLE rc)
+if(NOT rc EQUAL 0)
+    message(FATAL_ERROR "${SIZE_TOOL} failed on ${ELF}")
+endif()
+set(flash 0)
+set(ram 0)
+foreach(sec text data bootloader)
+    if(out MATCHES "\n\\.${sec}[ \t]+([0-9]+)")
+        math(EXPR flash "${flash} + ${CMAKE_MATCH_1}")
+    endif()
+endforeach()
+foreach(sec data bss noinit)
+    if(out MATCHES "\n\\.${sec}[ \t]+([0-9]+)")
+        math(EXPR ram "${ram} + ${CMAKE_MATCH_1}")
+    endif()
+endforeach()
+math(EXPR flash_free "${FLASH_MAX} - ${flash}")
+math(EXPR ram_free "${RAM_MAX} - ${ram}")
+message(STATUS "${NAME}: flash ${flash} / ${FLASH_MAX} bytes (${flash_free} free), RAM ${ram} / ${RAM_MAX} bytes (${ram_free} left for the stack)")
+if(flash GREATER FLASH_MAX)
+    message(FATAL_ERROR "${NAME}: TOO BIG for the Nano by ${flash_free} bytes of flash (negative = over)")
+endif()
+if(ram GREATER RAM_MAX)
+    message(FATAL_ERROR "${NAME}: static RAM over the limit (${ram} > ${RAM_MAX})")
+endif()

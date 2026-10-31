@@ -1,0 +1,4 @@
+# Mutants that cannot run today: each is a mutant to repair (its text moved on in the source, or it is ambiguous now) or to retire.
+# Format, one per line:   batch file @@ mutant name @@ why it cannot run   (the reason is for the reader; the test keys on the first two fields)
+# tests/tools/test_mutant_batches.py fails for a defect that is NOT listed here, and for a listed mutant that has been repaired: this list can only shrink.
+# Found 2026-10-26 by the first scan of all 685 mutants; none of them has ever been exercised since its text moved. See docs/TODO.md.

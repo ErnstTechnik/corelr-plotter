@@ -1,0 +1,12 @@
+# Mutants of the screen-navigation ergonomics (REQ-CoreLR-D-LcdJoystickUI-0025, -0026). Run: tools/mutate.py --test test_ui --batch tests/mutation/mutants/ergonomics.txt --timeout 120
+# name @@ file @@ old @@ new
+no J tag in the jog @@ LcdJoystickUI.cpp @@ (s_uiMode == LCDJOYSTICKUI_MODE_JOG_CONTROL) ? LCDJOYSTICKUI_TAG_JOG @@ (0) ? LCDJOYSTICKUI_TAG_JOG
+jog exit goes to the menu @@ LcdJoystickUI.cpp @@ s_uiMode = LCDJOYSTICKUI_MODE_STATUS; /* either press leaves the jog @@ s_uiMode = LCDJOYSTICKUI_MODE_MENU; /* either press leaves the jog
+jog exit on a short press only @@ LcdJoystickUI.cpp @@ if (shortPress || longPress)\n   {\n      s_uiMode = LCDJOYSTICKUI_MODE_STATUS; /* either @@ if (shortPress)\n   {\n      s_uiMode = LCDJOYSTICKUI_MODE_STATUS; /* either
+jog exit on a long press only @@ LcdJoystickUI.cpp @@ if (shortPress || longPress)\n   {\n      s_uiMode = LCDJOYSTICKUI_MODE_STATUS; /* either @@ if (longPress)\n   {\n      s_uiMode = LCDJOYSTICKUI_MODE_STATUS; /* either
+Back not offered @@ LcdJoystickUI.cpp @@ if (item == MENU_BACK)\n   {\n      return 1; @@ if (item == MENU_BACK)\n   {\n      return 0;
+Back does not leave the menu @@ LcdJoystickUI.cpp @@ case MENU_BACK:\n         s_uiMode = LCDJOYSTICKUI_MODE_STATUS; @@ case MENU_BACK:\n         s_uiMode = LCDJOYSTICKUI_MODE_MENU;
+Back without its arrow @@ LcdJoystickUI.cpp @@ { LCDJOYSTICKUI_BACK_ARROW, ' ', 'B', 'a', 'c', 'k', '\\0' } @@ { ' ', ' ', 'B', 'a', 'c', 'k', '\\0' }
+state change leaves the menu open @@ LcdJoystickUI.cpp @@ if ((state != s_machineState) && (s_uiMode == LCDJOYSTICKUI_MODE_MENU)) @@ if (0)
+menu closes without a state change @@ LcdJoystickUI.cpp @@ if ((state != s_machineState) && (s_uiMode == LCDJOYSTICKUI_MODE_MENU)) @@ if (s_uiMode == LCDJOYSTICKUI_MODE_MENU)
+state change closes every mode @@ LcdJoystickUI.cpp @@ if ((state != s_machineState) && (s_uiMode == LCDJOYSTICKUI_MODE_MENU)) @@ if (state != s_machineState)

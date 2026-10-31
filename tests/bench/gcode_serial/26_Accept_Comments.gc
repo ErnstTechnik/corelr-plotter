@@ -1,0 +1,30 @@
+; ACCEPTED: comments and blanks. Candle sends
+; comments unstripped;
+; the firmware strips them. Nothing moves far:
+; a small square.
+M5
+G90 G0 X0 Y0
+G21 G17 G54 G94
+; a whole-line comment
+(a whole-line comment in parentheses)
+G0 X10 Y0 ; to the right
+G1 X10 (up) Y10 (and across) 
+	G1	X0	Y10	
+G1 X0 Y0 (ends the square)
+; text that looks like replies, in comments
+; only:
+G0 X0 Y0 ; ok
+G0 X0 Y0 (error:9 is only a comment)
+G0 X0 Y0 ; [MSG:Pgm End] ok error:20 ALARM:1
+; a comment with a real-time byte in it is
+; still a real-time
+; command in grbl; the status request below is
+; harmless:
+G0 X0 Y0 ; ?
+; a parenthesis that is never closed ends with
+; the line
+G0 X5 Y5 (never closed
+G0 X0 Y0
+M5
+G90 G0 X0 Y0
+M30

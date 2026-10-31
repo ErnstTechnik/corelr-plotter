@@ -1,0 +1,54 @@
+# Mutants of the user's drawing origin (REQ-CoreLR-F-Calibration-0010, -GCodeInterpreter-0017, D-Motion-0029, D-Calibration-0012, D-GCodeParser-0017, D-LcdJoystickUI-0031).
+# Each must be caught by at least one of: test_origin (run in BOTH Y settings), test_calzone, test_ui, test_parser. Run the batch once per test:
+#   tools/mutate.py --test test_origin --batch tests/mutation/mutants/origin.txt     (also -D CORELR_Y_UP=0, and --test test_calzone, test_ui, test_parser)
+# --- Motion
+the origin is set while the planner holds moves @@ Motion.c @@ if (!Motion_IsIdle() || !Motion_PlannerIsEmpty())\n   {\n      return 0;\n   }\n   Calibration_GetWorkOrigin(&offsetX, &offsetY);\n   internalX @@ if (!Motion_IsIdle())\n   {\n      return 0;\n   }\n   Calibration_GetWorkOrigin(&offsetX, &offsetY);\n   internalX
+the origin is set while a move is being generated @@ Motion.c @@ if (!Motion_IsIdle() || !Motion_PlannerIsEmpty())\n   {\n      return 0;\n   }\n   Calibration_GetWorkOrigin(&offsetX, &offsetY);\n   internalX @@ if (!Motion_PlannerIsEmpty())\n   {\n      return 0;\n   }\n   Calibration_GetWorkOrigin(&offsetX, &offsetY);\n   internalX
+the pen's internal X is taken with the wrong sign @@ Motion.c @@ internalX = s_currentPosition.X + offsetX;                          /* where @@ internalX = s_currentPosition.X - offsetX;                          /* where
+the pen's internal Y ignores the flip @@ Motion.c @@ internalY = MOTION_Y_TO_INTERNAL(offsetY, s_currentPosition.Y);\n   if (what & MOTION_ORIGIN_REFERENCE) @@ internalY = s_currentPosition.Y + offsetY;\n   if (what & MOTION_ORIGIN_REFERENCE)
+the reference is never used @@ Motion.c @@ if (what & MOTION_ORIGIN_REFERENCE)\n   {\n      Calibration_GetReferencePosition @@ if (0)\n   {\n      Calibration_GetReferencePosition
+the new X offset has the wrong sign @@ Motion.c @@ offsetX = internalX - x; @@ offsetX = internalX + x;
+the new Y offset ignores the value @@ Motion.c @@ offsetY = MOTION_OFFSET_FOR(internalY, y); @@ offsetY = internalY;
+X is always set @@ Motion.c @@ if (what & MOTION_ORIGIN_X)\n      {\n         offsetX @@ if (1)\n      {\n         offsetX
+Y is always set @@ Motion.c @@ if (what & MOTION_ORIGIN_Y)\n      {\n         offsetY @@ if (1)\n      {\n         offsetY
+a refused origin is applied anyway @@ Motion.c @@ if (!Calibration_SetWorkOrigin(offsetX, offsetY))                   /* stored, or refused @@ if (0)                   /* stored, or refused
+the pen is re-read with the wrong X @@ Motion.c @@ s_currentPosition.X = internalX - offsetX;                          /* the pen has not moved @@ s_currentPosition.X = internalX + offsetX;                          /* the pen has not moved
+the pen is re-read with the wrong Y @@ Motion.c @@ s_currentPosition.Y = MOTION_Y_FROM_INTERNAL(offsetY, internalY);\n   return 1; @@ s_currentPosition.Y = internalY;\n   return 1;
+the offset for Y is wrong (Y up) @@ Motion.c @@ #define MOTION_OFFSET_FOR(iy, y)           ((iy) + (y))\n#else @@ #define MOTION_OFFSET_FOR(iy, y)           ((iy) - (y))\n#else
+the offset for Y is wrong (Y down) @@ Motion.c @@ #define MOTION_OFFSET_FOR(iy, y)           ((iy) - (y))\n#endif @@ #define MOTION_OFFSET_FOR(iy, y)           ((iy) + (y))\n#endif
+# --- Calibration
+the origin may be anywhere (no zone check) @@ Calibration.c @@ if (!PointInsideZone(offsetX, offsetY))           /* also @@ if (0)           /* also
+the origin's X and Y are swapped @@ Calibration.c @@ s_params.WorkOriginOffsetX = offsetX;\n   s_params.WorkOriginOffsetY = offsetY;\n   Persist();\n   return 1; @@ s_params.WorkOriginOffsetX = offsetY;\n   s_params.WorkOriginOffsetY = offsetX;\n   Persist();\n   return 1;
+the origin is not stored @@ Calibration.c @@ s_params.WorkOriginOffsetY = offsetY;\n   Persist();\n   return 1; @@ s_params.WorkOriginOffsetY = offsetY;\n   return 1;
+the reference X and Y are swapped @@ Calibration.c @@ *outX = s_params.ReferencePositionX;\n   *outY = s_params.ReferencePositionY;\n} @@ *outX = s_params.ReferencePositionY;\n   *outY = s_params.ReferencePositionX;\n}
+# --- GCodeParser
+G10 is not an origin command @@ GCodeParser.c @@ else if ((g == 92) || (g == 10)) @@ else if (g == 92)
+G92 and G10 are swapped @@ GCodeParser.c @@ outParsed->OriginCmd = (uint8_t)((g == 92) ? 1u : 2u); @@ outParsed->OriginCmd = (uint8_t)((g == 92) ? 2u : 1u);
+a motion word on a G92 line is accepted @@ GCodeParser.c @@ if (outParsed->HasM || outParsed->HasI || outParsed->HasJ || (outParsed->MotionWord >= 0) || MACHINE_WORD(outParsed))\n      {\n         return GCODEPARSER_ERR_AXIS_CONFLICT; @@ if (outParsed->HasM || outParsed->HasI || outParsed->HasJ || MACHINE_WORD(outParsed))\n      {\n         return GCODEPARSER_ERR_AXIS_CONFLICT;
+an arc offset on a G92 line is accepted @@ GCodeParser.c @@ if (outParsed->HasM || outParsed->HasI || outParsed->HasJ || (outParsed->MotionWord >= 0) || MACHINE_WORD(outParsed))\n      {\n         return GCODEPARSER_ERR_AXIS_CONFLICT; @@ if (outParsed->HasM || outParsed->HasJ || (outParsed->MotionWord >= 0) || MACHINE_WORD(outParsed))\n      {\n         return GCODEPARSER_ERR_AXIS_CONFLICT;
+a pen word on a G92 line is accepted @@ GCodeParser.c @@ if (outParsed->HasM || outParsed->HasI || outParsed->HasJ || (outParsed->MotionWord >= 0) || MACHINE_WORD(outParsed))\n      {\n         return GCODEPARSER_ERR_AXIS_CONFLICT; @@ if (outParsed->HasI || outParsed->HasJ || (outParsed->MotionWord >= 0) || MACHINE_WORD(outParsed))\n      {\n         return GCODEPARSER_ERR_AXIS_CONFLICT;
+G10 accepts any L or P @@ GCodeParser.c @@ ((outParsed->LValue != 20u) || (outParsed->PValue != 1u)) @@ ((outParsed->LValue != 20u) && (outParsed->PValue != 1u))
+G10 accepts L21 @@ GCodeParser.c @@ ((outParsed->LValue != 20u) || (outParsed->PValue != 1u)) @@ ((outParsed->LValue != 21u) || (outParsed->PValue != 1u))
+G10 accepts P2 @@ GCodeParser.c @@ ((outParsed->LValue != 20u) || (outParsed->PValue != 1u)) @@ ((outParsed->LValue != 20u) || (outParsed->PValue != 2u))
+an L word on a G92 is accepted @@ GCodeParser.c @@ : ((outParsed->LValue | outParsed->PValue) != 0u))\n      {\n         return (outParsed->OriginCmd == 2u) @@ : (0))\n      {\n         return (outParsed->OriginCmd == 2u)
+a G92 with no axis word is accepted @@ GCodeParser.c @@ if (!(outParsed->HasX || outParsed->HasY))\n      {\n         return GCODEPARSER_ERR_NO_AXIS_WORDS;\n      }\n   }\n   else if ((outParsed->LValue @@ if (0)\n      {\n         return GCODEPARSER_ERR_NO_AXIS_WORDS;\n      }\n   }\n   else if ((outParsed->LValue
+an L or P without a G10 is accepted @@ GCodeParser.c @@ else if ((outParsed->LValue | outParsed->PValue) != 0u)\n   {\n      return GCODEPARSER_ERR_UNUSED_WORDS; @@ else if (0)\n   {\n      return GCODEPARSER_ERR_UNUSED_WORDS;
+the L word is stored as P @@ GCodeParser.c @@ outParsed->LValue = GCodeNumberToCode(&number); @@ outParsed->PValue = GCodeNumberToCode(&number);
+bare G92 coordinates need a motion mode @@ GCodeParser.c @@ if (!jog && (outParsed->OriginCmd == 0u) && (outParsed->HasX @@ if (!jog && (outParsed->HasX
+G92 does not wait for the planner @@ GCodeParser.c @@ if (!(Motion_IsIdle() && Motion_PlannerIsEmpty()))\n      {\n         return GCODEPARSER_BUSY;\n      }\n      return Motion_SetOrigin( @@ if (0)\n      {\n         return GCODEPARSER_BUSY;\n      }\n      return Motion_SetOrigin(
+G92 X sets Y @@ GCodeParser.c @@ (uint8_t)((parsed.HasX ? MOTION_ORIGIN_X : 0u) | (parsed.HasY ? MOTION_ORIGIN_Y : 0u)) @@ (uint8_t)((parsed.HasX ? MOTION_ORIGIN_Y : 0u) | (parsed.HasY ? MOTION_ORIGIN_Y : 0u))
+G92 always sets X and Y @@ GCodeParser.c @@ (uint8_t)((parsed.HasX ? MOTION_ORIGIN_X : 0u) | (parsed.HasY ? MOTION_ORIGIN_Y : 0u)) @@ (uint8_t)(MOTION_ORIGIN_X | MOTION_ORIGIN_Y)
+a refused origin says OK @@ GCodeParser.c @@ ? GCODEPARSER_OK : GCODEPARSER_ERR_TARGET_INVALID; @@ ? GCODEPARSER_ERR_TARGET_INVALID : GCODEPARSER_OK;
+a jog takes G92 @@ GCodeParser.c @@ || (parsed.MotionWord >= 0) || (parsed.OriginCmd != 0u)) @@ || (parsed.MotionWord >= 0))
+# --- LcdJoystickUI
+the origin items are offered uncalibrated (set) @@ LcdJoystickUI.cpp @@ && (item != MENU_SET_ORIGIN) && (item != MENU_ORIGIN_CAL)) @@ && (item != MENU_ORIGIN_CAL))
+the origin items are offered uncalibrated (calib) @@ LcdJoystickUI.cpp @@ && (item != MENU_SET_ORIGIN) && (item != MENU_ORIGIN_CAL)) @@ && (item != MENU_SET_ORIGIN))
+the calibration item opens the wrong confirmation @@ LcdJoystickUI.cpp @@ s_originToReference = (uint8_t)(item == MENU_ORIGIN_CAL); @@ s_originToReference = 0;
+the confirmation is skipped @@ LcdJoystickUI.cpp @@ s_uiMode = LCDJOYSTICKUI_MODE_ORIGIN_CONFIRM;\n         }\n         break; @@ s_uiMode = LCDJOYSTICKUI_MODE_STATUS;\n         }\n         break;
+a long press goes to the status screen @@ LcdJoystickUI.cpp @@ if (longPress)\n   {\n      s_uiMode = LCDJOYSTICKUI_MODE_MENU;\n   }\n   else if (shortPress && Motion_SetOrigin @@ if (longPress)\n   {\n      s_uiMode = LCDJOYSTICKUI_MODE_STATUS;\n   }\n   else if (shortPress && Motion_SetOrigin
+the confirmation acts without a press @@ LcdJoystickUI.cpp @@ else if (shortPress && Motion_SetOrigin( @@ else if (Motion_SetOrigin(
+the confirmation never leaves @@ LcdJoystickUI.cpp @@ {\n      s_uiMode = LCDJOYSTICKUI_MODE_STATUS;\n   }\n}\n\n/** @brief Redraw the origin confirmation @@ {\n      s_uiMode = s_uiMode;\n   }\n}\n\n/** @brief Redraw the origin confirmation
+set and calibration swapped @@ LcdJoystickUI.cpp @@ s_originToReference ? MOTION_ORIGIN_REFERENCE : (MOTION_ORIGIN_X | MOTION_ORIGIN_Y) @@ s_originToReference ? (MOTION_ORIGIN_X | MOTION_ORIGIN_Y) : MOTION_ORIGIN_REFERENCE
+Set origin sets one axis only @@ LcdJoystickUI.cpp @@ (MOTION_ORIGIN_X | MOTION_ORIGIN_Y), 0, 0)) @@ (MOTION_ORIGIN_X), 0, 0))
+the confirmation prompts are swapped @@ LcdJoystickUI.cpp @@ s_originToReference ? PSTR("Origin=calib.?") : PSTR("Origin = here?") @@ s_originToReference ? PSTR("Origin = here?") : PSTR("Origin=calib.?")
+the second line does not say how to confirm @@ LcdJoystickUI.cpp @@ PrintPadded_P(1, PSTR("SW=ok  hold=no")); @@ PrintPadded_P(1, PSTR(""));

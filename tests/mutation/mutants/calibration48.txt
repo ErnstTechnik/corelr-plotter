@@ -1,0 +1,5 @@
+# Mutants of the 48-bit calibration height. Run: tools/mutate.py --test test_position --batch tests/mutation/mutants/calibration48.txt -D CORELR_MATH=CORELR_MATH_48
+# name @@ file @@ old @@ new
+no +1 exactness step @@ Calibration.c @@ if ((L * L - h * h - lo * lo) >= ((lo << 1) + 1u))\n      {\n         lo++;\n      } @@ (empty)
+bisection uses <= (off by one) @@ Calibration.c @@ if (Motion_Hypot((int32_t)h, (int32_t)mid) < L) @@ if (Motion_Hypot((int32_t)h, (int32_t)mid) <= L)
+L < h not handled @@ Calibration.c @@ if (L < h)\n   {\n      s_params.ReferencePositionY = 0;   /* misconfigured, as above */\n   }\n   else @@ if (0)\n   {\n   }\n   else

@@ -1,0 +1,24 @@
+# Mutants of "Return home" (REQ-CoreLR-D-LcdJoystickUI-0024). Run: tools/mutate.py --test test_ui --batch tests/mutation/mutants/home.txt --timeout 120
+# name @@ file @@ old @@ new
+pen not lifted @@ LcdJoystickUI.cpp @@ PenControl_RequestUp();          /* a no-op if it is up; the request goes ahead of every move queued below */ @@ (empty)
+target X is 1 @@ LcdJoystickUI.cpp @@ origin.X = 0; @@ origin.X = 1;
+target Y is 1 @@ LcdJoystickUI.cpp @@ origin.Y = 0; @@ origin.Y = 1;
+offered uncalibrated @@ LcdJoystickUI.cpp @@ return Calibration_IsCalibrated();   /* (0,0) means @@ return 1;   /* (0,0) means
+offered while a job runs @@ LcdJoystickUI.cpp @@ return (uint8_t)((item == MENU_HALT) || (item == MENU_CANCEL)); @@ return (uint8_t)((item == MENU_HALT) || (item == MENU_CANCEL) || (item == MENU_HOME));
+entry runs uncalibrated @@ LcdJoystickUI.cpp @@ case MENU_HOME:\n         if (Calibration_IsCalibrated())     /* defensive, like MENU_JOG */ @@ case MENU_HOME:\n         if (1)     /* defensive, like MENU_JOG */
+SW does not halt @@ LcdJoystickUI.cpp @@ Motion_Halt();\n      s_homeStopping = 1; @@ s_homeStopping = 1;
+SW does not mark the stop @@ LcdJoystickUI.cpp @@ Motion_Halt();\n      s_homeStopping = 1; @@ Motion_Halt();
+a second press halts again @@ LcdJoystickUI.cpp @@ if (shortPress && !s_homeStopping) @@ if (shortPress)
+long press ignored @@ LcdJoystickUI.cpp @@ HandleHomingInput((uint8_t)(shortPress | longPress)); @@ HandleHomingInput(shortPress);
+queues while stopping @@ LcdJoystickUI.cpp @@ !s_homeQueued && !s_homeStopping && Motion_PlannerHasRoom() @@ !s_homeQueued && Motion_PlannerHasRoom()
+does not wait for room @@ LcdJoystickUI.cpp @@ !s_homeQueued && !s_homeStopping && Motion_PlannerHasRoom() @@ !s_homeQueued && !s_homeStopping
+refused move counted as queued @@ LcdJoystickUI.cpp @@ s_homeQueued = Motion_QueueMove(origin); @@ s_homeQueued = 1; (void)Motion_QueueMove(origin);
+done when idle only @@ LcdJoystickUI.cpp @@ s_homeQueued && Motion_IsIdle() && Motion_PlannerIsEmpty() @@ s_homeQueued && Motion_IsIdle()
+done before queued @@ LcdJoystickUI.cpp @@ s_homeQueued && Motion_IsIdle() && Motion_PlannerIsEmpty() @@ Motion_IsIdle() && Motion_PlannerIsEmpty()
+done while moving @@ LcdJoystickUI.cpp @@ s_homeQueued && Motion_IsIdle() && Motion_PlannerIsEmpty() @@ s_homeQueued && Motion_PlannerIsEmpty()
+stop does not wait for the ramp @@ LcdJoystickUI.cpp @@ s_homeStopping ? Motion_IsHaltRampDone() : @@ s_homeStopping ? 1 :
+rest of the move not dropped @@ LcdJoystickUI.cpp @@ if (s_homeStopping)\n      {\n         Motion_Abort();\n      } @@ if (s_homeStopping)\n      {\n      }
+mode never left @@ LcdJoystickUI.cpp @@ Motion_Abort();\n      }\n      s_uiMode = LCDJOYSTICKUI_MODE_STATUS; @@ Motion_Abort();\n      }
+no H tag @@ LcdJoystickUI.cpp @@ (s_uiMode == LCDJOYSTICKUI_MODE_HOMING)      ? LCDJOYSTICKUI_TAG_HOMING @@ (0)      ? LCDJOYSTICKUI_TAG_HOMING
+not drawn as status @@ LcdJoystickUI.cpp @@ case LCDJOYSTICKUI_MODE_HOMING:         RedrawStatusScreen();  break; @@ case LCDJOYSTICKUI_MODE_HOMING:         break;
+not busy while homing @@ LcdJoystickUI.cpp @@ return (uint8_t)((s_uiMode != LCDJOYSTICKUI_MODE_STATUS) && (s_uiMode != LCDJOYSTICKUI_MODE_MENU)); @@ return (uint8_t)((s_uiMode != LCDJOYSTICKUI_MODE_STATUS) && (s_uiMode != LCDJOYSTICKUI_MODE_MENU) && (s_uiMode != LCDJOYSTICKUI_MODE_HOMING));

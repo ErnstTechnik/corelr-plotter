@@ -1,0 +1,39 @@
+; ACCEPTED: G92 and G10 L20 P1 make the CURRENT
+; position (x,y)
+; (REQ-CoreLR-F-GCodeInterpreter-0017). Pen up.
+; The pen never leaves
+; its place on the wall for the set; each ends
+; by putting the origin
+; back where it was, so the file leaves the
+; machine as found.
+; Afterwards `G0 X0 Y0` must be a no-move, and
+; Idle.
+M5
+G90 G0 X0 Y0
+G21 G17 G54 G94
+; G92: the pen, where it is, now reads (50,50)
+G92 X50 Y50
+G0 X70 Y50
+G1 X70 Y70
+G0 X50 Y50
+G92 X0 Y0
+; G10 L20 P1: the same, other spelling
+G10 L20 P1 X-30 Y30
+G0 X-10 Y30
+G0 X-30 Y30
+G10 L20 P1 X0 Y0
+; one axis alone changes that axis only
+G92 X5
+G0 X5 Y0
+G92 X0
+; absolute whatever G91 says
+G91
+G92 X7 Y7
+G90
+G0 X7 Y7
+G92 X0 Y0
+; a Z word on it is ignored (Candle sends one)
+G92 X0 Y0 Z0
+M5
+G90 G0 X0 Y0
+M30

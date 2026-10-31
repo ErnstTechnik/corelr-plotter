@@ -1,0 +1,47 @@
+# Mutants of tools/generators/gen_wiring.py. Run:  tools/mutate.py --test tools/wiring --script tests/tools/test_wiring.py --batch tests/mutation/mutants/wiring.txt
+# Every one must be caught by tests/tools/test_wiring.py.
+# name @@ file @@ old @@ new
+motor R pins read in the wrong order @@ gen_wiring.py @@ s.down(nano.pin(mp["R"][i]), mr.pin @@ s.down(nano.pin(mp["R"][3 - i]), mr.pin
+motor L pins shifted by one @@ gen_wiring.py @@ s.down(nano.pin(mp["L"][i]), ml.pin @@ s.down(nano.pin(mp["L"][(i + 1) % 4]), ml.pin
+motor R IN order reversed @@ gen_wiring.py @@ mr.pin("IN%d" % (i + 1)) @@ mr.pin("IN%d" % (4 - i))
+motor R pins hard-coded @@ gen_wiring.py @@ "R": [nano_pin(hw["STEPPER_MOTOR_R_PIN%d" % i]) for i in range(4)] @@ "R": ["D2", "D3", "D4", "D5"]
+servo pin hard-coded @@ gen_wiring.py @@ "servo": nano_pin(hw["PENCONTROL_SERVO_PIN"]) @@ "servo": "A0"
+SD chip select hard-coded @@ gen_wiring.py @@ "CS": nano_pin(hw["SDREADER_CS_PIN"]) @@ "CS": "D10"
+SPI MOSI hard-coded @@ gen_wiring.py @@ "MOSI": nano_pin(core["PIN_SPI_MOSI"]) @@ "MOSI": "D11"
+TWI SDA hard-coded @@ gen_wiring.py @@ "SDA": nano_pin(core["PIN_WIRE_SDA"]) @@ "SDA": "A4"
+joystick SW on the VRy pin @@ gen_wiring.py @@ ("SEL", mp["SEL"], "grey") @@ ("SEL", mp["VERT"], "grey")
+joystick X on the VRy pin @@ gen_wiring.py @@ ("HORZ", mp["HORZ"], "green") @@ ("HORZ", mp["VERT"], "green")
+servo signal on A1 @@ gen_wiring.py @@ a0 = nano.pin(mp["servo"]) @@ a0 = nano.pin("A1")
+LCD SDA on the SCL pin @@ gen_wiring.py @@ ("SDA", mp["SDA"], "cyan") @@ ("SDA", mp["SCL"], "cyan")
+SD chip select on the MOSI pin @@ gen_wiring.py @@ ("CS", mp["CS"], "grey") @@ ("CS", mp["MOSI"], "grey")
+SD MOSI and MISO swapped @@ gen_wiring.py @@ ("MOSI", mp["MOSI"], "green") @@ ("MOSI", mp["MISO"], "green")
+SD clock on MISO @@ gen_wiring.py @@ d13, sck = nano.pin(mp["SCK"]), sd.pin("SCK") @@ d13, sck = nano.pin(mp["SCK"]), sd.pin("MISO")
+motor L plus on the minus @@ gen_wiring.py @@ s.down(sup.pin("plus"), ml.pin("plus"), yb_, "red") @@ s.down(sup.pin("plus"), ml.pin("minus"), yb_, "red")
+servo plus on the supply's minus @@ gen_wiring.py @@ s.wire([s5, (s5[0], ylo + 6), (p[0], ylo + 6), p], "red") @@ s.wire([s5, (s5[0], ylo + 6), (m[0], ylo + 6), m], "red")
+no common ground in the overview @@ gen_wiring.py @@ s.wire([m, (m[0], m[1] + 44), (2260, m[1] + 44), (2260, 12), (ng[0], 12), ng], "black") @@ pass
+no supply plus on the diode in the overview @@ gen_wiring.py @@ s.wire([p, (p[0], p[1] + 22), (an[0], p[1] + 22), an], "red") @@ pass
+diode reversed in the overview @@ gen_wiring.py @@ s.wire([p, (p[0], p[1] + 22), (an[0], p[1] + 22), an], "red") @@ s.wire([p, (p[0], p[1] + 22), (ca[0], p[1] + 22), ca], "red")
+diode bypassed in the overview @@ gen_wiring.py @@ s.wire([ca, (ca[0], 28), (n5[0], 28), n5], "red") @@ s.wire([p, (n5[0], 28), n5], "red")
+diode not wired to the Nano in the overview @@ gen_wiring.py @@ s.wire([ca, (ca[0], 28), (n5[0], 28), n5], "red") @@ pass
+series diode not declared @@ gen_wiring.py @@ s.series_diode = True @@ s.series_diode = False
+diode rail forgets the servo @@ gen_wiring.py @@ nets.append({"supply.plus", "motor_R.plus", "motor_L.plus", "servo.vcc", "diode.anode"}) @@ nets.append({"supply.plus", "motor_R.plus", "motor_L.plus", "diode.anode"})
+verify forgets the open nets @@ gen_wiring.py @@ if len(pins) >= 2 and not any(pins <= c for c in comps): @@ if False:
+verify forgets the shorts @@ gen_wiring.py @@ elif len(hit) > 1: @@ elif False:
+verify forgets the stray wires @@ gen_wiring.py @@ if not hit: @@ if False:
+pins may be used twice @@ gen_wiring.py @@ if twice: @@ if False:
+pins on the wrong edge accepted @@ gen_wiring.py @@ if bad: @@ if False:
+nano_pin: 14 is D14 @@ gen_wiring.py @@ return "D%d" % n if n < 14 else "A%d" % (n - 14) @@ return "D%d" % n if n < 15 else "A%d" % (n - 14)
+lanes ranked the wrong way @@ gen_wiring.py @@ order = sorted(range(len(values)), key=lambda i: (values[i], i), reverse=reverse) @@ order = sorted(range(len(values)), key=lambda i: (values[i], i), reverse=not reverse)
+fmt_pins never makes a range @@ gen_wiring.py @@ if len({p[0] for p in pins}) == 1 and @@ if False and
+SVG transform: the translation's y dropped @@ gen_wiring.py @@ x, y = ma[0] * x + ma[2] * y + ma[4], ma[1] * x + ma[3] * y + ma[5] @@ x, y = ma[0] * x + ma[2] * y + ma[4], ma[1] * x + ma[3] * y
+ring pad: no quarter turn @@ gen_wiring.py @@ float(m.group(2)) + float(n[5]) @@ float(m.group(2))
+mirror ignored @@ gen_wiring.py @@ if self.flip:\n            x = -x\n        a = math.radians @@ if False:\n            x = -x\n        a = math.radians
+rotation reversed @@ gen_wiring.py @@ a = math.radians(self.rot) @@ a = -math.radians(self.rot)
+ids not prefixed @@ gen_wiring.py @@ body = body.replace('id="%s"' % i, 'id="%s_%s"' % (self.uid, i)) @@ pass
+pin match too loose @@ gen_wiring.py @@ math.hypot(q[0] - xy[0], q[1] - xy[1]) < 1.5 @@ math.hypot(q[0] - xy[0], q[1] - xy[1]) < 1500
+terminal taken at the near end @@ gen_wiring.py @@ return max(cand, key=lambda q: math.hypot(q[0] - mid[0], q[1] - mid[1])) @@ return min(cand, key=lambda q: math.hypot(q[0] - mid[0], q[1] - mid[1]))
+scale changed @@ gen_wiring.py @@ SCALE = 3.2 @@ SCALE = 3.0
+LCD header: SDA and SCL swapped @@ gen_wiring.py @@ SDA=(2.2, 19.27), SCL=(2.2, 21.81) @@ SDA=(2.2, 21.81), SCL=(2.2, 19.27)
+ULN2003 pitch wrong @@ gen_wiring.py @@ (3 + 5 + 2.54 * i, 3.0) @@ (3 + 5 + 2.5 * i, 3.0)
+no licence in the metadata @@ gen_wiring.py @@ <cc:license rdf:resource="http://creativecommons.org/licenses/by-sa/3.0/"/> @@ <cc:license rdf:resource=""/>
+a wire off the canvas @@ gen_wiring.py @@ s.wire([m, (m[0], 690), (g[0], 690), g], "black") @@ s.wire([m, (m[0], 6900), (g[0], 6900), g], "black")

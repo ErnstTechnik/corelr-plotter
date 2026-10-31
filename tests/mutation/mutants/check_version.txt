@@ -1,0 +1,33 @@
+# Mutants of tools/analysis/check_version.py (the software version of firmware/config/Version.h and its release checks) (REQ-CoreLR-D-Build-0020).
+# Run:  tools/mutate.py --test check_version --script tests/tools/test_check_version.py --batch tests/mutation/mutants/check_version.txt
+# Every mutant must be caught by tests/tools/test_check_version.py (its self-test on fabricated trees; nothing else is needed).
+a number is taken from a comment @@ check_version.py @@ r"^#define CORELR_VERSION_%s +([0-9]+)\\b" % part, text, re.M @@ r"#define CORELR_VERSION_%s +([0-9]+)\\b" % part, text, re.M
+a number may be defined twice @@ check_version.py @@ if len(found) != 1:\n            raise VersionError("%s: need exactly one line '#define CORELR_VERSION_%s <number>' @@ if len(found) < 1:\n            raise VersionError("%s: need exactly one line '#define CORELR_VERSION_%s <number>'
+the patch number is not read @@ check_version.py @@ for part in ("MAJOR", "MINOR", "PATCH"): @@ for part in ("MAJOR", "MINOR"):
+the suffix is taken from a comment @@ check_version.py @@ r'^#define CORELR_VERSION_SUFFIX +"([^"]*)"' @@ r'#define CORELR_VERSION_SUFFIX +"([^"]*)"'
+any suffix is accepted @@ check_version.py @@ if not re.fullmatch(r"(-[0-9A-Za-z.]+)?", found[0]): @@ if not re.fullmatch(r".*", found[0]):
+a suffix needs no hyphen @@ check_version.py @@ if not re.fullmatch(r"(-[0-9A-Za-z.]+)?", found[0]): @@ if not re.fullmatch(r"(-?[0-9A-Za-z.]+)?", found[0]):
+the suffix is left out of the string @@ check_version.py @@     return "%d.%d.%d%s" % version @@     return "%d.%d.%d" % version[:3]
+a release tag on a development version passes @@ check_version.py @@     if version[3] != "":\n        problems.append("the tag %s @@     if False:\n        problems.append("the tag %s
+the tag is not compared with the numbers @@ check_version.py @@     if name != expected: @@     if False:
+the expected tag has no v @@ check_version.py @@     expected = "v%d.%d.%d" % version[:3] @@     expected = "%d.%d.%d" % version[:3]
+the expected tag carries the suffix @@ check_version.py @@     expected = "v%d.%d.%d" % version[:3] @@     expected = "v" + version_string(version)
+a tag with its ref is not understood @@ check_version.py @@ name = tag[len("refs/tags/"):] if tag.startswith("refs/tags/") else tag @@ name = tag
+--tag is not looked at @@ check_version.py @@     if args.tag is not None:\n        problems += tag_problems(version, args.tag) @@     if False:\n        problems += tag_problems(version, args.tag)
+--release is not looked at @@ check_version.py @@     if args.release and version[3] != "": @@     if False:
+CMake may read another version @@ check_version.py @@ if args.cmake is not None and args.cmake != version_string(version): @@ if False:
+CMake is always told it disagrees @@ check_version.py @@ if args.cmake is not None and args.cmake != version_string(version): @@ if args.cmake is not None:
+--sources is not looked at @@ check_version.py @@     if args.sources:\n        problems += source_problems(args.root) @@     if False:\n        problems += source_problems(args.root)
+a literal in CMakeLists.txt passes @@ check_version.py @@ re.match(r'\\s*set\\(CORELR_VERSION(_NUMBER)?\\s+"[0-9]', line) @@ re.match(r'\\s*set\\(CORELR_VERSION\\s+"[0-9]', line)
+a literal in the CMakeLists.txt, indented, passes @@ check_version.py @@ re.match(r'\\s*set\\(CORELR_VERSION(_NUMBER)?\\s+"[0-9]', line) @@ re.match(r'set\\(CORELR_VERSION(_NUMBER)?\\s+"[0-9]', line)
+the cmake folder is not read @@ check_version.py @@ if x.endswith(".cmake")] @@ if x.endswith(".cmakes")]
+the firmware sketch is not read @@ check_version.py @@ if not name.endswith((".c", ".cpp", ".h", ".ino")) @@ if not name.endswith((".c", ".cpp", ".h"))
+the configuration folder is not read @@ check_version.py @@ for sub in ("firmware/src", "firmware/app", "firmware/config"): @@ for sub in ("firmware/src", "firmware/app"):
+Version.h may not spell its own version @@ check_version.py @@ or os.path.join(sub, name) == VERSION_H.replace(os.sep, "/"): @@ or False:
+a comment that names a version is a problem @@ check_version.py @@ and not line.lstrip().startswith(("*", "/")) @@ and True
+a v before the number is not seen @@ check_version.py @@ (?<![0-9A-Za-z.])v?[0-9]+ @@ (?<![0-9A-Za-z.])[0-9]+
+a number inside a longer word is a version @@ check_version.py @@ (?<![0-9A-Za-z.])v?[0-9]+ @@ v?[0-9]+
+the status is a flag, not a count @@ check_version.py @@     return len(problems) @@     return 1 if problems else 0
+an unreadable Version.h is status 1 @@ check_version.py @@         print("check_version.py: %s" % error, file=sys.stderr)\n        return 2 @@         print("check_version.py: %s" % error, file=sys.stderr)\n        return 1
+the error goes to the standard output @@ check_version.py @@         print("check_version.py: %s" % error, file=sys.stderr) @@         print("check_version.py: %s" % error)
+a problem goes to the standard output @@ check_version.py @@         print("check_version.py: %s" % problem, file=sys.stderr) @@         print("check_version.py: %s" % problem)

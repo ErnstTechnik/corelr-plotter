@@ -1,0 +1,12 @@
+# FW-14 / REQ-CoreLR-F-SerialControl-0015: motion mode G0 after a Ctrl-X; FW-13: $I's date. Test: test_seriallink.
+reset keeps no mode @@ GCodeParser.c @@ GCodeParser_Init();\n   s_state.MotionMode = 0;\n} @@ GCodeParser_Init();\n}
+reset mode G1 @@ GCodeParser.c @@ s_state.MotionMode = 0;\n} @@ s_state.MotionMode = 1;\n}
+reset forgets the init @@ GCodeParser.c @@ GCodeParser_Init();\n   s_state.MotionMode = 0; @@ s_state.MotionMode = 0;
+Ctrl-X uses the plain init @@ SerialLink.c @@ GCodeParser_ResetByLink(); @@ GCodeParser_Init();
+Ctrl-X does not reset @@ SerialLink.c @@ GCodeParser_ResetByLink(); @@ 
+old date @@ SerialLink.c @@ 1.1h.20261011 @@ 1.1h.20261008
+# REQ-CoreLR-F-GCodeInterpreter-0019: M9 and T accepted
+M9 not accepted @@ GCodeParser.c @@ if (GCodeNumberToCode(&number) == 9u) @@ if (GCodeNumberToCode(&number) == 99u)
+M9 sets the pen @@ GCodeParser.c @@ break;                                      /* M9, coolant @@ outParsed->HasM = 1; break;                                      /* M9, coolant
+T word refused @@ GCodeParser.c @@ case 'T': /* a tool number @@ case '!': /* a tool number
+M9 accepted with a fraction @@ GCodeParser.c @@ if (number.HasFraction)\n            {\n               return GCODEPARSER_ERR_UNSUPPORTED;\n            }\n#if CORELR_JOB_SOURCE == CORELR_JOB_SOURCE_SERIAL @@ #if CORELR_JOB_SOURCE == CORELR_JOB_SOURCE_SERIAL
